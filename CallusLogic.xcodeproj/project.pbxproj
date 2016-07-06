@@ -12,6 +12,17 @@
 		B5F44C601D2D9E84008BCE5F /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C5E1D2D9E84008BCE5F /* Document.xib */; };
 		B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C611D2D9E84008BCE5F /* Assets.xcassets */; };
 		B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C631D2D9E84008BCE5F /* MainMenu.xib */; };
+		B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */; };
+		B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */; };
+		B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */; };
+		B5F44C7A1D2D9F15008BCE5F /* FretboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6F1D2D9F15008BCE5F /* FretboardModel.swift */; };
+		B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C701D2D9F15008BCE5F /* FretboardView.swift */; };
+		B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */; };
+		B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C721D2D9F15008BCE5F /* NoteModel.swift */; };
+		B5F44C7E1D2D9F15008BCE5F /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C731D2D9F15008BCE5F /* NoteView.swift */; };
+		B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */; };
+		B5F44C801D2D9F15008BCE5F /* RightHandedFretboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C751D2D9F15008BCE5F /* RightHandedFretboard.png */; };
+		B5F44C811D2D9F15008BCE5F /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C761D2D9F15008BCE5F /* Scale.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +33,17 @@
 		B5F44C611D2D9E84008BCE5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5F44C641D2D9E84008BCE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B5F44C661D2D9E84008BCE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllIntervals.swift; sourceTree = "<group>"; };
+		B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScales.swift; sourceTree = "<group>"; };
+		B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
+		B5F44C6F1D2D9F15008BCE5F /* FretboardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardModel.swift; sourceTree = "<group>"; };
+		B5F44C701D2D9F15008BCE5F /* FretboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardView.swift; sourceTree = "<group>"; };
+		B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftHandedFretboard.png; sourceTree = "<group>"; };
+		B5F44C721D2D9F15008BCE5F /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		B5F44C731D2D9F15008BCE5F /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+drawing.swift"; sourceTree = "<group>"; };
+		B5F44C751D2D9F15008BCE5F /* RightHandedFretboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightHandedFretboard.png; sourceTree = "<group>"; };
+		B5F44C761D2D9F15008BCE5F /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +77,56 @@
 			isa = PBXGroup;
 			children = (
 				B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */,
-				B5F44C5C1D2D9E84008BCE5F /* Document.swift */,
-				B5F44C5E1D2D9E84008BCE5F /* Document.xib */,
 				B5F44C611D2D9E84008BCE5F /* Assets.xcassets */,
 				B5F44C631D2D9E84008BCE5F /* MainMenu.xib */,
 				B5F44C661D2D9E84008BCE5F /* Info.plist */,
+				B5F44C5E1D2D9E84008BCE5F /* Document.xib */,
+				B5F44C5C1D2D9E84008BCE5F /* Document.swift */,
+				B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */,
+				B5F44C841D2D9FD6008BCE5F /* MusicTheory */,
+				B5F44C821D2D9FA0008BCE5F /* Views */,
+				B5F44C831D2D9FC1008BCE5F /* Models */,
+				B5F44C851D2D9FF8008BCE5F /* Images */,
 			);
 			path = CallusLogic;
+			sourceTree = "<group>";
+		};
+		B5F44C821D2D9FA0008BCE5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5F44C701D2D9F15008BCE5F /* FretboardView.swift */,
+				B5F44C731D2D9F15008BCE5F /* NoteView.swift */,
+				B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B5F44C831D2D9FC1008BCE5F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5F44C6F1D2D9F15008BCE5F /* FretboardModel.swift */,
+				B5F44C721D2D9F15008BCE5F /* NoteModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B5F44C841D2D9FD6008BCE5F /* MusicTheory */ = {
+			isa = PBXGroup;
+			children = (
+				B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */,
+				B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */,
+				B5F44C761D2D9F15008BCE5F /* Scale.swift */,
+			);
+			name = MusicTheory;
+			sourceTree = "<group>";
+		};
+		B5F44C851D2D9FF8008BCE5F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5F44C751D2D9F15008BCE5F /* RightHandedFretboard.png */,
+				B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +189,9 @@
 			files = (
 				B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */,
 				B5F44C601D2D9E84008BCE5F /* Document.xib in Resources */,
+				B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */,
 				B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */,
+				B5F44C801D2D9F15008BCE5F /* RightHandedFretboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +202,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */,
+				B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */,
+				B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */,
+				B5F44C7A1D2D9F15008BCE5F /* FretboardModel.swift in Sources */,
 				B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */,
+				B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */,
 				B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */,
+				B5F44C811D2D9F15008BCE5F /* Scale.swift in Sources */,
+				B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */,
+				B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */,
+				B5F44C7E1D2D9F15008BCE5F /* NoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
