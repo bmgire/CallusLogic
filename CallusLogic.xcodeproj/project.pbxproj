@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B56F29651D2DE1350067F89D /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56F29631D2DE1350067F89D /* Document.xib */; };
 		B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */; };
 		B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5C1D2D9E84008BCE5F /* Document.swift */; };
-		B5F44C601D2D9E84008BCE5F /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C5E1D2D9E84008BCE5F /* Document.xib */; };
 		B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C611D2D9E84008BCE5F /* Assets.xcassets */; };
 		B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C631D2D9E84008BCE5F /* MainMenu.xib */; };
 		B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */; };
@@ -23,13 +23,15 @@
 		B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */; };
 		B5F44C801D2D9F15008BCE5F /* RightHandedFretboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C751D2D9F15008BCE5F /* RightHandedFretboard.png */; };
 		B5F44C811D2D9F15008BCE5F /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C761D2D9F15008BCE5F /* Scale.swift */; };
+		B5F44C881D2DD55B008BCE5F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */; };
+		B5F44C891D2DD55B008BCE5F /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B56F29641D2DE1350067F89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		B5F44C571D2D9E84008BCE5F /* CallusLogic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallusLogic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F44C5C1D2D9E84008BCE5F /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		B5F44C5F1D2D9E84008BCE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		B5F44C611D2D9E84008BCE5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5F44C641D2D9E84008BCE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B5F44C661D2D9E84008BCE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+drawing.swift"; sourceTree = "<group>"; };
 		B5F44C751D2D9F15008BCE5F /* RightHandedFretboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightHandedFretboard.png; sourceTree = "<group>"; };
 		B5F44C761D2D9F15008BCE5F /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,10 @@
 				B5F44C611D2D9E84008BCE5F /* Assets.xcassets */,
 				B5F44C631D2D9E84008BCE5F /* MainMenu.xib */,
 				B5F44C661D2D9E84008BCE5F /* Info.plist */,
-				B5F44C5E1D2D9E84008BCE5F /* Document.xib */,
+				B56F29631D2DE1350067F89D /* Document.xib */,
 				B5F44C5C1D2D9E84008BCE5F /* Document.swift */,
+				B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */,
+				B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */,
 				B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */,
 				B5F44C841D2D9FD6008BCE5F /* MusicTheory */,
 				B5F44C821D2D9FA0008BCE5F /* Views */,
@@ -187,10 +193,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56F29651D2DE1350067F89D /* Document.xib in Resources */,
 				B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */,
-				B5F44C601D2D9E84008BCE5F /* Document.xib in Resources */,
 				B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */,
 				B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */,
+				B5F44C891D2DD55B008BCE5F /* MainWindowController.xib in Resources */,
 				B5F44C801D2D9F15008BCE5F /* RightHandedFretboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +211,7 @@
 			files = (
 				B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */,
 				B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */,
+				B5F44C881D2DD55B008BCE5F /* MainWindowController.swift in Sources */,
 				B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */,
 				B5F44C7A1D2D9F15008BCE5F /* FretboardModel.swift in Sources */,
 				B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */,
@@ -219,10 +227,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B5F44C5E1D2D9E84008BCE5F /* Document.xib */ = {
+		B56F29631D2DE1350067F89D /* Document.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B5F44C5F1D2D9E84008BCE5F /* Base */,
+				B56F29641D2DE1350067F89D /* Base */,
 			);
 			name = Document.xib;
 			sourceTree = "<group>";
@@ -363,6 +371,7 @@
 				B5F44C6B1D2D9E84008BCE5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

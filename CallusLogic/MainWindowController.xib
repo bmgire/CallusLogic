@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
+            <connections>
+                <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
+                <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
+                <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
+                <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="String Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="50" y="250" width="1817" height="376"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <value key="minSize" type="size" width="500" height="376"/>
+            <value key="maxSize" type="size" width="1817" height="376"/>
+            <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="1817" height="376"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <scrollView autoresizesSubviews="NO" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-DP-gek">
+                        <rect key="frame" x="20" y="20" width="1797" height="262"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="MX7-u0-VUr">
+                            <rect key="frame" x="0.0" y="0.0" width="1797" height="262"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="166" width="1780" height="262"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
+                                    </userDefinedRuntimeAttributes>
+                                </customView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mm5-fJ-Wiq">
+                            <rect key="frame" x="0.0" y="247" width="1784" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3J5-T4-Jck">
+                            <rect key="frame" x="-100" y="-100" width="15" height="265"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <popUpButton focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
+                        <rect key="frame" x="44" y="295" width="43" height="52"/>
+                        <popUpButtonCell key="cell" type="bevel" title="A" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" tag="2" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" selectedItem="WYp-Zs-4ar" id="Zyu-O2-97G">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="40"/>
+                            <menu key="menu" id="xXu-ex-Q0v">
+                                <items>
+                                    <menuItem title="A" tag="2" enabled="NO" id="WYp-Zs-4ar" userLabel="A">
+                                        <attributedString key="attributedTitle"/>
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="updateRoot:" target="-2" id="ZCg-WH-gJw"/>
+                        </connections>
+                    </popUpButton>
+                    <popUpButton focusRingType="none" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
+                        <rect key="frame" x="95" y="297" width="40" height="52"/>
+                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="40"/>
+                            <menu key="menu" id="6pP-uc-zhV"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="updateAccidental:" target="-2" id="k0y-2z-vUc"/>
+                        </connections>
+                    </popUpButton>
+                    <popUpButton focusRingType="none" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
+                        <rect key="frame" x="152" y="297" width="337" height="52"/>
+                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="40"/>
+                            <menu key="menu" id="fHN-VA-IXX"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="updateScale:" target="-2" id="CVV-0Z-add"/>
+                        </connections>
+                    </popUpButton>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="q6P-eG-0XC" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="2SC-CF-amM"/>
+                    <constraint firstAttribute="trailing" secondItem="4wV-DP-gek" secondAttribute="trailing" id="ACP-dL-3AS"/>
+                    <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="Dwd-xY-8jq"/>
+                    <constraint firstItem="rUh-IO-EzS" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="Ldo-0P-Gfy"/>
+                    <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="SwJ-5a-pQb"/>
+                    <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="9" id="VyX-1f-sFK"/>
+                    <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="44" id="XRv-EK-B19"/>
+                    <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="dw1-P3-6eQ"/>
+                    <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="etU-KL-WPT"/>
+                    <constraint firstItem="4wV-DP-gek" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="ls0-uw-Awj"/>
+                    <constraint firstAttribute="bottom" secondItem="4wV-DP-gek" secondAttribute="bottom" constant="20" symbolic="YES" id="nUo-YY-PNU"/>
+                    <constraint firstItem="4wV-DP-gek" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="94" id="uRb-IT-u0K"/>
+                    <constraint firstItem="Bil-5M-u2j" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="v0G-4P-jlg"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="875.5" y="554"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="RightHandedFretboard" width="4000" height="502"/>
+    </resources>
+</document>
