@@ -106,15 +106,9 @@ class FretboardView: NSView {
         for index in 0...5{
             buildNoteRects(stringHeightMultipliers[index], radians: radians[index])
         }
-
-        
-        let model = FretboardModel()
-        model.updateWithValues("E", accidental: "b", scaleName: "Minor Pentatonic")
-        updateNoteModelArray(model.fullFretboardArray!)
         
         buildNoteViews()
         addSubviews()
-        updateSubviews()
     }
 
     

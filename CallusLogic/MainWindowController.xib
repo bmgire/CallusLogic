@@ -50,19 +50,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <popUpButton focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
+                    <popUpButton focusRingType="none" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
                         <rect key="frame" x="44" y="295" width="43" height="52"/>
-                        <popUpButtonCell key="cell" type="bevel" title="A" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" tag="2" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" selectedItem="WYp-Zs-4ar" id="Zyu-O2-97G">
+                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="40"/>
-                            <menu key="menu" id="xXu-ex-Q0v">
-                                <items>
-                                    <menuItem title="A" tag="2" enabled="NO" id="WYp-Zs-4ar" userLabel="A">
-                                        <attributedString key="attributedTitle"/>
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="xXu-ex-Q0v"/>
                         </popUpButtonCell>
                         <connections>
                             <action selector="updateRoot:" target="-2" id="ZCg-WH-gJw"/>

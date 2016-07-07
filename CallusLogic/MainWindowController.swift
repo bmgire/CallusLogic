@@ -61,6 +61,7 @@ class MainWindowController: NSWindowController {
         rootPopUp!.selectItemAtIndex(4)
         
         addScaleNamesToPopUp()
+        scalePopUp!.selectItemAtIndex(7)
         updateFretboardModelAndViews()
     }
     
