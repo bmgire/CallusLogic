@@ -61,7 +61,7 @@ class MainWindowController: NSWindowController {
         rootPopUp!.selectItemAtIndex(4)
         
         addScaleNamesToPopUp()
-        scalePopUp!.selectItemAtIndex(7)
+        scalePopUp!.selectItemAtIndex(scalePopUp!.indexOfItemWithTitle("Minor Pentatonic Scale"))
         updateFretboardModelAndViews()
     }
     
@@ -70,6 +70,10 @@ class MainWindowController: NSWindowController {
         for index in 0...(fretboardModel.allScales.scaleArray.count - 1){
             scalePopUp!.addItemWithTitle(fretboardModel.allScales.scaleArray[index].scaleName)
         }
+        
+        scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 14)
+        scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 22)
+        scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 31)
     }
     
     // update fretboardModel

@@ -24,10 +24,12 @@ class FretboardModel: NSObject {
     var indexOfE: Int?
     
     func updateWithValues(root: String, accidental: String, scaleName: String) {
+        if scaleName != "" {
         // builds masterNotesArray with appropriate notes.
         resolveRoot(root, accidental: accidental)
         getScaleAndOffset(allScales.dictOfScales[scaleName]!, intervalDictForRoot: allIntervals.intervalDict[masterRoot!]!)
         buildFretboard(unorderedScaleArray!)
+        }
     }
     
     func resolveRoot(root: String, accidental: String) {
