@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
+                <outlet property="fretDisplayModePopUp" destination="rxc-av-fsp" id="SNm-Xd-d1n"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
@@ -83,15 +84,28 @@
                             <action selector="updateScale:" target="-2" id="CVV-0Z-add"/>
                         </connections>
                     </popUpButton>
+                    <popUpButton focusRingType="none" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="FretModeDisplayPopUp">
+                        <rect key="frame" x="516" y="297" width="40" height="52"/>
+                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="40"/>
+                            <menu key="menu" id="Jjv-FN-41y"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="updateFretDisplay:" target="-2" id="zxa-5X-Ws2"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
                 <constraints>
                     <constraint firstItem="q6P-eG-0XC" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="2SC-CF-amM"/>
+                    <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="27" id="7YT-Cu-yPd"/>
                     <constraint firstAttribute="trailing" secondItem="4wV-DP-gek" secondAttribute="trailing" id="ACP-dL-3AS"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="Dwd-xY-8jq"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="Ldo-0P-Gfy"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="SwJ-5a-pQb"/>
                     <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="9" id="VyX-1f-sFK"/>
                     <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="44" id="XRv-EK-B19"/>
+                    <constraint firstItem="rxc-av-fsp" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="27" id="aFn-Ch-ycc"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="dw1-P3-6eQ"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="etU-KL-WPT"/>
                     <constraint firstItem="4wV-DP-gek" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="ls0-uw-Awj"/>

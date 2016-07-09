@@ -20,13 +20,4 @@ class NoteModel {
     func setNote(newNote: String) {
         note = newNote
     }
-    
-    func addParenthesesToPassingTone() {
-        var temp = "("
-        temp = temp.stringByAppendingString(note)
-        temp = temp.stringByAppendingString(")")
-        note = temp
-    }
-   
-    
 }

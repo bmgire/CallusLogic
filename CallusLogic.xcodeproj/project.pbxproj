@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B56F29651D2DE1350067F89D /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56F29631D2DE1350067F89D /* Document.xib */; };
 		B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */; };
 		B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5C1D2D9E84008BCE5F /* Document.swift */; };
 		B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C611D2D9E84008BCE5F /* Assets.xcassets */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B56F29641D2DE1350067F89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		B5F44C571D2D9E84008BCE5F /* CallusLogic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallusLogic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F44C5C1D2D9E84008BCE5F /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				B5F44C611D2D9E84008BCE5F /* Assets.xcassets */,
 				B5F44C631D2D9E84008BCE5F /* MainMenu.xib */,
 				B5F44C661D2D9E84008BCE5F /* Info.plist */,
-				B56F29631D2DE1350067F89D /* Document.xib */,
 				B5F44C5C1D2D9E84008BCE5F /* Document.swift */,
 				B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */,
 				B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */,
@@ -193,7 +190,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B56F29651D2DE1350067F89D /* Document.xib in Resources */,
 				B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */,
 				B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */,
 				B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */,
@@ -227,14 +223,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B56F29631D2DE1350067F89D /* Document.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B56F29641D2DE1350067F89D /* Base */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
 		B5F44C631D2D9E84008BCE5F /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

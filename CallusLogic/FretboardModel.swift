@@ -17,18 +17,21 @@ class FretboardModel: NSObject {
     
     var masterRoot: String?
     
-    var unorderedScaleArray: [NoteModel]?
-    var orderedScaleArray: [NoteModel]?
-    var fullFretboardArray: [NoteModel]?
+    var unorderedScaleArray: [String] = []
+    var orderedScaleArray: [String] = []
+    var fullFretboardArray: [NoteModel] = []
     
     var indexOfE: Int?
+    
+    
+    
     
     func updateWithValues(root: String, accidental: String, scaleName: String) {
         if scaleName != "" {
         // builds masterNotesArray with appropriate notes.
         resolveRoot(root, accidental: accidental)
         getScaleAndOffset(allScales.dictOfScales[scaleName]!, intervalDictForRoot: allIntervals.intervalDict[masterRoot!]!)
-        buildFretboard(unorderedScaleArray!)
+        buildFretboard(unorderedScaleArray)
         }
     }
     
@@ -49,28 +52,25 @@ class FretboardModel: NSObject {
         // Calculates the notes of the scale. 
     
         var interval: String = ""   // Holds the interval read from the scale
-        var temp:[NoteModel] = []               // Temp array to hold fretboard model of notes.
+        var temp:[String] = []               // Temp array to hold fretboard model of notes.
                 
         for index in 0...(LENGTHOFCHROMATIC - 1) {
             interval = scale.getFormula()[index]
-            
-            let note = NoteModel()      // variable to hold all notes.
-            
+    
             // If interval is blank, append blank space.
             if interval == "" {
-                note.setNote(interval)
-                temp.append(note)
+                temp.append(interval)
             }
             // Else, interval defines a note, find note and append.
             else {
-                note.setNote(intervalDictForRoot[interval]!)
-                temp.append(note)
+                temp.append(intervalDictForRoot[interval]!)
+                
             }
         } // Ends for loop.
        
-        // Find any passing notes and at parentheses
+        // Find any passing notes and add parentheses
         if scale.hasPassingNote {
-            temp[scale.passingIndex!].addParenthesesToPassingTone()
+            temp[scale.passingIndex!] = addParentheses(temp[scale.passingIndex!])
         }
         unorderedScaleArray = temp
         
@@ -78,18 +78,29 @@ class FretboardModel: NSObject {
         
     }
     
-    func buildFretboard(scale: [NoteModel]) {
-        reorderAndLoadToFretboard(unorderedScaleArray!)
-        fillFretboardWithNotes(orderedScaleArray!)
+    func addParentheses(theNote: String)-> String {
+        var temp = "("
+        temp = temp.stringByAppendingString(theNote)
+        temp = temp.stringByAppendingString(")")
+        return temp
+    }
+
+    
+    func buildFretboard(scale: [String]) {
+        reorderScale(unorderedScaleArray)
+        buildNoteModels()
+        addNoteNames(orderedScaleArray)
+        buildNumbers()
     }
     
     
-    func reorderAndLoadToFretboard(unorderedScale: [NoteModel]){
+    
+    func reorderScale(unorderedScale: [String]){
         // if the Root isn't E, reorder.
         if indexOfE != 0 {
             // Create sub arrays of each range.
-            let eToEnd: [NoteModel] = Array(unorderedScale[indexOfE!...(unorderedScale.endIndex - 1)])
-            let rootUntilE: [NoteModel] = Array(unorderedScale[0..<indexOfE!])
+            let eToEnd: [String] = Array(unorderedScale[indexOfE!...(unorderedScale.endIndex - 1)])
+            let rootUntilE: [String] = Array(unorderedScale[0..<indexOfE!])
             // Combine subarrays.
             orderedScaleArray = eToEnd + rootUntilE
         }
@@ -98,22 +109,39 @@ class FretboardModel: NSObject {
         }
     }
     
-    func fillFretboardWithNotes(orderedArray: [NoteModel]) {
-        var temp: [NoteModel] = []
-        for _ in 0...3 {
-            temp.appendContentsOf(orderedScaleArray!)
-        }
+    func buildNoteModels() {
+        // Build 47 item array of NoteModels. 
+        var temp : [NoteModel] = []
         
-        // Remove last element to get the index count down to 46.
-        temp.removeLast()
- 
+        for _ in 0...46 {
+            temp.append(NoteModel())
+            
+        }
         fullFretboardArray = temp
     }
     
-    func addNumbers() {
+    
+    func addNoteNames(orderedArray: [String]) {
+        for octaveCount in 0...2{
+            for scaleIndex in 0...11 {
+                fullFretboardArray[scaleIndex + octaveCount * 12].setNote(orderedArray[scaleIndex])
+                }
+            }
+        let octaveCount = 3
+        for scaleIndex in 0...10 {
+            fullFretboardArray[scaleIndex + octaveCount * 12].setNote(orderedArray[scaleIndex])
+            
+        }
+    }
+        
+
+    
+    func buildNumbers() {
         
         for index in 0...46 {
-           fullFretboardArray![index].number = String(index)
+            if fullFretboardArray[index].note != "" {
+            fullFretboardArray[index].number = String(index)
+            }
         }
     }
     

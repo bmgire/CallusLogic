@@ -19,6 +19,7 @@ class FretboardView: NSView {
     
     var offsets = [0, 5, 10, 15, 19, 24]   // Array to hold guitarString offsets
     
+    var useNotes = true
     // Used for building Note Rects.
     let frets: [CGFloat] =
         [0.008,  // 0
@@ -203,12 +204,20 @@ class FretboardView: NSView {
     
     // Updates the contents of each noteView.
     func updateSubviews() {
-        for stringIndex in 0...5 {
-            for noteIndex in 0...(NOTES_PER_STRING - 1){
-                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note = noteModelArray[noteIndex + offsets[stringIndex]].note
+            for stringIndex in 0...5 {
+                for noteIndex in 0...(NOTES_PER_STRING - 1){
+                    if useNotes == true {
+                        (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note = noteModelArray[noteIndex + offsets[stringIndex]].note
+                    }
+                    else{
+                        (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note = noteModelArray[noteIndex + offsets[stringIndex]].number
+                    }
+                }
             }
-        }
+        
     }
+    
+
     
     //update string notes
     func updateNoteModelArray(newNotesArray: [NoteModel]) {

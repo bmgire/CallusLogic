@@ -15,6 +15,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
     
+    @IBOutlet weak var  fretDisplayModePopUp: NSPopUpButton!
 //    @IBOutlet weak var notesAndIntervals: NSTextField!
     
     
@@ -33,6 +34,15 @@ class MainWindowController: NSWindowController {
         updateFretboardModelAndViews()
     }
     
+    @IBAction func updateFretDisplay(sender: NSPopUpButton) {
+        if sender.titleOfSelectedItem! == "Notes" {
+            fretboardView.useNotes = true
+        }
+        else {
+            fretboardView.useNotes = false
+        }
+        fretboardView.updateSubviews()
+    }
     
     // FretboardModel to update Strings.
     var fretboardModel = FretboardModel()
@@ -62,6 +72,11 @@ class MainWindowController: NSWindowController {
         
         addScaleNamesToPopUp()
         scalePopUp!.selectItemAtIndex(scalePopUp!.indexOfItemWithTitle("Minor Pentatonic Scale"))
+        
+        fretDisplayModePopUp!.addItemWithTitle("Notes")
+       // fretDisplayModePopUp!.addItemWithTitle("Show Numbers 0-11")
+        fretDisplayModePopUp!.addItemWithTitle("Numbers 0-46")
+        fretDisplayModePopUp!.selectItemAtIndex(0)
         updateFretboardModelAndViews()
     }
     
@@ -81,7 +96,7 @@ class MainWindowController: NSWindowController {
         fretboardModel.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         accidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
-        fretboardView!.updateNoteModelArray(fretboardModel.fullFretboardArray!)
+        fretboardView!.updateNoteModelArray(fretboardModel.fullFretboardArray)
         fretboardView.needsDisplay = true
     }
     
