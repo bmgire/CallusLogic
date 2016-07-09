@@ -19,7 +19,6 @@ class FretboardView: NSView {
     
     var offsets = [0, 5, 10, 15, 19, 24]   // Array to hold guitarString offsets
     
-    var useNotes = true
     // Used for building Note Rects.
     let frets: [CGFloat] =
         [0.008,  // 0
@@ -97,6 +96,7 @@ class FretboardView: NSView {
     var noteViewArray: [NoteView] = []      // Holds the notes
     var noteModelArray: [NoteModel] = []       // Array of noteModels.
     
+    var displayMode = "note"
     let NOTES_PER_STRING = 23
     
     // The image shown in this custom view.
@@ -206,12 +206,21 @@ class FretboardView: NSView {
     func updateSubviews() {
             for stringIndex in 0...5 {
                 for noteIndex in 0...(NOTES_PER_STRING - 1){
-                    if useNotes == true {
-                        (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note = noteModelArray[noteIndex + offsets[stringIndex]].note
-                    }
-                    else{
-                        (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note = noteModelArray[noteIndex + offsets[stringIndex]].number
-                    }
+                    // Update note
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note =
+                        noteModelArray[noteIndex + offsets[stringIndex]].note
+                    // Update intervals
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).interval =
+                        noteModelArray[noteIndex + offsets[stringIndex]].interval
+                    // Update number0to11
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to11 =
+                        noteModelArray[noteIndex + offsets[stringIndex]].number0to11
+                    // Update number0to46
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to46 =
+                        noteModelArray[noteIndex + offsets[stringIndex]].number0to46
+                    // Update fretDisplay
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).fretDisplay =
+                        displayMode
                 }
             }
         

@@ -17,6 +17,8 @@ class FretboardModel: NSObject {
     
     var masterRoot: String?
     
+    var unorderedIntervalsArray : [String] = []
+    var orderedIntervalsArray: [String] = []
     var unorderedScaleArray: [String] = []
     var orderedScaleArray: [String] = []
     var fullFretboardArray: [NoteModel] = []
@@ -30,7 +32,7 @@ class FretboardModel: NSObject {
         if scaleName != "" {
         // builds masterNotesArray with appropriate notes.
         resolveRoot(root, accidental: accidental)
-        getScaleAndOffset(allScales.dictOfScales[scaleName]!, intervalDictForRoot: allIntervals.intervalDict[masterRoot!]!)
+        getScaleAndIndexOfE(allScales.dictOfScales[scaleName]!, intervalDictForRoot: allIntervals.intervalDict[masterRoot!]!)
         buildFretboard(unorderedScaleArray)
         }
     }
@@ -47,32 +49,33 @@ class FretboardModel: NSObject {
         }
     }
     
-    func getScaleAndOffset(scale: Scale, intervalDictForRoot: [String:String]) {
+    func getScaleAndIndexOfE(scale: Scale, intervalDictForRoot: [String:String]) {
         
         // Calculates the notes of the scale. 
     
-        var interval: String = ""   // Holds the interval read from the scale
-        var temp:[String] = []               // Temp array to hold fretboard model of notes.
+        var interval: String = ""                  // Holds the interval read from the scale
+        var tempIntervals:[String] = []
+        var tempScale:[String] = []               // Temp array to hold fretboard model of notes.
                 
         for index in 0...(LENGTHOFCHROMATIC - 1) {
             interval = scale.getFormula()[index]
-    
+            tempIntervals.append(interval)
             // If interval is blank, append blank space.
             if interval == "" {
-                temp.append(interval)
+                tempScale.append(interval)
             }
             // Else, interval defines a note, find note and append.
             else {
-                temp.append(intervalDictForRoot[interval]!)
-                
-            }
-        } // Ends for loop.
+                tempScale.append(intervalDictForRoot[interval]!)
+                }
+            } // Ends for loop.
        
         // Find any passing notes and add parentheses
         if scale.hasPassingNote {
-            temp[scale.passingIndex!] = addParentheses(temp[scale.passingIndex!])
+            tempScale[scale.passingIndex!] = addParentheses(tempScale[scale.passingIndex!])
         }
-        unorderedScaleArray = temp
+        unorderedScaleArray = tempScale
+        unorderedIntervalsArray = tempIntervals
         
         indexOfE = Int(intervalDictForRoot["indexOfE"]!)!
         
@@ -87,25 +90,27 @@ class FretboardModel: NSObject {
 
     
     func buildFretboard(scale: [String]) {
-        reorderScale(unorderedScaleArray)
+        orderedScaleArray = reorderArray(unorderedScaleArray)
+        orderedIntervalsArray = reorderArray(unorderedIntervalsArray)
+        reorderArray(unorderedIntervalsArray)
         buildNoteModels()
-        addNoteNames(orderedScaleArray)
-        buildNumbers()
+        addNoteNamesIntervalsAndNumber0to11(orderedScaleArray, orderedIntervals: orderedIntervalsArray)
+        addNumbers0to46()
     }
     
     
     
-    func reorderScale(unorderedScale: [String]){
+    func reorderArray(unorderedArray: [String])-> [String]{
         // if the Root isn't E, reorder.
         if indexOfE != 0 {
             // Create sub arrays of each range.
-            let eToEnd: [String] = Array(unorderedScale[indexOfE!...(unorderedScale.endIndex - 1)])
-            let rootUntilE: [String] = Array(unorderedScale[0..<indexOfE!])
+            let eToEnd: [String] = Array(unorderedArray[indexOfE!...(unorderedArray.endIndex - 1)])
+            let rootUntilE: [String] = Array(unorderedArray[0..<indexOfE!])
             // Combine subarrays.
-            orderedScaleArray = eToEnd + rootUntilE
+            return eToEnd + rootUntilE
         }
         else {
-            orderedScaleArray = unorderedScale
+            return unorderedArray
         }
     }
     
@@ -121,31 +126,41 @@ class FretboardModel: NSObject {
     }
     
     
-    func addNoteNames(orderedArray: [String]) {
+    func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                fullFretboardArray[scaleIndex + octaveCount * 12].setNote(orderedArray[scaleIndex])
+                fullFretboardArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
+                fullFretboardArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
+                fullFretboardArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
                 }
             }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            fullFretboardArray[scaleIndex + octaveCount * 12].setNote(orderedArray[scaleIndex])
+            fullFretboardArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
+            fullFretboardArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
+            fullFretboardArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
             
         }
     }
-        
-
     
-    func buildNumbers() {
+    func addNumbers0to46() {
         
         for index in 0...46 {
             if fullFretboardArray[index].note != "" {
-            fullFretboardArray[index].number = String(index)
+                fullFretboardArray[index].number0to46 = String(index)
             }
         }
     }
     
-    
-    
-    
+//    func buildNumbers0to11() {
+//        for octaveCount in 0...2{
+//            for scaleIndex in 0...11 {
+//                fullFretboardArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+//            }
+//        }
+//        let octaveCount = 3
+//        for scaleIndex in 0...10 {
+//            fullFretboardArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+//        }
+//    }
 }

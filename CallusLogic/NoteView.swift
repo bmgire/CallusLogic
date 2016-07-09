@@ -30,11 +30,21 @@ class NoteView: NSView {
     }
     
     // The associated note number.
-    var number: String = "0" {
+    var number0to11: String = "0" {
         didSet {
             needsDisplay = true
         }
     }
+    
+    var number0to46: String = "0" {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
+    var interval = ""
+    
+    var fretDisplay = ""
     
     // FontSize
     var noteFont: CGFloat = 16
@@ -117,10 +127,23 @@ class NoteView: NSView {
             NSForegroundColorAttributeName: NSColor.blackColor(),
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: paraStyle]
+            
+        var attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
         
-        let attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
+        //If fretDisplay isn't set to Notes display the appropriate notes.
+        if fretDisplay == "Numbers 0-11"
+        {
+            attributedNote = NSMutableAttributedString(string: number0to11, attributes: attrs)
+        }
         
-        
+        else if fretDisplay == "Numbers 0-46"
+        {
+            attributedNote = NSMutableAttributedString(string: number0to46, attributes: attrs)
+        }
+        else if fretDisplay == "Intervals"
+        {
+            attributedNote = NSMutableAttributedString(string: interval, attributes: attrs)
+        }
         
         //let string = "\(note)" as NSString
         attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs) //, font: noteFont)

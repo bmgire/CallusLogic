@@ -16,7 +16,6 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var scalePopUp: NSPopUpButton!
     
     @IBOutlet weak var  fretDisplayModePopUp: NSPopUpButton!
-//    @IBOutlet weak var notesAndIntervals: NSTextField!
     
     
     // Outlet to fretboardView.
@@ -35,13 +34,9 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func updateFretDisplay(sender: NSPopUpButton) {
-        if sender.titleOfSelectedItem! == "Notes" {
-            fretboardView.useNotes = true
-        }
-        else {
-            fretboardView.useNotes = false
-        }
-        fretboardView.updateSubviews()
+       
+        fretboardView!.displayMode = sender.titleOfSelectedItem!
+        fretboardView!.updateSubviews()
     }
     
     // FretboardModel to update Strings.
@@ -74,8 +69,10 @@ class MainWindowController: NSWindowController {
         scalePopUp!.selectItemAtIndex(scalePopUp!.indexOfItemWithTitle("Minor Pentatonic Scale"))
         
         fretDisplayModePopUp!.addItemWithTitle("Notes")
-       // fretDisplayModePopUp!.addItemWithTitle("Show Numbers 0-11")
+        fretDisplayModePopUp!.addItemWithTitle("Intervals")
+        fretDisplayModePopUp!.addItemWithTitle("Numbers 0-11")
         fretDisplayModePopUp!.addItemWithTitle("Numbers 0-46")
+        
         fretDisplayModePopUp!.selectItemAtIndex(0)
         updateFretboardModelAndViews()
     }
@@ -93,10 +90,16 @@ class MainWindowController: NSWindowController {
     
     // update fretboardModel
     func updateFretboardModelAndViews() {
+        // Update Model
         fretboardModel.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         accidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
+        // Update Display Mode.
+        fretboardView.displayMode = fretDisplayModePopUp!.titleOfSelectedItem!
+        // Update view
         fretboardView!.updateNoteModelArray(fretboardModel.fullFretboardArray)
+        
+        
         fretboardView.needsDisplay = true
     }
     
