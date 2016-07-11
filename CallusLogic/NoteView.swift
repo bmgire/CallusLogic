@@ -11,9 +11,9 @@ import Cocoa
 class NoteView: NSView {
     
     
-    ///////////////////////////////////////////////////////////////////////////
-    // Variables
-    ///////////////////////////////////////////////////////////////////////////
+    //##########################################################
+    // MARK: - Variables
+    //##########################################################
     
     // The note to display.
     var note: String = "" {
@@ -29,14 +29,16 @@ class NoteView: NSView {
         }
     }
     
-    // The associated note number.
-    var number0to11: String = "0" {
+    // The associated note number in base 12.
+    var number0to11: String = "" {
         didSet {
             needsDisplay = true
         }
     }
     
-    var number0to46: String = "0" {
+    // The associated note number in where every distinct tone on
+    // the fretboard is numbered.
+    var number0to46: String = "" {
         didSet {
             needsDisplay = true
         }
@@ -49,7 +51,6 @@ class NoteView: NSView {
     // FontSize
     var noteFont: CGFloat = 16
     
-    
     // A state variable to be set while the mouse is down.
     var pressed: Bool = false //{
 
@@ -59,44 +60,98 @@ class NoteView: NSView {
             needsDisplay = true
         }
     }
+    // Indicates the Color is yellow.
     var isYellow: Bool = true
     
     // Variable to hold this notes BezierPath.
     var path: NSBezierPath?
     
+    // The rect for the NoteView.
     var noteRect: CGRect?
     
-    ///////////////////////////////////////////////////////////////////////////
-    // Draws the rect.
-    ///////////////////////////////////////////////////////////////////////////
+    //##########################################################
+    // MARK: - Overridden functions
+    //##########################################################
     override func drawRect(dirtyRect: CGRect) {
         drawNote()
         needsDisplay = false
     }
     
+    //##########################################################
+    // MARK: - Mouse Events
+    //##########################################################
+    
+    override func mouseDown(theEvent: NSEvent) {
+        Swift.print("mouseDown")
+        
+        //Converts the locationInWindow to the views coorinate system.
+        let pointInView = convertPoint(theEvent.locationInWindow, fromView: nil)
+        
+        // tests if we pressed into this view.
+        pressed = path!.containsPoint(pointInView)
+    }
+    
+    override func mouseUp(theEvent: NSEvent) {
+        Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
+        if pressed {
+            changeColor = true
+        }
+        pressed = false
+    }
+    
+    
     ///////////////////////////////////////////////////////////////////////////
+    // Keyboard Event handling.
+    ///////////////////////////////////////////////////////////////////////////
+    
+    //##########################################################
+    // MARK: - First Responder
+    //##########################################################
+    
+    override var acceptsFirstResponder: Bool { return true }
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return true
+    }
+    
+    //##########################################################
+    // MARK: - KeyboardEvents
+    //##########################################################
+    override func keyDown(theEvent:NSEvent) {
+        interpretKeyEvents([theEvent])
+    }
+    
+    // Tab functions.
+    override func insertTab(sender: AnyObject?) {
+        window?.selectNextKeyView(sender)
+    }
+    
+    override func insertBacktab(sender: AnyObject?) {
+        window?.selectPreviousKeyView(sender)
+    }
+    
+    //##########################################################
+    // MARK: - Custom functions
+    //##########################################################
+    
     // Draws the note or number
-    ///////////////////////////////////////////////////////////////////////////
     func drawNote() {
         
-        // define noteFrame.
-     //   let drawingBounds = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
-       // let padding =
-        
-       // Attempting to update the 
-        
+        // Assigns a value to the noteRect.
         noteRect = bounds.insetBy(dx: bounds.width * 0.05, dy: bounds.height * 0.05)
         
-        // set path
+        // Defines the radius of the corners of a rounded rect.
         let cornerRadius = bounds.size.height * 0.2
+        
+        // Assign a value to the path.
         path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
         
-        //  To be used the with creating custom keyboards maps.
-        //  NSColor(calibratedRed: 1.0, green: 1.0, blue: 0, alpha: 0.8).set()
-        
-        // If changeColor is set and the current color is yellow, change to blue, else (to both of the first to if statements
-        
-            //myColor = NSColor.yellowColor()
+        // If changeColor is true: and the current color is yellow, change myColor to blue... else change myColor yellow.
+        // Else ChangeColor is false, change nothing.
             if changeColor {
                 if isYellow {
                     myColor = NSColor(calibratedRed: 0.0, green: 0.55, blue: 1.0, alpha: 1)
@@ -105,33 +160,37 @@ class NoteView: NSView {
                 else {
                     myColor = NSColor.yellowColor()
                     isYellow = true
-                    
                 }
             }
-        
+        // Set color and fill.
         myColor.set()
         path?.fill()
         
-
-        // Create a NSMutableAttributedString and draw.
-        
+        // Create an NSParagraphStyle object
         let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        
+        // Set orientation.
         paraStyle.alignment = .Right
-        
-        
-            
-        
-
+    
+        // definte a font.
         let font = NSFont.systemFontOfSize(noteFont)
+        
+        // Attributes for drawing.
         let attrs = [
             NSForegroundColorAttributeName: NSColor.blackColor(),
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: paraStyle]
-            
-        var attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
         
-        //If fretDisplay isn't set to Notes display the appropriate notes.
-        if fretDisplay == "Numbers 0-11"
+        // Define an attributed string set to display the note.
+        var attributedNote = NSMutableAttributedString()
+        
+       
+        // Choose which fretDisplay mode to use.
+        if fretDisplay == "Notes"
+        {
+            attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
+        }
+        else if fretDisplay == "Numbers 0-11"
         {
             attributedNote = NSMutableAttributedString(string: number0to11, attributes: attrs)
         }
@@ -145,116 +204,7 @@ class NoteView: NSView {
             attributedNote = NSMutableAttributedString(string: interval, attributes: attrs)
         }
         
-        //let string = "\(note)" as NSString
-        attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs) //, font: noteFont)
-        
+        // Draw using custom NSString drawing function defined in NSString+drawing.swift.
+        attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
     }
-    
-    
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // Adds parenthesis to passing note.
-    ///////////////////////////////////////////////////////////////////////////
-    func addParenthesis() {
-        var temp = "("
-        temp.appendContentsOf(note)
-        temp.appendContentsOf(")")
-        note = temp
-    }
-    
-    func changeNote(newNote: String) {
-        note = newNote
-        needsDisplay = true
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // MARK: - Mouse Events
-    ///////////////////////////////////////////////////////////////////////////
-    override func mouseDown(theEvent: NSEvent) {
-        Swift.print("mouseDown")
-        
-        // Get the frame of the die.
-        // let dieFrame = metricsForSize(bounds.size).dieFrame        // Old Version. only frame of view.
-        
-        
-        //Converts the locationInWindow to the views coorinate system.
-        // Passing nil as the funcs view argument results in converting to/from the view's window.
-        
-        
-        // OLD VERSION
-        // Note theEvent.locationInWindow = the click inside the note.
-        
-     //   let hitPoint = theEvent.locationInWindow
-        
-        // Convert the hitPoint to the rotated stringView.
-        
-        let pointInView = convertPoint(theEvent.locationInWindow, fromView: nil)
-
-        
-        // limits pressed test to within die's BezierPath.
-        pressed = path!.containsPoint(pointInView)
-    }
-    
-
-    
-
-
-
-    override func mouseUp(theEvent: NSEvent) {
-        Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
-
-            if pressed {
-             changeColor = true
-            }
-        pressed = false
-    //    }
-    }
-
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // Keyboard Event handling.
-    ///////////////////////////////////////////////////////////////////////////
-    
-    // MARK: - First Responder
-    override var acceptsFirstResponder: Bool { return true }
-    
-    override func becomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    override func resignFirstResponder() -> Bool {
-        return true
-    }
-    
-//    
-//    
-//    override func drawFocusRingMask() {
-//        NSBezierPath.fillRect(bounds)
-//    }
-//    
-//    override var focusRingMaskBounds: CGRect {
-//        return bounds
-//    }
-
-    // MARK: - KeyBoard Events
-    override func keyDown(theEvent:NSEvent) {
-        interpretKeyEvents([theEvent])
-    }
-//
-//    // Insert text
-//    override func insertText(insertString: AnyObject) {
-//        // Store new text into note var.
-//        note = insertString as! String
-//    }
-//    
-//    
-    // Tab functions.
-    override func insertTab(sender: AnyObject?) {
-        window?.selectNextKeyView(sender)
-    }
-    
-    override func insertBacktab(sender: AnyObject?) {
-        window?.selectPreviousKeyView(sender)
-    }
-    
 }

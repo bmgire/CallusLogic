@@ -7,37 +7,35 @@
 //
 
 // Attempting not to import cocoa.
-import Cocoa
+import Foundation
 
 // I'm attempting to try without subclassing from NSObject
-class Scale: NSObject {
+class Scale {
     
  
     var scaleName: String = ""
     var scaleFormula: [String] = []
-    var passingIndex: Int?
-    var hasPassingNote: Bool = false
+    var passingInterval = ""
+//    var hasPassingNote: Bool = false
+    
+    init(){
+        
+    }
     
     // Initialise the scale with values.
-    init(name: String, formula: [String], passingNoteIndex: Int) {
+    init(name: String, formula: [String], thePassingInterval: String) {
        
         scaleName = name
         scaleFormula = formula
-        passingIndex = passingNoteIndex
-        
-        if passingNoteIndex != -1 {
-            hasPassingNote = true
-        }
-        
-        
-        
+        passingInterval = thePassingInterval
+    
         // In Swift you must initialize all your variables before attempting to initialize the Super Class. 
-         super.init()
+        // super.init()
     }
     
     // Get the passingIndex
-    func getPassingIndex()->Int? {
-        return passingIndex
+    func getPassingInterval()-> String {
+        return passingInterval
     }
     
     func getScaleName()->String {

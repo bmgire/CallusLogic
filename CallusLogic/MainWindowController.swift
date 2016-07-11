@@ -9,48 +9,78 @@
 import Cocoa
 
 class MainWindowController: NSWindowController {
-
-    // Outlets to scale controls.
-    @IBOutlet weak var accidentalPopUp: NSPopUpButton!
+    
+    //##########################################################
+    // Outlets to fretboard controls.
+    //##########################################################
     @IBOutlet weak var rootPopUp: NSPopUpButton!
+    @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
-    
-    @IBOutlet weak var  fretDisplayModePopUp: NSPopUpButton!
-    
-    
-    // Outlet to fretboardView.
+    @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
+
     
+    //##########################################################
+    // variables to hold outlets previous values.
+    //##########################################################
+    var previousRoot = ""
+    var previousAccidental = ""
+    var previousScale = ""
+    var previousDisplay = ""
+    
+
+    //##########################################################
+    // Actions.
+    //##########################################################
+    // Root update
     @IBAction func updateRoot(sender: NSPopUpButton) {
-        updateFretboardModelAndViews()
+        if sender.titleOfSelectedItem! != previousRoot {
+            updateFretboardControllerAndViews()
+            previousRoot = sender.titleOfSelectedItem!
+        }
     }
-    
+    // Accidental update
     @IBAction func updateAccidental(sender: NSPopUpButton) {
-        updateFretboardModelAndViews()
+        if sender.titleOfSelectedItem! != previousAccidental {
+            updateFretboardControllerAndViews()
+            previousAccidental = sender.titleOfSelectedItem!
+        }
     }
-    
+    // Scale updtae.
     @IBAction func updateScale(sender: NSPopUpButton) {
-        updateFretboardModelAndViews()
+        if sender.titleOfSelectedItem! != previousScale {
+            updateFretboardControllerAndViews()
+            previousScale = sender.titleOfSelectedItem!
+        }
     }
-    
+    // Display update.
     @IBAction func updateFretDisplay(sender: NSPopUpButton) {
-       
-        fretboardView!.displayMode = sender.titleOfSelectedItem!
-        fretboardView!.updateSubviews()
+        if sender.titleOfSelectedItem! != previousDisplay {
+            fretboardView!.displayMode = sender.titleOfSelectedItem!
+            fretboardView!.updateSubviews()
+            previousDisplay = sender.titleOfSelectedItem!
+        }
     }
     
-    // FretboardModel to update Strings.
-    var fretboardModel = FretboardModel()
+    //##########################################################
+    // Class Variables (except the outlets previous values holders.
+    //##########################################################
+
+    var fretboardController = FretboardController()
     
+    //##########################################################
+    // Window Controller overriden functions.
+    //##########################################################
     
     override var windowNibName: String? {
         return "MainWindowController"
     }
     
+    // Handles any initialization after the window controller's window has been loaded from its nib file.
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        
+        // Build PopUps.
         accidentalPopUp!.addItemWithTitle("Natural")
         accidentalPopUp!.addItemWithTitle("b")
         accidentalPopUp!.addItemWithTitle("#")
@@ -68,38 +98,47 @@ class MainWindowController: NSWindowController {
         addScaleNamesToPopUp()
         scalePopUp!.selectItemAtIndex(scalePopUp!.indexOfItemWithTitle("Minor Pentatonic Scale"))
         
-        fretDisplayModePopUp!.addItemWithTitle("Notes")
-        fretDisplayModePopUp!.addItemWithTitle("Intervals")
-        fretDisplayModePopUp!.addItemWithTitle("Numbers 0-11")
-        fretDisplayModePopUp!.addItemWithTitle("Numbers 0-46")
+        displayModePopUp!.addItemWithTitle("Notes")
+        displayModePopUp!.addItemWithTitle("Intervals")
+        displayModePopUp!.addItemWithTitle("Numbers 0-11")
+        displayModePopUp!.addItemWithTitle("Numbers 0-46")
+        displayModePopUp!.selectItemAtIndex(0)
         
-        fretDisplayModePopUp!.selectItemAtIndex(0)
-        updateFretboardModelAndViews()
+        
+        // Set previousValues to default values.
+        previousRoot = rootPopUp!.titleOfSelectedItem!
+        previousAccidental = accidentalPopUp!.titleOfSelectedItem!
+        previousScale = scalePopUp!.titleOfSelectedItem!
+        previousDisplay = displayModePopUp!.titleOfSelectedItem!
+    
+        updateFretboardControllerAndViews()
     }
     
-    
+    //##########################################################
+    // Custom class functions.
+    //##########################################################
+    // Adds the scale names to the Scale PopUp
     func addScaleNamesToPopUp(){
-        for index in 0...(fretboardModel.allScales.scaleArray.count - 1){
-            scalePopUp!.addItemWithTitle(fretboardModel.allScales.scaleArray[index].scaleName)
+        for index in 0...(AllScales().scaleArray.count - 1){
+            scalePopUp!.addItemWithTitle(AllScales().scaleArray[index].scaleName)   
         }
-        
+        // Adds separator items to make the scales popUp easier to read.
         scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 14)
         scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 22)
         scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 31)
     }
     
-    // update fretboardModel
-    func updateFretboardModelAndViews() {
-        // Update Model
-        fretboardModel.updateWithValues(rootPopUp!.titleOfSelectedItem!,
+    // Updates the FretboardController and subviews.
+    func updateFretboardControllerAndViews() {
+        // Update Model with current values.
+        fretboardController.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         accidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
         // Update Display Mode.
-        fretboardView.displayMode = fretDisplayModePopUp!.titleOfSelectedItem!
-        // Update view
-        fretboardView!.updateNoteModelArray(fretboardModel.fullFretboardArray)
-        
-        
+        fretboardView.displayMode = displayModePopUp!.titleOfSelectedItem!
+        // Update the NoteModel array on the FretboardView.
+        fretboardView!.updateNoteModelArray(fretboardController.array)
+        // Display the changes.
         fretboardView.needsDisplay = true
     }
     
