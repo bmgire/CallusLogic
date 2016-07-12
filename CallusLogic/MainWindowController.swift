@@ -18,7 +18,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var scalePopUp: NSPopUpButton!
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
-
+    @IBOutlet weak var customizeButton: NSButton!
     
     //##########################################################
     // variables to hold outlets previous values.
@@ -60,6 +60,16 @@ class MainWindowController: NSWindowController {
             fretboardView!.updateSubviews()
             previousDisplay = sender.titleOfSelectedItem!
         }
+    }
+    
+    @IBAction func enableCustomizing(sender: NSButton){
+        if sender.state != 0 {
+            fretboardView.canCustomise = true
+        }
+        else {
+            fretboardView.canCustomise = false
+        }
+        fretboardView.updateSubviews()
     }
     
     //##########################################################

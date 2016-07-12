@@ -46,8 +46,10 @@ class NoteView: NSView {
     
     var interval = ""
     
-    var fretDisplay = ""
+    var displayMode = ""
     
+    // This variable indicates whether editing the view is allowed.
+    var canCustomize = false
     // FontSize
     var noteFont: CGFloat = 16
     
@@ -82,7 +84,7 @@ class NoteView: NSView {
     //##########################################################
     
     override func mouseDown(theEvent: NSEvent) {
-        Swift.print("mouseDown")
+        //Swift.print("mouseDown")  
         
         //Converts the locationInWindow to the views coorinate system.
         let pointInView = convertPoint(theEvent.locationInWindow, fromView: nil)
@@ -92,11 +94,14 @@ class NoteView: NSView {
     }
     
     override func mouseUp(theEvent: NSEvent) {
-        Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
+        
+        if canCustomize {
+        //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
         if pressed {
             changeColor = true
         }
         pressed = false
+        }
     }
     
     
@@ -185,21 +190,21 @@ class NoteView: NSView {
         var attributedNote = NSMutableAttributedString()
         
        
-        // Choose which fretDisplay mode to use.
-        if fretDisplay == "Notes"
+        // Choose which displayMode mode to use.
+        if displayMode == "Notes"
         {
             attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
         }
-        else if fretDisplay == "Numbers 0-11"
+        else if displayMode == "Numbers 0-11"
         {
             attributedNote = NSMutableAttributedString(string: number0to11, attributes: attrs)
         }
         
-        else if fretDisplay == "Numbers 0-46"
+        else if displayMode == "Numbers 0-46"
         {
             attributedNote = NSMutableAttributedString(string: number0to46, attributes: attrs)
         }
-        else if fretDisplay == "Intervals"
+        else if displayMode == "Intervals"
         {
             attributedNote = NSMutableAttributedString(string: interval, attributes: attrs)
         }

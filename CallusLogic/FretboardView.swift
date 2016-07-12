@@ -37,6 +37,7 @@ class FretboardView: NSView {
     
     // represents the display mode = (Notes, Intervals, Numbers...)
     var displayMode = ""
+    var canCustomise = false
     
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
@@ -268,21 +269,21 @@ class FretboardView: NSView {
                     (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to46 =
                         noteModelArray[noteIndex + offsets[stringIndex]].number0to46
                     // Update fretDisplay
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).fretDisplay =
-                        displayMode
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).displayMode =
+                        self.displayMode
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).canCustomize =
+                    self.canCustomise
                 }
             }
         
     }
-    
-
     
     //update string notes
     func updateNoteModelArray(newNotesArray: [NoteModel]) {
         noteModelArray = newNotesArray
     }
     
-  
+    
     
     
 }

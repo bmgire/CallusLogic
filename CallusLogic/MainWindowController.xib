@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
+                <outlet property="customizeButton" destination="aqk-rg-Wei" id="hv3-U9-ilD"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
@@ -95,12 +96,23 @@
                             <action selector="updateFretDisplay:" target="-2" id="zxa-5X-Ws2"/>
                         </connections>
                     </popUpButton>
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqk-rg-Wei">
+                        <rect key="frame" x="591" y="311" width="87" height="18"/>
+                        <buttonCell key="cell" type="check" title="Customize" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="yo7-id-tpM">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="enableCustomizing:" target="-2" id="jw0-n2-gV9"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="q6P-eG-0XC" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="2SC-CF-amM"/>
                     <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="27" id="7YT-Cu-yPd"/>
                     <constraint firstAttribute="trailing" secondItem="4wV-DP-gek" secondAttribute="trailing" id="ACP-dL-3AS"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="Dwd-xY-8jq"/>
+                    <constraint firstItem="aqk-rg-Wei" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="49" id="Jua-L1-bBj"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="Ldo-0P-Gfy"/>
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="SwJ-5a-pQb"/>
                     <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="9" id="VyX-1f-sFK"/>
@@ -110,6 +122,7 @@
                     <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="6" id="etU-KL-WPT"/>
                     <constraint firstItem="4wV-DP-gek" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="ls0-uw-Awj"/>
                     <constraint firstAttribute="bottom" secondItem="4wV-DP-gek" secondAttribute="bottom" constant="20" symbolic="YES" id="nUo-YY-PNU"/>
+                    <constraint firstItem="aqk-rg-Wei" firstAttribute="leading" secondItem="rxc-av-fsp" secondAttribute="trailing" constant="37" id="sif-jV-B13"/>
                     <constraint firstItem="4wV-DP-gek" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="94" id="uRb-IT-u0K"/>
                     <constraint firstItem="Bil-5M-u2j" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="29" id="v0G-4P-jlg"/>
                 </constraints>
@@ -117,7 +130,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="875.5" y="554"/>
+            <point key="canvasLocation" x="658.5" y="26"/>
         </window>
     </objects>
     <resources>
