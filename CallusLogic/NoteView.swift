@@ -16,18 +16,7 @@ class NoteView: NSView {
     //##########################################################
     
     // The note to display.
-    var note: String = "" {
-        didSet {
-            if note == ""{
-            hidden = true
-            }
-            else {
-                hidden = false
-                needsDisplay = true
-                changeColor = false
-            }
-        }
-    }
+    var note: String = "" 
     
     // The associated note number in base 12.
     var number0to11: String = "" {
@@ -54,22 +43,50 @@ class NoteView: NSView {
     var noteFont: CGFloat = 16
     
     // A state variable to be set while the mouse is down.
-    var pressed: Bool = false //{
 
     var myColor: NSColor = NSColor.yellowColor()
-    var changeColor: Bool = false {
-        didSet {
-            needsDisplay = true
-        }
-    }
-    // Indicates the Color is yellow.
-    var isYellow: Bool = true
     
     // Variable to hold this notes BezierPath.
     var path: NSBezierPath?
     
     // The rect for the NoteView.
     var noteRect: CGRect?
+    
+    //##########################################################
+    // Bools
+    //##########################################################
+    var changeColor: Bool = false {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
+    // Indicates the Color is yellow.
+    var isYellow: Bool = true
+    
+    // Enables and disables ghosting.
+    var isGhost = false {
+        didSet {
+            needsDisplay = true
+        }
+    }
+        
+    var pressed: Bool = false //{
+
+    var isInScale = false
+    
+    var isLocked = false
+    
+    var isDisplayed = false {
+        didSet {
+            if isDisplayed == true {
+                hidden = false
+            }
+            else {
+                hidden = true
+            }
+        }
+    }
     
     //##########################################################
     // MARK: - Overridden functions
@@ -96,11 +113,15 @@ class NoteView: NSView {
     override func mouseUp(theEvent: NSEvent) {
         
         if canCustomize {
-        //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
-        if pressed {
-            changeColor = true
-        }
-        pressed = false
+            
+            
+            //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
+            if pressed {
+                if canCustomize == true {
+                    isGhost = !isGhost
+                }
+            }
+            pressed = false
         }
     }
     
@@ -155,18 +176,35 @@ class NoteView: NSView {
         // Assign a value to the path.
         path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
         
-        // If changeColor is true: and the current color is yellow, change myColor to blue... else change myColor yellow.
-        // Else ChangeColor is false, change nothing.
-            if changeColor {
-                if isYellow {
-                    myColor = NSColor(calibratedRed: 0.0, green: 0.55, blue: 1.0, alpha: 1)
-                    isYellow = false
-                }
-                else {
-                    myColor = NSColor.yellowColor()
-                    isYellow = true
-                }
-            }
+//        // If changeColor is true: and the current color is yellow, change myColor to blue... else change myColor yellow.
+//        // Else ChangeColor is false, change nothing.
+//            if changeColor {
+//                if isYellow {
+//                    myColor = NSColor(calibratedRed: 0.0, green: 0.55, blue: 1.0, alpha: 1)
+//                    isYellow = false
+//                }
+//                else {
+//                    myColor = NSColor.yellowColor()
+//                    isYellow = true
+//                }
+//            }
+        
+        // If the note is part of the scale set the color to blue. 
+        if isInScale == false {
+            myColor = NSColor.redColor()
+        }
+        else {
+            myColor = NSColor.yellowColor()
+        }
+        
+        // If appropriate, set alpha to ghosting transparency
+        if isGhost == true {
+            myColor = myColor.colorWithAlphaComponent(CGFloat(0.1))
+        }
+        else {
+            myColor = myColor.colorWithAlphaComponent(CGFloat(1))
+        }
+        
         // Set color and fill.
         myColor.set()
         path?.fill()

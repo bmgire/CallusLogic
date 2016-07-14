@@ -1,5 +1,5 @@
 //
-//  FretboardController.swift
+//  FretboardCalculator.swift
 //  StringNotesCalculator
 //
 //  Created by Ben Gire on 5/7/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FretboardController {
+class FretboardCalculator {
 
     //##########################################################
     // MARK: - Constants
@@ -18,8 +18,6 @@ class FretboardController {
     let myArrayOfIntervalDicts = AllIntervals().intervalDict
     let myDictOfScales = AllScales().dictOfScales
     
-   // let allIntervals = AllIntervals()
-   // let allScales = AllScales()
     
     //##########################################################
     // MARK: - Variables
@@ -35,23 +33,24 @@ class FretboardController {
     var unorderedScaleArray: [String] = []
     var orderedScaleArray: [String] = []
     
-
+    var indeciesOfNotes: [Int] = []
+    //var indeciesOfSpaces: [Int] = []
     
     var intervalIndexOfE = 0
     var passingInterval = ""
-    var array = FretboardModel().array
-
-    
+    var fretArray = FretboardModel().array
     
     
     //##########################################################
     // MARK: - Custom functions
     //##########################################################
     // Get the current user selected values and update the array of NoteModels.
-    func updateWithValues(root: String, accidental: String, scaleName: String) {
+    func updateWithValues(myRoot: String, myAccidental: String, scaleName: String) {
         if scaleName != "" {
             
-            resolveRoot(root, accidental: accidental)
+            resetUnkeptNotes()
+            
+            resolveRoot(myRoot, accidental: myAccidental)
             // Find and save the Scale object.
             scale = myDictOfScales[scaleName]!
             
@@ -137,35 +136,52 @@ class FretboardController {
     func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                array[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
-                array[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
-                array[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+                fretArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
+                fretArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
+                fretArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+                
                 }
             }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            array[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
-            array[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
-            array[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+            fretArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
+            fretArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
+            fretArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
             
         }
     }
     
     func addNumbers0to46() {
-        
+        var temp: [Int] = []
         for index in 0...46 {
-            if array[index].note != "" {
-                array[index].number0to46 = String(index)
+            if  fretArray[index].note != "" {
+                fretArray[index].number0to46 = String(index)
+                fretArray[index].isInscale = true
+                fretArray[index].isGhost = false
+                fretArray[index].isDisplayed = true
+                temp.append(index)
             }
         }
+        indeciesOfNotes = temp
     }
     
     func setPassingNotesForScale() {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
             for index in 0...2 {
-                array[index * 12 + passingIndex!].isPassingNote = true
+               fretArray[index * 12 + passingIndex!].isPassingNote = true
+            }
+       
+        }
+    }
+    
+    func resetUnkeptNotes() {
+        for index in 0...46 {
+            if fretArray[index].isKept == false {
+                fretArray[index].resetProperties()
             }
         }
     }
+    
+
 }

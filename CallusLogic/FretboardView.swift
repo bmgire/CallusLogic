@@ -3,8 +3,8 @@
 //  This class defines the fretboard.
 //  The FretboardView holds 6 StringsViews.
 //  Each string holds 22 NoteViews.
-//  The Fretboard contains a FretboardController which gets updated by the UI.
-//  The fretboard model then updates the Note views with info from the FretboardController. 
+//  The Fretboard contains a FretboardCalculator which gets updated by the UI.
+//  The fretboard model then updates the Note views with info from the FretboardCalculator. 
 //  The noteviews are never destroyed.
 
 
@@ -37,7 +37,8 @@ class FretboardView: NSView {
     
     // represents the display mode = (Notes, Intervals, Numbers...)
     var displayMode = ""
-    var canCustomise = false
+    var doGhosting = false
+    var label = NSTextField()
     
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
@@ -150,6 +151,7 @@ class FretboardView: NSView {
         }
         buildNoteViews()
         addSubviews()
+        
     }
 
     // Draws in the NSView.
@@ -252,6 +254,31 @@ class FretboardView: NSView {
         }
     }
     
+    //update string notes
+    func updateNoteModelArray(newNotesArray: [NoteModel]) {
+        noteModelArray = newNotesArray
+    }
+    
+    func updateCanCustomize(bool: Bool) {
+        for stringIndex in 0...5 {
+            for noteIndex in 0...(NOTES_PER_STRING - 1){
+                // Update note
+                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).canCustomize = bool
+            }
+        }
+    }
+    
+//    func updateIsGhost(bool: Bool) {
+//        for stringIndex in 0...5 {
+//            for noteIndex in 0...(NOTES_PER_STRING - 1){
+//                // Update note
+//                if
+//                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isGhost = bool
+//            }
+//        }
+//    }
+    
+    
     // Updates the contents of each noteView.
     func updateSubviews() {
             for stringIndex in 0...5 {
@@ -268,23 +295,22 @@ class FretboardView: NSView {
                     // Update number0to46
                     (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to46 =
                         noteModelArray[noteIndex + offsets[stringIndex]].number0to46
+                    // Update isGhost
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isGhost =
+                        noteModelArray[noteIndex + offsets[stringIndex]].isGhost
+                    // Update isInScale
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isInScale =
+                        noteModelArray[noteIndex + offsets[stringIndex]].isInscale
+                    // Update isInScale
+                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isDisplayed =
+                        noteModelArray[noteIndex + offsets[stringIndex]].isDisplayed
                     // Update fretDisplay
                     (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).displayMode =
                         self.displayMode
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).canCustomize =
-                    self.canCustomise
+
                 }
             }
-        
+    
     }
-    
-    //update string notes
-    func updateNoteModelArray(newNotesArray: [NoteModel]) {
-        noteModelArray = newNotesArray
-    }
-    
-    
-    
-    
 }
 

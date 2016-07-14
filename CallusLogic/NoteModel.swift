@@ -14,6 +14,15 @@ class NoteModel {
     var number0to11 = ""
     var number0to46 = ""
     var interval = ""
+    
+    var isGhost = false
+    var isInscale = false
+    
+    var isLocked = false
+    
+    var isKept = false
+    
+    var isDisplayed = false
     var isPassingNote = false {
         didSet {
             if isPassingNote == true {
@@ -34,5 +43,21 @@ class NoteModel {
         temp = temp.stringByAppendingString(theNote)
         temp = temp.stringByAppendingString(")")
         return temp
+    }
+    
+    func resetProperties() {
+        note = ""
+        number0to11 = ""
+        number0to46 = ""
+        interval = ""
+        
+        isGhost = false
+        isInscale = false
+        
+        isLocked = false
+        
+        isDisplayed = false
+        isPassingNote = false
+        isKept = false
     }
 }

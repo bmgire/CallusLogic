@@ -15,7 +15,7 @@
 		B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */; };
 		B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */; };
 		B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */; };
-		B5F44C7A1D2D9F15008BCE5F /* FretboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6F1D2D9F15008BCE5F /* FretboardController.swift */; };
+		B5F44C7A1D2D9F15008BCE5F /* FretboardCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6F1D2D9F15008BCE5F /* FretboardCalculator.swift */; };
 		B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C701D2D9F15008BCE5F /* FretboardView.swift */; };
 		B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */; };
 		B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C721D2D9F15008BCE5F /* NoteModel.swift */; };
@@ -38,7 +38,7 @@
 		B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllIntervals.swift; sourceTree = "<group>"; };
 		B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScales.swift; sourceTree = "<group>"; };
 		B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
-		B5F44C6F1D2D9F15008BCE5F /* FretboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardController.swift; sourceTree = "<group>"; };
+		B5F44C6F1D2D9F15008BCE5F /* FretboardCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardCalculator.swift; sourceTree = "<group>"; };
 		B5F44C701D2D9F15008BCE5F /* FretboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardView.swift; sourceTree = "<group>"; };
 		B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftHandedFretboard.png; sourceTree = "<group>"; };
 		B5F44C721D2D9F15008BCE5F /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
@@ -64,7 +64,6 @@
 		B584BCB61D32C99C0092B143 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B5F44C6F1D2D9F15008BCE5F /* FretboardController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -93,9 +92,10 @@
 				B5F44C631D2D9E84008BCE5F /* MainMenu.xib */,
 				B5F44C661D2D9E84008BCE5F /* Info.plist */,
 				B5F44C5C1D2D9E84008BCE5F /* Document.swift */,
-				B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */,
 				B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */,
+				B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */,
 				B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */,
+				B5F44C6F1D2D9F15008BCE5F /* FretboardCalculator.swift */,
 				B5F44C821D2D9FA0008BCE5F /* Views */,
 				B5F44C831D2D9FC1008BCE5F /* Models */,
 				B584BCB61D32C99C0092B143 /* Controllers */,
@@ -220,7 +220,7 @@
 				B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */,
 				B5F44C881D2DD55B008BCE5F /* MainWindowController.swift in Sources */,
 				B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */,
-				B5F44C7A1D2D9F15008BCE5F /* FretboardController.swift in Sources */,
+				B5F44C7A1D2D9F15008BCE5F /* FretboardCalculator.swift in Sources */,
 				B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */,
 				B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */,
 				B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */,

@@ -19,7 +19,9 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
     @IBOutlet weak var customizeButton: NSButton!
-    
+    @IBOutlet weak var ghostCalcNotesButton: NSButton!
+    @IBOutlet weak var addMoreNotesButton: NSButton!
+    @IBOutlet weak var unghostAddMoreNotesButton: NSButton!
     //##########################################################
     // variables to hold outlets previous values.
     //##########################################################
@@ -28,28 +30,31 @@ class MainWindowController: NSWindowController {
     var previousScale = ""
     var previousDisplay = ""
     
-
+    var chromaticsWereAdded = false
     //##########################################################
     // Actions.
     //##########################################################
     // Root update
     @IBAction func updateRoot(sender: NSPopUpButton) {
         if sender.titleOfSelectedItem! != previousRoot {
-            updateFretboardControllerAndViews()
+            updateFretboardCalculator()
+            updateFretboardView()
             previousRoot = sender.titleOfSelectedItem!
         }
     }
     // Accidental update
     @IBAction func updateAccidental(sender: NSPopUpButton) {
         if sender.titleOfSelectedItem! != previousAccidental {
-            updateFretboardControllerAndViews()
+            updateFretboardCalculator()
+            updateFretboardView()
             previousAccidental = sender.titleOfSelectedItem!
         }
     }
     // Scale updtae.
     @IBAction func updateScale(sender: NSPopUpButton) {
         if sender.titleOfSelectedItem! != previousScale {
-            updateFretboardControllerAndViews()
+            updateFretboardCalculator()
+            updateFretboardView()
             previousScale = sender.titleOfSelectedItem!
         }
     }
@@ -62,21 +67,76 @@ class MainWindowController: NSWindowController {
         }
     }
     
+    // Enable Customizing
     @IBAction func enableCustomizing(sender: NSButton){
         if sender.state != 0 {
-            fretboardView.canCustomise = true
+            
+            // Displays ghosting buttons
+            fretboardView.updateCanCustomize(true)
+            ghostCalcNotesButton!.hidden = false
+            addMoreNotesButton!.hidden = false
+            unghostAddMoreNotesButton!.hidden = false
+            updateFretboardView()
+            
+            // Disables formula editor. 
+            
         }
         else {
-            fretboardView.canCustomise = false
+            fretboardView.updateCanCustomize(false)
+            ghostCalcNotesButton!.hidden = true
+            addMoreNotesButton!.hidden = true
+            unghostAddMoreNotesButton!.hidden = true
         }
-        fretboardView.updateSubviews()
+    }
+
+    // Enable Ghosting
+    @IBAction func ghostCalcNotes(sender: NSButton){
+        if sender.state != 0 {
+            
+            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
+            updateFretboardView()
+        }
+            // Hide chromatic notes that aren't in the scale.
+        else {
+            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: false)
+            updateFretboardView()
+        }
+        //fretboardView.updateSubviews()
+    }
+    
+    @IBAction func addMoreNotes(sender: NSButton) {
+        
+        if sender.state != 0 {
+            // Show chromatic notes.
+            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
+            unghostAddMoreNotesButton!.enabled = true
+            updateFretboardView()
+        }
+           // Hide chromatic notes that aren't in the scale.
+        else {
+            showNotesFromFretArray(false, _isDisplayed: false, _isGhosted: true)
+            unghostAddMoreNotesButton!.enabled = false
+            unghostAddMoreNotesButton.state = 0
+            updateFretboardView()
+        }
+    }
+    
+    @IBAction func unghostAddMoreNotes(sender: NSButton) {
+        if sender.state != 0 {
+            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: false)
+            updateFretboardView()
+        }
+        else {
+            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
+            updateFretboardView()
+        }
     }
     
     //##########################################################
     // Class Variables (except the outlets previous values holders.
     //##########################################################
 
-    var fretboardController = FretboardController()
+    var fretboardCalculator = FretboardCalculator()
     
     //##########################################################
     // Window Controller overriden functions.
@@ -121,7 +181,8 @@ class MainWindowController: NSWindowController {
         previousScale = scalePopUp!.titleOfSelectedItem!
         previousDisplay = displayModePopUp!.titleOfSelectedItem!
     
-        updateFretboardControllerAndViews()
+        updateFretboardCalculator()
+        updateFretboardView()
     }
     
     //##########################################################
@@ -138,19 +199,50 @@ class MainWindowController: NSWindowController {
         scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 31)
     }
     
-    // Updates the FretboardController and subviews.
-    func updateFretboardControllerAndViews() {
+    // Updates the FretboardCalculator and subviews.
+    func updateFretboardCalculator() {
         // Update Model with current values.
-        fretboardController.updateWithValues(rootPopUp!.titleOfSelectedItem!,
-                                        accidental: accidentalPopUp!.titleOfSelectedItem!,
+        fretboardCalculator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
+                                        myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
+        fillSpacesWithChromatic()
+       
+    }
+    
+    func updateFretboardView() {
         // Update Display Mode.
         fretboardView.displayMode = displayModePopUp!.titleOfSelectedItem!
         // Update the NoteModel array on the FretboardView.
-        fretboardView!.updateNoteModelArray(fretboardController.array)
+        fretboardView!.updateNoteModelArray(fretboardCalculator.fretArray)
         // Display the changes.
         fretboardView.needsDisplay = true
     }
     
+    
+    func fillSpacesWithChromatic()
+    {
+        let chromatic = FretboardCalculator()
+        chromatic.updateWithValues(rootPopUp!.titleOfSelectedItem!,
+                                   myAccidental: accidentalPopUp!.titleOfSelectedItem!,
+                                   scaleName: "Chromatic Scale")
+        for index in 0...46 {
+            
+                if fretboardCalculator.fretArray[index].note == "" {
+                    fretboardCalculator.fretArray[index].note = chromatic.fretArray[index].note
+                    fretboardCalculator.fretArray[index].interval = chromatic.fretArray[index].interval
+                    fretboardCalculator.fretArray[index].number0to11 = chromatic.fretArray[index].number0to11
+                    fretboardCalculator.fretArray[index].number0to46 = chromatic.fretArray[index].number0to46
+                }
+            
+        }
+    }
+    func showNotesFromFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
+        for index in 0...46 {
+            if fretboardCalculator.fretArray[index].isInscale == _isInScale {
+                fretboardCalculator.fretArray[index].isDisplayed = _isDisplayed
+                fretboardCalculator.fretArray[index].isGhost = _isGhosted
+            }
+        }
+    }
 }
 
