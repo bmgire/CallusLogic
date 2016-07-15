@@ -268,45 +268,59 @@ class FretboardView: NSView {
         }
     }
     
-//    func updateIsGhost(bool: Bool) {
-//        for stringIndex in 0...5 {
-//            for noteIndex in 0...(NOTES_PER_STRING - 1){
-//                // Update note
-//                if
-//                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isGhost = bool
-//            }
-//        }
-//    }
-    
+    func markSelectedNotesAsKept(doKeep: Bool) {
+        for stringIndex in 0...5 {
+            for noteIndex in 0...(NOTES_PER_STRING - 1){
+                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
+                // if view.isKept == false {
+                // the view is displayed, determine whether to keep.
+                if view.isDisplayed == true {
+                    // If ghosted, don't keep
+                    if view.isGhost == true {
+                        view.isKept = false
+                        
+                    }
+                        // If unghosted, keep
+                    else {
+                        view.isKept = doKeep
+                    }
+                    
+                }
+            }
+        }
+    }
     
     // Updates the contents of each noteView.
     func updateSubviews() {
             for stringIndex in 0...5 {
                 for noteIndex in 0...(NOTES_PER_STRING - 1){
-                    // Update note
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).note =
-                        noteModelArray[noteIndex + offsets[stringIndex]].note
-                    // Update intervals
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).interval =
-                        noteModelArray[noteIndex + offsets[stringIndex]].interval
-                    // Update number0to11
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to11 =
-                        noteModelArray[noteIndex + offsets[stringIndex]].number0to11
-                    // Update number0to46
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).number0to46 =
-                        noteModelArray[noteIndex + offsets[stringIndex]].number0to46
-                    // Update isGhost
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isGhost =
-                        noteModelArray[noteIndex + offsets[stringIndex]].isGhost
-                    // Update isInScale
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isInScale =
-                        noteModelArray[noteIndex + offsets[stringIndex]].isInscale
-                    // Update isInScale
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).isDisplayed =
-                        noteModelArray[noteIndex + offsets[stringIndex]].isDisplayed
-                    // Update fretDisplay
-                    (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).displayMode =
-                        self.displayMode
+                    let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
+                    let model = noteModelArray[noteIndex + offsets[stringIndex]]
+                    if view.isKept == false {
+                        // Update note
+                        view.note = model.note
+                        
+                        // Update intervals
+                        view.interval = model.interval
+                        
+                        // Update number0to11
+                        view.number0to11 = model.number0to11
+                        
+                        // Update number0to46
+                        view.number0to46 = model.number0to46
+                        
+                        // Update isGhost
+                        view.isGhost = model.isGhost
+                        
+                        // Update isInScale
+                        view.isInScale = model.isInscale
+                        
+                        // Update isInScale
+                        view.isDisplayed = model.isDisplayed
+                        
+                        // Update fretDisplay
+                        view.displayMode = self.displayMode
+                    }
 
                 }
             }

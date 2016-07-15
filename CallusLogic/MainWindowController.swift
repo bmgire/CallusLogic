@@ -19,11 +19,15 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
     @IBOutlet weak var customizeButton: NSButton!
-    @IBOutlet weak var ghostCalcNotesButton: NSButton!
+    @IBOutlet weak var unghostCalcNotesButton: NSButton!
     @IBOutlet weak var addMoreNotesButton: NSButton!
     @IBOutlet weak var unghostAddMoreNotesButton: NSButton!
     
-    @IBOutlet weak var markSelectedAsKeptButton: NSButton!
+    @IBOutlet weak var keepSelectedNotesButton: NSButton!
+    @IBOutlet weak var unkeepSelectedNotesButton: NSButton!
+    
+    
+    @IBOutlet weak var customizeControlsView: NSView!
     
     //##########################################################
     // variables to hold outlets previous values.
@@ -74,28 +78,32 @@ class MainWindowController: NSWindowController {
     @IBAction func enableCustomizing(sender: NSButton){
         if sender.state != 0 {
             
-            // Displays ghosting buttons
+            // sets noteViews canCustomizeProperty to true.
             fretboardView.updateCanCustomize(true)
-            ghostCalcNotesButton!.hidden = false
-            ghostCalcNotes(ghostCalcNotesButton)
-            addMoreNotesButton!.hidden = false
-            unghostAddMoreNotesButton!.hidden = false
+            
+            // Unhide customize controls.
+            customizeControlsView.hidden = false
+            
+            // Set the unghostCalcNotesButton to on.
+            unghostCalcNotesButton.state = 0
+            unghostCalcNotes(unghostCalcNotesButton)
+            
+            // Set the addMoreNotesButton to off. 
+            addMoreNotesButton.state = 0
+            addMoreNotes(addMoreNotesButton)
+
+            // Update Views
             updateFretboardView()
-            
-            // Disables formula editor. 
-            
         }
         else {
             fretboardView.updateCanCustomize(false)
-            ghostCalcNotesButton!.hidden = true
-            addMoreNotesButton!.hidden = true
-            unghostAddMoreNotesButton!.hidden = true
+            customizeControlsView.hidden = true
         }
     }
 
     // Enable Ghosting
-    @IBAction func ghostCalcNotes(sender: NSButton){
-        if sender.state != 0 {
+    @IBAction func unghostCalcNotes(sender: NSButton){
+        if sender.state == 0 {
             
             showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
             updateFretboardView()
@@ -105,13 +113,13 @@ class MainWindowController: NSWindowController {
             showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: false)
             updateFretboardView()
         }
-        //fretboardView.updateSubviews()
     }
     
     @IBAction func addMoreNotes(sender: NSButton) {
         
         if sender.state != 0 {
             // Show chromatic notes.
+            fretboardView.markSelectedNotesAsKept(true)
             showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
             unghostAddMoreNotesButton!.enabled = true
             updateFretboardView()
@@ -136,8 +144,16 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    @IBAction func markSelectedAsKept(sender: NSButton) {
-        if sender.state != 0 {
+    @IBAction func updateIsKeptOnSelectedNotes(sender: NSButton) {
+        // If the keepSelectedNotes was pressed.
+        if sender == keepSelectedNotesButton{
+            fretboardView.markSelectedNotesAsKept(true)
+            updateFretboardView()
+        }
+        // If unKeepSelectedNotes was pressed.
+        else if sender == unkeepSelectedNotesButton {
+            fretboardView.markSelectedNotesAsKept(false)
+            updateFretboardView()
             
         }
     }
@@ -146,7 +162,7 @@ class MainWindowController: NSWindowController {
     // Class Variables (except the outlets previous values holders.
     //##########################################################
 
-    var fretboardCalculator = FretboardCalculator()
+    let fretboardCalculator = FretboardCalculator()
     
     //##########################################################
     // Window Controller overriden functions.
@@ -184,7 +200,6 @@ class MainWindowController: NSWindowController {
         displayModePopUp!.addItemWithTitle("Numbers 0-46")
         displayModePopUp!.selectItemAtIndex(0)
         
-        
         // Set previousValues to default values.
         previousRoot = rootPopUp!.titleOfSelectedItem!
         previousAccidental = accidentalPopUp!.titleOfSelectedItem!
@@ -216,14 +231,26 @@ class MainWindowController: NSWindowController {
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
         fillSpacesWithChromatic()
+        
+        // If customizing, new scales set to ghost mode. 
+        if customizeButton.state != 0 {
+            // GhostNotes.
+            fretboardView.markSelectedNotesAsKept(true)
+            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
+        }
        
     }
     
     func updateFretboardView() {
+        
+        
         // Update Display Mode.
         fretboardView.displayMode = displayModePopUp!.titleOfSelectedItem!
         // Update the NoteModel array on the FretboardView.
         fretboardView!.updateNoteModelArray(fretboardCalculator.fretArray)
+        
+        
+        
         // Display the changes.
         fretboardView.needsDisplay = true
     }
@@ -236,23 +263,28 @@ class MainWindowController: NSWindowController {
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                    scaleName: "Chromatic Scale")
         for index in 0...46 {
+            let fret = fretboardCalculator.fretArray[index]
             
-                if fretboardCalculator.fretArray[index].note == "" {
-                    fretboardCalculator.fretArray[index].note = chromatic.fretArray[index].note
-                    fretboardCalculator.fretArray[index].interval = chromatic.fretArray[index].interval
-                    fretboardCalculator.fretArray[index].number0to11 = chromatic.fretArray[index].number0to11
-                    fretboardCalculator.fretArray[index].number0to46 = chromatic.fretArray[index].number0to46
+                if fret.note == "" {
+                    fret.note = chromatic.fretArray[index].note
+                    fret.interval = chromatic.fretArray[index].interval
+                    fret.number0to11 = chromatic.fretArray[index].number0to11
+                    fret.number0to46 = chromatic.fretArray[index].number0to46
                 }
             
         }
     }
+    
     func showNotesFromFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...46 {
-            if fretboardCalculator.fretArray[index].isInscale == _isInScale {
-                fretboardCalculator.fretArray[index].isDisplayed = _isDisplayed
-                fretboardCalculator.fretArray[index].isGhost = _isGhosted
+            let fret = fretboardCalculator.fretArray[index]
+            if fret.isInscale == _isInScale {
+                fret.isDisplayed = _isDisplayed
+                fret.isGhost = _isGhosted
             }
         }
     }
 }
+
+
 

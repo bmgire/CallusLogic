@@ -71,11 +71,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "MainWindowController"
             landmarkType = "3">
          </BreakpointContent>
@@ -87,11 +87,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "windowDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -103,11 +103,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "windowDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -119,11 +119,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "windowDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -151,11 +151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -167,11 +167,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -183,11 +183,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -199,11 +199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -365,11 +365,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "enableCustomizing(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -381,11 +381,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309791.320372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "updateFretboardView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -397,11 +397,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309791.320372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "updateFretboardView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -413,11 +413,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309791.320372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "updateFretboardView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -429,11 +429,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309791.320372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "MainWindowController"
             landmarkType = "3">
          </BreakpointContent>
@@ -461,11 +461,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309791.320372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "updateFretboardView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -477,7 +477,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardCalculator.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490248480.794336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "addNumbers0to46()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardCalculator.swift"
+            timestampString = "490248480.794336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
@@ -493,11 +509,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardCalculator.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490248480.794336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "addNumbers0to46()"
             landmarkType = "5">
          </BreakpointContent>
@@ -509,27 +525,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardCalculator.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490248480.794336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
             endingLineNumber = "166"
-            landmarkName = "addNumbers0to46()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CallusLogic/FretboardCalculator.swift"
-            timestampString = "490172825.26676"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
             landmarkName = "addNumbers0to46()"
             landmarkType = "5">
          </BreakpointContent>
@@ -557,11 +557,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -589,11 +589,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -605,11 +605,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490172825.26676"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -621,11 +621,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "enableCustomizing(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -637,11 +637,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardCalculator.swift"
-            timestampString = "490225581.897704"
+            timestampString = "490248480.794336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "addNumbers0to46()"
             landmarkType = "5">
          </BreakpointContent>
@@ -653,11 +653,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/FretboardView.swift"
-            timestampString = "490225698.069228"
+            timestampString = "490301932.916599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "updateSubviews()"
             landmarkType = "5">
          </BreakpointContent>
@@ -669,12 +669,220 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "490233286.191708"
+            timestampString = "490309505.333989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "ghostCalcNotes(_:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "unghostCalcNotes(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardCalculator.swift"
+            timestampString = "490248669.059051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "addNoteNamesIntervalsAndNumber0to11(_:orderedIntervals:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/MainWindowController.swift"
+            timestampString = "490309505.333989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "updateIsKeptOnSelectedNotes(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/MainWindowController.swift"
+            timestampString = "490309791.320372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "showNotesFromFretArray(_:_isDisplayed:_isGhosted:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/MainWindowController.swift"
+            timestampString = "490309791.320372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "showNotesFromFretArray(_:_isDisplayed:_isGhosted:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/NoteView.swift"
+            timestampString = "490249199.699416"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "mouseUp(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302391.388928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302392.394823"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302395.497074"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302430.492575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/MainWindowController.swift"
+            timestampString = "490309505.333989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "updateIsKeptOnSelectedNotes(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302636.144178"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302649.324772"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "markSelectedNotesAsKept()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CallusLogic/FretboardView.swift"
+            timestampString = "490302656.419029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "markSelectedNotesAsKept()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

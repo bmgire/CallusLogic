@@ -38,7 +38,7 @@ class FretboardCalculator {
     
     var intervalIndexOfE = 0
     var passingInterval = ""
-    var fretArray = FretboardModel().array
+    var fretArray: [NoteModel] = []
     
     
     //##########################################################
@@ -48,7 +48,7 @@ class FretboardCalculator {
     func updateWithValues(myRoot: String, myAccidental: String, scaleName: String) {
         if scaleName != "" {
             
-            resetUnkeptNotes()
+            fretArray = FretboardModel().array
             
             resolveRoot(myRoot, accidental: myAccidental)
             // Find and save the Scale object.
@@ -136,18 +136,21 @@ class FretboardCalculator {
     func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                fretArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
-                fretArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
-                fretArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
-                
-                }
+                let fret = fretArray[scaleIndex + octaveCount * 12]
+                //if fret.isKept == false {
+                    fret.note = orderedNotes[scaleIndex]
+                    fret.interval = orderedIntervals[scaleIndex]
+                    fret.number0to11 = String(scaleIndex)
+                //}
             }
+        }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            fretArray[scaleIndex + octaveCount * 12].note = orderedNotes[scaleIndex]
-            fretArray[scaleIndex + octaveCount * 12].interval = orderedIntervals[scaleIndex]
-            fretArray[scaleIndex + octaveCount * 12].number0to11 = String(scaleIndex)
+            let fret = fretArray[scaleIndex + octaveCount * 12]
             
+            fret.note = orderedNotes[scaleIndex]
+            fret.interval = orderedIntervals[scaleIndex]
+            fret.number0to11 = String(scaleIndex)
         }
     }
     
@@ -175,13 +178,13 @@ class FretboardCalculator {
         }
     }
     
-    func resetUnkeptNotes() {
-        for index in 0...46 {
-            if fretArray[index].isKept == false {
-                fretArray[index].resetProperties()
-            }
-        }
-    }
+//    func resetUnkeptNotes() {
+//        for index in 0...46 {
+//            if fretArray[index].isKept == false {
+//                fretArray[index].resetProperties()
+//            }
+//        }
+//    }
     
 
 }

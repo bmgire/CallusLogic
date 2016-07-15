@@ -75,7 +75,7 @@ class NoteView: NSView {
 
     var isInScale = false
     
-    var isLocked = false
+    var isKept = false
     
     var isDisplayed = false {
         didSet {

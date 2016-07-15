@@ -18,9 +18,9 @@ class NoteModel {
     var isGhost = false
     var isInscale = false
     
-    var isLocked = false
+    //var isLocked = false
     
-    var isKept = false
+    //var isKept = false
     
     var isDisplayed = false
     var isPassingNote = false {
@@ -54,10 +54,10 @@ class NoteModel {
         isGhost = false
         isInscale = false
         
-        isLocked = false
+       // isLocked = false
         
         isDisplayed = false
         isPassingNote = false
-        isKept = false
+        //isKept = false
     }
 }
