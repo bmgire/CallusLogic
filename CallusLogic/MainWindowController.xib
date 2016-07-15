@@ -8,17 +8,16 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
-                <outlet property="addMoreNotesButton" destination="dNh-cO-qDe" id="BCT-J4-csA"/>
                 <outlet property="customizeButton" destination="mLI-28-ChY" id="Jrk-fR-sQ4"/>
                 <outlet property="customizeControlsView" destination="Dm0-fx-PbX" id="Y9r-4n-lNj"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
-                <outlet property="keepSelectedNotesButton" destination="rJG-ay-YPm" id="xsz-1F-HMf"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
-                <outlet property="unghostAddMoreNotesButton" destination="Eso-Wg-JuJ" id="Dx3-hP-zBX"/>
-                <outlet property="unghostCalcNotesButton" destination="SVY-IZ-z4e" id="GjQ-zh-bBn"/>
-                <outlet property="unkeepSelectedNotesButton" destination="RTq-lc-3d7" id="agw-Ny-ONB"/>
+                <outlet property="selectAdditionalNotesButton" destination="Eso-Wg-JuJ" id="EWg-MG-Dvb"/>
+                <outlet property="selectCalcNotesButton" destination="SVY-IZ-z4e" id="Mtv-iD-1Ke"/>
+                <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
+                <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -138,52 +137,45 @@
                     <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Controls View">
                         <rect key="frame" x="186" y="322" width="1197" height="96"/>
                         <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e">
-                                <rect key="frame" x="18" y="52" width="175" height="18"/>
-                                <buttonCell key="cell" type="check" title="unghost calculated notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sux-3b-eDF">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
+                                <rect key="frame" x="18" y="52" width="164" height="18"/>
+                                <buttonCell key="cell" type="check" title="Select calculated notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sux-3b-eDF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="unghostCalcNotes:" target="-2" id="8O8-BV-K9o"/>
+                                    <action selector="selectCalcNotes:" target="-2" id="Xiu-bC-0Jd"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJG-ay-YPm">
-                                <rect key="frame" x="404" y="40" width="167" height="32"/>
-                                <buttonCell key="cell" type="push" title="Keep Selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7u4-D0-rhZ">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ" userLabel="select Additional Notes Button">
+                                <rect key="frame" x="217" y="26" width="161" height="18"/>
+                                <buttonCell key="cell" type="check" title="Select additional notes" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DVn-uw-r4R">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectAdditionalNotes:" target="-2" id="Ai1-JX-igh"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
+                                <rect key="frame" x="510" y="40" width="111" height="32"/>
+                                <buttonCell key="cell" type="push" title="Unselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="updateIsKeptOnSelectedNotes:" target="-2" id="A6A-fX-lpp"/>
+                                    <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe">
-                                <rect key="frame" x="217" y="52" width="147" height="18"/>
-                                <buttonCell key="cell" type="check" title="Add additional notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
+                                <rect key="frame" x="217" y="52" width="156" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show additional notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="addMoreNotes:" target="-2" id="ggl-fy-0wZ"/>
+                                    <action selector="showAdditionalNotes:" target="-2" id="1FH-eA-v1k"/>
                                 </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ">
-                                <rect key="frame" x="217" y="26" width="174" height="18"/>
-                                <buttonCell key="cell" type="check" title="Unghost additional notes" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DVn-uw-r4R">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="unghostAddMoreNotes:" target="-2" id="CAi-yx-a1x"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7">
-                                <rect key="frame" x="584" y="40" width="199" height="32"/>
-                                <buttonCell key="cell" type="push" title="Unkeep all selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
                             </button>
                         </subviews>
                     </customView>

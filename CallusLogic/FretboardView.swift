@@ -272,8 +272,8 @@ class FretboardView: NSView {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
                 let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                // if view.isKept == false {
-                // the view is displayed, determine whether to keep.
+                
+                // If the view is displayed, determine whether to keep.
                 if view.isDisplayed == true {
                     // If ghosted, don't keep
                     if view.isGhost == true {
@@ -283,6 +283,12 @@ class FretboardView: NSView {
                         // If unghosted, keep
                     else {
                         view.isKept = doKeep
+                        // If we're unSelected the note via unselectAll
+                        // ghost the note and display with current value.
+                        if doKeep == false {
+                            view.isGhost = true
+                            view.needsDisplay = true
+                        }
                     }
                     
                 }

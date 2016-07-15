@@ -19,12 +19,11 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
     @IBOutlet weak var customizeButton: NSButton!
-    @IBOutlet weak var unghostCalcNotesButton: NSButton!
-    @IBOutlet weak var addMoreNotesButton: NSButton!
-    @IBOutlet weak var unghostAddMoreNotesButton: NSButton!
+    @IBOutlet weak var selectCalcNotesButton: NSButton!
+    @IBOutlet weak var showAdditionalNotesButton: NSButton!
+    @IBOutlet weak var selectAdditionalNotesButton: NSButton!
     
-    @IBOutlet weak var keepSelectedNotesButton: NSButton!
-    @IBOutlet weak var unkeepSelectedNotesButton: NSButton!
+    @IBOutlet weak var unSelectAllButton: NSButton!
     
     
     @IBOutlet weak var customizeControlsView: NSView!
@@ -84,13 +83,13 @@ class MainWindowController: NSWindowController {
             // Unhide customize controls.
             customizeControlsView.hidden = false
             
-            // Set the unghostCalcNotesButton to on.
-            unghostCalcNotesButton.state = 0
-            unghostCalcNotes(unghostCalcNotesButton)
+            // Set the selectCalcNotesButton to on.
+            selectCalcNotesButton.state = 0
+            selectCalcNotes(selectCalcNotesButton)
             
             // Set the addMoreNotesButton to off. 
-            addMoreNotesButton.state = 0
-            addMoreNotes(addMoreNotesButton)
+            showAdditionalNotesButton.state = 0
+            showAdditionalNotes(showAdditionalNotesButton)
 
             // Update Views
             updateFretboardView()
@@ -102,7 +101,7 @@ class MainWindowController: NSWindowController {
     }
 
     // Enable Ghosting
-    @IBAction func unghostCalcNotes(sender: NSButton){
+    @IBAction func selectCalcNotes(sender: NSButton){
         if sender.state == 0 {
             
             showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
@@ -115,25 +114,25 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    @IBAction func addMoreNotes(sender: NSButton) {
+    @IBAction func showAdditionalNotes(sender: NSButton) {
         
         if sender.state != 0 {
             // Show chromatic notes.
             fretboardView.markSelectedNotesAsKept(true)
             showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
-            unghostAddMoreNotesButton!.enabled = true
+            selectAdditionalNotesButton!.enabled = true
             updateFretboardView()
         }
            // Hide chromatic notes that aren't in the scale.
         else {
             showNotesFromFretArray(false, _isDisplayed: false, _isGhosted: true)
-            unghostAddMoreNotesButton!.enabled = false
-            unghostAddMoreNotesButton.state = 0
+            selectAdditionalNotesButton!.enabled = false
+            selectAdditionalNotesButton.state = 0
             updateFretboardView()
         }
     }
     
-    @IBAction func unghostAddMoreNotes(sender: NSButton) {
+    @IBAction func selectAdditionalNotes(sender: NSButton) {
         if sender.state != 0 {
             showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: false)
             updateFretboardView()
@@ -144,18 +143,13 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    @IBAction func updateIsKeptOnSelectedNotes(sender: NSButton) {
-        // If the keepSelectedNotes was pressed.
-        if sender == keepSelectedNotesButton{
-            fretboardView.markSelectedNotesAsKept(true)
-            updateFretboardView()
-        }
-        // If unKeepSelectedNotes was pressed.
-        else if sender == unkeepSelectedNotesButton {
+    @IBAction func unselectAll(sender: NSButton) {
+
+
             fretboardView.markSelectedNotesAsKept(false)
-            updateFretboardView()
+            //updateFretboardView()
             
-        }
+        
     }
     
     //##########################################################
