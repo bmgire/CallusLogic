@@ -103,7 +103,7 @@
                     </button>
                     <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e">
                         <rect key="frame" x="165" y="328" width="162" height="18"/>
-                        <buttonCell key="cell" type="check" title="Ghost calculated notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sux-3b-eDF">
+                        <buttonCell key="cell" type="check" title="Ghost calculated notes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Sux-3b-eDF">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -162,10 +162,10 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1a-3q-fkN">
-                        <rect key="frame" x="547" y="328" width="161" height="18"/>
-                        <buttonCell key="cell" type="check" title="Keep unghosted Notes" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="MgQ-jj-WYC">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJG-ay-YPm">
+                        <rect key="frame" x="528" y="316" width="167" height="32"/>
+                        <buttonCell key="cell" type="push" title="Keep Selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7u4-D0-rhZ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>

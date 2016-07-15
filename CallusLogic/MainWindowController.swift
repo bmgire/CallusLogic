@@ -22,6 +22,9 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var ghostCalcNotesButton: NSButton!
     @IBOutlet weak var addMoreNotesButton: NSButton!
     @IBOutlet weak var unghostAddMoreNotesButton: NSButton!
+    
+    @IBOutlet weak var markSelectedAsKeptButton: NSButton!
+    
     //##########################################################
     // variables to hold outlets previous values.
     //##########################################################
@@ -74,6 +77,7 @@ class MainWindowController: NSWindowController {
             // Displays ghosting buttons
             fretboardView.updateCanCustomize(true)
             ghostCalcNotesButton!.hidden = false
+            ghostCalcNotes(ghostCalcNotesButton)
             addMoreNotesButton!.hidden = false
             unghostAddMoreNotesButton!.hidden = false
             updateFretboardView()
@@ -129,6 +133,12 @@ class MainWindowController: NSWindowController {
         else {
             showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
             updateFretboardView()
+        }
+    }
+    
+    @IBAction func markSelectedAsKept(sender: NSButton) {
+        if sender.state != 0 {
+            
         }
     }
     
