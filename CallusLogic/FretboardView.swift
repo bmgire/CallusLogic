@@ -22,7 +22,6 @@ class FretboardView: NSView {
     // Constant of the number of notes per string on a 22 fret guitar.
     let NOTES_PER_STRING = 23
     
-    
     //##########################################################
     // MARK: - Variables
     //##########################################################
@@ -38,7 +37,6 @@ class FretboardView: NSView {
     // represents the display mode = (Notes, Intervals, Numbers...)
     var displayMode = ""
     var doGhosting = false
-    var label = NSTextField()
     
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
@@ -47,12 +45,8 @@ class FretboardView: NSView {
     // MARK: Arrays
     //##########################################################
     
-    
-    
     // Array to hold guitarString offsets
     var offsets = [0, 5, 10, 15, 19, 24]
-    
-    
     
     // Arrays of CGFloat magic number multipliers to correctly represent fret locations.
     let frets: [CGFloat] =
@@ -107,7 +101,6 @@ class FretboardView: NSView {
           33,
           32]
     
-    
     // Radians for guitar string rotation, ordered from lowest pitched string to highest.
     let radians: [CGFloat] =
          [-0.02094,
@@ -116,9 +109,6 @@ class FretboardView: NSView {
            0.00046,
            0.00796,
            0.01396]
-    
-
-
     
     // Multipliers to correctly place each set of notes onto the appropriate 
     //guitar String, relative to the pictures bounds.
@@ -129,11 +119,6 @@ class FretboardView: NSView {
          0.49,
          0.6,
          0.71]
-    
-    
-
-    
-    
 
     //##########################################################
     // MARK: - Overridden functions
@@ -148,7 +133,6 @@ class FretboardView: NSView {
         }
         buildNoteViews()
         addSubviews()
-        
     }
 
     // Draws in the NSView.
@@ -171,8 +155,6 @@ class FretboardView: NSView {
     override var intrinsicContentSize: NSSize {
         return NSSize(width: 1780, height: 262)
     }
-
-    
     
     //##########################################################
     // MARK: - Custom functions
@@ -208,7 +190,6 @@ class FretboardView: NSView {
         
         // update RectArray.
         rectArray = tempRects
-
     }
     
     // Builds the noteViewsArray.
@@ -275,7 +256,6 @@ class FretboardView: NSView {
                     // If ghosted, don't keep
                     if view.isGhost == true {
                         view.isKept = false
-                        
                     }
                         // If unghosted, keep
                     else {
@@ -303,17 +283,6 @@ class FretboardView: NSView {
             }
         }
     }
-    
-//    // Sets the color of
-//    func setCustomColor(newColor: NSColor) {
-//        for stringIndex in 0...5 {
-//            for noteIndex in 0...(NOTES_PER_STRING - 1){
-//                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-//                view.customColor = newColor
-//                view.useCustomColor = true
-//            }
-//        }
-//    }
     
     // Updates the contents of each noteView.
     func updateSubviews() {
@@ -349,7 +318,6 @@ class FretboardView: NSView {
 
                 }
             }
-    
     }
 }
 

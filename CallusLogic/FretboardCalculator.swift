@@ -34,7 +34,6 @@ class FretboardCalculator {
     var orderedScaleArray: [String] = []
     
     var indeciesOfNotes: [Int] = []
-    //var indeciesOfSpaces: [Int] = []
     
     var intervalIndexOfE = 0
     var passingInterval = ""

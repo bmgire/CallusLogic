@@ -16,9 +16,13 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
-    
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
+    
     @IBOutlet weak var fretboardView: FretboardView!
+    
+    @IBOutlet weak var enterTitle: NSTextField!
+    @IBOutlet weak var displayTitle: NSTextField!
+    
     @IBOutlet weak var customizeButton: NSButton!
     @IBOutlet weak var selectCalcNotesButton: NSButton!
     @IBOutlet weak var showAdditionalNotesButton: NSButton!
@@ -156,6 +160,10 @@ class MainWindowController: NSWindowController {
     
     @IBAction func changeNoteColor(sender: NSColorWell) {
         fretboardView.setMyColor(sender.color)
+    }
+    
+    @IBAction func changeTitle(sender: NSTextField) {
+        displayTitle.stringValue = sender.stringValue
     }
     
     //##########################################################

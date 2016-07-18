@@ -163,7 +163,6 @@ class NoteView: NSView {
         }
     }
     
-    
     ///////////////////////////////////////////////////////////////////////////
     // Keyboard Event handling.
     ///////////////////////////////////////////////////////////////////////////
@@ -214,25 +213,7 @@ class NoteView: NSView {
         // Assign a value to the path.
         path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
         
-//        // If changeColor is true: and the current color is yellow, change myColor to blue... else change myColor yellow.
-//        // Else ChangeColor is false, change nothing.
-//            if changeColor {
-//                if isYellow {
-//                    myColor = NSColor(calibratedRed: 0.0, green: 0.55, blue: 1.0, alpha: 1)
-//                    isYellow = false
-//                }
-//                else {
-//                    myColor = NSColor.yellowColor()
-//                    isYellow = true
-//                }
-//            }
-        
-        // If the note is not part of the scale set the color to chromatic filler notes.
-        
-//        if useCustomColor == true {
-//            myColor = customColor
-//        }
-        
+        // If not in the scale, use the chromatic color. 
         if isInScale == false {
             myColor = chromaticColor
         }

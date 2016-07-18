@@ -12,6 +12,8 @@
                 <outlet property="customizeButton" destination="mLI-28-ChY" id="Jrk-fR-sQ4"/>
                 <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
+                <outlet property="displayTitle" destination="Gf1-tE-EKP" id="BxX-ja-Pzb"/>
+                <outlet property="enterTitle" destination="DWu-Lf-MyA" id="k14-bq-248"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
@@ -27,47 +29,16 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="50" y="250" width="1837" height="761"/>
+            <rect key="contentRect" x="50" y="250" width="1837" height="600"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="500" height="376"/>
             <value key="maxSize" type="size" width="1817" height="600"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="1837" height="761"/>
+                <rect key="frame" x="0.0" y="0.0" width="1837" height="600"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView autoresizesSubviews="NO" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-DP-gek">
-                        <rect key="frame" x="20" y="20" width="1797" height="262"/>
-                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="MX7-u0-VUr">
-                            <rect key="frame" x="0.0" y="0.0" width="1797" height="262"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="166" width="1780" height="262"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="1780" id="fTy-LC-1q1"/>
-                                        <constraint firstAttribute="height" constant="262" id="i7L-zR-egt"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
-                                    </userDefinedRuntimeAttributes>
-                                </customView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="MX7-u0-VUr" secondAttribute="top" id="KPH-Z7-hU7"/>
-                                <constraint firstItem="9iK-di-6jK" firstAttribute="leading" secondItem="MX7-u0-VUr" secondAttribute="leading" id="pzw-hj-MUX"/>
-                            </constraints>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mm5-fJ-Wiq">
-                            <rect key="frame" x="-8" y="-15" width="0.0" height="15"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3J5-T4-Jck">
-                            <rect key="frame" x="-15" y="-8" width="15" height="0.0"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
                     <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="146" y="667" width="911" height="89"/>
+                        <rect key="frame" x="20" y="500" width="911" height="89"/>
                         <subviews>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
                                 <rect key="frame" x="20" y="7" width="36" height="38"/>
@@ -130,7 +101,7 @@
                         </constraints>
                     </customView>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-28-ChY">
-                        <rect key="frame" x="18" y="606" width="96" height="18"/>
+                        <rect key="frame" x="18" y="476" width="96" height="18"/>
                         <buttonCell key="cell" type="check" title="Customize" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RHB-AL-70p">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -140,10 +111,10 @@
                         </connections>
                     </button>
                     <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="29" y="389" width="718" height="195"/>
+                        <rect key="frame" x="20" y="372" width="718" height="98"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
-                                <rect key="frame" x="8" y="140" width="164" height="18"/>
+                                <rect key="frame" x="8" y="43" width="164" height="18"/>
                                 <buttonCell key="cell" type="check" title="Select calculated notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sux-3b-eDF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -153,7 +124,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ" userLabel="select Additional Notes Button">
-                                <rect key="frame" x="207" y="114" width="161" height="18"/>
+                                <rect key="frame" x="250" y="18" width="161" height="18"/>
                                 <buttonCell key="cell" type="check" title="Select additional notes" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DVn-uw-r4R">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -163,7 +134,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
-                                <rect key="frame" x="207" y="140" width="156" height="18"/>
+                                <rect key="frame" x="250" y="44" width="156" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show additional notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -173,23 +144,15 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-wV-GZE">
-                                <rect key="frame" x="8" y="169" width="106" height="17"/>
+                                <rect key="frame" x="8" y="72" width="106" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="FretboardName: " id="gO7-0a-IML">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
-                                <rect key="frame" x="120" y="166" width="209" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Untitled" id="Mso-vz-WTS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
-                                <rect key="frame" x="384" y="128" width="111" height="32"/>
+                                <rect key="frame" x="430" y="6" width="111" height="32"/>
                                 <buttonCell key="cell" type="push" title="Unselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -198,8 +161,16 @@
                                     <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
+                                <rect key="frame" x="8" y="16" width="128" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection color" id="7Fe-Rk-Hsp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jx7-u3-EYl">
-                                <rect key="frame" x="523" y="128" width="167" height="32"/>
+                                <rect key="frame" x="423" y="36" width="167" height="32"/>
                                 <buttonCell key="cell" type="push" title="Keep Selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1x6-Ek-HIH">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -209,29 +180,72 @@
                                 </connections>
                             </button>
                             <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-i7-S6Z">
-                                <rect key="frame" x="55" y="36" width="55" height="46"/>
+                                <rect key="frame" x="142" y="13" width="55" height="24"/>
                                 <color key="color" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeNoteColor:" target="-2" id="h8X-rt-2NJ"/>
                                 </connections>
                             </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
-                                <rect key="frame" x="18" y="90" width="128" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection color" id="7Fe-Rk-Hsp">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
+                                <rect key="frame" x="120" y="72" width="209" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" id="Mso-vz-WTS">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="changeTitle:" target="-2" id="cws-Jp-ZbH"/>
+                                </connections>
                             </textField>
                         </subviews>
                     </customView>
+                    <scrollView autoresizesSubviews="NO" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-DP-gek">
+                        <rect key="frame" x="20" y="48" width="1797" height="262"/>
+                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="MX7-u0-VUr">
+                            <rect key="frame" x="0.0" y="0.0" width="1797" height="262"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="166" width="1780" height="262"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1780" id="fTy-LC-1q1"/>
+                                        <constraint firstAttribute="height" constant="262" id="i7L-zR-egt"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
+                                    </userDefinedRuntimeAttributes>
+                                </customView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="MX7-u0-VUr" secondAttribute="top" id="KPH-Z7-hU7"/>
+                                <constraint firstItem="9iK-di-6jK" firstAttribute="leading" secondItem="MX7-u0-VUr" secondAttribute="leading" id="pzw-hj-MUX"/>
+                            </constraints>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mm5-fJ-Wiq">
+                            <rect key="frame" x="-8" y="-15" width="0.0" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3J5-T4-Jck">
+                            <rect key="frame" x="-15" y="-8" width="15" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
+                        <rect key="frame" x="33" y="289" width="764" height="55"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="yam-nN-hxl">
+                            <font key="font" metaFont="systemBold" size="37"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="645.5" y="607.5"/>
+            <point key="canvasLocation" x="645.5" y="527"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="HNp-we-Pcc"/>
     </objects>
     <resources>
         <image name="RightHandedFretboard" width="4000" height="502"/>
