@@ -16,17 +16,19 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
+    
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
     @IBOutlet weak var fretboardView: FretboardView!
     @IBOutlet weak var customizeButton: NSButton!
     @IBOutlet weak var selectCalcNotesButton: NSButton!
     @IBOutlet weak var showAdditionalNotesButton: NSButton!
     @IBOutlet weak var selectAdditionalNotesButton: NSButton!
-    
     @IBOutlet weak var unSelectAllButton: NSButton!
     
     
-    @IBOutlet weak var customizeControlsView: NSView!
+    @IBOutlet weak var customizeView: NSView!
+    
+    @IBOutlet weak var customColorWell: NSColorWell!
     
     //##########################################################
     // variables to hold outlets previous values.
@@ -73,6 +75,10 @@ class MainWindowController: NSWindowController {
         }
     }
     
+    // RadioButton Action 
+    
+
+    
     // Enable Customizing
     @IBAction func enableCustomizing(sender: NSButton){
         if sender.state != 0 {
@@ -80,8 +86,7 @@ class MainWindowController: NSWindowController {
             // sets noteViews canCustomizeProperty to true.
             fretboardView.updateCanCustomize(true)
             
-            // Unhide customize controls.
-            customizeControlsView.hidden = false
+            customizeView.hidden = false
             
             // Set the selectCalcNotesButton to on.
             selectCalcNotesButton.state = 0
@@ -90,27 +95,28 @@ class MainWindowController: NSWindowController {
             // Set the addMoreNotesButton to off. 
             showAdditionalNotesButton.state = 0
             showAdditionalNotes(showAdditionalNotesButton)
-
-            // Update Views
-            updateFretboardView()
         }
         else {
+            // disable customization and hide radio buttons
             fretboardView.updateCanCustomize(false)
-            customizeControlsView.hidden = true
+            
+            customizeView.hidden = true
         }
     }
 
     // Enable Ghosting
     @IBAction func selectCalcNotes(sender: NSButton){
+        // If the checkbox is unchecked, ghost the notes.
         if sender.state == 0 {
+            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
             
-            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
-            updateFretboardView()
         }
-            // Hide chromatic notes that aren't in the scale.
+        
+            // If checked,
         else {
-            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: false)
-            updateFretboardView()
+            // Keep any selected notes, then select.
+           // fretboardView.markSelectedNotesAsKept(true)
+            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: false)
         }
     }
     
@@ -119,37 +125,37 @@ class MainWindowController: NSWindowController {
         if sender.state != 0 {
             // Show chromatic notes.
             fretboardView.markSelectedNotesAsKept(true)
-            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
+            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: true)
             selectAdditionalNotesButton!.enabled = true
-            updateFretboardView()
         }
            // Hide chromatic notes that aren't in the scale.
         else {
-            showNotesFromFretArray(false, _isDisplayed: false, _isGhosted: true)
+            showNotesFromCalcedFretArray(false, _isDisplayed: false, _isGhosted: true)
             selectAdditionalNotesButton!.enabled = false
             selectAdditionalNotesButton.state = 0
-            updateFretboardView()
         }
     }
     
     @IBAction func selectAdditionalNotes(sender: NSButton) {
         if sender.state != 0 {
-            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: false)
-            updateFretboardView()
+            fretboardView.markSelectedNotesAsKept(true)
+            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: false)
         }
         else {
-            showNotesFromFretArray(false, _isDisplayed: true, _isGhosted: true)
-            updateFretboardView()
+            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: true)
         }
     }
     
     @IBAction func unselectAll(sender: NSButton) {
-
-
             fretboardView.markSelectedNotesAsKept(false)
-            //updateFretboardView()
-            
-        
+    }
+    
+    @IBAction func keepSelectedNotes(sender: NSButton) {
+        fretboardView.markSelectedNotesAsKept(true)
+    }
+    
+    @IBAction func changeNoteColor(sender: NSColorWell) {
+        fretboardView.setMyColor(sender.color)
     }
     
     //##########################################################
@@ -230,14 +236,12 @@ class MainWindowController: NSWindowController {
         if customizeButton.state != 0 {
             // GhostNotes.
             fretboardView.markSelectedNotesAsKept(true)
-            showNotesFromFretArray(true, _isDisplayed: true, _isGhosted: true)
+            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
         }
        
     }
     
     func updateFretboardView() {
-        
-        
         // Update Display Mode.
         fretboardView.displayMode = displayModePopUp!.titleOfSelectedItem!
         // Update the NoteModel array on the FretboardView.
@@ -269,7 +273,7 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    func showNotesFromFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
+    func showNotesFromCalcedFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...46 {
             let fret = fretboardCalculator.fretArray[index]
             if fret.isInscale == _isInScale {
@@ -277,6 +281,7 @@ class MainWindowController: NSWindowController {
                 fret.isGhost = _isGhosted
             }
         }
+        updateFretboardView()
     }
 }
 

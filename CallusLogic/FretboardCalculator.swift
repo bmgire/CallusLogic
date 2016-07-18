@@ -6,7 +6,7 @@
 //  Copyright © 2016 Gire. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 class FretboardCalculator {
 
@@ -39,7 +39,6 @@ class FretboardCalculator {
     var intervalIndexOfE = 0
     var passingInterval = ""
     var fretArray: [NoteModel] = []
-    
     
     //##########################################################
     // MARK: - Custom functions

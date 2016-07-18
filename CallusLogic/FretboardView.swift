@@ -43,9 +43,6 @@ class FretboardView: NSView {
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
     
-    
-    
-    
     //##########################################################
     // MARK: Arrays
     //##########################################################
@@ -295,6 +292,28 @@ class FretboardView: NSView {
             }
         }
     }
+    
+    // Sets the color for Calculated Notes.
+    func setMyColor(newColor: NSColor) {
+        for stringIndex in 0...5 {
+            for noteIndex in 0...(NOTES_PER_STRING - 1){
+                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
+                //view.prevColor = view.userColor
+                view.userColor = newColor
+            }
+        }
+    }
+    
+//    // Sets the color of
+//    func setCustomColor(newColor: NSColor) {
+//        for stringIndex in 0...5 {
+//            for noteIndex in 0...(NOTES_PER_STRING - 1){
+//                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
+//                view.customColor = newColor
+//                view.useCustomColor = true
+//            }
+//        }
+//    }
     
     // Updates the contents of each noteView.
     func updateSubviews() {

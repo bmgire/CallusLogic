@@ -8,8 +8,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
+                <outlet property="customColorWell" destination="YdV-i7-S6Z" id="vK0-uF-tZj"/>
                 <outlet property="customizeButton" destination="mLI-28-ChY" id="Jrk-fR-sQ4"/>
-                <outlet property="customizeControlsView" destination="Dm0-fx-PbX" id="Y9r-4n-lNj"/>
+                <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
@@ -26,73 +27,14 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="50" y="250" width="1837" height="613"/>
+            <rect key="contentRect" x="50" y="250" width="1837" height="761"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="500" height="376"/>
             <value key="maxSize" type="size" width="1817" height="600"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="1837" height="613"/>
+                <rect key="frame" x="0.0" y="0.0" width="1837" height="761"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="40" y="507" width="1012" height="86"/>
-                        <subviews>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
-                                <rect key="frame" x="20" y="20" width="44" height="46"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="36"/>
-                                    <menu key="menu" id="xXu-ex-Q0v"/>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="updateRoot:" target="-2" id="ZCg-WH-gJw"/>
-                                </connections>
-                            </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
-                                <rect key="frame" x="72" y="20" width="41" height="46"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="36"/>
-                                    <menu key="menu" id="6pP-uc-zhV"/>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="updateAccidental:" target="-2" id="k0y-2z-vUc"/>
-                                </connections>
-                            </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
-                                <rect key="frame" x="121" y="20" width="338" height="46"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="36"/>
-                                    <menu key="menu" id="fHN-VA-IXX"/>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="updateScale:" target="-2" id="CVV-0Z-add"/>
-                                </connections>
-                            </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
-                                <rect key="frame" x="467" y="20" width="41" height="46"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="36"/>
-                                    <menu key="menu" id="Jjv-FN-41y"/>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="updateFretDisplay:" target="-2" id="zxa-5X-Ws2"/>
-                                </connections>
-                            </popUpButton>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="rxc-av-fsp" firstAttribute="top" secondItem="pQy-l4-Z2n" secondAttribute="top" constant="20" id="D7C-SF-YIb"/>
-                            <constraint firstItem="Bil-5M-u2j" firstAttribute="top" secondItem="pQy-l4-Z2n" secondAttribute="top" constant="20" id="GnO-6I-sNO"/>
-                            <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="pQy-l4-Z2n" secondAttribute="leading" constant="20" id="Z4A-16-Hnt"/>
-                            <constraint firstItem="rUh-IO-EzS" firstAttribute="top" secondItem="pQy-l4-Z2n" secondAttribute="top" constant="20" id="azj-ht-qN3"/>
-                            <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="8" id="egh-0T-hJc"/>
-                            <constraint firstItem="q6P-eG-0XC" firstAttribute="top" secondItem="pQy-l4-Z2n" secondAttribute="top" constant="20" id="gve-Sg-mxt"/>
-                            <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="8" id="hhq-TF-vNl"/>
-                            <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="8" id="ugz-E3-mrt"/>
-                        </constraints>
-                    </customView>
                     <scrollView autoresizesSubviews="NO" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-DP-gek">
                         <rect key="frame" x="20" y="20" width="1797" height="262"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="MX7-u0-VUr">
@@ -124,8 +66,71 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
+                        <rect key="frame" x="146" y="667" width="911" height="89"/>
+                        <subviews>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
+                                <rect key="frame" x="20" y="7" width="36" height="38"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="35"/>
+                                    <menu key="menu" id="xXu-ex-Q0v"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="updateRoot:" target="-2" id="ZCg-WH-gJw"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
+                                <rect key="frame" x="72" y="7" width="33" height="38"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="35"/>
+                                    <menu key="menu" id="6pP-uc-zhV"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="updateAccidental:" target="-2" id="k0y-2z-vUc"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
+                                <rect key="frame" x="121" y="7" width="330" height="38"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="35"/>
+                                    <menu key="menu" id="fHN-VA-IXX"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="updateScale:" target="-2" id="CVV-0Z-add"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
+                                <rect key="frame" x="467" y="7" width="33" height="38"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="35"/>
+                                    <menu key="menu" id="Jjv-FN-41y"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="updateFretDisplay:" target="-2" id="zxa-5X-Ws2"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
+                                <rect key="frame" x="31" y="62" width="168" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fretboard Calculator" id="1ye-Cy-l9V">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="pQy-l4-Z2n" secondAttribute="leading" constant="20" id="Z4A-16-Hnt"/>
+                            <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="8" id="egh-0T-hJc"/>
+                            <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="8" id="hhq-TF-vNl"/>
+                            <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="8" id="ugz-E3-mrt"/>
+                        </constraints>
+                    </customView>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-28-ChY">
-                        <rect key="frame" x="38" y="374" width="96" height="18"/>
+                        <rect key="frame" x="18" y="606" width="96" height="18"/>
                         <buttonCell key="cell" type="check" title="Customize" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RHB-AL-70p">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -134,11 +139,11 @@
                             <action selector="enableCustomizing:" target="-2" id="QZy-n8-Crj"/>
                         </connections>
                     </button>
-                    <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Controls View">
-                        <rect key="frame" x="186" y="322" width="1197" height="96"/>
+                    <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
+                        <rect key="frame" x="29" y="389" width="718" height="195"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
-                                <rect key="frame" x="18" y="52" width="164" height="18"/>
+                                <rect key="frame" x="8" y="140" width="164" height="18"/>
                                 <buttonCell key="cell" type="check" title="Select calculated notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sux-3b-eDF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -148,7 +153,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ" userLabel="select Additional Notes Button">
-                                <rect key="frame" x="217" y="26" width="161" height="18"/>
+                                <rect key="frame" x="207" y="114" width="161" height="18"/>
                                 <buttonCell key="cell" type="check" title="Select additional notes" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DVn-uw-r4R">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -157,18 +162,8 @@
                                     <action selector="selectAdditionalNotes:" target="-2" id="Ai1-JX-igh"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
-                                <rect key="frame" x="510" y="40" width="111" height="32"/>
-                                <buttonCell key="cell" type="push" title="Unselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
-                                <rect key="frame" x="217" y="52" width="156" height="18"/>
+                                <rect key="frame" x="207" y="140" width="156" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show additional notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -177,6 +172,57 @@
                                     <action selector="showAdditionalNotes:" target="-2" id="1FH-eA-v1k"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-wV-GZE">
+                                <rect key="frame" x="8" y="169" width="106" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="FretboardName: " id="gO7-0a-IML">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
+                                <rect key="frame" x="120" y="166" width="209" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Untitled" id="Mso-vz-WTS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
+                                <rect key="frame" x="384" y="128" width="111" height="32"/>
+                                <buttonCell key="cell" type="push" title="Unselect all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jx7-u3-EYl">
+                                <rect key="frame" x="523" y="128" width="167" height="32"/>
+                                <buttonCell key="cell" type="push" title="Keep Selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1x6-Ek-HIH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="keepSelectedNotes:" target="-2" id="vvT-Qd-eMQ"/>
+                                </connections>
+                            </button>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-i7-S6Z">
+                                <rect key="frame" x="55" y="36" width="55" height="46"/>
+                                <color key="color" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="changeNoteColor:" target="-2" id="h8X-rt-2NJ"/>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
+                                <rect key="frame" x="18" y="90" width="128" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection color" id="7Fe-Rk-Hsp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>
@@ -184,7 +230,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="645.5" y="400.5"/>
+            <point key="canvasLocation" x="645.5" y="607.5"/>
         </window>
     </objects>
     <resources>

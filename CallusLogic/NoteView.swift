@@ -10,10 +10,21 @@ import Cocoa
 
 class NoteView: NSView {
     
+    //##########################################################
+    // MARK: - Constants
+    //##########################################################
+    
+//    let calcedColor = NSColor.yellowColor()
+    
+    let chromaticColor = NSColor.redColor()
     
     //##########################################################
     // MARK: - Variables
     //##########################################################
+    
+    //####################
+    // Note Display variables
+    //####################
     
     // The note to display.
     var note: String = "" 
@@ -33,18 +44,29 @@ class NoteView: NSView {
         }
     }
     
+    // The interval relative to the root.
     var interval = ""
-    
+
+    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
     var displayMode = ""
+
+    //##########################################################
+    // Drawing and customizing variables.
+    //##########################################################
     
     // This variable indicates whether editing the view is allowed.
     var canCustomize = false
     // FontSize
     var noteFont: CGFloat = 16
     
+    // The user Selected Color
+    var userColor = NSColor.yellowColor()
+    
     // A state variable to be set while the mouse is down.
-
-    var myColor: NSColor = NSColor.yellowColor()
+    var myColor: NSColor?
+    
+    var prevColor:NSColor?
+    //var customColor = NSColor.yellowColor()
     
     // Variable to hold this notes BezierPath.
     var path: NSBezierPath?
@@ -70,13 +92,17 @@ class NoteView: NSView {
             needsDisplay = true
         }
     }
-        
-    var pressed: Bool = false //{
 
+    // Indicates whether the button has been pressed successfully.
+    var pressed: Bool = false //{
+    
+    // Indicates the note is in the calculated scale.
     var isInScale = false
     
+    // Indicates the note should be kept.
     var isKept = false
     
+    // Indicates whether note is diplayed.
     var isDisplayed = false {
         didSet {
             if isDisplayed == true {
@@ -87,7 +113,6 @@ class NoteView: NSView {
             }
         }
     }
-    
     //##########################################################
     // MARK: - Overridden functions
     //##########################################################
@@ -113,12 +138,25 @@ class NoteView: NSView {
     override func mouseUp(theEvent: NSEvent) {
         
         if canCustomize {
-            
-            
             //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
             if pressed {
                 if canCustomize == true {
-                    isGhost = !isGhost
+                    // if myColor hasn't been updated to the new userColor, redraw.
+                    if userColor != myColor {
+                        // and if it isn't ghosted, just changed the color.
+                        if isGhost == false {
+                            
+                            needsDisplay = true
+                        }
+                        // if ghosted, just ghost with new color.
+                        else {
+                            isGhost = !isGhost
+                        }
+                    }
+                    // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
+                    else {
+                        isGhost = !isGhost
+                    }
                 }
             }
             pressed = false
@@ -189,24 +227,29 @@ class NoteView: NSView {
 //                }
 //            }
         
-        // If the note is part of the scale set the color to blue. 
+        // If the note is not part of the scale set the color to chromatic filler notes.
+        
+//        if useCustomColor == true {
+//            myColor = customColor
+//        }
+        
         if isInScale == false {
-            myColor = NSColor.redColor()
+            myColor = chromaticColor
         }
         else {
-            myColor = NSColor.yellowColor()
+            myColor = userColor
         }
         
         // If appropriate, set alpha to ghosting transparency
         if isGhost == true {
-            myColor = myColor.colorWithAlphaComponent(CGFloat(0.1))
+            myColor = myColor!.colorWithAlphaComponent(CGFloat(0.1))
         }
         else {
-            myColor = myColor.colorWithAlphaComponent(CGFloat(1))
+            myColor = myColor!.colorWithAlphaComponent(CGFloat(1))
         }
         
         // Set color and fill.
-        myColor.set()
+        myColor!.set()
         path?.fill()
         
         // Create an NSParagraphStyle object
