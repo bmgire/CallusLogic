@@ -13,8 +13,7 @@ class NoteModel {
     private var number0to11 = ""
     private var number0to46 = ""
     private var interval = ""
-    
-    
+        
     private var isGhost = false
     private var isInScale = false
     
@@ -60,6 +59,8 @@ class NoteModel {
     func setInterval(newInterval: String) {
         interval = newInterval
     }
+    
+    
     
     func getIsGhost()-> Bool {
         return isGhost

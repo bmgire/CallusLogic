@@ -42,12 +42,12 @@ class MainWindowController: NSWindowController {
     //##########################################################
     // variables to hold outlets previous values.
     //##########################################################
-    var previousRoot = ""
-    var previousAccidental = ""
-    var previousScale = ""
-    var previousDisplay = ""
+    private var previousRoot = ""
+    private var previousAccidental = ""
+    private var previousScale = ""
+    private var previousDisplay = ""
     
-    var chromaticsWereAdded = false
+    //private var chromaticsWereAdded = false
     //##########################################################
     // Actions.
     //##########################################################
@@ -78,7 +78,7 @@ class MainWindowController: NSWindowController {
     // Display update.
     @IBAction func updateFretDisplay(sender: NSPopUpButton) {
         if sender.titleOfSelectedItem! != previousDisplay {
-            fretboardView!.displayMode = sender.titleOfSelectedItem!
+            fretboardView!.setDisplayMode(sender.titleOfSelectedItem!)
             fretboardView!.updateSubviews()
             previousDisplay = sender.titleOfSelectedItem!
         }
@@ -156,7 +156,9 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func unselectAll(sender: NSButton) {
-            fretboardView.markSelectedNotesAsKept(false)
+        fretboardView.markSelectedNotesAsKept(false)
+        selectCalcNotesButton.state = 0
+        selectAdditionalNotesButton.state = 0
     }
     
     @IBAction func keepSelectedNotes(sender: NSButton) {
@@ -165,6 +167,8 @@ class MainWindowController: NSWindowController {
     
     @IBAction func changeNoteColor(sender: NSColorWell) {
         fretboardView.setMyColor(sender.color)
+        // Closes the color panel. 
+        NSColorPanel.sharedColorPanel().close()
     }
     
     @IBAction func changeTitle(sender: NSTextField) {
@@ -228,8 +232,8 @@ class MainWindowController: NSWindowController {
     //##########################################################
     // Adds the scale names to the Scale PopUp
     func addScaleNamesToPopUp(){
-        for index in 0...(AllScales().scaleArray.count - 1){
-            scalePopUp!.addItemWithTitle(AllScales().scaleArray[index].scaleName)   
+        for index in 0...(AllScales().getScaleArray().count - 1){
+            scalePopUp!.addItemWithTitle(AllScales().getScaleArray()[index].getScaleName())
         }
         // Adds separator items to make the scales popUp easier to read.
         scalePopUp!.menu?.insertItem(NSMenuItem.separatorItem(), atIndex: 14)
@@ -256,9 +260,9 @@ class MainWindowController: NSWindowController {
     
     func updateFretboardView() {
         // Update Display Mode.
-        fretboardView.displayMode = displayModePopUp!.titleOfSelectedItem!
+        fretboardView.setDisplayMode(displayModePopUp!.titleOfSelectedItem!)
         // Update the NoteModel array on the FretboardView.
-        fretboardView!.updateNoteModelArray(fretboardCalculator.fretArray)
+        fretboardView!.updateNoteModelArray(fretboardCalculator.getFretArray())
         
         
         
@@ -274,8 +278,8 @@ class MainWindowController: NSWindowController {
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                    scaleName: "Chromatic Scale")
         for index in 0...46 {
-            let noteModel = fretboardCalculator.fretArray[index]
-            let chromModel = chromatic.fretArray[index]
+            let noteModel = fretboardCalculator.getFretArray()[index]
+            let chromModel = chromatic.getFretArray()[index]
                 if noteModel.getNote() == "" {
                     noteModel.setNote(chromModel.getNote()) //= chromatic.fretArray[index].note
                     noteModel.setInterval(chromModel.getInterval())
@@ -288,7 +292,7 @@ class MainWindowController: NSWindowController {
     
     func showNotesFromCalcedFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...46 {
-            let noteModel = fretboardCalculator.fretArray[index]
+            let noteModel = fretboardCalculator.getFretArray()[index]
             if noteModel.getIsInScale() == _isInScale {
                 noteModel.setIsDisplayed(_isDisplayed)
                 noteModel.setIsGhost(_isGhosted)

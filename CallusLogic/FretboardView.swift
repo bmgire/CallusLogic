@@ -11,8 +11,6 @@ import Cocoa
 class FretboardView: NSView {
     
     
-    
-    
     //##########################################################
     // MARK: - Constants
     //##########################################################
@@ -25,16 +23,15 @@ class FretboardView: NSView {
     //##########################################################
     
     // holds the rects used to create all NoteViews.
-    var rectArray: [CGRect] = []
+    private var rectArray: [CGRect] = []
     
     // Holds the NoteViews
-    var noteViewArray: [NoteView] = []
+    private var noteViewArray: [NoteView] = []
     // Array of NoteModels.
-    var noteModelArray: [NoteModel] = []
+    private var noteModelArray: [NoteModel] = []
     
     // represents the display mode = (Notes, Intervals, Numbers...)
-    var displayMode = ""
-    var doGhosting = false
+    private var displayMode = ""
     
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
@@ -44,7 +41,7 @@ class FretboardView: NSView {
     //##########################################################
     
     // Array to hold guitarString offsets
-    var offsets = [0, 5, 10, 15, 19, 24]
+    private var offsets = [0, 5, 10, 15, 19, 24]
     
     // Arrays of CGFloat magic number multipliers to correctly represent fret locations.
     let frets: [CGFloat] =
@@ -155,11 +152,24 @@ class FretboardView: NSView {
     }
     
     //##########################################################
+    // Getters and Setters
+    //##########################################################
+    
+    func getDisplayMode() -> String {
+        return displayMode
+    }
+    
+    func setDisplayMode(newMode: String) {
+        displayMode = newMode
+    }
+    
+    
+    //##########################################################
     // MARK: - Custom functions
     //##########################################################
     
     // Build Note Rects.
-    func buildNoteRects(yMultiplier: CGFloat, radians: CGFloat) {
+    private func buildNoteRects(yMultiplier: CGFloat, radians: CGFloat) {
         
         // Create a temp array and copy any rects in rectArray to it.
         var tempRects:[CGRect] = rectArray
@@ -191,7 +201,7 @@ class FretboardView: NSView {
     }
     
     // Builds the noteViewsArray.
-    func buildNoteViews() {
+    private func buildNoteViews() {
         
         // String index represents each guitar string. 0 is highest pitch, 5 is lowest.
         for stringIndex in 0...5 {
@@ -209,13 +219,13 @@ class FretboardView: NSView {
                 // Change the note fonts for higher frets... for aesthetics.
                 if noteIndex > 19 {
                     if noteIndex == 20 {
-                        note.noteFont = 14
+                        note.setNoteFontSize(14)
                     }
                     else if noteIndex == 21 {
-                        note.noteFont = 13
+                        note.setNoteFontSize(13)
                     }
                     else if noteIndex == 22 {
-                        note.noteFont = 12
+                        note.setNoteFontSize(12)
                     }
                 }
                 noteViewArray.append(note)
@@ -224,7 +234,7 @@ class FretboardView: NSView {
     }
     
     // Add all NoteViews as subviews. 
-    func addSubviews() {
+    private func addSubviews() {
         for index in 0...(rectArray.count - 1) {
             addSubview(noteViewArray[index])
         }
@@ -239,7 +249,7 @@ class FretboardView: NSView {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
                 // Update note
-                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).canCustomize = bool
+                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).setCanCustomize(bool)
             }
         }
     }
@@ -250,25 +260,24 @@ class FretboardView: NSView {
                 let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
                 
                 // If the view is displayed, determine whether to keep.
-                if view.isDisplayed == true {
+                if (view.getNoteModel()).getIsDisplayed() == true {
                     // If ghosted, don't keep
-                    if view.isGhost == true {
-                        view.isKept = false
+                    if(view.getNoteModel()).getIsGhost() == true {
+                        view.setIsKept(false)
                     }
-                        // If unghosted, keep
+                        // If unghosted, keep or unkeep depending on the value of 'doKeppt
                     else {
-                        view.isKept = doKeep
-                        // If we're unSelected the note via unselectAll
-                        // ghost the note and display with current value.
+                        view.setIsKept(doKeep)
+                        // If we've unSelected the note via unselectAll
+                        // update the ghost value and display with current value.
                         if doKeep == false {
-                            view.isGhost = true
-                            view.needsDisplay = true
+                            view.getNoteModel().setIsGhost(true)
                         }
                     }
-                    
                 }
             }
         }
+        needsDisplay = true
     }
     
     // Sets the color for Calculated Notes.
@@ -276,8 +285,7 @@ class FretboardView: NSView {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
                 let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                //view.prevColor = view.userColor
-                view.userColor = newColor
+                view.setUserColor(newColor)
             }
         }
     }
@@ -288,31 +296,32 @@ class FretboardView: NSView {
                 for noteIndex in 0...(NOTES_PER_STRING - 1){
                     let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
                     let model = noteModelArray[noteIndex + offsets[stringIndex]]
-                    if view.isKept == false {
+                    if view.getIsKept() == false {
                         
-                        // Update note
-                        view.note = model.getNote()
-                        
-                        // Update intervals
-                        view.interval = model.getInterval()
-                        
-                        // Update number0to11
-                        view.number0to11 = model.getNumber0to11() // = model.number0to11
-                        
-                        // Update number0to46
-                        view.number0to46 = model.getNumber0to46()
-                        
-                        // Update isGhost
-                        view.isGhost = model.getIsGhost()
-                        
-                        // Update isInScale
-                        view.isInScale = model.getIsInScale()
-                        
-                        // Update isInScale
-                        view.isDisplayed = model.getIsDisplayed()
-                        
+                        // Update noteModel
+                        view.setNoteModel(model)
                         // Update fretDisplay
-                        view.displayMode = self.displayMode
+                        view.setDisplayMode(displayMode)
+//
+//                        // Update intervals
+//                        view.interval = model.getInterval()
+//                        
+//                        // Update number0to11
+//                        view.number0to11 = model.getNumber0to11() // = model.number0to11
+//                        
+//                        // Update number0to46
+//                        view.number0to46 = model.getNumber0to46()
+//                        
+//                        // Update isGhost
+//                        view.isGhost = model.getIsGhost()
+//                        
+//                        // Update isInScale
+//                        view.isInScale = model.getIsInScale()
+//                        
+//                        // Update isInScale
+//                        view.isDisplayed = model.getIsDisplayed()
+//                        
+
                     }
 
                 }

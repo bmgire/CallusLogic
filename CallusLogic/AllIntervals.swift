@@ -11,7 +11,7 @@ import Cocoa
 public class AllIntervals: NSObject {
     
     
-    var aFlat,  a,  aSharp,
+    private var aFlat,  a,  aSharp,
         bFlat,  b,  bSharp,
         cFlat,  c,  cSharp,
         dFlat,  d,  dSharp,
@@ -20,15 +20,15 @@ public class AllIntervals: NSObject {
         gFlat,  g,  gSharp: [String]
 
     // A dictionary where keys are strings and values are dictionaries. 
-    public var intervalDict:[String : [String : String]] = [:]
+    private var intervalDict:[String : [String : String]] = [:]
     
-    var arrayOfIntervalDicts: [[String : String]] = []
+    private var arrayOfIntervalDicts: [[String : String]] = []
     
-    var arrayOfRootNotes: [String]
+    private var arrayOfRootNotes: [String]
     
-    var arrayOfIntervalNames:[String]
+    private var arrayOfIntervalNames:[String]
     
-    var arrayOfRootIntervals: [[String]]
+    private var arrayOfRootIntervals: [[String]]
     
 
     
@@ -129,4 +129,12 @@ public class AllIntervals: NSObject {
         intervalDict = NSDictionary.init(objects: arrayOfIntervalDicts, forKeys: arrayOfRootNotes) as! [String : [String : String]]
         super.init()
     }
+    
+    func getIntervalsDict()->[String : [String : String]] {
+        return intervalDict
+    }
+    
+//    func getIntervalsDict()->[String : [String : String]] {
+//        return intervalDict
+//    }
 }

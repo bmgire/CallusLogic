@@ -11,12 +11,9 @@ import Foundation
 
 // I'm attempting to try without subclassing from NSObject
 class Scale {
-    
- 
-    var scaleName: String = ""
-    var scaleFormula: [String] = []
-    var passingInterval = ""
-//    var hasPassingNote: Bool = false
+    private var scaleName: String = ""
+    private var scaleFormula: [String] = []
+    private var passingInterval = ""
     
     init(){
         
@@ -28,9 +25,6 @@ class Scale {
         scaleName = name
         scaleFormula = formula
         passingInterval = thePassingInterval
-    
-        // In Swift you must initialize all your variables before attempting to initialize the Super Class. 
-        // super.init()
     }
     
     // Get the passingIndex

@@ -11,29 +11,35 @@ class FretboardCalculator {
     //##########################################################
     let LENGTHOFCHROMATIC = 12
     
-    let myArrayOfIntervalDicts = AllIntervals().intervalDict
-    let myDictOfScales = AllScales().dictOfScales
+    let myArrayOfIntervalDicts = AllIntervals().getIntervalsDict()
+    let myDictOfScales = AllScales().getDictOfScales()
     
     
     //##########################################################
     // MARK: - Variables
     //##########################################################
-    var masterRoot: String?
+    private var masterRoot: String?
    
-    var rootIntervalDict : [String : String] = [:]
-    var scale: Scale = Scale()
+    private var rootIntervalDict : [String : String] = [:]
+    private var scale: Scale = Scale()
     
     // Used for calculating and properly ordering a scale.
-    var unorderedIntervalsArray : [String] = []
-    var orderedIntervalsArray: [String] = []
-    var unorderedScaleArray: [String] = []
-    var orderedScaleArray: [String] = []
+    private var unorderedIntervalsArray : [String] = []
+    private var orderedIntervalsArray: [String] = []
+    private var unorderedScaleArray: [String] = []
+    private var orderedScaleArray: [String] = []
     
-    var indeciesOfNotes: [Int] = []
+    private var indeciesOfNotes: [Int] = []
     
-    var intervalIndexOfE = 0
-    var passingInterval = ""
-    var fretArray: [NoteModel] = []
+    private var intervalIndexOfE = 0
+    private var passingInterval = ""
+    private var fretArray: [NoteModel] = []
+    
+    
+    
+    func getFretArray()->[NoteModel] {
+        return fretArray
+    }
     
     //##########################################################
     // MARK: - Custom functions

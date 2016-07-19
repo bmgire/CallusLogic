@@ -20,85 +20,97 @@ class NoteView: NSView {
     // Note Display variables
     //####################
     
-    // The note to display.
-    var note: String = "" 
-    
-    // The associated note number in base 12.
-    var number0to11: String = ""
-    
-    // The associated note number in where every distinct tone on
-    // the fretboard is numbered.
-    var number0to46: String = ""
-    
-    // The interval relative to the root.
-    var interval = ""
-
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-    var displayMode = ""
+    private var displayMode = ""
 
+    private var noteModel = NoteModel()
+    
     //##########################################################
     // Drawing and customizing variables.
     //##########################################################
     
     // This variable indicates whether editing the view is allowed.
-    var canCustomize = false
+    private var canCustomize = false
     // FontSize
-    var noteFont: CGFloat = 16
+    private var noteFontSize: CGFloat = 16
     
     // The user Selected Color
-    var userColor = NSColor.yellowColor()
+    private var userColor = NSColor.yellowColor()
     
     // A state variable to be set while the mouse is down.
-    var myColor: NSColor?
+    private var myColor: NSColor?
     
-    var prevColor:NSColor?
-    //var customColor = NSColor.yellowColor()
     
     // Variable to hold this notes BezierPath.
-    var path: NSBezierPath?
+    private var path: NSBezierPath?
     
     // The rect for the NoteView.
-    var noteRect: CGRect?
+    private var noteRect: CGRect?
     
     //##########################################################
     // Bools
     //##########################################################
-    var changeColor: Bool = false {
-        didSet {
-            needsDisplay = true
-        }
-    }
-    
-    // Indicates the Color is yellow.
-    var isYellow: Bool = true
-    
-    // Enables and disables ghosting.
-    var isGhost = false {
-        didSet {
-            needsDisplay = true
-        }
-    }
 
-    // Indicates whether the button has been pressed successfully.
-    var pressed: Bool = false //{
+        // Indicates the note should be kept.
+    private var isKept = false
     
-    // Indicates the note is in the calculated scale.
-    var isInScale = false
+        // Indicates whether the button has been pressed successfully.
+    private var pressed: Bool = false
     
-    // Indicates the note should be kept.
-    var isKept = false
-    
-    // Indicates whether note is diplayed.
-    var isDisplayed = false {
-        didSet {
-            if isDisplayed == true {
-                hidden = false
-            }
-            else {
-                hidden = true
-            }
-        }
+    //##########################################################
+    // MARK: - getters and setters.
+    //##########################################################
+    func getNoteModel() -> NoteModel {
+        return noteModel
     }
+    
+    func setNoteModel(newModel: NoteModel){
+        noteModel = newModel
+        needsDisplay = true
+    }
+    
+    func getDisplayMode() -> String {
+        return displayMode
+    }
+    
+    func setDisplayMode(newMode: String){
+        displayMode = newMode
+        needsDisplay = true
+    }
+    
+    func getCanCustomize() -> Bool {
+        return canCustomize
+    }
+    
+    func setCanCustomize(bool: Bool){
+        canCustomize = bool
+    }
+    
+    func getNoteFontSize() -> CGFloat {
+        return noteFontSize
+    }
+    
+    func setNoteFontSize(newFontSize: CGFloat){
+        noteFontSize = newFontSize
+    }
+    
+    func getUserColor() -> NSColor {
+        return userColor
+    }
+    
+    func setUserColor(newColor: NSColor){
+        userColor = newColor
+    }
+    
+    func getIsKept() -> Bool {
+        return isKept
+    }
+    
+    func setIsKept(bool: Bool){
+        isKept = bool
+    }
+    
+    
     //##########################################################
     // MARK: - Overridden functions
     //##########################################################
@@ -129,23 +141,20 @@ class NoteView: NSView {
                 if canCustomize == true {
                     // if myColor hasn't been updated to the new userColor, redraw.
                     if userColor != myColor {
-                        // and if it isn't ghosted, just changed the color.
-                        if isGhost == false {
+                        // and if it isn't ghosted, just changed the color, don't ghost.
+                        if noteModel.getIsGhost() == true {
                             
-                            needsDisplay = true
-                        }
-                        // if ghosted, just ghost with new color.
-                        else {
-                            isGhost = !isGhost
+                            noteModel.setIsGhost(!noteModel.getIsGhost())
                         }
                     }
                     // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
                     else {
-                        isGhost = !isGhost
+                        noteModel.setIsGhost(!noteModel.getIsGhost())
                     }
                 }
             }
             pressed = false
+            needsDisplay = true
         }
     }
     
@@ -189,76 +198,77 @@ class NoteView: NSView {
     //##########################################################
     
     // Draws the note or number
-    func drawNote() {
-        
-        // Assigns a value to the noteRect.
-        noteRect = bounds.insetBy(dx: bounds.width * 0.05, dy: bounds.height * 0.05)
-        
-        // Defines the radius of the corners of a rounded rect.
-        let cornerRadius = bounds.size.height * 0.2
-        
-        // Assign a value to the path.
-        path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
-        
-        // If not in the scale, use the chromatic color. 
-        if isInScale == false {
-            myColor = chromaticColor
+    private func drawNote() {
+        if noteModel.getIsDisplayed() == true{
+            // Assigns a value to the noteRect.
+            noteRect = bounds.insetBy(dx: bounds.width * 0.05, dy: bounds.height * 0.05)
+            
+            // Defines the radius of the corners of a rounded rect.
+            let cornerRadius = bounds.size.height * 0.2
+            
+            // Assign a value to the path.
+            path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
+            
+            // If not in the scale, use the chromatic color.
+            if noteModel.getIsInScale() == false {
+                myColor = chromaticColor
+            }
+                // Else use the userColor.
+            else {
+                myColor = userColor
+            }
+            
+            // If appropriate, set alpha to ghosting transparency
+            if noteModel.getIsGhost() == true {
+                myColor = myColor!.colorWithAlphaComponent(CGFloat(0.1))
+            }
+            else {
+                myColor = myColor!.colorWithAlphaComponent(CGFloat(1))
+            }
+            
+            // Set color and fill.
+            myColor!.set()
+            path?.fill()
+            
+            // Create an NSParagraphStyle object
+            let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+            
+            // Set orientation.
+            paraStyle.alignment = .Right
+            
+            // definte a font.
+            let font = NSFont.systemFontOfSize(noteFontSize)
+            
+            // Attributes for drawing.
+            let attrs = [
+                NSForegroundColorAttributeName: NSColor.blackColor(),
+                NSFontAttributeName: font,
+                NSParagraphStyleAttributeName: paraStyle]
+            
+            // Define an attributed string set to display the note.
+            var attributedNote = NSMutableAttributedString()
+            
+            // Choose which displayMode mode to use.
+            if displayMode == "Notes"
+            {
+                attributedNote = NSMutableAttributedString(string: noteModel.getNote(), attributes: attrs)
+            }
+            else if displayMode == "Numbers 0-11"
+            {
+                attributedNote = NSMutableAttributedString(string: noteModel.getNumber0to11(), attributes: attrs)
+            }
+                
+            else if displayMode == "Numbers 0-46"
+            {
+                attributedNote = NSMutableAttributedString(string: noteModel.getNumber0to46(), attributes: attrs)
+            }
+            else if displayMode == "Intervals"
+            {
+                attributedNote = NSMutableAttributedString(string: noteModel.getInterval(), attributes: attrs)
+            }
+            
+            // Draw using custom NSString drawing function defined in NSString+drawing.swift.
+            attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
         }
-        // Else use the userColor.
-        else {
-            myColor = userColor
-        }
-        
-        // If appropriate, set alpha to ghosting transparency
-        if isGhost == true {
-            myColor = myColor!.colorWithAlphaComponent(CGFloat(0.1))
-        }
-        else {
-            myColor = myColor!.colorWithAlphaComponent(CGFloat(1))
-        }
-        
-        // Set color and fill.
-        myColor!.set()
-        path?.fill()
-        
-        // Create an NSParagraphStyle object
-        let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        
-        // Set orientation.
-        paraStyle.alignment = .Right
-    
-        // definte a font.
-        let font = NSFont.systemFontOfSize(noteFont)
-        
-        // Attributes for drawing.
-        let attrs = [
-            NSForegroundColorAttributeName: NSColor.blackColor(),
-            NSFontAttributeName: font,
-            NSParagraphStyleAttributeName: paraStyle]
-        
-        // Define an attributed string set to display the note.
-        var attributedNote = NSMutableAttributedString()
-        
-        // Choose which displayMode mode to use.
-        if displayMode == "Notes"
-        {
-            attributedNote = NSMutableAttributedString(string: note, attributes: attrs)
-        }
-        else if displayMode == "Numbers 0-11"
-        {
-            attributedNote = NSMutableAttributedString(string: number0to11, attributes: attrs)
-        }
-        
-        else if displayMode == "Numbers 0-46"
-        {
-            attributedNote = NSMutableAttributedString(string: number0to46, attributes: attrs)
-        }
-        else if displayMode == "Intervals"
-        {
-            attributedNote = NSMutableAttributedString(string: interval, attributes: attrs)
-        }
-        
-        // Draw using custom NSString drawing function defined in NSString+drawing.swift.
-        attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
     }
 }
