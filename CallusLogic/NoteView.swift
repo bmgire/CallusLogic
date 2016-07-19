@@ -1,10 +1,6 @@
-//
-//  NoteView.swift
-//  StringNotesCalculator
-//
-//  Created by Ben Gire on 4/22/16.
 //  Copyright © 2016 Gire. All rights reserved.
-//
+//  NoteView and Controller for the NoteView objects in the FretboardView.
+
 
 import Cocoa
 
@@ -13,8 +9,6 @@ class NoteView: NSView {
     //##########################################################
     // MARK: - Constants
     //##########################################################
-    
-//    let calcedColor = NSColor.yellowColor()
     
     let chromaticColor = NSColor.redColor()
     
@@ -30,19 +24,11 @@ class NoteView: NSView {
     var note: String = "" 
     
     // The associated note number in base 12.
-    var number0to11: String = "" {
-        didSet {
-            needsDisplay = true
-        }
-    }
+    var number0to11: String = ""
     
     // The associated note number in where every distinct tone on
     // the fretboard is numbered.
-    var number0to46: String = "" {
-        didSet {
-            needsDisplay = true
-        }
-    }
+    var number0to46: String = ""
     
     // The interval relative to the root.
     var interval = ""
@@ -181,21 +167,22 @@ class NoteView: NSView {
         return true
     }
     
-    //##########################################################
-    // MARK: - KeyboardEvents
-    //##########################################################
-    override func keyDown(theEvent:NSEvent) {
-        interpretKeyEvents([theEvent])
-    }
-    
-    // Tab functions.
-    override func insertTab(sender: AnyObject?) {
-        window?.selectNextKeyView(sender)
-    }
-    
-    override func insertBacktab(sender: AnyObject?) {
-        window?.selectPreviousKeyView(sender)
-    }
+    // Keep for possible keyboard controls later.
+//    //##########################################################
+//    // MARK: - KeyboardEvents
+//    //##########################################################
+//    override func keyDown(theEvent:NSEvent) {
+//        interpretKeyEvents([theEvent])
+//    }
+//    
+//    // Tab functions.
+//    override func insertTab(sender: AnyObject?) {
+//        window?.selectNextKeyView(sender)
+//    }
+//    
+//    override func insertBacktab(sender: AnyObject?) {
+//        window?.selectPreviousKeyView(sender)
+//    }
     
     //##########################################################
     // MARK: - Custom functions
@@ -217,6 +204,7 @@ class NoteView: NSView {
         if isInScale == false {
             myColor = chromaticColor
         }
+        // Else use the userColor.
         else {
             myColor = userColor
         }
@@ -251,7 +239,6 @@ class NoteView: NSView {
         // Define an attributed string set to display the note.
         var attributedNote = NSMutableAttributedString()
         
-       
         // Choose which displayMode mode to use.
         if displayMode == "Notes"
         {

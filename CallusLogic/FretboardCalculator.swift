@@ -1,10 +1,6 @@
-//
-//  FretboardCalculator.swift
-//  StringNotesCalculator
-//
-//  Created by Ben Gire on 5/7/16.
 //  Copyright © 2016 Gire. All rights reserved.
-//
+//  This calculates a fretboard scale or arpeggio and fills a fretboard model with it.
+
 
 import Cocoa
 
@@ -27,7 +23,7 @@ class FretboardCalculator {
     var rootIntervalDict : [String : String] = [:]
     var scale: Scale = Scale()
     
-    
+    // Used for calculating and properly ordering a scale.
     var unorderedIntervalsArray : [String] = []
     var orderedIntervalsArray: [String] = []
     var unorderedScaleArray: [String] = []
@@ -115,8 +111,6 @@ class FretboardCalculator {
         setPassingNotesForScale()
     }
     
-    
-    
     func reorderArray(unorderedArray: [String])-> [String]{
         // if the Root isn't E, reorder.
         if intervalIndexOfE != 0 {
@@ -134,32 +128,29 @@ class FretboardCalculator {
     func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                let fret = fretArray[scaleIndex + octaveCount * 12]
-                //if fret.isKept == false {
-                    fret.note = orderedNotes[scaleIndex]
-                    fret.interval = orderedIntervals[scaleIndex]
-                    fret.number0to11 = String(scaleIndex)
-                //}
+                let noteModel = fretArray[scaleIndex + octaveCount * 12]
+                    noteModel.setNote(orderedNotes[scaleIndex])
+                    noteModel.setInterval(orderedIntervals[scaleIndex])
+                    noteModel.setNumber0to11(String(scaleIndex))
             }
         }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            let fret = fretArray[scaleIndex + octaveCount * 12]
-            
-            fret.note = orderedNotes[scaleIndex]
-            fret.interval = orderedIntervals[scaleIndex]
-            fret.number0to11 = String(scaleIndex)
+            let noteModel = fretArray[scaleIndex + octaveCount * 12]
+            noteModel.setNote(orderedNotes[scaleIndex])
+            noteModel.setInterval(orderedIntervals[scaleIndex])
+            noteModel.setNumber0to11(String(scaleIndex))
         }
     }
     
     func addNumbers0to46() {
         var temp: [Int] = []
         for index in 0...46 {
-            if  fretArray[index].note != "" {
-                fretArray[index].number0to46 = String(index)
-                fretArray[index].isInscale = true
-                fretArray[index].isGhost = false
-                fretArray[index].isDisplayed = true
+            if  fretArray[index].getNote() != "" {
+                fretArray[index].setNumber0to46(String(index))
+                fretArray[index].setIsInScale(true)
+                fretArray[index].setIsGhost(false)
+                fretArray[index].setIsDisplayed(true)
                 temp.append(index)
             }
         }
@@ -170,19 +161,8 @@ class FretboardCalculator {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
             for index in 0...2 {
-               fretArray[index * 12 + passingIndex!].isPassingNote = true
+               fretArray[index * 12 + passingIndex!].setIsPassingNote(true)
             }
-       
         }
     }
-    
-//    func resetUnkeptNotes() {
-//        for index in 0...46 {
-//            if fretArray[index].isKept == false {
-//                fretArray[index].resetProperties()
-//            }
-//        }
-//    }
-    
-
 }

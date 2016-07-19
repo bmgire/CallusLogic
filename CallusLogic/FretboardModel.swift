@@ -2,9 +2,8 @@
 //  FretboardModel.swift
 //  CallusLogic
 //
-//  Created by Ben Gire on 7/10/16.
 //  Copyright © 2016 Gire. All rights reserved.
-//
+//  Model for the FretboardView.
 
 import Foundation
 

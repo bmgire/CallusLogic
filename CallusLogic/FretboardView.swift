@@ -1,10 +1,8 @@
-//  FretboardView.swift
-//
-//  This class defines the fretboard.
+//  Copyright © 2016 Gire. All rights reserved.
+//  This class defines the FretboardView and it's controls.
 //  The FretboardView holds 6 StringsViews.
-//  Each string holds 22 NoteViews.
-//  The Fretboard contains a FretboardCalculator which gets updated by the UI.
-//  The fretboard model then updates the Note views with info from the FretboardCalculator. 
+//  Each string holds 23 NoteViews.
+//  The FretboardView then updates the Note views with info from the FretboardCalculator. 
 //  The noteviews are never destroyed.
 
 
@@ -291,26 +289,27 @@ class FretboardView: NSView {
                     let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
                     let model = noteModelArray[noteIndex + offsets[stringIndex]]
                     if view.isKept == false {
+                        
                         // Update note
-                        view.note = model.note
+                        view.note = model.getNote()
                         
                         // Update intervals
-                        view.interval = model.interval
+                        view.interval = model.getInterval()
                         
                         // Update number0to11
-                        view.number0to11 = model.number0to11
+                        view.number0to11 = model.getNumber0to11() // = model.number0to11
                         
                         // Update number0to46
-                        view.number0to46 = model.number0to46
+                        view.number0to46 = model.getNumber0to46()
                         
                         // Update isGhost
-                        view.isGhost = model.isGhost
+                        view.isGhost = model.getIsGhost()
                         
                         // Update isInScale
-                        view.isInScale = model.isInscale
+                        view.isInScale = model.getIsInScale()
                         
                         // Update isInScale
-                        view.isDisplayed = model.isDisplayed
+                        view.isDisplayed = model.getIsDisplayed()
                         
                         // Update fretDisplay
                         view.displayMode = self.displayMode

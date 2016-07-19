@@ -1,10 +1,7 @@
-//
-//  Document.swift
-//  CallusLogic
-//
-//  Created by Ben Gire on 7/6/16.
 //  Copyright © 2016 Gire. All rights reserved.
 //
+//  This document will implement all saving and undo capabilities.
+// After I get the mechanics of the fretboard builder working. 
 
 import Cocoa
 

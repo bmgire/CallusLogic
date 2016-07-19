@@ -29,16 +29,16 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="50" y="250" width="1837" height="600"/>
+            <rect key="contentRect" x="50" y="250" width="1837" height="550"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="500" height="376"/>
             <value key="maxSize" type="size" width="1817" height="600"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="1837" height="600"/>
+                <rect key="frame" x="0.0" y="0.0" width="1837" height="550"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="20" y="500" width="911" height="89"/>
+                        <rect key="frame" x="20" y="450" width="911" height="89"/>
                         <subviews>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
                                 <rect key="frame" x="20" y="7" width="36" height="38"/>
@@ -101,7 +101,7 @@
                         </constraints>
                     </customView>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-28-ChY">
-                        <rect key="frame" x="18" y="476" width="96" height="18"/>
+                        <rect key="frame" x="45" y="426" width="96" height="18"/>
                         <buttonCell key="cell" type="check" title="Customize" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RHB-AL-70p">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -111,7 +111,7 @@
                         </connections>
                     </button>
                     <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="20" y="372" width="718" height="98"/>
+                        <rect key="frame" x="40" y="322" width="718" height="98"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
                                 <rect key="frame" x="8" y="43" width="164" height="18"/>
@@ -199,8 +199,16 @@
                             </textField>
                         </subviews>
                     </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
+                        <rect key="frame" x="38" y="259" width="764" height="55"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="yam-nN-hxl">
+                            <font key="font" metaFont="systemBold" size="37"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <scrollView autoresizesSubviews="NO" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-DP-gek">
-                        <rect key="frame" x="20" y="48" width="1797" height="262"/>
+                        <rect key="frame" x="20" y="20" width="1797" height="262"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="MX7-u0-VUr">
                             <rect key="frame" x="0.0" y="0.0" width="1797" height="262"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,20 +238,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
-                        <rect key="frame" x="33" y="289" width="764" height="55"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="yam-nN-hxl">
-                            <font key="font" metaFont="systemBold" size="37"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="645.5" y="527"/>
+            <point key="canvasLocation" x="645.5" y="502"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="HNp-we-Pcc"/>
     </objects>
