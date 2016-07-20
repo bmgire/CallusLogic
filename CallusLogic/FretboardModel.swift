@@ -9,15 +9,19 @@ import Foundation
 
 
 class FretboardModel {
-    let array: [NoteModel]
+    var fretboardArray: [NoteModel]
+    
+    var title: String
     
     init(){
         // Build 47 item array of NoteModels.
         var temp : [NoteModel] = []
-        for _ in 0...46 {
+        for _ in 0...137 {
             temp.append(NoteModel())
         }
-        array = temp
+        fretboardArray = temp
+        
+        title = ""
     }
 }
 

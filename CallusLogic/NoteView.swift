@@ -16,31 +16,18 @@ class NoteView: NSView {
     // MARK: - Variables
     //##########################################################
     
-    //####################
-    // Note Display variables
-    //####################
+
     
-    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-    private var displayMode = ""
+//    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
+//    private var displayMode = ""
 
     private var noteModel = NoteModel()
     
-    //##########################################################
-    // Drawing and customizing variables.
-    //##########################################################
+    // Indicates whether the button has been pressed successfully.
+    private var pressed: Bool = false
     
-    // This variable indicates whether editing the view is allowed.
-    private var canCustomize = false
-    // FontSize
-    private var noteFontSize: CGFloat = 16
-    
-    // The user Selected Color
-    private var userColor = NSColor.yellowColor()
-    
-    // A state variable to be set while the mouse is down.
-    private var myColor: NSColor?
-    
-    
+    //private var noteColor = NSColor.yellowColor()
+
     // Variable to hold this notes BezierPath.
     private var path: NSBezierPath?
     
@@ -50,12 +37,6 @@ class NoteView: NSView {
     //##########################################################
     // Bools
     //##########################################################
-
-        // Indicates the note should be kept.
-    private var isKept = false
-    
-        // Indicates whether the button has been pressed successfully.
-    private var pressed: Bool = false
     
     //##########################################################
     // MARK: - getters and setters.
@@ -68,48 +49,6 @@ class NoteView: NSView {
         noteModel = newModel
         needsDisplay = true
     }
-    
-    func getDisplayMode() -> String {
-        return displayMode
-    }
-    
-    func setDisplayMode(newMode: String){
-        displayMode = newMode
-        needsDisplay = true
-    }
-    
-    func getCanCustomize() -> Bool {
-        return canCustomize
-    }
-    
-    func setCanCustomize(bool: Bool){
-        canCustomize = bool
-    }
-    
-    func getNoteFontSize() -> CGFloat {
-        return noteFontSize
-    }
-    
-    func setNoteFontSize(newFontSize: CGFloat){
-        noteFontSize = newFontSize
-    }
-    
-    func getUserColor() -> NSColor {
-        return userColor
-    }
-    
-    func setUserColor(newColor: NSColor){
-        userColor = newColor
-    }
-    
-    func getIsKept() -> Bool {
-        return isKept
-    }
-    
-    func setIsKept(bool: Bool){
-        isKept = bool
-    }
-    
     
     //##########################################################
     // MARK: - Overridden functions
@@ -135,12 +74,12 @@ class NoteView: NSView {
     
     override func mouseUp(theEvent: NSEvent) {
         
-        if canCustomize {
+        if noteModel.getCanCustomize() {
             //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
             if pressed {
-                if canCustomize == true {
+               
                     // if myColor hasn't been updated to the new userColor, redraw.
-                    if userColor != myColor {
+                 if noteModel.doesMyColorEqualUserColor() == false {
                         // and if it isn't ghosted, just changed the color, don't ghost.
                         if noteModel.getIsGhost() == true {
                             
@@ -151,7 +90,7 @@ class NoteView: NSView {
                     else {
                         noteModel.setIsGhost(!noteModel.getIsGhost())
                     }
-                }
+            
             }
             pressed = false
             needsDisplay = true
@@ -176,23 +115,6 @@ class NoteView: NSView {
         return true
     }
     
-    // Keep for possible keyboard controls later.
-//    //##########################################################
-//    // MARK: - KeyboardEvents
-//    //##########################################################
-//    override func keyDown(theEvent:NSEvent) {
-//        interpretKeyEvents([theEvent])
-//    }
-//    
-//    // Tab functions.
-//    override func insertTab(sender: AnyObject?) {
-//        window?.selectNextKeyView(sender)
-//    }
-//    
-//    override func insertBacktab(sender: AnyObject?) {
-//        window?.selectPreviousKeyView(sender)
-//    }
-    
     //##########################################################
     // MARK: - Custom functions
     //##########################################################
@@ -209,25 +131,30 @@ class NoteView: NSView {
             // Assign a value to the path.
             path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
             
+            
+            
             // If not in the scale, use the chromatic color.
             if noteModel.getIsInScale() == false {
-                myColor = chromaticColor
+                noteModel.setMyColor(chromaticColor)
             }
-                // Else use the userColor.
+            //     Else use the userColor.
             else {
-                myColor = userColor
+                noteModel.setMyColor(noteModel.getUserColor())
             }
+
+        
             
             // If appropriate, set alpha to ghosting transparency
             if noteModel.getIsGhost() == true {
-                myColor = myColor!.colorWithAlphaComponent(CGFloat(0.1))
+                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(0.1)))
             }
             else {
-                myColor = myColor!.colorWithAlphaComponent(CGFloat(1))
+                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(1)))
             }
             
             // Set color and fill.
-            myColor!.set()
+            
+            noteModel.getMyColor().set()
             path?.fill()
             
             // Create an NSParagraphStyle object
@@ -237,7 +164,7 @@ class NoteView: NSView {
             paraStyle.alignment = .Right
             
             // definte a font.
-            let font = NSFont.systemFontOfSize(noteFontSize)
+            let font = NSFont.systemFontOfSize(noteModel.getNoteFontSize())
             
             // Attributes for drawing.
             let attrs = [
@@ -249,20 +176,20 @@ class NoteView: NSView {
             var attributedNote = NSMutableAttributedString()
             
             // Choose which displayMode mode to use.
-            if displayMode == "Notes"
+            if noteModel.getDisplayMode() == "Notes"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNote(), attributes: attrs)
             }
-            else if displayMode == "Numbers 0-11"
+            if noteModel.getDisplayMode() == "Numbers 0-11"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNumber0to11(), attributes: attrs)
             }
                 
-            else if displayMode == "Numbers 0-46"
+            else if noteModel.getDisplayMode() == "Numbers 0-46"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNumber0to46(), attributes: attrs)
             }
-            else if displayMode == "Intervals"
+            else if noteModel.getDisplayMode() == "Intervals"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getInterval(), attributes: attrs)
             }

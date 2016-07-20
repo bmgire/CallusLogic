@@ -33,12 +33,12 @@ class FretboardCalculator {
     
     private var intervalIndexOfE = 0
     private var passingInterval = ""
-    private var fretArray: [NoteModel] = []
+    private var noteToneArray: [NoteModel] = []
     
     
     
-    func getFretArray()->[NoteModel] {
-        return fretArray
+    func getNoteToneArray()->[NoteModel] {
+        return noteToneArray
     }
     
     //##########################################################
@@ -48,7 +48,7 @@ class FretboardCalculator {
     func updateWithValues(myRoot: String, myAccidental: String, scaleName: String) {
         if scaleName != "" {
             
-            fretArray = FretboardModel().array
+            buildNoteToneArray()
             
             resolveRoot(myRoot, accidental: myAccidental)
             // Find and save the Scale object.
@@ -134,7 +134,7 @@ class FretboardCalculator {
     func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                let noteModel = fretArray[scaleIndex + octaveCount * 12]
+                let noteModel = noteToneArray[scaleIndex + octaveCount * 12]
                     noteModel.setNote(orderedNotes[scaleIndex])
                     noteModel.setInterval(orderedIntervals[scaleIndex])
                     noteModel.setNumber0to11(String(scaleIndex))
@@ -142,7 +142,7 @@ class FretboardCalculator {
         }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            let noteModel = fretArray[scaleIndex + octaveCount * 12]
+            let noteModel = noteToneArray[scaleIndex + octaveCount * 12]
             noteModel.setNote(orderedNotes[scaleIndex])
             noteModel.setInterval(orderedIntervals[scaleIndex])
             noteModel.setNumber0to11(String(scaleIndex))
@@ -152,11 +152,11 @@ class FretboardCalculator {
     func addNumbers0to46() {
         var temp: [Int] = []
         for index in 0...46 {
-            if  fretArray[index].getNote() != "" {
-                fretArray[index].setNumber0to46(String(index))
-                fretArray[index].setIsInScale(true)
-                fretArray[index].setIsGhost(false)
-                fretArray[index].setIsDisplayed(true)
+            if  noteToneArray[index].getNote() != "" {
+                noteToneArray[index].setNumber0to46(String(index))
+                noteToneArray[index].setIsInScale(true)
+                noteToneArray[index].setIsGhost(false)
+                noteToneArray[index].setIsDisplayed(true)
                 temp.append(index)
             }
         }
@@ -167,8 +167,15 @@ class FretboardCalculator {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
             for index in 0...2 {
-               fretArray[index * 12 + passingIndex!].setIsPassingNote(true)
+               noteToneArray[index * 12 + passingIndex!].setIsPassingNote(true)
             }
         }
+    }
+    
+    func buildNoteToneArray() {
+        var temp: [NoteModel] = []
+        for _ in 0...46 {
+            temp.append(NoteModel())        }
+        noteToneArray = temp
     }
 }

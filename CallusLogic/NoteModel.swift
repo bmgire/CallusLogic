@@ -5,9 +5,10 @@
 //  Copyright © 2016 Gire. All rights reserved.
 //  Model for the NoteView. 
 
-import Foundation
+import Cocoa
 
 class NoteModel {
+    
     
     private var note = ""
     private var number0to11 = ""
@@ -25,6 +26,26 @@ class NoteModel {
             }
         }
     }
+    
+    // This variable indicates whether editing the view is allowed.
+    private var canCustomize = false
+    // FontSize
+    private var noteFontSize: CGFloat = 16
+    
+    // The user Selected Color
+    private var userColor = NSColor.yellowColor()
+    
+    // A state variable to be set while the mouse is down.
+    private var myColor: NSColor = NSColor.yellowColor()
+    
+    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
+    private var displayMode = ""
+    
+    // Indicates the note should be kept.
+    private var isKept = false
+    
+    
+    
     //####################################
     // Getters and setters.
     //####################################
@@ -94,6 +115,62 @@ class NoteModel {
         isPassingNote = bool
     }
     
+    func getDisplayMode() -> String {
+        return displayMode
+    }
+    
+    func setDisplayMode(newMode: String){
+        displayMode = newMode
+       // needsDisplay = true
+    }
+    
+    func getCanCustomize() -> Bool {
+        return canCustomize
+    }
+    
+    func setCanCustomize(bool: Bool){
+        canCustomize = bool
+    }
+    
+    func getNoteFontSize() -> CGFloat {
+        return noteFontSize
+    }
+    
+    func setNoteFontSize(newFontSize: CGFloat){
+        noteFontSize = newFontSize
+    }
+    
+    func getMyColor() -> NSColor {
+        return myColor
+    }
+    
+    func setMyColor(newColor: NSColor){
+        myColor = newColor
+    }
+    
+    func getUserColor() -> NSColor {
+        return userColor
+    }
+    
+    func setUserColor(newColor: NSColor){
+        userColor = newColor
+    }
+    
+    func getIsKept() -> Bool {
+        return isKept
+    }
+    
+    func setIsKept(bool: Bool){
+        isKept = bool
+    }
+    
+    
+    func doesMyColorEqualUserColor()-> Bool {
+        return myColor == userColor
+    }
+    
+    
+    
     private func makePassingNote() {
         note = addParentheses(note)
         number0to11 = addParentheses(number0to11)
@@ -107,4 +184,5 @@ class NoteModel {
         temp = temp.stringByAppendingString(")")
         return temp
     }
+    
 }

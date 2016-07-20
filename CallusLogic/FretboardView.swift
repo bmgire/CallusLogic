@@ -22,6 +22,8 @@ class FretboardView: NSView {
     // MARK: - Variables
     //##########################################################
     
+    let fretboardModel = FretboardModel()
+    
     // holds the rects used to create all NoteViews.
     private var rectArray: [CGRect] = []
     
@@ -219,13 +221,13 @@ class FretboardView: NSView {
                 // Change the note fonts for higher frets... for aesthetics.
                 if noteIndex > 19 {
                     if noteIndex == 20 {
-                        note.setNoteFontSize(14)
+                        note.getNoteModel().setNoteFontSize(14)
                     }
                     else if noteIndex == 21 {
-                        note.setNoteFontSize(13)
+                        note.getNoteModel().setNoteFontSize(13)
                     }
                     else if noteIndex == 22 {
-                        note.setNoteFontSize(12)
+                        note.getNoteModel().setNoteFontSize(12)
                     }
                 }
                 noteViewArray.append(note)
@@ -249,7 +251,7 @@ class FretboardView: NSView {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
                 // Update note
-                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).setCanCustomize(bool)
+                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).getNoteModel().setCanCustomize(bool)
             }
         }
     }
@@ -263,11 +265,11 @@ class FretboardView: NSView {
                 if (view.getNoteModel()).getIsDisplayed() == true {
                     // If ghosted, don't keep
                     if(view.getNoteModel()).getIsGhost() == true {
-                        view.setIsKept(false)
+                        view.getNoteModel().setIsKept(false)
                     }
                         // If unghosted, keep or unkeep depending on the value of 'doKeppt
                     else {
-                        view.setIsKept(doKeep)
+                        view.getNoteModel().setIsKept(doKeep)
                         // If we've unSelected the note via unselectAll
                         // update the ghost value and display with current value.
                         if doKeep == false {
@@ -285,7 +287,7 @@ class FretboardView: NSView {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
                 let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                view.setUserColor(newColor)
+                view.getNoteModel().setUserColor(newColor)
             }
         }
     }
@@ -296,12 +298,12 @@ class FretboardView: NSView {
                 for noteIndex in 0...(NOTES_PER_STRING - 1){
                     let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
                     let model = noteModelArray[noteIndex + offsets[stringIndex]]
-                    if view.getIsKept() == false {
+                    if view.getNoteModel().getIsKept() == false {
                         
                         // Update noteModel
                         view.setNoteModel(model)
                         // Update fretDisplay
-                        view.setDisplayMode(displayMode)
+                        view.getNoteModel().setDisplayMode(displayMode)
 //
 //                        // Update intervals
 //                        view.interval = model.getInterval()

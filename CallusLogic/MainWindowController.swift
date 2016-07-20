@@ -262,7 +262,7 @@ class MainWindowController: NSWindowController {
         // Update Display Mode.
         fretboardView.setDisplayMode(displayModePopUp!.titleOfSelectedItem!)
         // Update the NoteModel array on the FretboardView.
-        fretboardView!.updateNoteModelArray(fretboardCalculator.getFretArray())
+        fretboardView!.updateNoteModelArray(fretboardCalculator.getNoteToneArray())
         
         
         
@@ -278,8 +278,8 @@ class MainWindowController: NSWindowController {
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                    scaleName: "Chromatic Scale")
         for index in 0...46 {
-            let noteModel = fretboardCalculator.getFretArray()[index]
-            let chromModel = chromatic.getFretArray()[index]
+            let noteModel = fretboardCalculator.getNoteToneArray()[index]
+            let chromModel = chromatic.getNoteToneArray()[index]
                 if noteModel.getNote() == "" {
                     noteModel.setNote(chromModel.getNote()) //= chromatic.fretArray[index].note
                     noteModel.setInterval(chromModel.getInterval())
@@ -292,7 +292,7 @@ class MainWindowController: NSWindowController {
     
     func showNotesFromCalcedFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...46 {
-            let noteModel = fretboardCalculator.getFretArray()[index]
+            let noteModel = fretboardCalculator.getNoteToneArray()[index]
             if noteModel.getIsInScale() == _isInScale {
                 noteModel.setIsDisplayed(_isDisplayed)
                 noteModel.setIsGhost(_isGhosted)
