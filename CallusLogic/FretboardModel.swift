@@ -3,7 +3,7 @@
 //  CallusLogic
 //
 //  Copyright © 2016 Gire. All rights reserved.
-//  Model for the FretboardView.
+//  This model is not very accurate, I need for this to hold all the information of the
 
 import Foundation
 

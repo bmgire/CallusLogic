@@ -257,9 +257,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "updateWithValues(_:accidental:scaleName:)"
-            landmarkType = "5">
+            endingLineNumber = "59">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -273,9 +271,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "updateWithValues(_:accidental:scaleName:)"
-            landmarkType = "5">
+            endingLineNumber = "58">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -289,9 +285,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "updateWithValues(_:accidental:scaleName:)"
-            landmarkType = "5">
+            endingLineNumber = "51">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
