@@ -304,28 +304,7 @@ class FretboardView: NSView {
                         view.setNoteModel(model)
                         // Update fretDisplay
                         view.getNoteModel().setDisplayMode(displayMode)
-//
-//                        // Update intervals
-//                        view.interval = model.getInterval()
-//                        
-//                        // Update number0to11
-//                        view.number0to11 = model.getNumber0to11() // = model.number0to11
-//                        
-//                        // Update number0to46
-//                        view.number0to46 = model.getNumber0to46()
-//                        
-//                        // Update isGhost
-//                        view.isGhost = model.getIsGhost()
-//                        
-//                        // Update isInScale
-//                        view.isInScale = model.getIsInScale()
-//                        
-//                        // Update isInScale
-//                        view.isDisplayed = model.getIsDisplayed()
-//                        
-
                     }
-
                 }
             }
     }
