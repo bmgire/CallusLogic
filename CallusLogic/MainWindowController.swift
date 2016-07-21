@@ -93,7 +93,7 @@ class MainWindowController: NSWindowController {
         if sender.state != 0 {
             
             // sets noteViews canCustomizeProperty to true.
-            fretboardView.updateCanCustomize(true)
+            fretboardView.setCanCustomize(true)
             
             customizeView.hidden = false
             
@@ -107,7 +107,7 @@ class MainWindowController: NSWindowController {
         }
         else {
             // disable customization and hide radio buttons
-            fretboardView.updateCanCustomize(false)
+            fretboardView.setCanCustomize(false)
             
             customizeView.hidden = true
         }

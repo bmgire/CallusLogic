@@ -16,7 +16,7 @@ class NoteView: NSView {
     // MARK: - Variables
     //##########################################################
     
-
+    var viewNumberDict: [String: Int] = [:]
     
 //    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
 //    private var displayMode = ""
@@ -74,27 +74,11 @@ class NoteView: NSView {
     
     override func mouseUp(theEvent: NSEvent) {
         
-        if noteModel.getCanCustomize() {
-            //Swift.print("mouseUp clickCount: \(theEvent.clickCount)")
-            if pressed {
-               
-                    // if myColor hasn't been updated to the new userColor, redraw.
-                 if noteModel.doesMyColorEqualUserColor() == false {
-                        // and if it isn't ghosted, just changed the color, don't ghost.
-                        if noteModel.getIsGhost() == true {
-                            
-                            noteModel.setIsGhost(!noteModel.getIsGhost())
-                        }
-                    }
-                    // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
-                    else {
-                        noteModel.setIsGhost(!noteModel.getIsGhost())
-                    }
-            
-            }
-            pressed = false
-            needsDisplay = true
+        if pressed {
+            // Posts a notification and specifies which object sent the notification.
+            NSNotificationCenter.defaultCenter().postNotificationName("noteViewMouseUpEvent", object: self, userInfo: viewNumberDict)
         }
+        pressed = false
     }
     
     ///////////////////////////////////////////////////////////////////////////

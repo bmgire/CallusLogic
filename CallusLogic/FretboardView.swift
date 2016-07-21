@@ -35,6 +35,8 @@ class FretboardView: NSView {
     // represents the display mode = (Notes, Intervals, Numbers...)
     private var displayMode = ""
     
+    private var canCustomize = false
+    
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
     
@@ -130,6 +132,10 @@ class FretboardView: NSView {
         }
         buildNoteViews()
         addSubviews()
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(FretboardView.reactToMouseUpEvent(_:)),
+                                                         name: "noteViewMouseUpEvent",
+                                                         object: nil)
     }
 
     // Draws in the NSView.
@@ -163,6 +169,14 @@ class FretboardView: NSView {
     
     func setDisplayMode(newMode: String) {
         displayMode = newMode
+    }
+    
+    func getCanCustomize() -> Bool {
+        return canCustomize
+    }
+    
+    func setCanCustomize(bool: Bool){
+        canCustomize = bool
     }
     
     
@@ -210,9 +224,15 @@ class FretboardView: NSView {
             // rectIndex is the index of each notes rect on each guitar string.
             for noteIndex in 0...(NOTES_PER_STRING - 1) {
                 let note = NoteView()
+                
+                let index = noteIndex + stringIndex * NOTES_PER_STRING
+                
                 // Update the appropriate frame.
-                note.frame = rectArray[noteIndex + stringIndex * NOTES_PER_STRING]
+                note.frame = rectArray[index]
                 // Adjust fonts for frets with small widths.
+                
+                // The views number in the fretboard, for NoteView identification for Event notifications. 
+                note.viewNumberDict = ["number" : index]
                 
                 // If the NoteView isn't at the nut, rotate it.
                 if noteIndex != 0 {
@@ -247,14 +267,14 @@ class FretboardView: NSView {
         noteModelArray = newNotesArray
     }
     
-    func updateCanCustomize(bool: Bool) {
-        for stringIndex in 0...5 {
-            for noteIndex in 0...(NOTES_PER_STRING - 1){
-                // Update note
-                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).getNoteModel().setCanCustomize(bool)
-            }
-        }
-    }
+//    func updateCanCustomize(bool: Bool) {
+//        for stringIndex in 0...5 {
+//            for noteIndex in 0...(NOTES_PER_STRING - 1){
+//                // Update note
+//                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).getNoteModel().setCanCustomize(bool)
+//            }
+//        }
+//    }
     
     func markSelectedNotesAsKept(doKeep: Bool) {
         for stringIndex in 0...5 {
@@ -281,6 +301,30 @@ class FretboardView: NSView {
         }
         needsDisplay = true
     }
+    
+    
+    func reactToMouseUpEvent(notification: NSNotification) {
+        if canCustomize {
+            // store the view number.
+            let index = (notification.userInfo!["number"] as! Int)
+            let noteModel = (subviews[index] as! NoteView).getNoteModel()
+                        // if myColor hasn't been updated to the new userColor, redraw.
+                     if noteModel.doesMyColorEqualUserColor() == false {
+                            // and if it isn't ghosted, just changed the color, don't ghost.
+                            if noteModel.getIsGhost() == true {
+    
+                                noteModel.setIsGhost(!noteModel.getIsGhost())
+                            }
+                        }
+                        // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
+                        else {
+                            noteModel.setIsGhost(!noteModel.getIsGhost())
+                        }
+    
+    
+                (notification.object as! NoteView).needsDisplay = true
+            }
+        }
     
     // Sets the color for Calculated Notes.
     func setMyColor(newColor: NSColor) {

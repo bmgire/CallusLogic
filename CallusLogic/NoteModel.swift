@@ -10,6 +10,8 @@ import Cocoa
 class NoteModel {
     
     
+    // The position of the note on the entire fretboard. 0-137
+    private var fretboardPosition: Int?
     private var note = ""
     private var number0to11 = ""
     private var number0to46 = ""
@@ -28,7 +30,8 @@ class NoteModel {
     }
     
     // This variable indicates whether editing the view is allowed.
-    private var canCustomize = false
+    //private var canCustomize = false
+    
     // FontSize
     private var noteFontSize: CGFloat = 16
     
@@ -124,13 +127,13 @@ class NoteModel {
        // needsDisplay = true
     }
     
-    func getCanCustomize() -> Bool {
-        return canCustomize
-    }
-    
-    func setCanCustomize(bool: Bool){
-        canCustomize = bool
-    }
+//    func getCanCustomize() -> Bool {
+//        return canCustomize
+//    }
+//    
+//    func setCanCustomize(bool: Bool){
+//        canCustomize = bool
+//    }
     
     func getNoteFontSize() -> CGFloat {
         return noteFontSize
