@@ -9,7 +9,7 @@ import Foundation
 
 
 class FretboardModel {
-    var fretboardArray: [NoteModel]
+    var array: [NoteModel]
     
     var title: String
     
@@ -19,7 +19,7 @@ class FretboardModel {
         for _ in 0...137 {
             temp.append(NoteModel())
         }
-        fretboardArray = temp
+        array = temp
         
         title = ""
     }

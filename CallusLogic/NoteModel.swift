@@ -9,14 +9,13 @@ import Cocoa
 
 class NoteModel {
     
-    
     // The position of the note on the entire fretboard. 0-137
-    private var fretboardPosition: Int?
     private var note = ""
     private var number0to11 = ""
     private var number0to46 = ""
     private var interval = ""
-        
+    
+    private var attributedNote = NSMutableAttributedString()
     private var isGhost = false
     private var isInScale = false
     
@@ -29,25 +28,17 @@ class NoteModel {
         }
     }
     
-    // This variable indicates whether editing the view is allowed.
-    //private var canCustomize = false
-    
     // FontSize
     private var noteFontSize: CGFloat = 16
-    
-    // The user Selected Color
-    private var userColor = NSColor.yellowColor()
     
     // A state variable to be set while the mouse is down.
     private var myColor: NSColor = NSColor.yellowColor()
     
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-    private var displayMode = ""
-    
+    private var displayMode = "Notes"
+     
     // Indicates the note should be kept.
     private var isKept = false
-    
-    
     
     //####################################
     // Getters and setters.
@@ -83,7 +74,6 @@ class NoteModel {
     func setInterval(newInterval: String) {
         interval = newInterval
     }
-    
     
     
     func getIsGhost()-> Bool {
@@ -124,17 +114,9 @@ class NoteModel {
     
     func setDisplayMode(newMode: String){
         displayMode = newMode
-       // needsDisplay = true
     }
     
-//    func getCanCustomize() -> Bool {
-//        return canCustomize
-//    }
-//    
-//    func setCanCustomize(bool: Bool){
-//        canCustomize = bool
-//    }
-    
+
     func getNoteFontSize() -> CGFloat {
         return noteFontSize
     }
@@ -151,14 +133,6 @@ class NoteModel {
         myColor = newColor
     }
     
-    func getUserColor() -> NSColor {
-        return userColor
-    }
-    
-    func setUserColor(newColor: NSColor){
-        userColor = newColor
-    }
-    
     func getIsKept() -> Bool {
         return isKept
     }
@@ -168,9 +142,9 @@ class NoteModel {
     }
     
     
-    func doesMyColorEqualUserColor()-> Bool {
-        return myColor == userColor
-    }
+//    func doesMyColorEqualUserColor()-> Bool {
+//        return myColor == userColor
+//    }
     
     
     
@@ -188,4 +162,22 @@ class NoteModel {
         return temp
     }
     
+    func setNoteModel(newModel: NoteModel) {
+        note = newModel.getNote()
+        number0to11 = newModel.getNumber0to11()
+        number0to46 = newModel.getNumber0to46()
+        interval = newModel.getInterval()
+        isGhost = newModel.getIsGhost()
+        isInScale = newModel.getIsInScale()
+        isDisplayed = newModel.getIsDisplayed()
+        isPassingNote = newModel.getIsPassingNote()
+        noteFontSize = newModel.getNoteFontSize()
+        myColor = newModel.getMyColor()
+        displayMode = newModel.getDisplayMode()
+        isKept = newModel.isKept
+    }
+    
+    func setAttributedNote() {
+        
+    }
 }

@@ -22,21 +22,12 @@ class FretboardView: NSView {
     // MARK: - Variables
     //##########################################################
     
-    let fretboardModel = FretboardModel()
-    
     // holds the rects used to create all NoteViews.
     private var rectArray: [CGRect] = []
     
     // Holds the NoteViews
     private var noteViewArray: [NoteView] = []
-    // Array of NoteModels.
-    private var noteModelArray: [NoteModel] = []
-    
-    // represents the display mode = (Notes, Intervals, Numbers...)
-    private var displayMode = ""
-    
-    private var canCustomize = false
-    
+
     // The image shown in this custom view.
     @IBInspectable var image :NSImage?
     
@@ -132,10 +123,6 @@ class FretboardView: NSView {
         }
         buildNoteViews()
         addSubviews()
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(FretboardView.reactToMouseUpEvent(_:)),
-                                                         name: "noteViewMouseUpEvent",
-                                                         object: nil)
     }
 
     // Draws in the NSView.
@@ -146,7 +133,7 @@ class FretboardView: NSView {
                 
                 let imageRect = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
                 // update content for drawing
-                updateSubviews()
+                // updateSubviews()
                 // Draw the image of the fretboard.
                 image.drawInRect(imageRect)
             }
@@ -158,27 +145,6 @@ class FretboardView: NSView {
     override var intrinsicContentSize: NSSize {
         return NSSize(width: 1780, height: 262)
     }
-    
-    //##########################################################
-    // Getters and Setters
-    //##########################################################
-    
-    func getDisplayMode() -> String {
-        return displayMode
-    }
-    
-    func setDisplayMode(newMode: String) {
-        displayMode = newMode
-    }
-    
-    func getCanCustomize() -> Bool {
-        return canCustomize
-    }
-    
-    func setCanCustomize(bool: Bool){
-        canCustomize = bool
-    }
-    
     
     //##########################################################
     // MARK: - Custom functions
@@ -262,95 +228,18 @@ class FretboardView: NSView {
         }
     }
     
-    //update string notes
-    func updateNoteModelArray(newNotesArray: [NoteModel]) {
-        noteModelArray = newNotesArray
-    }
-    
-//    func updateCanCustomize(bool: Bool) {
-//        for stringIndex in 0...5 {
-//            for noteIndex in 0...(NOTES_PER_STRING - 1){
-//                // Update note
-//                (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView).getNoteModel().setCanCustomize(bool)
-//            }
-//        }
-//    }
-    
-    func markSelectedNotesAsKept(doKeep: Bool) {
-        for stringIndex in 0...5 {
-            for noteIndex in 0...(NOTES_PER_STRING - 1){
-                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                
-                // If the view is displayed, determine whether to keep.
-                if (view.getNoteModel()).getIsDisplayed() == true {
-                    // If ghosted, don't keep
-                    if(view.getNoteModel()).getIsGhost() == true {
-                        view.getNoteModel().setIsKept(false)
-                    }
-                        // If unghosted, keep or unkeep depending on the value of 'doKeppt
-                    else {
-                        view.getNoteModel().setIsKept(doKeep)
-                        // If we've unSelected the note via unselectAll
-                        // update the ghost value and display with current value.
-                        if doKeep == false {
-                            view.getNoteModel().setIsGhost(true)
-                        }
-                    }
-                }
-            }
+    // Updates the contents of each noteView.
+    func updateSubviews(newModelArray: [NoteModel]) {
+        for index in 0...137 {
+            let view = subviews[index] as! NoteView
+            let model = newModelArray[index]
+            
+            // Update noteModel
+            view.setNoteModel(model)
+          
         }
         needsDisplay = true
     }
-    
-    
-    func reactToMouseUpEvent(notification: NSNotification) {
-        if canCustomize {
-            // store the view number.
-            let index = (notification.userInfo!["number"] as! Int)
-            let noteModel = (subviews[index] as! NoteView).getNoteModel()
-                        // if myColor hasn't been updated to the new userColor, redraw.
-                     if noteModel.doesMyColorEqualUserColor() == false {
-                            // and if it isn't ghosted, just changed the color, don't ghost.
-                            if noteModel.getIsGhost() == true {
-    
-                                noteModel.setIsGhost(!noteModel.getIsGhost())
-                            }
-                        }
-                        // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
-                        else {
-                            noteModel.setIsGhost(!noteModel.getIsGhost())
-                        }
-    
-    
-                (notification.object as! NoteView).needsDisplay = true
-            }
-        }
-    
-    // Sets the color for Calculated Notes.
-    func setMyColor(newColor: NSColor) {
-        for stringIndex in 0...5 {
-            for noteIndex in 0...(NOTES_PER_STRING - 1){
-                let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                view.getNoteModel().setUserColor(newColor)
-            }
-        }
-    }
-    
-    // Updates the contents of each noteView.
-    func updateSubviews() {
-            for stringIndex in 0...5 {
-                for noteIndex in 0...(NOTES_PER_STRING - 1){
-                    let view = (subviews[noteIndex + (stringIndex * NOTES_PER_STRING)] as! NoteView)
-                    let model = noteModelArray[noteIndex + offsets[stringIndex]]
-                    if view.getNoteModel().getIsKept() == false {
-                        
-                        // Update noteModel
-                        view.setNoteModel(model)
-                        // Update fretDisplay
-                        view.getNoteModel().setDisplayMode(displayMode)
-                    }
-                }
-            }
-    }
 }
+
 

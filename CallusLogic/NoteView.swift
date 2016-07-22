@@ -121,11 +121,6 @@ class NoteView: NSView {
             if noteModel.getIsInScale() == false {
                 noteModel.setMyColor(chromaticColor)
             }
-            //     Else use the userColor.
-            else {
-                noteModel.setMyColor(noteModel.getUserColor())
-            }
-
         
             
             // If appropriate, set alpha to ghosting transparency
@@ -178,7 +173,6 @@ class NoteView: NSView {
                 attributedNote = NSMutableAttributedString(string: noteModel.getInterval(), attributes: attrs)
             }
             
-            // Draw using custom NSString drawing function defined in NSString+drawing.swift.
             attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
         }
     }

@@ -4,7 +4,7 @@
 
 import Cocoa
 
-class FretboardCalculator {
+class ZeroTo46ToneCalculator {
 
     //##########################################################
     // MARK: - Constants
@@ -18,8 +18,9 @@ class FretboardCalculator {
     //##########################################################
     // MARK: - Variables
     //##########################################################
-    private var masterRoot: String?
-   
+    private var masterRoot = ""
+    private var myDisplayMode = ""
+    
     private var rootIntervalDict : [String : String] = [:]
     private var scale: Scale = Scale()
     
@@ -33,28 +34,29 @@ class FretboardCalculator {
     
     private var intervalIndexOfE = 0
     private var passingInterval = ""
-    private var noteToneArray: [NoteModel] = []
+    private var zeroTo46ToneArray: [NoteModel] = []
     
     
     
-    func getNoteToneArray()->[NoteModel] {
-        return noteToneArray
+    func getZeroTo46ToneArray()->[NoteModel] {
+        return zeroTo46ToneArray
     }
     
     //##########################################################
     // MARK: - Custom functions
     //##########################################################
     // Get the current user selected values and update the array of NoteModels.
-    func updateWithValues(myRoot: String, myAccidental: String, scaleName: String) {
+    func updateWithValues(myRoot: String, myAccidental: String, scaleName: String, displayMode: String) {
         if scaleName != "" {
             
-            buildNoteToneArray()
+            buildzeroTo46ToneArray()
             
             resolveRoot(myRoot, accidental: myAccidental)
             // Find and save the Scale object.
             scale = myDictOfScales[scaleName]!
             
-            rootIntervalDict = myArrayOfIntervalDicts[masterRoot!]!
+            myDisplayMode = displayMode
+            rootIntervalDict = myArrayOfIntervalDicts[masterRoot]!
             
             intervalIndexOfE = Int(rootIntervalDict["indexOfE"]!)!
             // Save the passing interval.
@@ -134,7 +136,7 @@ class FretboardCalculator {
     func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
-                let noteModel = noteToneArray[scaleIndex + octaveCount * 12]
+                let noteModel = zeroTo46ToneArray[scaleIndex + octaveCount * 12]
                     noteModel.setNote(orderedNotes[scaleIndex])
                     noteModel.setInterval(orderedIntervals[scaleIndex])
                     noteModel.setNumber0to11(String(scaleIndex))
@@ -142,21 +144,25 @@ class FretboardCalculator {
         }
         let octaveCount = 3
         for scaleIndex in 0...10 {
-            let noteModel = noteToneArray[scaleIndex + octaveCount * 12]
+            let noteModel = zeroTo46ToneArray[scaleIndex + octaveCount * 12]
             noteModel.setNote(orderedNotes[scaleIndex])
             noteModel.setInterval(orderedIntervals[scaleIndex])
             noteModel.setNumber0to11(String(scaleIndex))
+            
         }
     }
     
     func addNumbers0to46() {
         var temp: [Int] = []
         for index in 0...46 {
-            if  noteToneArray[index].getNote() != "" {
-                noteToneArray[index].setNumber0to46(String(index))
-                noteToneArray[index].setIsInScale(true)
-                noteToneArray[index].setIsGhost(false)
-                noteToneArray[index].setIsDisplayed(true)
+            let model = zeroTo46ToneArray[index]
+            
+            if  model.getNote() != "" {
+                model.setNumber0to46(String(index))
+                model.setIsInScale(true)
+                model.setIsGhost(false)
+                model.setIsDisplayed(true)
+                model.setDisplayMode(myDisplayMode)
                 temp.append(index)
             }
         }
@@ -167,15 +173,15 @@ class FretboardCalculator {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
             for index in 0...2 {
-               noteToneArray[index * 12 + passingIndex!].setIsPassingNote(true)
+               zeroTo46ToneArray[index * 12 + passingIndex!].setIsPassingNote(true)
             }
         }
     }
     
-    func buildNoteToneArray() {
+    func buildzeroTo46ToneArray() {
         var temp: [NoteModel] = []
         for _ in 0...46 {
             temp.append(NoteModel())        }
-        noteToneArray = temp
+        zeroTo46ToneArray = temp
     }
 }

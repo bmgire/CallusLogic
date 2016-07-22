@@ -214,7 +214,7 @@
                                 <rect key="frame" x="142" y="6" width="55" height="24"/>
                                 <color key="color" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="changeNoteColor:" target="-2" id="h8X-rt-2NJ"/>
+                                    <action selector="changeUserColor:" target="-2" id="FFP-hA-b68"/>
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
