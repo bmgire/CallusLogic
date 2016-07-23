@@ -20,13 +20,13 @@ class NoteModel {
     private var isInScale = false
     
     private var isDisplayed = false
-    private var isPassingNote = false {
-        didSet {
-            if isPassingNote == true {
-                makePassingNote()
-            }
-        }
-    }
+    private var isPassingNote = false //{
+//        didSet {
+//            if isPassingNote == true {
+//                makePassingNote()
+//            }
+//        }
+//    }
     
     // FontSize
     private var noteFontSize: CGFloat = 16
@@ -148,17 +148,37 @@ class NoteModel {
     
     
     
-    private func makePassingNote() {
-        note = addParentheses(note)
-        number0to11 = addParentheses(number0to11)
-        number0to46 = addParentheses(number0to46)
-        interval = addParentheses(interval)
+    func makePassingNote(bool: Bool) {
+        if bool {
+            note = addParentheses(note)
+            number0to11 = addParentheses(number0to11)
+            number0to46 = addParentheses(number0to46)
+            interval = addParentheses(interval)
+        }
+        else {
+            note = removeParentheses(note)
+            number0to11 = removeParentheses(number0to11)
+            number0to46 = removeParentheses(number0to46)
+            interval = removeParentheses(interval)
+        }
     }
     
     private func addParentheses(theNote: String)-> String {
         var temp = "("
         temp = temp.stringByAppendingString(theNote)
         temp = temp.stringByAppendingString(")")
+        return temp
+    }
+    
+    // note being used yet.
+    private func removeParentheses(theString: String)->String {
+        var temp = theString
+        
+        let begin = temp.startIndex
+        let end = temp.endIndex
+        
+        temp.removeAtIndex(end)
+        temp.removeAtIndex(begin)
         return temp
     }
     

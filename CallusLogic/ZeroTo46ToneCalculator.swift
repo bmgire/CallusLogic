@@ -171,8 +171,8 @@ class ZeroTo46ToneCalculator {
     func setPassingNotesForScale() {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
-            for index in 0...2 {
-               zeroTo46ToneArray[index * 12 + passingIndex!].setIsPassingNote(true)
+            for index in 0...3 {
+               zeroTo46ToneArray[index * 12 + passingIndex!].makePassingNote(true)
             }
         }
     }
