@@ -15,9 +15,17 @@ class MainWindowController: NSWindowController {
     // Class Variables (except the outlets)
     //##########################################################
     
+    let offsets = [0, 5, 10, 15, 19, 24]
+    
     let zeroTo46ToneCalculator = ZeroTo46ToneCalculator()
     
-    let fretboardController = FretboardController()
+    let NOTES_PER_STRING = 23
+    
+    let fretboardModel = FretboardModel()
+    
+    private var userColor = NSColor.yellowColor()
+
+    private var canCustomize = false
     
     //##########################################################
     // Outlets to fretboard controls.
@@ -101,7 +109,7 @@ class MainWindowController: NSWindowController {
         if sender.state != 0 {
             
             // sets noteViews canCustomizeProperty to true.
-             fretboardController.setCanCustomize(true)
+             canCustomize = true
             
             customizeView.hidden = false
             
@@ -115,7 +123,7 @@ class MainWindowController: NSWindowController {
         }
         else {
             // disable customization and hide radio buttons
-             fretboardController.setCanCustomize(false)
+             canCustomize = false
             
             customizeView.hidden = true
         }
@@ -141,7 +149,7 @@ class MainWindowController: NSWindowController {
         
         if sender.state != 0 {
             // Show chromatic notes.
-             fretboardController.markSelectedNotesAsKept(true)
+            markSelectedNotesAsKept(true)
             showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: true)
             selectAdditionalNotesButton!.enabled = true
         }
@@ -155,7 +163,7 @@ class MainWindowController: NSWindowController {
     
     @IBAction func selectAdditionalNotes(sender: NSButton) {
         if sender.state != 0 {
-             fretboardController.markSelectedNotesAsKept(true)
+            markSelectedNotesAsKept(true)
             showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: false)
         }
         else {
@@ -164,17 +172,17 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func unselectAll(sender: NSButton) {
-         fretboardController.markSelectedNotesAsKept(false)
+        markSelectedNotesAsKept(false)
         selectCalcNotesButton.state = 0
         selectAdditionalNotesButton.state = 0
     }
     
     @IBAction func keepSelectedNotes(sender: NSButton) {
-         fretboardController.markSelectedNotesAsKept(true)
+         markSelectedNotesAsKept(true)
     }
     
     @IBAction func changeUserColor(sender: NSColorWell) {
-        fretboardController.setUserColor(sender.color)
+        setUserColor(sender.color)
         // Closes the color panel. 
         NSColorPanel.sharedColorPanel().close()
     }
@@ -226,8 +234,17 @@ class MainWindowController: NSWindowController {
         previousScale = scalePopUp!.titleOfSelectedItem!
         previousDisplay = displayModePopUp!.titleOfSelectedItem!
     
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(MainWindowController.reactToMouseUpEvent(_:)),
+                                                         name: "noteViewMouseUpEvent",
+                                                         object: nil)
+        
         updateZeroTo46ToneCalculator()
         updateFretboardModel()
+        
+        
+
+        
     }
     
     //##########################################################
@@ -256,7 +273,7 @@ class MainWindowController: NSWindowController {
         // If customizing, new scales set to ghost mode. 
         if customizeButton.state != 0 {
             // GhostNotes.
-             fretboardController.markSelectedNotesAsKept(true)
+            markSelectedNotesAsKept(true)
             showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
         }
        
@@ -267,9 +284,9 @@ class MainWindowController: NSWindowController {
         // fretboardController.setDisplayMode(displayModePopUp!.titleOfSelectedItem!)
         
         // Update the NoteModel array on the  fretboardController.
-        fretboardController.updateToneArrayIntoFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
+        updateToneArrayIntoFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
         
-        fretboardView.updateSubviews(fretboardController.fretboardModel.array)
+        fretboardView.updateSubviews(fretboardModel.array)
         // Display the changes.
         //fretboardView.needsDisplay = true
     }
@@ -304,6 +321,82 @@ class MainWindowController: NSWindowController {
             }
         }
         updateFretboardModel()
+    }
+    
+    func reactToMouseUpEvent(notification: NSNotification) {
+        if canCustomize {
+            // store the view number.
+            let index = (notification.userInfo!["number"] as! Int)
+            let noteModel = fretboardModel.array[index]
+            // if myColor hasn't been updated to the new userColor, redraw.
+            if noteModel.getMyColor() != userColor {
+                
+                // Set the color correctly.
+                noteModel.setMyColor(userColor)
+                
+                // and if it isn't ghosted, just changed the color, don't ghost.
+                if noteModel.getIsGhost() == true {
+                    
+                    noteModel.setIsGhost(!noteModel.getIsGhost())
+                }
+            }
+                // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
+            else {
+                noteModel.setIsGhost(!noteModel.getIsGhost())
+            }
+            
+            // redraw.
+            (notification.object as! NoteView).needsDisplay = true
+        }
+    }
+    
+    // Sets the color for Calculated Notes.
+    func setUserColor(newColor: NSColor){
+        userColor = newColor
+    }
+    
+    //    func updateZeroTo46ToneArray(newArray: [NoteModel]) {
+    //        zeroTo46ToneArray = newArray
+    //    }
+    
+    
+    func markSelectedNotesAsKept(doKeep: Bool) {
+        for index in 0...137 {
+            let model = fretboardModel.array[index]
+            
+            // If the view is displayed, determine whether to keep.
+            if model.getIsDisplayed() == true {
+                // If ghosted, don't keep
+                if model.getIsGhost() == true {
+                    model.setIsKept(false)
+                }
+                    // If unghosted, keep or unkeep depending on the value of 'doKeppt
+                else {
+                    model.setIsKept(doKeep)
+                    // If we've unSelected the note via unselectAll
+                    // update the ghost value and display with current value.
+                    if doKeep == false {
+                        model.setIsGhost(true)
+                    }
+                }
+            }
+        }
+        
+        //needsDisplay = true
+    }
+    
+    func updateToneArrayIntoFretboardModel(toneArray: [NoteModel]) {
+        for stringIndex in 0...5 {
+            for noteIndex in 0...(NOTES_PER_STRING - 1){
+                let noteModel = (fretboardModel.array[noteIndex + (stringIndex * NOTES_PER_STRING)])
+                let zeroTo46Model = toneArray[noteIndex + offsets[stringIndex]]
+                
+                // For all noteModels not marked as kept, set the noteModel to the zeroTo46 Model.
+                if noteModel.getIsKept() == false {
+                    noteModel.setNoteModel(zeroTo46Model)
+                }
+            }
+        }
     }
 }
 

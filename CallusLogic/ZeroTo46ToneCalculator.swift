@@ -14,7 +14,6 @@ class ZeroTo46ToneCalculator {
     let myArrayOfIntervalDicts = AllIntervals().getIntervalsDict()
     let myDictOfScales = AllScales().getDictOfScales()
     
-    
     //##########################################################
     // MARK: - Variables
     //##########################################################

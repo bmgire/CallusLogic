@@ -15,7 +15,7 @@ class Document: NSDocument, NSWindowDelegate {
         super.init()
 
     }
-
+   
     //##########################################################
     override func makeWindowControllers() {
         // create and add your window controller.
