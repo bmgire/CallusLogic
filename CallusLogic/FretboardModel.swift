@@ -8,20 +8,65 @@
 import Foundation
 
 
-class FretboardModel {
-    var array: [NoteModel]
+class FretboardModel: NSObject, NSCoding {
     
-    var title: String
+    var fretboardArray: [NoteModel]? = []
     
-    init(){
-        // Build 47 item array of NoteModels.
+    var fretboardTitle: String? = ""
+    
+    var canCustomize = false
+    
+    // MARK:- Encoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+        if let fretboardArray = fretboardArray {
+            for index in 0...137 {
+                aCoder.encodeObject(fretboardArray[index], forKey: "noteModel\(index)")
+            }
+        }
+        if let fretboardTitle = fretboardTitle {
+            aCoder.encodeObject(fretboardTitle, forKey: "fretboardTitle")
+        }
+        aCoder.encodeBool(canCustomize, forKey: "canCustomize")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        for index in 0...137 {
+            if let noteModel = aDecoder.decodeObjectForKey("noteModel\(index)"){
+                fretboardArray!.append(noteModel as! NoteModel)
+            }
+        }
+        
+        fretboardTitle = aDecoder.decodeObjectForKey("fretboardTitle") as! String?
+        canCustomize = aDecoder.decodeBoolForKey("canCustomize")
+        
+        super.init()
+        
+    }
+    
+    func getFretboardArray()-> [NoteModel] {
+        return fretboardArray!
+    }
+    
+    func getFretboardTitle()-> String {
+        return fretboardTitle!
+    }
+
+    
+    
+    override init(){
+        super.init()
+        
+        if fretboardArray!.count == 0 {
+        // Build 138 item array of NoteModels.
         var temp : [NoteModel] = []
         for _ in 0...137 {
             temp.append(NoteModel())
+            }
+            fretboardArray = temp
         }
-        array = temp
-        
-        title = ""
     }
+    
+
 }
 

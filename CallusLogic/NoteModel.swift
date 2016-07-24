@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class NoteModel {
+class NoteModel: NSObject, NSCoding {
     
     // The position of the note on the entire fretboard. 0-137
     private var note = ""
@@ -15,18 +15,14 @@ class NoteModel {
     private var number0to46 = ""
     private var interval = ""
     
-    private var attributedNote = NSMutableAttributedString()
+    /// var attributedNote = NSMutableAttributedString()
     private var isGhost = false
     private var isInScale = false
-    
     private var isDisplayed = false
-    private var isPassingNote = false //{
-//        didSet {
-//            if isPassingNote == true {
-//                makePassingNote()
-//            }
-//        }
-//    }
+    private var isPassingNote = false
+    
+    // Indicates the note should be kept.
+    private var isKept = false
     
     // FontSize
     private var noteFontSize: CGFloat = 16
@@ -37,8 +33,50 @@ class NoteModel {
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
     private var displayMode = "Notes"
      
-    // Indicates the note should be kept.
-    private var isKept = false
+   
+    
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(note, forKey: "note")
+        aCoder.encodeObject(number0to11, forKey: "number0to11")
+        aCoder.encodeObject(number0to46, forKey: "number0to46")
+        aCoder.encodeObject(interval, forKey: "interval")
+        
+        aCoder.encodeBool(isGhost, forKey: "isGhost")
+        aCoder.encodeBool(isInScale, forKey: "isInScale")
+        aCoder.encodeBool(isDisplayed, forKey: "isDisplayed")
+        aCoder.encodeBool(isPassingNote, forKey: "isPassingNote")
+        aCoder.encodeBool(isKept, forKey: "isKept")
+        
+        aCoder.encodeObject(noteFontSize, forKey: "noteFontSize")
+        aCoder.encodeObject(myColor, forKey: "myColor")
+        aCoder.encodeObject(displayMode, forKey: "displayMode")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        note = aDecoder.decodeObjectForKey("note") as! String
+        number0to11 = aDecoder.decodeObjectForKey("number0to11") as! String
+        number0to46 = aDecoder.decodeObjectForKey("number0to46") as! String
+        interval = aDecoder.decodeObjectForKey("interval") as! String
+        
+        isGhost = aDecoder.decodeBoolForKey("isGhost")
+        isInScale = aDecoder.decodeBoolForKey("isInScale")
+        isDisplayed = aDecoder.decodeBoolForKey("isDisplayed")
+        isPassingNote = aDecoder.decodeBoolForKey("isPassingNote")
+        isKept = aDecoder.decodeBoolForKey("isKept")
+        
+        noteFontSize = aDecoder.decodeObjectForKey("noteFontSize") as! CGFloat
+        myColor = aDecoder.decodeObjectForKey("myColor") as! NSColor
+        displayMode = aDecoder.decodeObjectForKey("displayMode") as! String
+        super.init()
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    
+    
     
     //####################################
     // Getters and setters.
@@ -140,12 +178,6 @@ class NoteModel {
     func setIsKept(bool: Bool){
         isKept = bool
     }
-    
-    
-//    func doesMyColorEqualUserColor()-> Bool {
-//        return myColor == userColor
-//    }
-    
     
     
     func makePassingNote(bool: Bool) {

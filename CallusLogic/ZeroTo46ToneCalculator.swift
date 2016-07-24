@@ -19,6 +19,7 @@ class ZeroTo46ToneCalculator {
     //##########################################################
     private var masterRoot = ""
     private var myDisplayMode = ""
+    private var calcColor: NSColor?
     
     private var rootIntervalDict : [String : String] = [:]
     private var scale: Scale = Scale()
@@ -45,7 +46,11 @@ class ZeroTo46ToneCalculator {
     // MARK: - Custom functions
     //##########################################################
     // Get the current user selected values and update the array of NoteModels.
-    func updateWithValues(myRoot: String, myAccidental: String, scaleName: String, displayMode: String) {
+    func updateWithValues(myRoot: String,
+                          myAccidental: String,
+                          scaleName: String,
+                          displayMode: String,
+                          myCalcColor: NSColor) {
         if scaleName != "" {
             
             buildzeroTo46ToneArray()
@@ -55,6 +60,9 @@ class ZeroTo46ToneCalculator {
             scale = myDictOfScales[scaleName]!
             
             myDisplayMode = displayMode
+            
+            calcColor = myCalcColor
+            
             rootIntervalDict = myArrayOfIntervalDicts[masterRoot]!
             
             intervalIndexOfE = Int(rootIntervalDict["indexOfE"]!)!
@@ -162,6 +170,7 @@ class ZeroTo46ToneCalculator {
                 model.setIsGhost(false)
                 model.setIsDisplayed(true)
                 model.setDisplayMode(myDisplayMode)
+                model.setMyColor(calcColor!)
                 temp.append(index)
             }
         }
@@ -171,9 +180,15 @@ class ZeroTo46ToneCalculator {
     func setPassingNotesForScale() {
         if passingInterval != ""{
             let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
-            for index in 0...3 {
+            // Make a passing tone in the first 3 octaves.
+            for index in 0...2 {
                zeroTo46ToneArray[index * 12 + passingIndex!].makePassingNote(true)
             }
+            // Adds the last passing note. Accounts for 22 fret guitar. 
+            if passingIndex < 11 {
+                zeroTo46ToneArray[36 + passingIndex!].makePassingNote(true)
+            }
+
         }
     }
     

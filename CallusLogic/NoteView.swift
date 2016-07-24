@@ -10,7 +10,7 @@ class NoteView: NSView {
     // MARK: - Constants
     //##########################################################
     
-    let chromaticColor = NSColor.redColor()
+    //let chromaticColor = NSColor.redColor()
     
     //##########################################################
     // MARK: - Variables
@@ -118,9 +118,9 @@ class NoteView: NSView {
             
             
             // If not in the scale, use the chromatic color.
-            if noteModel.getIsInScale() == false {
-                noteModel.setMyColor(chromaticColor)
-            }
+//            if noteModel.getIsInScale() == false {
+//                noteModel.setMyColor(chromaticColor)
+//            }
         
             
             // If appropriate, set alpha to ghosting transparency

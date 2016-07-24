@@ -6,7 +6,9 @@
 import Cocoa
 
 class Document: NSDocument, NSWindowDelegate {
-
+    
+    let mainWindowController = MainWindowController()
+    
 
     //##########################################################
     // NSDocument auto generated override functions
@@ -19,7 +21,7 @@ class Document: NSDocument, NSWindowDelegate {
     //##########################################################
     override func makeWindowControllers() {
         // create and add your window controller.
-        let mainWindowController = MainWindowController()
+        //let mainWindowController = MainWindowController()
         addWindowController(mainWindowController)
     }
     
@@ -32,15 +34,30 @@ class Document: NSDocument, NSWindowDelegate {
     override func dataOfType(typeName: String) throws -> NSData {
         // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        
+        
+        // I'm ignoring errors. 
+        
+        // end editing for nothing.
+       mainWindowController.window?.endEditingFor(nil)
+        
+        // Create an NSDataObject from the mainWindowControllers fretboardModel
+        return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getFretboardModel())
+        
+        
+        //throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
     //##########################################################
     override func readFromData(data: NSData, ofType typeName: String) throws {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
+        
+        print("About to read data of type \(typeName).");
+        mainWindowController.setFretboardModel(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! FretboardModel)
+        
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+       // throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 }
 
