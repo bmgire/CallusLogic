@@ -143,7 +143,7 @@ class FretboardView: NSView {
     // Intrinsic size must be overriden in order for the fretboard image to appear in the Scroll view.
     // The intrisic size will also be the the exact size of the fretboard so I have to re-create this frame in IB for this view.
     override var intrinsicContentSize: NSSize {
-        return NSSize(width: 1780, height: 262)
+        return NSSize(width: 1790, height: 262)
     }
     
     //##########################################################
@@ -156,7 +156,7 @@ class FretboardView: NSView {
         // Create a temp array and copy any rects in rectArray to it.
         var tempRects:[CGRect] = rectArray
         
-        var length = frame.maxX
+        var length = bounds.maxX
         
         // Adjusts the lengths of the bottom 3 strings on a right handed guitar
         // for aesthetic purposes.
@@ -164,7 +164,7 @@ class FretboardView: NSView {
             length *= 0.998
         }
         
-        let height = frame.maxY
+        let height = bounds.maxY
         
         // the X value of the first NoteViews Rect.
         var noteX = CGFloat(0)

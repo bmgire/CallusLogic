@@ -33,6 +33,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="50" y="250" width="1792" height="345"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <value key="minSize" type="size" width="600" height="345"/>
+            <value key="maxSize" type="size" width="1792" height="345"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="1792" height="345"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,8 +45,8 @@
                             <rect key="frame" x="1" y="1" width="1797" height="330"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-14" width="1793" height="330"/>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="1793" height="330"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-9U-NiY">
                                             <rect key="frame" x="18" y="17" width="61" height="18"/>
@@ -53,12 +55,8 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
-                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
+                                        <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
                                             <rect key="frame" x="13" y="12" width="1780" height="262"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="262" id="JBk-zb-fnU"/>
-                                                <constraint firstAttribute="width" constant="1780" id="feh-Gh-83E"/>
-                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
                                             </userDefinedRuntimeAttributes>
@@ -78,6 +76,10 @@
                                     </constraints>
                                 </customView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="cTK-0c-ABv" firstAttribute="leading" secondItem="SZn-CE-0lE" secondAttribute="leading" id="1Lr-UE-jMx"/>
+                                <constraint firstItem="cTK-0c-ABv" firstAttribute="top" secondItem="SZn-CE-0lE" secondAttribute="top" id="2iv-MP-2vs"/>
+                            </constraints>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
                             <rect key="frame" x="1" y="331" width="1797" height="15"/>
