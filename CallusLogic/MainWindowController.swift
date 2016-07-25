@@ -341,7 +341,7 @@ class MainWindowController: NSWindowController {
             else {
                 noteModel.setIsGhost(!noteModel.getIsGhost())
             }
-            // Close the color panel if still open. 
+            // Close the color panel if still open.
             NSColorPanel.sharedColorPanel().close()
             // redraw.
             (notification.object as! NoteView).needsDisplay = true

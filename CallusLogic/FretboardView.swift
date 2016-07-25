@@ -29,7 +29,7 @@ class FretboardView: NSView {
     private var noteViewArray: [NoteView] = []
 
     // The image shown in this custom view.
-    @IBInspectable var image :NSImage?
+    var image :NSImage?
     
     //##########################################################
     // MARK: Arrays
