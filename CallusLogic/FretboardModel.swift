@@ -3,47 +3,82 @@
 //  CallusLogic
 //
 //  Copyright © 2016 Gire. All rights reserved.
-//  This model is not very accurate, I need for this to hold all the information of the
+//  This holds all the setting for creating a Fretboard. 
 
-import Foundation
+import Cocoa
 
 
 class FretboardModel: NSObject, NSCoding {
     
-    var fretboardArray: [NoteModel]? = []
     
-    var fretboardTitle: String? = ""
+    //##########################################################
+    // MARK: - Variables
+    //##########################################################
     
-    var canCustomize = false
+    // The array of noteModels that make up the fretboard.
+    private var fretboardArray: [NoteModel]? = []
     
+    // The fretboards Title
+    private var fretboardTitle: String? = "Untitled"
+    
+    // Whether the fretboard is locked for editing.
+    private var isLocked = false
+    
+    // The userColor for note selection.
+    private var userColor: NSColor? = NSColor.yellowColor()
+    
+    
+    
+    //##########################################################
+    // MARK: - Encoding
+    //##########################################################
     // MARK:- Encoding
     func encodeWithCoder(aCoder: NSCoder) {
         
+        // Encode fretboardArray.
         if let fretboardArray = fretboardArray {
             for index in 0...137 {
                 aCoder.encodeObject(fretboardArray[index], forKey: "noteModel\(index)")
             }
         }
+        // Encode fretboardTitle.
         if let fretboardTitle = fretboardTitle {
             aCoder.encodeObject(fretboardTitle, forKey: "fretboardTitle")
         }
-        aCoder.encodeBool(canCustomize, forKey: "canCustomize")
+        // Encode userColor.
+        if let userColor = userColor {
+            aCoder.encodeObject(userColor, forKey: "userColor")
+        }
+        // Encode isLocked.
+        aCoder.encodeBool(isLocked, forKey: "isLocked")
     }
     
+    //##########################################################
+    // MARK: - Decoding
+    //##########################################################
     required init?(coder aDecoder: NSCoder) {
+        
+        // Decode fretboardArray
         for index in 0...137 {
             if let noteModel = aDecoder.decodeObjectForKey("noteModel\(index)"){
                 fretboardArray!.append(noteModel as! NoteModel)
             }
         }
         
+        // Decode fretboardTitle
         fretboardTitle = aDecoder.decodeObjectForKey("fretboardTitle") as! String?
-        canCustomize = aDecoder.decodeBoolForKey("canCustomize")
+        
+        userColor = aDecoder.decodeObjectForKey("userColor") as! NSColor?
+        
+        // Decode isLocked.
+        isLocked = aDecoder.decodeBoolForKey("isLocked")
         
         super.init()
-        
     }
     
+    //##########################################################
+    // MARK: - Getters and Setters.
+    //##########################################################
     func getFretboardArray()-> [NoteModel] {
         return fretboardArray!
     }
@@ -51,12 +86,25 @@ class FretboardModel: NSObject, NSCoding {
     func getFretboardTitle()-> String {
         return fretboardTitle!
     }
+    
+    func setFretboardTitle(newTitle: String) {
+        fretboardTitle = newTitle
+    }
+    
+    func getUserColor()-> NSColor {
+        return userColor!
+    }
+    
+    func setUserColor(newColor: NSColor) {
+        userColor = newColor
+    }
 
     
-    
+    // Reqiured init.
     override init(){
         super.init()
         
+        // If no encoded fretboardModel was loaded, build a fretboard model.
         if fretboardArray!.count == 0 {
         // Build 138 item array of NoteModels.
         var temp : [NoteModel] = []
@@ -66,7 +114,5 @@ class FretboardModel: NSObject, NSCoding {
             fretboardArray = temp
         }
     }
-    
-
 }
 

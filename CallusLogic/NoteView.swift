@@ -10,24 +10,18 @@ class NoteView: NSView {
     // MARK: - Constants
     //##########################################################
     
-    //let chromaticColor = NSColor.redColor()
     
     //##########################################################
     // MARK: - Variables
     //##########################################################
     
     var viewNumberDict: [String: Int] = [:]
-    
-//    // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-//    private var displayMode = ""
 
     private var noteModel = NoteModel()
     
     // Indicates whether the button has been pressed successfully.
     private var pressed: Bool = false
     
-    //private var noteColor = NSColor.yellowColor()
-
     // Variable to hold this notes BezierPath.
     private var path: NSBezierPath?
     
@@ -114,14 +108,6 @@ class NoteView: NSView {
             
             // Assign a value to the path.
             path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
-            
-            
-            
-            // If not in the scale, use the chromatic color.
-//            if noteModel.getIsInScale() == false {
-//                noteModel.setMyColor(chromaticColor)
-//            }
-        
             
             // If appropriate, set alpha to ghosting transparency
             if noteModel.getIsGhost() == true {
