@@ -95,7 +95,8 @@ class MainWindowController: NSWindowController {
     @IBAction func selectCalcNotes(sender: NSButton){
         // If the checkbox is unchecked, ghost the notes.
         if sender.title == "Unselect Calculated Notes" {
-            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
+            markSelectedNotesAsKept(false)
+            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
             sender.title = "Select Calculated Notes"
         }
         
@@ -103,7 +104,7 @@ class MainWindowController: NSWindowController {
         else {
             // Keep any selected notes, then select.
             sender.title = "Unselect Calculated Notes"
-            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: false)
+            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
         }
     }
     
@@ -111,12 +112,12 @@ class MainWindowController: NSWindowController {
     @IBAction func showAdditionalNotes(sender: NSButton) {
         if sender.state != 0 {
             // Show chromatic notes.
-            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: true)
+            showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
             selectAdditionalNotesButton!.enabled = true
         }
            // Hide chromatic notes that aren't in the scale.
         else {
-            showNotesFromCalcedFretArray(false, _isDisplayed: false, _isGhosted: true)
+            showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
             selectAdditionalNotesButton!.enabled = false
             selectAdditionalNotesButton.state = 0
         }
@@ -144,11 +145,11 @@ class MainWindowController: NSWindowController {
     // Selects addition notes.
     @IBAction func selectAdditionalNotes(sender: NSButton) {
         if sender.title == "Select Additional Notes" {
-            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: false)
+            showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
             sender.title = "Unselect Additional Notes"
         }
         else {
-            showNotesFromCalcedFretArray(false, _isDisplayed: true, _isGhosted: true)
+            showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
             sender.title = "Select Additional Notes"
         }
     }
@@ -160,7 +161,7 @@ class MainWindowController: NSWindowController {
         selectAdditionalNotesButton.title = "Select Additional Notes"
         selectAdditionalNotesButton.state = 0
         
-        showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
+        showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
     }
     
     //keep Selected Notes button. I might not need this.
@@ -297,12 +298,13 @@ class MainWindowController: NSWindowController {
                     noteModel.setNoteModel(chromModel)
                     noteModel.setIsInScale(false)
                     noteModel.setIsDisplayed(false)
+                    noteModel.setIsKept(false)
                 }
             
         }
     }
     // Shows notes on the fretboard.
-    func showNotesFromCalcedFretArray( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
+    func showNotesOnFretboard( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...137 {
             let noteModel = fretboardModel.getFretboardArray()[index]
             
@@ -325,6 +327,7 @@ class MainWindowController: NSWindowController {
             // store the view number.
             let index = (notification.userInfo!["number"] as! Int)
             let noteModel = fretboardModel.getFretboardArray()[index]
+        
             // if myColor hasn't been updated to the new userColor, redraw.
             if noteModel.getMyColor() != fretboardModel.getUserColor() {
                 
@@ -335,11 +338,13 @@ class MainWindowController: NSWindowController {
                 if noteModel.getIsGhost() == true {
                     
                     noteModel.setIsGhost(!noteModel.getIsGhost())
+                    noteModel.setIsKept(!noteModel.getIsKept())
                 }
             }
                 // Else, the colors are the same, turn unselected notes into selected notes, and vice versa.
             else {
                 noteModel.setIsGhost(!noteModel.getIsGhost())
+                noteModel.setIsKept(!noteModel.getIsKept())
             }
             // Close the color panel if still open.
             NSColorPanel.sharedColorPanel().close()

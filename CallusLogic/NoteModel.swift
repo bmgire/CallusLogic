@@ -16,7 +16,7 @@ class NoteModel: NSObject, NSCoding {
     private var interval = ""
     
     /// var attributedNote = NSMutableAttributedString()
-    private var isGhost = false
+    private var isGhost = false 
     private var isInScale = false
     private var isDisplayed = false
     private var isPassingNote = false
