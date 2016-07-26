@@ -141,7 +141,7 @@ class NoteView: NSView {
             
             // If appropriate, set alpha to ghosting transparency
             if noteModel.getIsGhost() == true {
-                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(0.1)))
+                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(0.4)))
             }
             else {
                 noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(1)))

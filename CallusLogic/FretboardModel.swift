@@ -22,7 +22,7 @@ class FretboardModel: NSObject, NSCoding {
     private var fretboardTitle: String? = "Untitled"
     
     // Whether the fretboard is locked for editing.
-    private var isLocked = false
+    private var isLocked = 0
     
     // The userColor for note selection.
     private var userColor: NSColor? = NSColor.yellowColor()
@@ -50,7 +50,7 @@ class FretboardModel: NSObject, NSCoding {
             aCoder.encodeObject(userColor, forKey: "userColor")
         }
         // Encode isLocked.
-        aCoder.encodeBool(isLocked, forKey: "isLocked")
+        aCoder.encodeInteger(isLocked, forKey: "isLocked")
     }
     
     //##########################################################
@@ -71,7 +71,7 @@ class FretboardModel: NSObject, NSCoding {
         userColor = aDecoder.decodeObjectForKey("userColor") as! NSColor?
         
         // Decode isLocked.
-        isLocked = aDecoder.decodeBoolForKey("isLocked")
+        isLocked = aDecoder.decodeIntegerForKey("isLocked")
         
         super.init()
     }
@@ -97,6 +97,13 @@ class FretboardModel: NSObject, NSCoding {
     
     func setUserColor(newColor: NSColor) {
         userColor = newColor
+    }
+    
+    func setIsLocked(state: Int) {
+        isLocked = state
+    }
+    func getIsLocked()-> Int {
+        return isLocked
     }
 
     

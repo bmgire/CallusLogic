@@ -20,7 +20,8 @@ class ZeroTo46ToneCalculator {
     private var masterRoot = ""
     private var myDisplayMode = ""
     private var calcColor: NSColor?
-    private var ghost: Bool?
+    
+    //private var ghost: Bool?
     private var rootIntervalDict : [String : String] = [:]
     private var scale: Scale = Scale()
     
@@ -50,8 +51,8 @@ class ZeroTo46ToneCalculator {
                           myAccidental: String,
                           scaleName: String,
                           displayMode: String,
-                          myCalcColor: NSColor,
-                          selectNotes: String)  {
+                          myCalcColor: NSColor)
+                          /*selectNotes: String)*/  {
         if scaleName != "" {
             
             buildzeroTo46ToneArray()
@@ -64,12 +65,12 @@ class ZeroTo46ToneCalculator {
             
             calcColor = myCalcColor
             
-            if selectNotes == "Select" {
-                ghost = false
-            }
-            else {
-                ghost = true
-            }
+//            if selectNotes == "Select" {
+//                ghost = false
+//            }
+//            else {
+//                ghost = true
+//            }
             rootIntervalDict = myArrayOfIntervalDicts[masterRoot]!
             
             intervalIndexOfE = Int(rootIntervalDict["indexOfE"]!)!
@@ -174,10 +175,10 @@ class ZeroTo46ToneCalculator {
             // The the noteModel is in the scale.
             if  model.getNote() != "" {
                 model.setNumber0to46(String(index))
-                model.setIsKept(true)
+               // model.setIsKept(true)
                 model.setIsInScale(true)
-                model.setIsGhost(ghost!)
-                model.setIsDisplayed(true)
+               // model.setIsGhost(ghost!)
+               // model.setIsDisplayed(true)
                 model.setDisplayMode(myDisplayMode)
                 model.setMyColor(calcColor!)
                 temp.append(index)

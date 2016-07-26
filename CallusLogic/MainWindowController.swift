@@ -25,34 +25,36 @@ class MainWindowController: NSWindowController {
     
     private var fretboardModel = FretboardModel()
     
-//    // The user selection color. !!!Not the 46 tone calculator's color!!!
-//    private var userColor = NSColor.yellowColor()
-    
     //##########################################################
     // Outlets to fretboard controls.
     //##########################################################
+    
+    // Outlet to Controls window.
+    @IBOutlet weak var controlsWindow: NSWindow!
     
     // Calculator controls.
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
     @IBOutlet weak var displayModePopUp: NSPopUpButton!
-//    @IBOutlet weak var calculatorColorWell: NSColorWell!
-    @IBOutlet weak var selectionModePopUp: NSPopUpButton!
+//    @IBOutlet weak var selectionModePopUp: NSPopUpButton!
     @IBOutlet weak var buildAndAddFretboardButton: NSButton!
     
     @IBOutlet weak var fretboardView: FretboardView!
+    @IBOutlet weak var lockButton: NSButton!
     
     // Fretboard title outlets.
     @IBOutlet weak var enterTitle: NSTextField!
     @IBOutlet weak var displayTitle: NSTextField!
     
     // Customization controls.
-    @IBOutlet weak var showMoreEditOptionsButton: NSButton!
-//    @IBOutlet weak var showCalcNotesButton: NSButton!
+    @IBOutlet weak var showControlsButton: NSButton!
+    @IBOutlet weak var showCalcNotesButton: NSButton!
     @IBOutlet weak var selectCalcNotesButton: NSButton!
     @IBOutlet weak var showAdditionalNotesButton: NSButton!
     @IBOutlet weak var selectAdditionalNotesButton: NSButton!
+    
+    @IBOutlet weak var clearUnselected: NSButton!
     @IBOutlet weak var unSelectAllButton: NSButton!
     @IBOutlet weak var customColorWell: NSColorWell!
     
@@ -82,34 +84,55 @@ class MainWindowController: NSWindowController {
     }
 
     // Show/Hide more editing options.
-    @IBAction func showEditingOptions(sender: NSButton){
-        if sender.state != 0 {
-            customizeView.hidden = false
-        }
-        else {
-            customizeView.hidden = true
+    @IBAction func showControlsWindow(sender: NSButton){
+        // If the window isn't visible, launch window.
+        if controlsWindow!.visible == false {
+        let controlsWindowController = NSWindowController(window: controlsWindow!)
+            
+            controlsWindowController.showWindow(nil)
         }
     }
 
-    // Enable Ghosting
-    @IBAction func selectCalcNotes(sender: NSButton){
-        // If the checkbox is unchecked, ghost the notes.
-        if sender.title == "Unselect Calculated Notes" {
-            markSelectedNotesAsKept(false)
+    
+    // Shows/Hide Calculated notes.
+    @IBAction func showCalculatedNotes(sender: NSButton) {
+        // If the button is checked.
+        if sender.state != 0 {
+            
+            // Show calculated notes as ghosted.
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
-            sender.title = "Select Calculated Notes"
+            selectCalcNotesButton!.enabled = true
         }
-        
-            // If checked,
+            // Hide calculated notes.
         else {
-            // Keep any selected notes, then select.
-            sender.title = "Unselect Calculated Notes"
-            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
+            showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
+            selectCalcNotesButton!.enabled = false
+            selectCalcNotesButton.state = 0
         }
     }
     
+    
+    
+    @IBAction func selectCalcNotes(sender: NSButton){
+        // If the button is checked, select notes.
+        if sender.state != 0 {
+            markSelectedNotesAsKept(false)
+            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
+        }
+        
+            // if the button is unchecked, change to ghosted.
+        else {
+            // Keep any selected notes, then select.
+            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
+        }
+    }
+    
+    
+    
+    
     // Shows additional notes.
     @IBAction func showAdditionalNotes(sender: NSButton) {
+        // If the button is checked.
         if sender.state != 0 {
             // Show chromatic notes.
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
@@ -122,52 +145,46 @@ class MainWindowController: NSWindowController {
             selectAdditionalNotesButton.state = 0
         }
     }
-
-
-    // I should probably include this.
-//    // Shows/Hide Calculated notes.
-//    @IBAction func showCalculatedNotes(sender: NSButton) {
-//        
-//        if sender.state != 0 {
-//            // Show chromatic notes.
-//            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
-//            selectCalcNotesButton!.enabled = true
-//        }
-//            // Hide chromatic notes that aren't in the scale.
-//        else {
-//            showNotesFromCalcedFretArray(true, _isDisplayed: false, _isGhosted: true)
-//            selectCalcNotesButton!.enabled = false
-//            selectAdditionalNotesButton.state = 0
-//        }
-//    }
     
     
     // Selects addition notes.
     @IBAction func selectAdditionalNotes(sender: NSButton) {
-        if sender.title == "Select Additional Notes" {
+        if sender.state != 0 {
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
-            sender.title = "Unselect Additional Notes"
         }
         else {
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
-            sender.title = "Select Additional Notes"
         }
+    }
+    
+    // Clear unselected
+    @IBAction func clearUnselected(sender: NSButton) {
+        markSelectedNotesAsKept(true)
+        
+        showCalcNotesButton.state = 0
+        showCalculatedNotes(showAdditionalNotesButton)
+        
+        showAdditionalNotesButton.state = 0
+        showCalculatedNotes(showAdditionalNotesButton)
+        
+        showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
+        showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
     }
     
     // Unselect all.
     @IBAction func unselectAll(sender: NSButton) {
         markSelectedNotesAsKept(false)
-        selectCalcNotesButton.title = "Select Calculated Notes"
-        selectAdditionalNotesButton.title = "Select Additional Notes"
+        showCalcNotesButton.state = 1
+        selectCalcNotesButton.state = 0
         selectAdditionalNotesButton.state = 0
         
         showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
     }
     
     //keep Selected Notes button. I might not need this.
-    @IBAction func keepSelectedNotes(sender: NSButton) {
-         markSelectedNotesAsKept(true)
-    }
+//    @IBAction func keepSelectedNotes(sender: NSButton) {
+//         markSelectedNotesAsKept(true)
+//    }
     
     
     @IBAction func changeUserColor(sender: NSColorWell) {
@@ -177,6 +194,25 @@ class MainWindowController: NSWindowController {
     
     @IBAction func changeTitle(sender: NSTextField) {
         displayTitle.stringValue = sender.stringValue
+        fretboardModel.setFretboardTitle(sender.stringValue)
+    }
+    
+    @IBAction func lockFretboard(sender: NSButton) {
+        let controller = NSWindowController(window: controlsWindow!)
+        // If the lock button is checked,
+        if sender.state != 0 {
+            // Hide the controls window and disable the show controls button.
+            showControlsButton.enabled = false
+            controller.close()
+            
+            }
+        // Else, the button isn't locked,
+        else {
+            showControlsButton.enabled = true
+            controller.showWindow(nil)
+        }
+        // Update Model.
+        fretboardModel.setIsLocked(sender.state)
     }
     
 
@@ -216,19 +252,17 @@ class MainWindowController: NSWindowController {
         displayModePopUp!.addItemWithTitle("Numbers 0-11")
         displayModePopUp!.addItemWithTitle("Numbers 0-46")
         displayModePopUp!.selectItemAtIndex(0)
-        displayModePopUp!.selectItemAtIndex(0)
-        
-        selectionModePopUp!.addItemWithTitle("Select")
-        selectionModePopUp!.addItemWithTitle("Ghost")
-        selectionModePopUp!.selectItemAtIndex(0)
-        
         
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(MainWindowController.reactToMouseUpEvent(_:)),
                                                          name: "noteViewMouseUpEvent",
                                                          object: nil)
         
-        //updateZeroTo46ToneCalculator()
+        //Update data from fretboardModel.
+        enterTitle!.stringValue = fretboardModel.getFretboardTitle()
+        displayTitle!.stringValue = fretboardModel.getFretboardTitle()
+        lockButton.state = fretboardModel.getIsLocked()
+        lockFretboard(lockButton)
         fretboardView.updateSubviews(fretboardModel.getFretboardArray())
         
         
@@ -257,25 +291,39 @@ class MainWindowController: NSWindowController {
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!,
                                         displayMode: displayModePopUp!.titleOfSelectedItem!,
-                                        myCalcColor: NSColor.yellowColor(),
-                                        selectNotes: selectionModePopUp.titleOfSelectedItem!)
+                                        myCalcColor: NSColor.yellowColor())
+                                        //selectNotes: selectionModePopUp.titleOfSelectedItem!)
         fillSpacesWithChromatic()
-        
-        
-        // If customizing, new scales set to ghost mode.
-//        if customizeButton.state != 0 {
-//            // GhostNotes.
-//           // markSelectedNotesAsKept(true)
-//            showNotesFromCalcedFretArray(true, _isDisplayed: true, _isGhosted: true)
-//        }
 
     }
     
     func updateFretboardModel() {
-
         
         // Update the NoteModel array on the fretboardController.
         updateToneArrayIntoFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
+        
+        
+        showCalcNotesButton.state = 1
+        showCalculatedNotes(showCalcNotesButton)
+
+        if selectCalcNotesButton.state == 0 {
+            selectCalcNotes(selectCalcNotesButton)
+            
+        }
+      
+        
+        // If auto selecting additional notes is not enabled during fretboardModelUpate, reset controls.
+        if selectAdditionalNotesButton.state == 0 {
+            showAdditionalNotesButton.state = 0
+          //  showAdditionalNotes(showAdditionalNotesButton)
+        }
+        
+
+        
+    
+        
+        
+        
         // update the fretboardView.
         fretboardView.updateSubviews(fretboardModel.getFretboardArray())
 
@@ -289,8 +337,8 @@ class MainWindowController: NSWindowController {
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                    scaleName: "Chromatic Scale",
                                    displayMode: displayModePopUp!.titleOfSelectedItem!,
-                                   myCalcColor: NSColor.redColor(),
-                                   selectNotes: "")
+                                   myCalcColor: NSColor.redColor())
+                                   //selectNotes: "")
         for index in 0...46 {
             let noteModel = zeroTo46ToneCalculator.getZeroTo46ToneArray()[index]
             let chromModel = chromatic.getZeroTo46ToneArray()[index]
@@ -323,7 +371,8 @@ class MainWindowController: NSWindowController {
     }
     
     func reactToMouseUpEvent(notification: NSNotification) {
-       // if canCustomize {
+        // If fretboard isn't locked.
+        if fretboardModel.getIsLocked() == 0 {
             // store the view number.
             let index = (notification.userInfo!["number"] as! Int)
             let noteModel = fretboardModel.getFretboardArray()[index]
@@ -350,6 +399,7 @@ class MainWindowController: NSWindowController {
             NSColorPanel.sharedColorPanel().close()
             // redraw.
             (notification.object as! NoteView).needsDisplay = true
+        }
     }
     
     func markSelectedNotesAsKept(doKeep: Bool) {

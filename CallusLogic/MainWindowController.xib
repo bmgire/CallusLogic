@@ -9,18 +9,22 @@
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
                 <outlet property="buildAndAddFretboardButton" destination="HY7-bx-Y4h" id="tM8-dq-Ozb"/>
+                <outlet property="clearUnselected" destination="yWg-BB-g6e" id="83D-el-xQX"/>
+                <outlet property="controlsWindow" destination="ZmY-jU-EHi" id="som-K4-MR8"/>
                 <outlet property="customColorWell" destination="YdV-i7-S6Z" id="vK0-uF-tZj"/>
                 <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="displayTitle" destination="Gf1-tE-EKP" id="BxX-ja-Pzb"/>
                 <outlet property="enterTitle" destination="DWu-Lf-MyA" id="k14-bq-248"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
+                <outlet property="lockButton" destination="4Q7-9U-NiY" id="pfO-Bw-dIj"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
                 <outlet property="selectAdditionalNotesButton" destination="Eso-Wg-JuJ" id="EWg-MG-Dvb"/>
                 <outlet property="selectCalcNotesButton" destination="SVY-IZ-z4e" id="Mtv-iD-1Ke"/>
-                <outlet property="selectionModePopUp" destination="jLZ-ej-hac" id="g0k-jA-w2G"/>
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
+                <outlet property="showCalcNotesButton" destination="15u-4A-ZlR" id="F99-P4-rX2"/>
+                <outlet property="showControlsButton" destination="6WS-kG-1cY" id="OO0-Vs-xx7"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -30,7 +34,7 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="50" y="250" width="1792" height="345"/>
+            <rect key="contentRect" x="93" y="195" width="1792" height="345"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="600" height="345"/>
             <value key="maxSize" type="size" width="1792" height="345"/>
@@ -53,6 +57,9 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="lockFretboard:" target="-2" id="rF5-2C-Pde"/>
+                                            </connections>
                                         </button>
                                         <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
                                             <rect key="frame" x="13" y="12" width="1780" height="262"/>
@@ -68,6 +75,16 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WS-kG-1cY">
+                                            <rect key="frame" x="14" y="297" width="128" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Show Controls" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="meB-Hy-zoV">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="showControlsWindow:" target="-2" id="1CM-ZU-99J"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="330" id="ml7-5l-D3P"/>
@@ -103,17 +120,19 @@
             <point key="canvasLocation" x="613" y="-133.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="HNp-we-Pcc"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="ZmY-jU-EHi" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+        <window title="ControlsWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="ZmY-jU-EHi" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" utility="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="112" width="960" height="191"/>
+            <rect key="contentRect" x="102" y="600" width="836" height="209"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <value key="minSize" type="size" width="836" height="218"/>
+            <value key="maxSize" type="size" width="836" height="218"/>
             <view key="contentView" id="mOj-6D-io6" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="960" height="191"/>
+                <rect key="frame" x="0.0" y="0.0" width="836" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="20" y="124" width="796" height="58"/>
+                        <rect key="frame" x="20" y="132" width="796" height="58"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
                                 <rect key="frame" x="18" y="41" width="168" height="17"/>
@@ -147,16 +166,6 @@
                                     <menu key="menu" id="fHN-VA-IXX"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HY7-bx-Y4h">
-                                <rect key="frame" x="383" y="6" width="127" height="32"/>
-                                <buttonCell key="cell" type="push" title="Add Fretboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="roc-fU-6dh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buildAndAddFretboard:" target="-2" id="hqg-2B-LdE"/>
-                                </connections>
-                            </button>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
                                 <rect key="frame" x="301" y="10" width="33" height="25"/>
                                 <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
@@ -165,48 +174,38 @@
                                     <menu key="menu" id="Jjv-FN-41y"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-ej-hac" userLabel="SelectionModePopUp">
-                                <rect key="frame" x="342" y="10" width="33" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="cFd-fO-C02">
+                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HY7-bx-Y4h">
+                                <rect key="frame" x="336" y="5" width="127" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add Fretboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="roc-fU-6dh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <menu key="menu" id="k7o-I4-qqa"/>
-                                </popUpButtonCell>
-                            </popUpButton>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buildAndAddFretboard:" target="-2" id="hqg-2B-LdE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="HY7-bx-Y4h" firstAttribute="leading" secondItem="jLZ-ej-hac" secondAttribute="trailing" constant="14" id="1Jl-8q-k5n"/>
+                            <constraint firstItem="HY7-bx-Y4h" firstAttribute="leading" secondItem="rxc-av-fsp" secondAttribute="trailing" constant="8" id="RVU-AP-g6T"/>
                             <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="pQy-l4-Z2n" secondAttribute="leading" constant="20" id="Z4A-16-Hnt"/>
-                            <constraint firstItem="jLZ-ej-hac" firstAttribute="leading" secondItem="rxc-av-fsp" secondAttribute="trailing" constant="8" id="cVd-Yc-BB0"/>
                             <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="8" id="egh-0T-hJc"/>
                             <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="8" id="hhq-TF-vNl"/>
                             <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="8" id="ugz-E3-mrt"/>
                         </constraints>
                     </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="20" y="20" width="718" height="107"/>
+                        <rect key="frame" x="20" y="7" width="718" height="128"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-wV-GZE">
-                                <rect key="frame" x="8" y="81" width="106" height="17"/>
+                                <rect key="frame" x="8" y="102" width="106" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="FretboardName: " id="gO7-0a-IML">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
-                                <rect key="frame" x="120" y="81" width="209" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" id="Mso-vz-WTS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="changeTitle:" target="-2" id="cws-Jp-ZbH"/>
-                                </connections>
-                            </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
-                                <rect key="frame" x="234" y="45" width="159" height="18"/>
+                                <rect key="frame" x="234" y="66" width="159" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Additional Notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -216,7 +215,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
-                                <rect key="frame" x="434" y="7" width="113" height="32"/>
+                                <rect key="frame" x="433" y="33" width="113" height="32"/>
                                 <buttonCell key="cell" type="push" title="Unselect All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -225,20 +224,10 @@
                                     <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jx7-u3-EYl">
-                                <rect key="frame" x="428" y="37" width="167" height="32"/>
-                                <buttonCell key="cell" type="push" title="Keep Selected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1x6-Ek-HIH">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="keepSelectedNotes:" target="-2" id="vvT-Qd-eMQ"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
-                                <rect key="frame" x="-1" y="30" width="204" height="32"/>
-                                <buttonCell key="cell" type="push" title="Unselect Calculated Notes" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="Sux-3b-eDF">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <rect key="frame" x="14" y="28" width="204" height="32"/>
+                                <buttonCell key="cell" type="check" title="Select Calculated Notes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Sux-3b-eDF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
@@ -246,14 +235,14 @@
                                 </connections>
                             </button>
                             <colorWell focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-i7-S6Z">
-                                <rect key="frame" x="133" y="8" width="55" height="24"/>
+                                <rect key="frame" x="148" y="6" width="55" height="24"/>
                                 <color key="color" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeUserColor:" target="-2" id="FFP-hA-b68"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
-                                <rect key="frame" x="3" y="12" width="130" height="17"/>
+                                <rect key="frame" x="18" y="10" width="130" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection Color" id="7Fe-Rk-Hsp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -261,20 +250,51 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ" userLabel="select Additional Notes Button">
-                                <rect key="frame" x="230" y="7" width="189" height="32"/>
-                                <buttonCell key="cell" type="push" title="Select Additional Notes" bezelStyle="rounded" alignment="left" enabled="NO" borderStyle="border" inset="2" id="DVn-uw-r4R">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <rect key="frame" x="230" y="28" width="189" height="32"/>
+                                <buttonCell key="cell" type="check" title="Select Additional Notes" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="DVn-uw-r4R">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="selectAdditionalNotes:" target="-2" id="Ai1-JX-igh"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15u-4A-ZlR" userLabel="Show Calced Notes Button">
+                                <rect key="frame" x="18" y="67" width="163" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show Calculated Notes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3eQ-ZU-RkW">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showCalculatedNotes:" target="-2" id="lka-yo-Kom"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWg-BB-g6e">
+                                <rect key="frame" x="433" y="66" width="184" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Unselected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nj2-VS-zJp">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearUnselected:" target="-2" id="xQW-s2-XHv"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
+                                <rect key="frame" x="120" y="102" width="209" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" id="Mso-vz-WTS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="changeTitle:" target="-2" id="cws-Jp-ZbH"/>
+                                </connections>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="209" y="-504.5"/>
+            <point key="canvasLocation" x="147" y="-495.5"/>
         </window>
     </objects>
     <resources>
