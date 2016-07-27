@@ -125,8 +125,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="102" y="600" width="976" height="209"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="836" height="218"/>
-            <value key="maxSize" type="size" width="836" height="218"/>
+            <value key="minSize" type="size" width="976" height="209"/>
+            <value key="maxSize" type="size" width="976" height="209"/>
             <view key="contentView" id="mOj-6D-io6" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="976" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
