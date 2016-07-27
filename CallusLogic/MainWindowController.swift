@@ -36,8 +36,6 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
-    @IBOutlet weak var displayModePopUp: NSPopUpButton!
-//    @IBOutlet weak var selectionModePopUp: NSPopUpButton!
     @IBOutlet weak var buildAndAddFretboardButton: NSButton!
     
     @IBOutlet weak var fretboardView: FretboardView!
@@ -53,6 +51,9 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var selectCalcNotesButton: NSButton!
     @IBOutlet weak var showAdditionalNotesButton: NSButton!
     @IBOutlet weak var selectAdditionalNotesButton: NSButton!
+   
+    @IBOutlet weak var displayModePopUp: NSPopUpButton!
+
     
     @IBOutlet weak var clearUnselected: NSButton!
     @IBOutlet weak var unSelectAllButton: NSButton!
@@ -181,11 +182,6 @@ class MainWindowController: NSWindowController {
         showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
     }
     
-    //keep Selected Notes button. I might not need this.
-//    @IBAction func keepSelectedNotes(sender: NSButton) {
-//         markSelectedNotesAsKept(true)
-//    }
-    
     
     @IBAction func changeUserColor(sender: NSColorWell) {
         fretboardModel.setUserColor(sender.color)
@@ -213,6 +209,14 @@ class MainWindowController: NSWindowController {
         }
         // Update Model.
         fretboardModel.setIsLocked(sender.state)
+    }
+    
+    @IBAction func updateDisplayMode(sender: NSPopUpButton) {
+        // Go through the fretboard array and change the dipslaymode to whatever is selected. 
+        for index in 0...137 {
+            fretboardModel.getFretboardArray()[index].setDisplayMode(sender.titleOfSelectedItem!)
+        }
+        fretboardView.updateSubviews(fretboardModel.getFretboardArray())
     }
     
 
@@ -290,7 +294,7 @@ class MainWindowController: NSWindowController {
         zeroTo46ToneCalculator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!,
-                                        displayMode: displayModePopUp!.titleOfSelectedItem!,
+                                        /*displayMode: displayModePopUp!.titleOfSelectedItem!, */
                                         myCalcColor: NSColor.yellowColor())
                                         //selectNotes: selectionModePopUp.titleOfSelectedItem!)
         fillSpacesWithChromatic()
@@ -336,7 +340,7 @@ class MainWindowController: NSWindowController {
         chromatic.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                    scaleName: "Chromatic Scale",
-                                   displayMode: displayModePopUp!.titleOfSelectedItem!,
+                                 /*  displayMode: displayModePopUp!.titleOfSelectedItem!, */
                                    myCalcColor: NSColor.redColor())
                                    //selectNotes: "")
         for index in 0...46 {
