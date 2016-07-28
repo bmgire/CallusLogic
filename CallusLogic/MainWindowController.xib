@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
@@ -34,15 +34,15 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="93" y="195" width="1792" height="345"/>
+            <rect key="contentRect" x="93" y="195" width="900" height="345"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="600" height="345"/>
             <value key="maxSize" type="size" width="1792" height="345"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="1792" height="345"/>
+                <rect key="frame" x="0.0" y="0.0" width="900" height="345"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
+                    <scrollView misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
                         <rect key="frame" x="-1" y="-1" width="1799" height="347"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="SZn-CE-0lE">
                             <rect key="frame" x="1" y="1" width="1797" height="330"/>
@@ -96,7 +96,9 @@
                                 <constraint firstItem="cTK-0c-ABv" firstAttribute="leading" secondItem="SZn-CE-0lE" secondAttribute="leading" id="1Lr-UE-jMx"/>
                                 <constraint firstItem="cTK-0c-ABv" firstAttribute="top" secondItem="SZn-CE-0lE" secondAttribute="top" id="2iv-MP-2vs"/>
                             </constraints>
+                            <color key="backgroundColor" red="0.99728972808806693" green="1" blue="0.60368305849060455" alpha="1" colorSpace="calibratedRGB"/>
                         </clipView>
+                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
                             <rect key="frame" x="1" y="331" width="1797" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -144,7 +146,7 @@
                             </textField>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
                                 <rect key="frame" x="20" y="9" width="36" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <menu key="menu" id="xXu-ex-Q0v"/>
@@ -152,7 +154,7 @@
                             </popUpButton>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
                                 <rect key="frame" x="72" y="9" width="33" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <menu key="menu" id="6pP-uc-zhV"/>
@@ -160,14 +162,14 @@
                             </popUpButton>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
                                 <rect key="frame" x="121" y="9" width="172" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <menu key="menu" id="fHN-VA-IXX"/>
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HY7-bx-Y4h">
-                                <rect key="frame" x="295" y="4" width="95" height="32"/>
+                                <rect key="frame" x="295" y="2" width="95" height="32"/>
                                 <buttonCell key="cell" type="push" title="Add Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="roc-fU-6dh" userLabel="Add Notes">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -263,7 +265,7 @@
                             </textField>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
                                 <rect key="frame" x="450" y="75" width="33" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <menu key="menu" id="Jjv-FN-41y"/>
