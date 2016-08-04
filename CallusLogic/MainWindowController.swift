@@ -9,7 +9,7 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController {
+class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableViewDelegate{
     
     //##########################################################
     // Class Variables (except the outlets)
@@ -23,7 +23,9 @@ class MainWindowController: NSWindowController {
     
     let NOTES_PER_STRING = 23
     
-    private var fretboardModel = FretboardModel()
+    private var fretboardModelArray: [FretboardModel] = [FretboardModel()]
+    
+    private var currentFretboardModel = FretboardModel()
     
     //##########################################################
     // Outlets to fretboard controls.
@@ -61,17 +63,20 @@ class MainWindowController: NSWindowController {
     
     @IBOutlet weak var customizeView: NSView!
     
+    @IBOutlet weak var tableView: NSTableView!
+    
+    @IBOutlet weak var addFretboard: NSButton!
     
     
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################
     
-    func getFretboardModel()-> FretboardModel {
-        return fretboardModel
+    func getFretboardModelArray()-> [FretboardModel] {
+        return fretboardModelArray
     }
-    func setFretboardModel(newModel: FretboardModel) {
-        fretboardModel = newModel
+    func setFretboardModelArray(newArray: [FretboardModel]) {
+        fretboardModelArray = newArray
     }
     
     //##########################################################
@@ -81,7 +86,7 @@ class MainWindowController: NSWindowController {
     @IBAction func buildAndAddFretboard(sender: NSButton) {
         markSelectedNotesAsKept(true)
         updateZeroTo46ToneCalculator()
-        updateFretboardModel()
+        updatecurrentFretboardModel()
     }
 
     // Show/Hide more editing options.
@@ -184,13 +189,14 @@ class MainWindowController: NSWindowController {
     
     
     @IBAction func changeUserColor(sender: NSColorWell) {
-        fretboardModel.setUserColor(sender.color)
+        currentFretboardModel.setUserColor(sender.color)
         // Closes the color panel.
     }
     
     @IBAction func changeTitle(sender: NSTextField) {
         displayTitle.stringValue = sender.stringValue
-        fretboardModel.setFretboardTitle(sender.stringValue)
+        currentFretboardModel.setFretboardTitle(sender.stringValue)
+        tableView!.reloadData()
     }
     
     @IBAction func lockFretboard(sender: NSButton) {
@@ -208,15 +214,20 @@ class MainWindowController: NSWindowController {
             controller.showWindow(nil)
         }
         // Update Model.
-        fretboardModel.setIsLocked(sender.state)
+        currentFretboardModel.setIsLocked(sender.state)
     }
     
     @IBAction func updateDisplayMode(sender: NSPopUpButton) {
         // Go through the fretboard array and change the dipslaymode to whatever is selected. 
         for index in 0...137 {
-            fretboardModel.getFretboardArray()[index].setDisplayMode(sender.titleOfSelectedItem!)
+            currentFretboardModel.getFretboardArray()[index].setDisplayMode(sender.titleOfSelectedItem!)
         }
-        fretboardView.updateSubviews(fretboardModel.getFretboardArray())
+        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+    }
+    
+    @IBAction func addFretboard(sender: NSButton) {
+        fretboardModelArray.append(FretboardModel())
+        tableView!.reloadData()
     }
     
 
@@ -224,6 +235,20 @@ class MainWindowController: NSWindowController {
     //##########################################################
     // Window Controller overridden functions.
     //##########################################################
+    
+    override func awakeFromNib() {
+        if fretboardModelArray.count != 0 {
+            currentFretboardModel = fretboardModelArray[0]
+        }
+        
+        
+        //Update data from currentFretboardModel.
+        enterTitle!.stringValue = currentFretboardModel.getFretboardTitle()
+        displayTitle!.stringValue = currentFretboardModel.getFretboardTitle()
+        lockButton.state = currentFretboardModel.getIsLocked()
+        lockFretboard(lockButton)
+        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+    }
     
     override var windowNibName: String? {
         return "MainWindowController"
@@ -261,13 +286,15 @@ class MainWindowController: NSWindowController {
                                                          selector: #selector(MainWindowController.reactToMouseUpEvent(_:)),
                                                          name: "noteViewMouseUpEvent",
                                                          object: nil)
-        
-        //Update data from fretboardModel.
-        enterTitle!.stringValue = fretboardModel.getFretboardTitle()
-        displayTitle!.stringValue = fretboardModel.getFretboardTitle()
-        lockButton.state = fretboardModel.getIsLocked()
+                
+        //Update data from currentFretboardModel.
+        enterTitle!.stringValue = currentFretboardModel.getFretboardTitle()
+        displayTitle!.stringValue = currentFretboardModel.getFretboardTitle()
+        lockButton.state = currentFretboardModel.getIsLocked()
         lockFretboard(lockButton)
-        fretboardView.updateSubviews(fretboardModel.getFretboardArray())
+        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+        
+        
         
         
     }
@@ -301,10 +328,10 @@ class MainWindowController: NSWindowController {
 
     }
     
-    func updateFretboardModel() {
+    func updatecurrentFretboardModel() {
         
         // Update the NoteModel array on the fretboardController.
-        updateToneArrayIntoFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
+        updateToneArrayIntocurrentFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
         
         
         showCalcNotesButton.state = 1
@@ -316,7 +343,7 @@ class MainWindowController: NSWindowController {
         }
       
         
-        // If auto selecting additional notes is not enabled during fretboardModelUpate, reset controls.
+        // If auto selecting additional notes is not enabled during currentFretboardModelUpate, reset controls.
         if selectAdditionalNotesButton.state == 0 {
             showAdditionalNotesButton.state = 0
           //  showAdditionalNotes(showAdditionalNotesButton)
@@ -329,7 +356,7 @@ class MainWindowController: NSWindowController {
         
         
         // update the fretboardView.
-        fretboardView.updateSubviews(fretboardModel.getFretboardArray())
+        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
 
     }
     
@@ -358,7 +385,7 @@ class MainWindowController: NSWindowController {
     // Shows notes on the fretboard.
     func showNotesOnFretboard( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...137 {
-            let noteModel = fretboardModel.getFretboardArray()[index]
+            let noteModel = currentFretboardModel.getFretboardArray()[index]
             
             // only edits the specified note: in the scale or not in the scale.
             if noteModel.getIsKept() != true {
@@ -366,26 +393,26 @@ class MainWindowController: NSWindowController {
                     noteModel.setIsDisplayed(_isDisplayed)
                     noteModel.setIsGhost(_isGhosted)
                     if _isInScale == true {
-                        noteModel.setMyColor(fretboardModel.getUserColor())
+                        noteModel.setMyColor(currentFretboardModel.getUserColor())
                     }
                 }
             }
         }
-        fretboardView.updateSubviews(fretboardModel.getFretboardArray())
+        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
     }
     
     func reactToMouseUpEvent(notification: NSNotification) {
         // If fretboard isn't locked.
-        if fretboardModel.getIsLocked() == 0 {
+        if currentFretboardModel.getIsLocked() == 0 {
             // store the view number.
             let index = (notification.userInfo!["number"] as! Int)
-            let noteModel = fretboardModel.getFretboardArray()[index]
+            let noteModel = currentFretboardModel.getFretboardArray()[index]
         
             // if myColor hasn't been updated to the new userColor, redraw.
-            if noteModel.getMyColor() != fretboardModel.getUserColor() {
+            if noteModel.getMyColor() != currentFretboardModel.getUserColor() {
                 
                 // Set the color correctly.
-                noteModel.setMyColor(fretboardModel.getUserColor())
+                noteModel.setMyColor(currentFretboardModel.getUserColor())
                 
                 // and if it isn't ghosted, just changed the color, don't ghost.
                 if noteModel.getIsGhost() == true {
@@ -408,7 +435,7 @@ class MainWindowController: NSWindowController {
     
     func markSelectedNotesAsKept(doKeep: Bool) {
         for index in 0...137 {
-            let model = fretboardModel.getFretboardArray()[index]
+            let model = currentFretboardModel.getFretboardArray()[index]
             
             // If the view is displayed, determine whether to keep.
             if model.getIsDisplayed() == true {
@@ -429,10 +456,10 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    func updateToneArrayIntoFretboardModel(toneArray: [NoteModel]) {
+    func updateToneArrayIntocurrentFretboardModel(toneArray: [NoteModel]) {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
-                let noteModel = (fretboardModel.getFretboardArray()[noteIndex + (stringIndex * NOTES_PER_STRING)])
+                let noteModel = (currentFretboardModel.getFretboardArray()[noteIndex + (stringIndex * NOTES_PER_STRING)])
                 let zeroTo46Model = toneArray[noteIndex + offsets[stringIndex]]
                 
                 // For all noteModels not marked as kept, set the noteModel to the zeroTo46 Model.
@@ -442,38 +469,41 @@ class MainWindowController: NSWindowController {
             }
         }
     }
+    
+    func setItemImage() {
+        let view = window?.contentView
+        let data = view!.dataWithPDFInsideRect(view!.bounds)
+        let image = NSImage(data: data)
+        currentFretboardModel.setItemImage(image!)
+    }
+
+    //##########################################################
+    // TableViewDataSource functions.
+    //##########################################################
+    
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return fretboardModelArray.count
+    }
+    
+    func tableView(tableView: NSTableView,
+                   objectValueForTableColumn tableColumn: NSTableColumn?,
+                                             row: Int) -> AnyObject? {
+        return fretboardModelArray[row].getFretboardTitle()
+    }
+//        return fretboardModelArray[row].getFretboardTitle()
+    
+    
+    //##########################################################
+    // TableViewDelegate.
+    //##########################################################
+
+    func tableViewSelectionDidChange(notification: NSNotification) {
+      // Update the view to display the selected fretboard. 
+        let row = tableView.selectedRow
+        
+    }
 }
 
 
 
-//##########################################################
-// Actions.
-//##########################################################
-//    // Root update
-//    @IBAction func updateRoot(sender: NSPopUpButton) {
-//            updateZeroTo46ToneCalculator()
-//            updateFretboardModel()
-//
-//    }
-//    // Accidental update
-//    @IBAction func updateAccidental(sender: NSPopUpButton) {
-//            updateZeroTo46ToneCalculator()
-//            updateFretboardModel()
-//
-//    }
-//    // Scale update.
-//    @IBAction func updateScale(sender: NSPopUpButton) {
-//            updateZeroTo46ToneCalculator()
-//            updateFretboardModel()
-//    }
-//    // Display update.
-//    @IBAction func updateFretDisplay(sender: NSPopUpButton) {
-//            updateZeroTo46ToneCalculator()
-//            updateFretboardModel()
-//    }
-//
-//    @IBAction func updateCalculatedColor(sender: NSColorWell) {
-//
-//
-//    }
 

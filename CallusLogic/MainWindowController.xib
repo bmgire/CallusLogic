@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
+                <outlet property="addFretboard" destination="Y8k-fE-Skm" id="PgK-ew-J2n"/>
                 <outlet property="buildAndAddFretboardButton" destination="HY7-bx-Y4h" id="tM8-dq-Ozb"/>
                 <outlet property="clearUnselected" destination="yWg-BB-g6e" id="83D-el-xQX"/>
                 <outlet property="controlsWindow" destination="ZmY-jU-EHi" id="som-K4-MR8"/>
@@ -25,6 +26,7 @@
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
                 <outlet property="showCalcNotesButton" destination="15u-4A-ZlR" id="F99-P4-rX2"/>
                 <outlet property="showControlsButton" destination="6WS-kG-1cY" id="OO0-Vs-xx7"/>
+                <outlet property="tableView" destination="6k0-hI-iQf" id="hlS-Nb-c4O"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -119,18 +121,17 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="613" y="-133.5"/>
+            <point key="canvasLocation" x="24" y="-101.5"/>
         </window>
-        <userDefaultsController representsSharedInstance="YES" id="HNp-we-Pcc"/>
         <window title="ControlsWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="ZmY-jU-EHi" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" utility="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="102" y="600" width="976" height="209"/>
+            <rect key="contentRect" x="102" y="600" width="677" height="209"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="976" height="209"/>
             <value key="maxSize" type="size" width="976" height="209"/>
             <view key="contentView" id="mOj-6D-io6" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="976" height="209"/>
+                <rect key="frame" x="0.0" y="0.0" width="677" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
@@ -301,10 +302,103 @@
                     </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="217" y="-495.5"/>
+            <point key="canvasLocation" x="-87.5" y="-476.5"/>
+        </window>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="7c8-ko-7t9" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="112" width="280" height="220"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <view key="contentView" id="V9H-5c-K1A" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="220"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y8k-fE-Skm">
+                        <rect key="frame" x="20" y="9" width="21" height="21"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Ia-p5-Wmq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addFretboard:" target="-2" id="oTm-D7-uXG"/>
+                        </connections>
+                    </button>
+                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvL-W5-sOv">
+                        <rect key="frame" x="15" y="37" width="245" height="157"/>
+                        <clipView key="contentView" ambiguous="YES" id="eAa-yv-YV5">
+                            <rect key="frame" x="1" y="23" width="243" height="133"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="q89-xv-HsG" viewBased="YES" id="6k0-hI-iQf">
+                                    <rect key="frame" x="0.0" y="0.0" width="243" height="133"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn width="240" minWidth="40" maxWidth="1000" id="G7T-Zd-Qty">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Fretboards">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="w3b-vp-SUi">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="HWv-Uw-N9z">
+                                                    <rect key="frame" x="1" y="1" width="240" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cwr-We-51h">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Rc1-9B-4rh">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                <connections>
+                                                                    <binding destination="HWv-Uw-N9z" name="value" keyPath="objectValue" id="iXv-gT-1ym"/>
+                                                                </connections>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="Cwr-We-51h" id="DYH-HK-CiG"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="eHm-S3-SKC"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mSp-1C-DiP">
+                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="fHJ-su-43l">
+                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <tableHeaderView key="headerView" id="q89-xv-HsG">
+                            <rect key="frame" x="0.0" y="0.0" width="243" height="23"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </tableHeaderView>
+                    </scrollView>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="494" y="-455"/>
         </window>
     </objects>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="RightHandedFretboard" width="4000" height="502"/>
     </resources>
 </document>

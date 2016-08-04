@@ -41,9 +41,9 @@ class Document: NSDocument, NSWindowDelegate {
         // end editing for nothing.
        mainWindowController.window?.endEditingFor(nil)
         
-        // Create an NSDataObject from the mainWindowControllers fretboardModel
-        return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getFretboardModel())
-        
+        // Create an NSDataObject from the mainWindowControllers fretboardModelArray
+        // old.... =  return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getCurrentFretboardModel())
+        return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getFretboardModelArray())
         
         //throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
@@ -53,7 +53,7 @@ class Document: NSDocument, NSWindowDelegate {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         
         print("About to read data of type \(typeName).");
-        mainWindowController.setFretboardModel(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! FretboardModel)
+        mainWindowController.setFretboardModelArray(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [FretboardModel])
         
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.

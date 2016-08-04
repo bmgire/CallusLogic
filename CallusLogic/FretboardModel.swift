@@ -27,7 +27,8 @@ class FretboardModel: NSObject, NSCoding {
     // The userColor for note selection.
     private var userColor: NSColor? = NSColor.yellowColor()
     
-    
+    private var itemImage: NSImage? = NSImage()
+
     
     //##########################################################
     // MARK: - Encoding
@@ -51,6 +52,12 @@ class FretboardModel: NSObject, NSCoding {
         }
         // Encode isLocked.
         aCoder.encodeInteger(isLocked, forKey: "isLocked")
+        
+        if let itemImage = itemImage {
+            aCoder.encodeObject(itemImage, forKey: "itemImage")
+        }
+        
+        
     }
     
     //##########################################################
@@ -72,6 +79,8 @@ class FretboardModel: NSObject, NSCoding {
         
         // Decode isLocked.
         isLocked = aDecoder.decodeIntegerForKey("isLocked")
+        
+        itemImage = aDecoder.decodeObjectForKey("itemImage") as! NSImage?
         
         super.init()
     }
@@ -105,6 +114,15 @@ class FretboardModel: NSObject, NSCoding {
     func getIsLocked()-> Int {
         return isLocked
     }
+    
+    func setItemImage(newImage: NSImage) {
+        itemImage = newImage
+    }
+    
+    func getItemImage()-> NSImage {
+        return itemImage!
+    }
+    
 
     
     // Reqiured init.
