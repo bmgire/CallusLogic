@@ -25,8 +25,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     private var fretboardModelArray: [FretboardModel] = [FretboardModel()]
     
-    private var currentFretboardModel = FretboardModel()
+    private var modelIndex = 0
     
+    private var sourceIndex = 0
     //##########################################################
     // Outlets to fretboard controls.
     //##########################################################
@@ -86,7 +87,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBAction func buildAndAddFretboard(sender: NSButton) {
         markSelectedNotesAsKept(true)
         updateZeroTo46ToneCalculator()
-        updatecurrentFretboardModel()
+        updatefretboardModel()
     }
 
     // Show/Hide more editing options.
@@ -189,13 +190,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     
     @IBAction func changeUserColor(sender: NSColorWell) {
-        currentFretboardModel.setUserColor(sender.color)
+        fretboardModelArray[modelIndex].setUserColor(sender.color)
         // Closes the color panel.
     }
     
     @IBAction func changeTitle(sender: NSTextField) {
         displayTitle.stringValue = sender.stringValue
-        currentFretboardModel.setFretboardTitle(sender.stringValue)
+        fretboardModelArray[modelIndex].setFretboardTitle(sender.stringValue)
         tableView!.reloadData()
     }
     
@@ -214,15 +215,15 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             controller.showWindow(nil)
         }
         // Update Model.
-        currentFretboardModel.setIsLocked(sender.state)
+        fretboardModelArray[modelIndex].setIsLocked(sender.state)
     }
     
     @IBAction func updateDisplayMode(sender: NSPopUpButton) {
         // Go through the fretboard array and change the dipslaymode to whatever is selected. 
         for index in 0...137 {
-            currentFretboardModel.getFretboardArray()[index].setDisplayMode(sender.titleOfSelectedItem!)
+            fretboardModelArray[modelIndex].getFretboardArray()[index].setDisplayMode(sender.titleOfSelectedItem!)
         }
-        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+        updateFretboardView()
     }
     
     @IBAction func addFretboard(sender: NSButton) {
@@ -230,25 +231,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         tableView!.reloadData()
     }
     
-
+    @IBAction func setTitle(sender: NSTextField) {
+        fretboardModelArray[modelIndex].setFretboardTitle(sender.stringValue)
+        tableView!.reloadData()
+    }
 
     //##########################################################
     // Window Controller overridden functions.
     //##########################################################
-    
-    override func awakeFromNib() {
-        if fretboardModelArray.count != 0 {
-            currentFretboardModel = fretboardModelArray[0]
-        }
-        
-        
-        //Update data from currentFretboardModel.
-        enterTitle!.stringValue = currentFretboardModel.getFretboardTitle()
-        displayTitle!.stringValue = currentFretboardModel.getFretboardTitle()
-        lockButton.state = currentFretboardModel.getIsLocked()
-        lockFretboard(lockButton)
-        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
-    }
     
     override var windowNibName: String? {
         return "MainWindowController"
@@ -287,14 +277,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                                          name: "noteViewMouseUpEvent",
                                                          object: nil)
                 
-        //Update data from currentFretboardModel.
-        enterTitle!.stringValue = currentFretboardModel.getFretboardTitle()
-        displayTitle!.stringValue = currentFretboardModel.getFretboardTitle()
-        lockButton.state = currentFretboardModel.getIsLocked()
+        //Update data from fretboardModelArray[modelIndex].
+        enterTitle!.stringValue = fretboardModelArray[modelIndex].getFretboardTitle()
+        displayTitle!.stringValue = fretboardModelArray[modelIndex].getFretboardTitle()
+        lockButton.state = fretboardModelArray[modelIndex].getIsLocked()
         lockFretboard(lockButton)
-        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+        updateFretboardView()
         
-        
+        tableView.registerForDraggedTypes([NSPasteboardTypeString])
         
         
     }
@@ -328,10 +318,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
 
     }
     
-    func updatecurrentFretboardModel() {
+    func updatefretboardModel() {
         
         // Update the NoteModel array on the fretboardController.
-        updateToneArrayIntocurrentFretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
+        updateToneArrayIntofretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
         
         
         showCalcNotesButton.state = 1
@@ -343,21 +333,20 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
       
         
-        // If auto selecting additional notes is not enabled during currentFretboardModelUpate, reset controls.
+        // If auto selecting additional notes is not enabled during fretboardModelArray[modelIndex]Upate, reset controls.
         if selectAdditionalNotesButton.state == 0 {
             showAdditionalNotesButton.state = 0
           //  showAdditionalNotes(showAdditionalNotesButton)
         }
         
 
-        
-    
-        
-        
-        
         // update the fretboardView.
-        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+        updateFretboardView()
 
+    }
+    
+    func updateFretboardView() {
+        fretboardView.updateSubviews(fretboardModelArray[modelIndex].getFretboardArray())
     }
     
     
@@ -385,7 +374,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // Shows notes on the fretboard.
     func showNotesOnFretboard( _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...137 {
-            let noteModel = currentFretboardModel.getFretboardArray()[index]
+            let noteModel = fretboardModelArray[modelIndex].getFretboardArray()[index]
             
             // only edits the specified note: in the scale or not in the scale.
             if noteModel.getIsKept() != true {
@@ -393,26 +382,26 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                     noteModel.setIsDisplayed(_isDisplayed)
                     noteModel.setIsGhost(_isGhosted)
                     if _isInScale == true {
-                        noteModel.setMyColor(currentFretboardModel.getUserColor())
+                        noteModel.setMyColor(fretboardModelArray[modelIndex].getUserColor())
                     }
                 }
             }
         }
-        fretboardView.updateSubviews(currentFretboardModel.getFretboardArray())
+        updateFretboardView()
     }
     
     func reactToMouseUpEvent(notification: NSNotification) {
         // If fretboard isn't locked.
-        if currentFretboardModel.getIsLocked() == 0 {
+        if fretboardModelArray[modelIndex].getIsLocked() == 0 {
             // store the view number.
             let index = (notification.userInfo!["number"] as! Int)
-            let noteModel = currentFretboardModel.getFretboardArray()[index]
+            let noteModel = fretboardModelArray[modelIndex].getFretboardArray()[index]
         
             // if myColor hasn't been updated to the new userColor, redraw.
-            if noteModel.getMyColor() != currentFretboardModel.getUserColor() {
+            if noteModel.getMyColor() != fretboardModelArray[modelIndex].getUserColor() {
                 
                 // Set the color correctly.
-                noteModel.setMyColor(currentFretboardModel.getUserColor())
+                noteModel.setMyColor(fretboardModelArray[modelIndex].getUserColor())
                 
                 // and if it isn't ghosted, just changed the color, don't ghost.
                 if noteModel.getIsGhost() == true {
@@ -435,7 +424,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     func markSelectedNotesAsKept(doKeep: Bool) {
         for index in 0...137 {
-            let model = currentFretboardModel.getFretboardArray()[index]
+            let model = fretboardModelArray[modelIndex].getFretboardArray()[index]
             
             // If the view is displayed, determine whether to keep.
             if model.getIsDisplayed() == true {
@@ -456,10 +445,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
-    func updateToneArrayIntocurrentFretboardModel(toneArray: [NoteModel]) {
+    func updateToneArrayIntofretboardModel(toneArray: [NoteModel]) {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){
-                let noteModel = (currentFretboardModel.getFretboardArray()[noteIndex + (stringIndex * NOTES_PER_STRING)])
+                let noteModel = (fretboardModelArray[modelIndex].getFretboardArray()[noteIndex + (stringIndex * NOTES_PER_STRING)])
                 let zeroTo46Model = toneArray[noteIndex + offsets[stringIndex]]
                 
                 // For all noteModels not marked as kept, set the noteModel to the zeroTo46 Model.
@@ -474,8 +463,25 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         let view = window?.contentView
         let data = view!.dataWithPDFInsideRect(view!.bounds)
         let image = NSImage(data: data)
-        currentFretboardModel.setItemImage(image!)
+        fretboardModelArray[modelIndex].setItemImage(image!)
     }
+    
+    func reArrangeModelArray(source: Int, destination: Int) {
+        
+        
+        let model = fretboardModelArray[source]
+        fretboardModelArray.insert(model, atIndex: destination)
+        
+        if  destination > source {
+            fretboardModelArray.removeAtIndex(source)
+        }
+        else{
+            fretboardModelArray.removeAtIndex(source + 1)
+        }
+        
+        
+    }
+    
 
     //##########################################################
     // TableViewDataSource functions.
@@ -490,20 +496,73 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                              row: Int) -> AnyObject? {
         return fretboardModelArray[row].getFretboardTitle()
     }
-//        return fretboardModelArray[row].getFretboardTitle()
+    
+    // Writes the selected row to the pasteboard.
+    func tableView(tableView: NSTableView,
+                   writeRowsWithIndexes rowIndexes: NSIndexSet,
+                                        toPasteboard pboard: NSPasteboard) -> Bool {
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(rowIndexes)
+        
+        pboard.declareTypes([NSPasteboardTypeString], owner: self)
+        pboard.setData(data, forType:  "rowData")
+        sourceIndex = rowIndexes.firstIndex
+        return true
+    }
+    
+    
+    
+    
+    //What kind of drag and drop operation should I perform
+    func tableView(tableView: NSTableView,
+                   validateDrop info: NSDraggingInfo,
+                                proposedRow row: Int,
+                                            proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+        
+        if (dropOperation == .Above) {
+            return .Move
+        }
+        return .None
+    }
+    
+    
+    // Allow Drop
+    func tableView(tableView: NSTableView,
+                     acceptDrop info: NSDraggingInfo,
+                                row: Int,
+                                dropOperation: NSTableViewDropOperation) -> Bool {
+        
+        
+        reArrangeModelArray(sourceIndex, destination: row)
+        tableView.reloadData()
+
+        return true
+    }
+    
+    // Setting Values
+    
+    
+//        func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+//        let string = (object as! NSTextFieldCell).stringValue
+//            fretboardModelArray[row].setFretboardTitle(string)
+//    }
     
     
     //##########################################################
     // TableViewDelegate.
     //##########################################################
 
+    // Row Selection.
     func tableViewSelectionDidChange(notification: NSNotification) {
-      // Update the view to display the selected fretboard. 
-        let row = tableView.selectedRow
+      // Update the view to display the selected fretboard.
+        modelIndex = tableView.selectedRow
+        updateFretboardView()
         
     }
+    
+   
+    
 }
-
 
 
 
