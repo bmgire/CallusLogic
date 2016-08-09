@@ -33,8 +33,6 @@ class NoteModel: NSObject, NSCoding {
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
     private var displayMode = "Notes"
      
-   
-    
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(note, forKey: "note")

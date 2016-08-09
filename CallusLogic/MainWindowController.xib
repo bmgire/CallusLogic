@@ -16,16 +16,15 @@
                 <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="displayTitle" destination="Gf1-tE-EKP" id="BxX-ja-Pzb"/>
-                <outlet property="enterTitle" destination="DWu-Lf-MyA" id="k14-bq-248"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="lockButton" destination="4Q7-9U-NiY" id="pfO-Bw-dIj"/>
+                <outlet property="playlistPanel" destination="7c8-ko-7t9" id="5Ob-fI-54D"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
                 <outlet property="selectAdditionalNotesButton" destination="Eso-Wg-JuJ" id="EWg-MG-Dvb"/>
                 <outlet property="selectCalcNotesButton" destination="SVY-IZ-z4e" id="Mtv-iD-1Ke"/>
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
                 <outlet property="showCalcNotesButton" destination="15u-4A-ZlR" id="F99-P4-rX2"/>
-                <outlet property="showControlsButton" destination="6WS-kG-1cY" id="OO0-Vs-xx7"/>
                 <outlet property="tableView" destination="6k0-hI-iQf" id="hlS-Nb-c4O"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -77,16 +76,6 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WS-kG-1cY">
-                                            <rect key="frame" x="14" y="297" width="128" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Show Controls" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="meB-Hy-zoV">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="showControlsWindow:" target="-2" id="1CM-ZU-99J"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="330" id="ml7-5l-D3P"/>
@@ -188,16 +177,8 @@
                         </constraints>
                     </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="20" y="7" width="649" height="128"/>
+                        <rect key="frame" x="20" y="7" width="649" height="110"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-wV-GZE">
-                                <rect key="frame" x="8" y="102" width="106" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="FretboardName: " id="gO7-0a-IML">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
                                 <rect key="frame" x="234" y="66" width="159" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Additional Notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
@@ -250,20 +231,9 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="showCalculatedNotes:" target="-2" id="lka-yo-Kom"/>
+                                    <action selector="showCalcNotes:" target="-2" id="p7l-Es-ttA"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-Lf-MyA">
-                                <rect key="frame" x="120" y="102" width="209" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" id="Mso-vz-WTS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="changeTitle:" target="-2" id="cws-Jp-ZbH"/>
-                                </connections>
-                            </textField>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
                                 <rect key="frame" x="450" y="75" width="33" height="25"/>
                                 <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
@@ -305,7 +275,7 @@
             <point key="canvasLocation" x="-87.5" y="-476.5"/>
         </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="7c8-ko-7t9" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="112" width="280" height="220"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
@@ -354,7 +324,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="241" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="6ID-4y-gpJ">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -363,6 +333,9 @@
                                                                     <binding destination="EhS-I0-oC8" name="value" keyPath="objectValue" id="gNX-TO-pUL"/>
                                                                 </connections>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <action selector="setTitle:" target="-2" id="XaV-8d-gg4"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <connections>
@@ -381,7 +354,7 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mSp-1C-DiP">
-                            <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
+                            <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="fHJ-su-43l">

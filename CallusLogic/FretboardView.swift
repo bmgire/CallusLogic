@@ -204,18 +204,18 @@ class FretboardView: NSView {
                 if noteIndex != 0 {
                     note.rotateByAngle(radians[stringIndex] * CGFloat(180/M_PI))
                 }
-                // Change the note fonts for higher frets... for aesthetics.
-                if noteIndex > 19 {
-                    if noteIndex == 20 {
-                        note.getNoteModel().setNoteFontSize(14)
-                    }
-                    else if noteIndex == 21 {
-                        note.getNoteModel().setNoteFontSize(13)
-                    }
-                    else if noteIndex == 22 {
-                        note.getNoteModel().setNoteFontSize(12)
-                    }
-                }
+//                // Change the note fonts for higher frets... for aesthetics.
+//                if noteIndex > 19 {
+//                    if noteIndex == 20 {
+//                        note.getNoteModel().setNoteFontSize(14)
+//                    }
+//                    else if noteIndex == 21 {
+//                        note.getNoteModel().setNoteFontSize(13)
+//                    }
+//                    else if noteIndex == 22 {
+//                        note.getNoteModel().setNoteFontSize(12)
+//                    }
+//                }
                 noteViewArray.append(note)
             }
         }
@@ -223,7 +223,7 @@ class FretboardView: NSView {
     
     // Add all NoteViews as subviews. 
     private func addSubviews() {
-        for index in 0...(rectArray.count - 1) {
+        for index in 0...(noteViewArray.count - 1) {
             addSubview(noteViewArray[index])
         }
     }

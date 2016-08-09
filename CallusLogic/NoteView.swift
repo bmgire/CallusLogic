@@ -158,6 +158,8 @@ class NoteView: NSView {
             // Set orientation.
             paraStyle.alignment = .Right
             
+            
+            
             // definte a font.
             let font = NSFont.systemFontOfSize(noteModel.getNoteFontSize())
             

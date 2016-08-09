@@ -29,6 +29,16 @@ class FretboardModel: NSObject, NSCoding {
     
     private var itemImage: NSImage? = NSImage()
 
+    private var showCalcedNotes = 1
+    
+    private var selectCalcedNotes = 0
+    
+    private var showAdditionalNotes = 0
+    
+    private var selectAdditionalNotes = 0
+    
+    private var displayMode = 0
+    
     
     //##########################################################
     // MARK: - Encoding
@@ -53,11 +63,23 @@ class FretboardModel: NSObject, NSCoding {
         // Encode isLocked.
         aCoder.encodeInteger(isLocked, forKey: "isLocked")
         
-        if let itemImage = itemImage {
-            aCoder.encodeObject(itemImage, forKey: "itemImage")
-        }
+        // Encode isLocked.
+        aCoder.encodeInteger(isLocked, forKey: "isLocked")
         
+        // Encode showCalcedNotes.
+        aCoder.encodeInteger(showCalcedNotes, forKey: "showCalcedNotes")
         
+        // Encode selectCalcedNotes.
+        aCoder.encodeInteger(selectCalcedNotes, forKey: "selectCalcedNotes")
+        
+        // Encode showAdditionalNotes.
+        aCoder.encodeInteger(showAdditionalNotes, forKey: "showAdditionalNotes")
+        
+        // Encode selectAdditionalNotes.
+        aCoder.encodeInteger(selectAdditionalNotes, forKey: "selectAdditionalNotes")
+        
+        // Encode displayMode.
+        aCoder.encodeInteger(displayMode, forKey: "displayMode")
     }
     
     //##########################################################
@@ -80,7 +102,11 @@ class FretboardModel: NSObject, NSCoding {
         // Decode isLocked.
         isLocked = aDecoder.decodeIntegerForKey("isLocked")
         
-        itemImage = aDecoder.decodeObjectForKey("itemImage") as! NSImage?
+        showCalcedNotes = aDecoder.decodeIntegerForKey("showCalcedNotes")
+        selectCalcedNotes = aDecoder.decodeIntegerForKey("selectCalcedNotes")
+        showAdditionalNotes = aDecoder.decodeIntegerForKey("showAdditionalNotes")
+        selectAdditionalNotes = aDecoder.decodeIntegerForKey("selectAdditionalNotes")
+        displayMode = aDecoder.decodeIntegerForKey("displayMode")
         
         super.init()
     }
@@ -123,7 +149,42 @@ class FretboardModel: NSObject, NSCoding {
         return itemImage!
     }
     
+    func setShowCalcedNotes(int: Int) {
+        showCalcedNotes = int
+    }
+    
+    func getShowCalcedNotes()->Int {
+        return showCalcedNotes
+    }
 
+    func setSelectCalcedNotes(int: Int) {
+        selectCalcedNotes = int
+    }
+    func getSelectCalcedNotes()->Int {
+        return selectCalcedNotes
+    }
+    
+    func setShowAdditionalNotes(int: Int) {
+        showAdditionalNotes = int
+    }
+    func getShowAdditionalNotes()->Int {
+        return showAdditionalNotes
+    }
+    
+    func setSelectAdditionalNotes(int: Int) {
+        selectAdditionalNotes = int
+    }
+    func getSelectAdditionalNotes()->Int {
+        return selectAdditionalNotes
+    }
+    
+    func setDisplayMode(index: Int) {
+        displayMode = index
+    }
+    func getDisplayMode()->Int {
+        return displayMode
+    }
+    
     
     // Reqiured init.
     override init(){
