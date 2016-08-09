@@ -9,7 +9,7 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableViewDelegate{
+class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableViewDelegate, NSWindowDelegate{
     
     //##########################################################
     // Class Variables (except the outlets)
@@ -91,10 +91,52 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // MARK: - Action functions.
     //##########################################################
     
-    @IBAction func buildAndAddFretboard(sender: NSButton) {
+    @IBAction func addCalculatedFretboard(sender: NSButton) {
         markSelectedNotesAsKept(true)
         updateZeroTo46ToneCalculator()
         updatefretboardModel()
+    }
+    
+    @IBAction func addFretboard(sender: NSButton) {
+        addAFretboard()
+    }
+    
+    func addAFretboard() {
+        
+        
+        let undo = document?.undoManager!
+        undo!.prepareWithInvocationTarget(self).removeLastFretboard()
+        
+        
+        if !undo!.undoing{
+            undo!.setActionName("undo AddFretboard")
+        }
+        
+        fretboardModelArray.append(FretboardModel())
+        tableView!.reloadData()
+        let row = NSIndexSet(index: fretboardModelArray.count - 1)
+        tableView.selectRowIndexes(row, byExtendingSelection: false)
+    }
+    
+    
+    
+    
+    func removeLastFretboard() {
+        let undo = document!.undoManager!
+        undo!.prepareWithInvocationTarget(self).addAFretboard()
+        
+        
+        if !undo!.undoing{
+            undo!.setActionName("remove last Fretboard")
+        }
+
+        
+         fretboardModelArray.removeLast()
+    }
+    
+    @IBAction func setTitle(sender: NSTextField) {
+        model.setFretboardTitle(sender.stringValue)
+        displayTitle.stringValue = sender.stringValue
     }
     
     // Shows/Hide Calculated notes.
@@ -223,21 +265,15 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         updateFretboardView()
     }
     
-    @IBAction func addFretboard(sender: NSButton) {
-        fretboardModelArray.append(FretboardModel())
-        tableView!.reloadData()
-        let row = NSIndexSet(index: fretboardModelArray.count - 1)
-        tableView.selectRowIndexes(row, byExtendingSelection: false)
-    }
     
-    @IBAction func setTitle(sender: NSTextField) {
-        model.setFretboardTitle(sender.stringValue)
-        displayTitle.stringValue = sender.stringValue
-    }
+  
 
     //##########################################################
     // Window Controller overridden functions.
     //##########################################################
+    func windowWillReturnUndoManager(window: NSWindow) -> NSUndoManager? {
+        return document?.undoManager!
+    }
     
     override var windowNibName: String? {
         return "MainWindowController"
@@ -283,8 +319,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         // registers the NSTableView for drag reordering.
         tableView.registerForDraggedTypes([NSPasteboardTypeString])
         
-        
     }
+    
+    
     
     //##########################################################
     // Custom class functions.

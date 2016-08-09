@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
                 <outlet property="addFretboard" destination="Y8k-fE-Skm" id="PgK-ew-J2n"/>
-                <outlet property="buildAndAddFretboardButton" destination="HY7-bx-Y4h" id="tM8-dq-Ozb"/>
                 <outlet property="clearUnselected" destination="yWg-BB-g6e" id="83D-el-xQX"/>
                 <outlet property="controlsWindow" destination="ZmY-jU-EHi" id="som-K4-MR8"/>
                 <outlet property="customColorWell" destination="YdV-i7-S6Z" id="vK0-uF-tZj"/>
@@ -91,7 +90,7 @@
                         </clipView>
                         <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
-                            <rect key="frame" x="1" y="331" width="1797" height="15"/>
+                            <rect key="frame" x="1" y="331" width="905" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="504-jc-XoZ">
@@ -165,7 +164,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="buildAndAddFretboard:" target="-2" id="hqg-2B-LdE"/>
+                                    <action selector="addCalculatedFretboard:" target="-2" id="fza-p5-pXq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -290,7 +289,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="addFretboard:" target="-2" id="oTm-D7-uXG"/>
+                            <action selector="addFretboard:" target="-2" id="EeC-Sy-ZMY"/>
                         </connections>
                     </button>
                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvL-W5-sOv">
@@ -366,6 +365,13 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-r7-q1i">
+                        <rect key="frame" x="49" y="9" width="13" height="21"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lAH-bD-BRG">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="494" y="-455"/>
@@ -373,6 +379,7 @@
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="RightHandedFretboard" width="4000" height="502"/>
     </resources>
 </document>

@@ -5,7 +5,7 @@
 
 import Cocoa
 
-class Document: NSDocument, NSWindowDelegate {
+class Document: NSDocument {
     
     let mainWindowController = MainWindowController()
     
@@ -15,7 +15,6 @@ class Document: NSDocument, NSWindowDelegate {
     //##########################################################
     override init() {
         super.init()
-
     }
    
     //##########################################################
@@ -27,7 +26,7 @@ class Document: NSDocument, NSWindowDelegate {
     
     //##########################################################
     override class func autosavesInPlace() -> Bool {
-        return true
+        return false
     }
     
     //##########################################################
@@ -52,12 +51,17 @@ class Document: NSDocument, NSWindowDelegate {
     override func readFromData(data: NSData, ofType typeName: String) throws {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         
-        print("About to read data of type \(typeName).");
+        //print("About to read data of type \(typeName).");
         mainWindowController.setFretboardModelArray(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [FretboardModel])
         
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
        // throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+    }
+    
+    // When the window will close, it empties fretboardModelArray to ensure the undo manager stops observing all fretboardModels after the app has closed. 
+    func windowWillClose(notification: NSNotification) {
+        mainWindowController.setFretboardModelArray([])
     }
 }
 

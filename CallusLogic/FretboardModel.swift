@@ -21,14 +21,16 @@ class FretboardModel: NSObject, NSCoding {
     // The fretboards Title
     private var fretboardTitle: String? = "Untitled"
     
-    // Whether the fretboard is locked for editing.
-    private var isLocked = 0
+   
     
     // The userColor for note selection.
     private var userColor: NSColor? = NSColor.yellowColor()
     
     private var itemImage: NSImage? = NSImage()
 
+    // Whether the fretboard is locked for editing.
+    private var isLocked = 0
+    
     private var showCalcedNotes = 1
     
     private var selectCalcedNotes = 0
@@ -60,9 +62,6 @@ class FretboardModel: NSObject, NSCoding {
         if let userColor = userColor {
             aCoder.encodeObject(userColor, forKey: "userColor")
         }
-        // Encode isLocked.
-        aCoder.encodeInteger(isLocked, forKey: "isLocked")
-        
         // Encode isLocked.
         aCoder.encodeInteger(isLocked, forKey: "isLocked")
         
