@@ -611,7 +611,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
       // Update the view to display the selected fretboard.
         modelIndex = tableView.selectedRow
         loadCurrentFretboard()
-        playlistPanel.makeKeyWindow()
     }
     
    
