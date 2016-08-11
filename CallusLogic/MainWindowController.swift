@@ -240,17 +240,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     @IBAction func lockFretboard(sender: NSButton) {
-        let controller = NSWindowController(window: controlsWindow!)
+        //let controller = NSWindowController(window: controlsWindow!)
         // If the lock button is checked,
-        if sender.state != 0 {
-            // Hide the controls window and disable the show controls button.
-            controller.close()
-            
-            }
-        // Else, the button isn't locked,
-        else {
-            controller.showWindow(nil)
-        }
+//        if sender.state != 0 {
+//            // Hide the controls window and disable the show controls button.
+//         //   controller.close()
+//            
+//            }
+//        // Else, the button isn't locked,
+//        else {
+//          //  controller.showWindow(nil)
+//        }
         // Update Model.
         model.setIsLocked(sender.state)
     }

@@ -10,14 +10,12 @@
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
                 <outlet property="addFretboard" destination="Y8k-fE-Skm" id="PgK-ew-J2n"/>
                 <outlet property="clearUnselected" destination="yWg-BB-g6e" id="83D-el-xQX"/>
-                <outlet property="controlsWindow" destination="ZmY-jU-EHi" id="som-K4-MR8"/>
                 <outlet property="customColorWell" destination="YdV-i7-S6Z" id="vK0-uF-tZj"/>
                 <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="displayTitle" destination="Gf1-tE-EKP" id="BxX-ja-Pzb"/>
                 <outlet property="fretboardView" destination="9iK-di-6jK" id="1y4-OI-kDh"/>
                 <outlet property="lockButton" destination="4Q7-9U-NiY" id="pfO-Bw-dIj"/>
-                <outlet property="playlistPanel" destination="7c8-ko-7t9" id="5Ob-fI-54D"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
                 <outlet property="selectAdditionalNotesButton" destination="Eso-Wg-JuJ" id="EWg-MG-Dvb"/>
@@ -34,22 +32,22 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="93" y="195" width="900" height="345"/>
+            <rect key="contentRect" x="93" y="195" width="1791" height="564"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="600" height="345"/>
-            <value key="maxSize" type="size" width="1792" height="345"/>
-            <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="900" height="345"/>
+            <value key="minSize" type="size" width="1000" height="535"/>
+            <value key="maxSize" type="size" width="1791" height="535"/>
+            <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="1791" height="564"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
-                        <rect key="frame" x="-1" y="-1" width="1799" height="347"/>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
+                        <rect key="frame" x="-1" y="-1" width="1799" height="566"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="SZn-CE-0lE">
-                            <rect key="frame" x="1" y="1" width="1797" height="330"/>
+                            <rect key="frame" x="1" y="1" width="1797" height="549"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1793" height="330"/>
+                                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv">
+                                    <rect key="frame" x="0.0" y="219" width="1793" height="330"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-9U-NiY">
                                             <rect key="frame" x="18" y="17" width="61" height="18"/>
@@ -82,15 +80,11 @@
                                     </constraints>
                                 </customView>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="cTK-0c-ABv" firstAttribute="leading" secondItem="SZn-CE-0lE" secondAttribute="leading" id="1Lr-UE-jMx"/>
-                                <constraint firstItem="cTK-0c-ABv" firstAttribute="top" secondItem="SZn-CE-0lE" secondAttribute="top" id="2iv-MP-2vs"/>
-                            </constraints>
                             <color key="backgroundColor" red="0.99728972808806693" green="1" blue="0.60368305849060455" alpha="1" colorSpace="calibratedRGB"/>
                         </clipView>
                         <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
-                            <rect key="frame" x="1" y="331" width="905" height="15"/>
+                            <rect key="frame" x="1" y="550" width="1797" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="504-jc-XoZ">
@@ -98,85 +92,8 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="lCW-xK-vmx" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="-1" id="1Os-0a-WYX"/>
-                    <constraint firstAttribute="trailing" secondItem="lCW-xK-vmx" secondAttribute="trailing" constant="-6" id="7TL-8a-cdk"/>
-                    <constraint firstAttribute="bottom" secondItem="lCW-xK-vmx" secondAttribute="bottom" constant="-1" id="Jcd-vx-mQo"/>
-                    <constraint firstItem="lCW-xK-vmx" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="-1" id="mri-FG-Ro8"/>
-                </constraints>
-            </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
-            </connections>
-            <point key="canvasLocation" x="24" y="-101.5"/>
-        </window>
-        <window title="ControlsWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="utilityWindow" frameAutosaveName="" id="ZmY-jU-EHi" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" utility="YES" fullSizeContentView="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="102" y="600" width="677" height="209"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="976" height="209"/>
-            <value key="maxSize" type="size" width="976" height="209"/>
-            <view key="contentView" id="mOj-6D-io6" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="677" height="209"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="20" y="132" width="583" height="58"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
-                                <rect key="frame" x="18" y="41" width="168" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fretboard Calculator" id="1ye-Cy-l9V">
-                                    <font key="font" metaFont="system" size="16"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
-                                <rect key="frame" x="20" y="9" width="36" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <menu key="menu" id="xXu-ex-Q0v"/>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
-                                <rect key="frame" x="72" y="9" width="33" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <menu key="menu" id="6pP-uc-zhV"/>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
-                                <rect key="frame" x="121" y="9" width="172" height="25"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <menu key="menu" id="fHN-VA-IXX"/>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HY7-bx-Y4h">
-                                <rect key="frame" x="295" y="2" width="95" height="32"/>
-                                <buttonCell key="cell" type="push" title="Add Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="roc-fU-6dh" userLabel="Add Notes">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="addCalculatedFretboard:" target="-2" id="fza-p5-pXq"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="pQy-l4-Z2n" secondAttribute="leading" constant="20" id="Z4A-16-Hnt"/>
-                            <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="8" id="hhq-TF-vNl"/>
-                            <constraint firstItem="HY7-bx-Y4h" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="8" id="k7F-7C-s4L"/>
-                            <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="8" id="ugz-E3-mrt"/>
-                        </constraints>
-                    </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="20" y="7" width="649" height="110"/>
+                        <rect key="frame" x="20" y="354" width="649" height="110"/>
                         <subviews>
                             <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
                                 <rect key="frame" x="234" y="66" width="159" height="18"/>
@@ -269,31 +186,8 @@
                             <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="dNh-cO-qDe" secondAttribute="trailing" constant="59" id="PxQ-zu-yAN"/>
                         </constraints>
                     </customView>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="-87.5" y="-476.5"/>
-        </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="7c8-ko-7t9" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" resizable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="112" width="280" height="220"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <view key="contentView" id="V9H-5c-K1A" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="280" height="220"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y8k-fE-Skm">
-                        <rect key="frame" x="20" y="9" width="21" height="21"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Ia-p5-Wmq">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="addFretboard:" target="-2" id="EeC-Sy-ZMY"/>
-                        </connections>
-                    </button>
                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvL-W5-sOv">
-                        <rect key="frame" x="15" y="37" width="245" height="157"/>
+                        <rect key="frame" x="739" y="387" width="245" height="157"/>
                         <clipView key="contentView" ambiguous="YES" id="eAa-yv-YV5">
                             <rect key="frame" x="1" y="0.0" width="243" height="156"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,7 +216,7 @@
                                                     <rect key="frame" x="1" y="1" width="240" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
                                                             <rect key="frame" x="0.0" y="0.0" width="241" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="6ID-4y-gpJ">
                                                                 <font key="font" metaFont="system"/>
@@ -337,6 +231,11 @@
                                                             </connections>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="EZz-rV-DO4" firstAttribute="centerY" secondItem="EhS-I0-oC8" secondAttribute="centerY" id="aYP-90-uxn"/>
+                                                        <constraint firstItem="EZz-rV-DO4" firstAttribute="centerX" secondItem="EhS-I0-oC8" secondAttribute="centerX" id="cUt-7p-3Hg"/>
+                                                        <constraint firstItem="EZz-rV-DO4" firstAttribute="leading" secondItem="EhS-I0-oC8" secondAttribute="leading" constant="2" id="gvH-Ag-O6t"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="textField" destination="EZz-rV-DO4" id="xfm-1T-MPe"/>
                                                     </connections>
@@ -365,16 +264,88 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y8k-fE-Skm">
+                        <rect key="frame" x="739" y="359" width="21" height="21"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Ia-p5-Wmq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addFretboard:" target="-2" id="EeC-Sy-ZMY"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-r7-q1i">
-                        <rect key="frame" x="49" y="9" width="13" height="21"/>
+                        <rect key="frame" x="768" y="359" width="13" height="21"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lAH-bD-BRG">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
+                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
+                        <rect key="frame" x="20" y="477" width="583" height="58"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
+                                <rect key="frame" x="18" y="41" width="168" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fretboard Calculator" id="1ye-Cy-l9V">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-5M-u2j">
+                                <rect key="frame" x="20" y="9" width="36" height="25"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="Zyu-O2-97G">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <menu key="menu" id="xXu-ex-Q0v"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-IO-EzS" userLabel="Accidental">
+                                <rect key="frame" x="72" y="9" width="33" height="25"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="A38-I8-6Z1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <menu key="menu" id="6pP-uc-zhV"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-eG-0XC">
+                                <rect key="frame" x="121" y="9" width="172" height="25"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="nEN-Th-pDA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <menu key="menu" id="fHN-VA-IXX"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HY7-bx-Y4h">
+                                <rect key="frame" x="295" y="2" width="95" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="roc-fU-6dh" userLabel="Add Notes">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addCalculatedFretboard:" target="-2" id="fza-p5-pXq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Bil-5M-u2j" firstAttribute="leading" secondItem="pQy-l4-Z2n" secondAttribute="leading" constant="20" id="Z4A-16-Hnt"/>
+                            <constraint firstItem="rUh-IO-EzS" firstAttribute="leading" secondItem="Bil-5M-u2j" secondAttribute="trailing" constant="8" id="hhq-TF-vNl"/>
+                            <constraint firstItem="HY7-bx-Y4h" firstAttribute="leading" secondItem="q6P-eG-0XC" secondAttribute="trailing" constant="8" id="k7F-7C-s4L"/>
+                            <constraint firstItem="q6P-eG-0XC" firstAttribute="leading" secondItem="rUh-IO-EzS" secondAttribute="trailing" constant="8" id="ugz-E3-mrt"/>
+                        </constraints>
+                    </customView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="lCW-xK-vmx" secondAttribute="bottom" constant="-1" id="KIn-3c-vVj"/>
+                    <constraint firstItem="lCW-xK-vmx" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="-1" id="Y9x-zj-2sG"/>
+                    <constraint firstAttribute="trailing" secondItem="lCW-xK-vmx" secondAttribute="trailing" constant="-7" id="mo2-Bc-epT"/>
+                    <constraint firstItem="lCW-xK-vmx" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="-1" id="p30-di-Yvp"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="494" y="-455"/>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="469.5" y="-211"/>
         </window>
     </objects>
     <resources>
