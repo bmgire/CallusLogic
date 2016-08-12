@@ -372,7 +372,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             showAdditionalNotesButton.state = 0
         }
         
-
+        updateDisplayMode(displayModePopUp)
+        
         // update the fretboardView.
         updateFretboardView()
 
