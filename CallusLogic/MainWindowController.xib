@@ -33,12 +33,12 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="93" y="195" width="1808" height="556"/>
+            <rect key="contentRect" x="93" y="195" width="900" height="556"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="900" height="556"/>
             <value key="maxSize" type="size" width="1808" height="556"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="1808" height="556"/>
+                <rect key="frame" x="0.0" y="0.0" width="900" height="556"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <scrollView ambiguous="YES" misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
@@ -76,7 +76,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
-                                            <rect key="frame" x="13" y="12" width="1780" height="261"/>
+                                            <rect key="frame" x="13" y="12" width="1790" height="262"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
                                             </userDefinedRuntimeAttributes>
@@ -87,7 +87,6 @@
                                         <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="19" id="BY4-zh-GWW"/>
                                         <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="56" id="IJb-SD-IfZ"/>
                                         <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="25" id="Iz5-4s-Ryz"/>
-                                        <constraint firstItem="9iK-di-6jK" firstAttribute="leading" secondItem="cTK-0c-ABv" secondAttribute="leading" constant="13" id="KJq-Yn-TxE"/>
                                         <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="12" id="bBi-X4-oxB"/>
                                         <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="leading" id="fAg-OY-aJO"/>
                                         <constraint firstAttribute="trailing" secondItem="9iK-di-6jK" secondAttribute="trailing" id="fuI-Us-Hyq"/>
