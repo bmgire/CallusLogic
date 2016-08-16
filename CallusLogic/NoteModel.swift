@@ -6,7 +6,6 @@
 //  Model for the NoteView. 
 
 import Cocoa
-
 class NoteModel: NSObject, NSCoding {
     
     // The position of the note on the entire fretboard. 0-137
@@ -28,7 +27,7 @@ class NoteModel: NSObject, NSCoding {
     private var noteFontSize: CGFloat = 16
     
     // A state variable to be set while the mouse is down.
-    private var myColor: NSColor = NSColor.yellowColor()
+    private var myColor: NSColor = NSColor.redColor()
     
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
     private var displayMode = "Notes"
@@ -72,9 +71,6 @@ class NoteModel: NSObject, NSCoding {
     override init() {
         super.init()
     }
-    
-    
-    
     
     //####################################
     // Getters and setters.

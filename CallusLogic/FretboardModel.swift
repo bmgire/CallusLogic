@@ -26,8 +26,6 @@ class FretboardModel: NSObject, NSCoding {
     // The userColor for note selection.
     private var userColor: NSColor? = NSColor.yellowColor()
     
-    private var itemImage: NSImage? = NSImage()
-
     // Whether the fretboard is locked for editing.
     private var isLocked = 0
     
@@ -40,6 +38,7 @@ class FretboardModel: NSObject, NSCoding {
     private var selectAdditionalNotes = 0
     
     private var displayMode = 0
+    
     
     
     //##########################################################
@@ -109,12 +108,30 @@ class FretboardModel: NSObject, NSCoding {
         
         super.init()
     }
+  
+ 
     
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################
     func getFretboardArray()-> [NoteModel] {
         return fretboardArray!
+    }
+    
+    func getFretboardArrayCopy()-> [NoteModel] {
+        var array:[NoteModel] = []
+        
+        for index in 0...(fretboardArray!.count - 1) {
+            let note = NoteModel()
+            note.setNoteModel(fretboardArray![index])
+            array.append(note)
+        }
+        
+        return array
+    }
+    
+    func setFretboardArray(newArray: [NoteModel]) {
+        fretboardArray = newArray
     }
     
     func getFretboardTitle()-> String {
@@ -140,14 +157,7 @@ class FretboardModel: NSObject, NSCoding {
         return isLocked
     }
     
-    func setItemImage(newImage: NSImage) {
-        itemImage = newImage
-    }
-    
-    func getItemImage()-> NSImage {
-        return itemImage!
-    }
-    
+        
     func setShowCalcedNotes(int: Int) {
         showCalcedNotes = int
     }
@@ -183,6 +193,7 @@ class FretboardModel: NSObject, NSCoding {
     func getDisplayMode()->Int {
         return displayMode
     }
+
     
     
     // Reqiured init.

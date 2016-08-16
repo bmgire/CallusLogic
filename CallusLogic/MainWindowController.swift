@@ -9,6 +9,12 @@
 
 import Cocoa
 
+
+class StateAndArray {
+    var array: [NoteModel] = []
+    var state = 0
+}
+
 class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableViewDelegate, NSWindowDelegate{
     
     //##########################################################
@@ -23,7 +29,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     let NOTES_PER_STRING = 23
     
-    private var fretboardModelArray: [FretboardModel] = [FretboardModel()]
+    private var fretboardModelArray: [FretboardModel] = [FretboardModel()]{
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    
     
     private var model = FretboardModel()
     
@@ -33,20 +45,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
-    
     private var sourceIndex = 0
+    
+    
     //##########################################################
     // Outlets to fretboard controls.
     //##########################################################
-    
-    // Outlet to Controls window.
-    @IBOutlet weak var controlsWindow: NSWindow!
     
     // Calculator controls.
     @IBOutlet weak var rootPopUp: NSPopUpButton!
     @IBOutlet weak var accidentalPopUp: NSPopUpButton!
     @IBOutlet weak var scalePopUp: NSPopUpButton!
-    @IBOutlet weak var buildAndAddFretboardButton: NSButton!
     
     @IBOutlet weak var fretboardView: FretboardView!
     @IBOutlet weak var lockButton: NSButton!
@@ -72,9 +81,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBOutlet weak var tableView: NSTableView!
     
     @IBOutlet weak var addFretboard: NSButton!
+    @IBOutlet weak var removeFretboard: NSButton!
     
     // Panels
-    @IBOutlet weak var playlistPanel: NSPanel!
     
     //##########################################################
     // MARK: - Getters and Setters.
@@ -91,61 +100,140 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // MARK: - Action functions.
     //##########################################################
     
-    @IBAction func addCalculatedFretboard(sender: NSButton) {
+    
+    @IBAction func addCalculatedNotes(sender: NSButton) {
+      
+        // Register undo
+        let undo = document?.undoManager!
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(setFretboardArray(_:)),
+                                     object: model.getFretboardArrayCopy())
+        
+        undo!.setActionName("Add Notes")
+        
+        // Calculate and display notes.
         markSelectedNotesAsKept(true)
         updateZeroTo46ToneCalculator()
         updatefretboardModel()
+        
     }
     
-    @IBAction func addFretboard(sender: NSButton) {
-        addAFretboard()
-    }
-    
-    func addAFretboard() {
-        
-        
+    func setFretboardArray(array: AnyObject) {
         let undo = document?.undoManager!
-        undo!.prepareWithInvocationTarget(self).removeLastFretboard()
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(setFretboardArray(_:)),
+                                     object: model.getFretboardArrayCopy())
         
+        undo!.setActionName("Add Notes")
+        model.setFretboardArray(array as! [NoteModel])
         
-        if !undo!.undoing{
-            undo!.setActionName("undo AddFretboard")
+        // update the fretboardView.
+        updateFretboardView()
+    }
+
+    
+
+    
+    
+    @IBAction func addFretboardAction(sender: NSButton) {
+
+        addFretboard(FretboardModel())
+    }
+    
+    func addFretboard(aModel: FretboardModel) {
+        
+        // Create undo
+        let undo = document?.undoManager!
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(removeFretboard(_:)),
+                                     object: aModel)
+        
+        if !undo!.undoing {
+                undo!.setActionName("Add Fretboard")
         }
-        
-        fretboardModelArray.append(FretboardModel())
-        tableView!.reloadData()
+        // add model and update view.
+        fretboardModelArray.append(aModel)
         let row = NSIndexSet(index: fretboardModelArray.count - 1)
         tableView.selectRowIndexes(row, byExtendingSelection: false)
+        
     }
     
+    @IBAction func removeFretboardAction(sender: NSButton) {
+        removeFretboard(model)
+    }
     
-    
-    
-    func removeLastFretboard() {
+    func removeFretboard(aModel: AnyObject) {
+        
+        // Create undo
         let undo = document!.undoManager!
-        undo!.prepareWithInvocationTarget(self).addAFretboard()
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(addFretboard(_:)),
+                                     object: aModel)
         
-        
-        if !undo!.undoing{
-            undo!.setActionName("remove last Fretboard")
+        if !undo!.undoing {
+            undo!.setActionName("Remove Fretboard")
         }
-
         
-         fretboardModelArray.removeLast()
+        let index = fretboardModelArray.indexOf(aModel as! FretboardModel)
+        
+        fretboardModelArray.removeAtIndex(index!)
+        tableView.reloadData()
+        
+        tableView.selectRowIndexes(NSIndexSet(index: index! - 1), byExtendingSelection: false)
+        
     }
     
-    @IBAction func setTitle(sender: NSTextField) {
-        model.setFretboardTitle(sender.stringValue)
-        displayTitle.stringValue = sender.stringValue
+  
+    
+   
+    
+    @IBAction func setTitleAction(sender: NSTextField) {
+        
+        setTitle(sender.stringValue)
+    }
+    
+    func setTitle(newTitle: String){
+       
+        let oldTitle = model.getFretboardTitle()
+        // Create undo
+        let undo = document!.undoManager!
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(setTitle(_:)),
+                                     object: oldTitle)
+        
+        if !undo!.undoing {
+            undo!.setActionName("Set Title")
+        }
+        
+        model.setFretboardTitle(newTitle)
+        displayTitle.stringValue = newTitle
+        tableView.reloadData()
     }
     
     // Shows/Hide Calculated notes.
-    @IBAction func showCalcNotes(sender: NSButton) {
-      
-        model.setShowCalcedNotes(sender.state)
+    @IBAction func showCalcNotesAction(sender: NSButton) {
+       showCalcNotes(sender.state)
+    }
+    
+    func showCalcNotes(state: AnyObject){
+        // Create object for undo.
+        let copy = state as! Int
+        var oppositeState = state as! Int
+        oppositeState = (copy == NSOnState ? NSOffState : NSOnState)
         
-         // If the button is checked.
-        if sender.state != 0 {
+        // Create undo
+        let undo = document!.undoManager!
+        undo!.prepareWithInvocationTarget(self).showCalcNotes(oppositeState)
+        
+        if !undo!.undoing {
+            undo!.setActionName("Show Calc Notes")
+        }
+        
+        model.setShowCalcedNotes(copy)
+        showCalcNotesButton.state = copy
+        
+        // If the button is checked.
+        if copy != 0 {
             
             // Show calculated notes as ghosted.
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
@@ -157,24 +245,57 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             selectCalcNotesButton!.enabled = false
             selectCalcNotesButton.state = 0
         }
+
     }
     
     
     
-    @IBAction func selectCalcNotes(sender: NSButton){
+    @IBAction func selectCalcNotesAction(sender: NSButton){
+        
+
+        let stateAndArray = StateAndArray()
+        stateAndArray.array = model.getFretboardArrayCopy()
+        stateAndArray.state = sender.state
+        
+        
+        
+        
+        selectCalcNotes(stateAndArray)
+    }
+    
+    func selectCalcNotes(myStateAndArray: AnyObject){
+        
+        let changeTo = (myStateAndArray as! StateAndArray)
+        
+        let revertTo = StateAndArray()
+        revertTo.array = model.getFretboardArrayCopy()
+        
+        revertTo.state = ((myStateAndArray as! StateAndArray).state == NSOnState ? NSOffState : NSOnState)
+        
+        // Create undo
+        let undo = document!.undoManager!
+        undo!.prepareWithInvocationTarget(self).selectCalcNotes(revertTo)
+        
+        if !undo!.undoing {
+            undo!.setActionName("Select Calc Notes")
+        }
+        
         // If the button is checked, select notes.
-        model.setSelectCalcedNotes(sender.state)
-        if sender.state != 0 {
+        model.setSelectCalcedNotes(changeTo.state)
+       // showCalcNotesButton.state = current.state
+        if changeTo.state != 0 {
             markSelectedNotesAsKept(false)
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
         }
-        
+            
             // if the button is unchecked, change to ghosted.
         else {
             // Keep any selected notes, then select.
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
         }
     }
+    
+    
     
     
     
@@ -214,10 +335,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         markSelectedNotesAsKept(true)
         
         showCalcNotesButton.state = 0
-        showCalcNotes(showAdditionalNotesButton)
+        showCalcNotes(showAdditionalNotesButton.state)
         
         showAdditionalNotesButton.state = 0
-        showCalcNotes(showAdditionalNotesButton)
+        showCalcNotes(showAdditionalNotesButton.state)
         
         showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
         showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
@@ -236,7 +357,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     @IBAction func changeUserColor(sender: NSColorWell) {
         model.setUserColor(sender.color)
-        // Closes the color panel.
     }
     
     @IBAction func lockFretboard(sender: NSButton) {
@@ -321,11 +441,18 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
     }
     
+    override func mouseDown(theEvent: NSEvent) {
+        // Close the color panel if still open.
+        NSColorPanel.sharedColorPanel().close()
+    }
+    
     
     
     //##########################################################
     // Custom class functions.
     //##########################################################
+    
+    
     // Adds the scale names to the Scale PopUp
     func addScaleNamesToPopUp(){
         for index in 0...(AllScales().getScaleArray().count - 1){
@@ -346,7 +473,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!,
                                         /*displayMode: displayModePopUp!.titleOfSelectedItem!, */
-                                        myCalcColor: NSColor.yellowColor())
+                                        myCalcColor: model.getUserColor())
                                         //selectNotes: selectionModePopUp.titleOfSelectedItem!)
         fillSpacesWithChromatic()
 
@@ -359,10 +486,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         
         showCalcNotesButton.state = 1
-        showCalcNotes(showCalcNotesButton)
+        showCalcNotes(showCalcNotesButton.state)
 
         if selectCalcNotesButton.state == 0 {
-            selectCalcNotes(selectCalcNotesButton)
+            selectCalcNotesAction(selectCalcNotesButton)
             
         }
       
@@ -379,7 +506,11 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
 
     }
     
+    
     func updateFretboardView() {
+        // Close the color panel if still open.
+        NSColorPanel.sharedColorPanel().close()
+                
         fretboardView.updateSubviews(model.getFretboardArray())
     }
     
@@ -449,8 +580,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 noteModel.setIsGhost(!noteModel.getIsGhost())
                 noteModel.setIsKept(!noteModel.getIsKept())
             }
-            // Close the color panel if still open.
-            NSColorPanel.sharedColorPanel().close()
             // redraw.
             (notification.object as! NoteView).needsDisplay = true
         }
@@ -524,7 +653,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         selectAdditionalNotesButton.state = model.getSelectAdditionalNotes()
         
         displayModePopUp.selectItemAtIndex(model.getDisplayMode())
-
         
         updateFretboardView()
     }
@@ -552,7 +680,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     //##########################################################
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return fretboardModelArray.count
+        let count = fretboardModelArray.count
+        
+        // Hide remove fretboard button if only one fretboard.
+        if count == 1 {
+            removeFretboard.enabled = false
+        }
+        else {
+            removeFretboard.enabled = true
+        }
+       //tableView.reloadData()
+        return count
     }
     
     func tableView(tableView: NSTableView,
