@@ -3,15 +3,15 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
                 <outlet property="addFretboard" destination="Y8k-fE-Skm" id="PgK-ew-J2n"/>
+                <outlet property="calculatorView" destination="pQy-l4-Z2n" id="Etz-Gf-ZFA"/>
                 <outlet property="clearUnselected" destination="yWg-BB-g6e" id="83D-el-xQX"/>
-                <outlet property="customColorWell" destination="YdV-i7-S6Z" id="vK0-uF-tZj"/>
+                <outlet property="colorWell" destination="YdV-i7-S6Z" id="NbW-p7-9Hd"/>
                 <outlet property="customizeView" destination="Dm0-fx-PbX" id="A4B-wL-YbH"/>
                 <outlet property="displayModePopUp" destination="rxc-av-fsp" id="lzF-DN-wa6"/>
                 <outlet property="displayTitle" destination="Gf1-tE-EKP" id="BxX-ja-Pzb"/>
@@ -20,11 +20,9 @@
                 <outlet property="removeFretboard" destination="Yub-r7-q1i" id="9HX-jb-auv"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
-                <outlet property="selectAdditionalNotesButton" destination="Eso-Wg-JuJ" id="EWg-MG-Dvb"/>
-                <outlet property="selectCalcNotesButton" destination="SVY-IZ-z4e" id="Mtv-iD-1Ke"/>
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
-                <outlet property="showCalcNotesButton" destination="15u-4A-ZlR" id="F99-P4-rX2"/>
                 <outlet property="tableView" destination="6k0-hI-iQf" id="hlS-Nb-c4O"/>
+                <outlet property="tableViewTextField" destination="EZz-rV-DO4" id="dBL-ea-r8v"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -34,80 +32,17 @@
         <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="93" y="195" width="900" height="556"/>
+            <rect key="contentRect" x="93" y="195" width="900" height="544"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="900" height="556"/>
-            <value key="maxSize" type="size" width="1808" height="556"/>
+            <value key="minSize" type="size" width="900" height="544"/>
+            <value key="maxSize" type="size" width="1808" height="544"/>
+            <value key="minFullScreenContentSize" type="size" width="900" height="544"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="900" height="556"/>
+                <rect key="frame" x="0.0" y="0.0" width="900" height="544"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
-                        <rect key="frame" x="-1" y="0.0" width="1809" height="333"/>
-                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="SZn-CE-0lE">
-                            <rect key="frame" x="0.0" y="0.0" width="1809" height="318"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv">
-                                    <rect key="frame" x="0.0" y="-12" width="1793" height="330"/>
-                                    <subviews>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-9U-NiY">
-                                            <rect key="frame" x="18" y="17" width="61" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="57" id="0iF-hv-7yY"/>
-                                            </constraints>
-                                            <buttonCell key="cell" type="check" title="Lock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Xvx-Nh-FoT">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="lockFretboard:" target="-2" id="rF5-2C-Pde"/>
-                                            </connections>
-                                        </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
-                                            <rect key="frame" x="18" y="250" width="764" height="55"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="760" id="erV-Me-GnS"/>
-                                                <constraint firstAttribute="height" constant="55" id="lQI-2e-ZL7"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="yam-nN-hxl">
-                                                <font key="font" metaFont="systemBold" size="37"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
-                                            <rect key="frame" x="13" y="12" width="1790" height="262"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </customView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="cTK-0c-ABv" secondAttribute="leading" constant="20" symbolic="YES" id="8Bf-MT-fEn"/>
-                                        <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="19" id="BY4-zh-GWW"/>
-                                        <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="56" id="IJb-SD-IfZ"/>
-                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="25" id="Iz5-4s-Ryz"/>
-                                        <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="12" id="bBi-X4-oxB"/>
-                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="leading" id="fAg-OY-aJO"/>
-                                        <constraint firstAttribute="trailing" secondItem="9iK-di-6jK" secondAttribute="trailing" id="fuI-Us-Hyq"/>
-                                    </constraints>
-                                </customView>
-                            </subviews>
-                            <color key="backgroundColor" red="0.99728972808806693" green="1" blue="0.60368305849060455" alpha="1" colorSpace="calibratedRGB"/>
-                        </clipView>
-                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
-                            <rect key="frame" x="0.0" y="318" width="1809" height="15"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="504-jc-XoZ">
-                            <rect key="frame" x="-100" y="-100" width="15" height="330"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y8k-fE-Skm">
-                        <rect key="frame" x="20" y="346" width="21" height="21"/>
+                        <rect key="frame" x="20" y="334" width="21" height="21"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Ia-p5-Wmq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -117,7 +52,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-r7-q1i">
-                        <rect key="frame" x="49" y="346" width="21" height="21"/>
+                        <rect key="frame" x="49" y="334" width="21" height="21"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lAH-bD-BRG">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -127,7 +62,7 @@
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQy-l4-Z2n" userLabel="FretboardCalculator Controls View">
-                        <rect key="frame" x="276" y="473" width="576" height="58"/>
+                        <rect key="frame" x="273" y="461" width="576" height="58"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
                                 <rect key="frame" x="11" y="41" width="168" height="17"/>
@@ -183,30 +118,20 @@
                         </constraints>
                     </customView>
                     <customView autoresizesSubviews="NO" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-fx-PbX" userLabel="Customize Notes View">
-                        <rect key="frame" x="283" y="358" width="592" height="115"/>
+                        <rect key="frame" x="283" y="371" width="592" height="82"/>
                         <subviews>
                             <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNh-cO-qDe" userLabel="ShowMore Notes Button">
-                                <rect key="frame" x="207" y="72" width="159" height="18"/>
+                                <rect key="frame" x="219" y="50" width="159" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Additional Notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MDi-HZ-R0o">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="showAdditionalNotes:" target="-2" id="1FH-eA-v1k"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-IZ-z4e" userLabel="Select Calculated Notes Button">
-                                <rect key="frame" x="14" y="33" width="181" height="32"/>
-                                <buttonCell key="cell" type="check" title="Select Calculated Notes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Sux-3b-eDF">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectCalcNotesAction:" target="-2" id="grS-UT-jBH"/>
+                                    <action selector="showAdditionalNotesAction:" target="-2" id="qe1-hR-Sfk"/>
                                 </connections>
                             </button>
                             <colorWell focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-i7-S6Z">
-                                <rect key="frame" x="156" y="5" width="55" height="24"/>
+                                <rect key="frame" x="149" y="47" width="55" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="wqn-pF-RiF"/>
                                 </constraints>
@@ -215,83 +140,129 @@
                                     <action selector="changeUserColor:" target="-2" id="FFP-hA-b68"/>
                                 </connections>
                             </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
-                                <rect key="frame" x="14" y="9" width="130" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
+                                <rect key="frame" x="13" y="51" width="130" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection Color" id="7Fe-Rk-Hsp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eso-Wg-JuJ" userLabel="select Additional Notes Button">
-                                <rect key="frame" x="207" y="33" width="174" height="32"/>
-                                <buttonCell key="cell" type="check" title="Select Additional Notes" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="DVn-uw-r4R">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectAdditionalNotes:" target="-2" id="Ai1-JX-igh"/>
-                                </connections>
-                            </button>
-                            <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15u-4A-ZlR" userLabel="Show Calced Notes Button">
-                                <rect key="frame" x="14" y="72" width="163" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="HCY-kR-Kd1"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="Show Calculated Notes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3eQ-ZU-RkW">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="showCalcNotesAction:" target="-2" id="5UX-J4-x77"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
-                                <rect key="frame" x="394" y="5" width="113" height="32"/>
-                                <buttonCell key="cell" type="push" title="Unselect All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="unselectAll:" target="-2" id="82V-Y0-bgA"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWg-BB-g6e">
-                                <rect key="frame" x="394" y="38" width="184" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear Unselected Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nj2-VS-zJp">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clearUnselected:" target="-2" id="xQW-s2-XHv"/>
-                                </connections>
-                            </button>
                             <popUpButton focusRingType="none" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-av-fsp" userLabel="displayModePopUp">
-                                <rect key="frame" x="393" y="77" width="33" height="25"/>
+                                <rect key="frame" x="401" y="51" width="33" height="25"/>
                                 <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingHead" continuous="YES" focusRingType="none" inset="2" altersStateOfSelectedItem="NO" id="fsd-2I-Qfc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <menu key="menu" id="Jjv-FN-41y"/>
                                 </popUpButtonCell>
                                 <connections>
-                                    <action selector="updateDisplayMode:" target="-2" id="nL9-tq-RKn"/>
+                                    <action selector="updateDisplayModeAction:" target="-2" id="OXX-x8-9PV"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-lc-3d7" userLabel="UnSelect All Button">
+                                <rect key="frame" x="121" y="9" width="95" height="32"/>
+                                <buttonCell key="cell" type="push" title="Ghost All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pzp-vS-twd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ghostAllAction:" target="-2" id="ksb-U5-MX6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9wc-Xd-p9E">
+                                <rect key="frame" x="9" y="9" width="97" height="32"/>
+                                <buttonCell key="cell" type="push" title="Select All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MRu-MG-1bt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectAllAction:" target="-2" id="WU1-Wl-6FR"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWg-BB-g6e">
+                                <rect key="frame" x="230" y="9" width="151" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Ghost Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nj2-VS-zJp">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearGhostsAction:" target="-2" id="QpW-sP-FPV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="yWg-BB-g6e" firstAttribute="leading" secondItem="RTq-lc-3d7" secondAttribute="leading" id="MyD-nb-QGu"/>
-                            <constraint firstItem="RTq-lc-3d7" firstAttribute="top" secondItem="yWg-BB-g6e" secondAttribute="bottom" constant="12" symbolic="YES" id="OPc-hz-pfo"/>
-                            <constraint firstItem="Eso-Wg-JuJ" firstAttribute="leading" secondItem="SVY-IZ-z4e" secondAttribute="trailing" constant="16" id="Pwa-kg-TCK"/>
-                            <constraint firstItem="15u-4A-ZlR" firstAttribute="leading" secondItem="JSi-Oz-nnY" secondAttribute="leading" id="W6C-Eq-63F"/>
-                            <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="dNh-cO-qDe" secondAttribute="trailing" constant="29" id="b3d-7q-ehj"/>
-                            <constraint firstItem="SVY-IZ-z4e" firstAttribute="firstBaseline" secondItem="Eso-Wg-JuJ" secondAttribute="firstBaseline" id="hi4-7a-5Yi"/>
-                            <constraint firstItem="SVY-IZ-z4e" firstAttribute="top" secondItem="15u-4A-ZlR" secondAttribute="bottom" constant="11" id="lAt-oo-wji"/>
-                            <constraint firstItem="Eso-Wg-JuJ" firstAttribute="top" secondItem="dNh-cO-qDe" secondAttribute="bottom" constant="10" id="ujD-zm-VLJ"/>
-                            <constraint firstItem="SVY-IZ-z4e" firstAttribute="baseline" secondItem="Eso-Wg-JuJ" secondAttribute="baseline" id="z1e-es-gys"/>
+                            <constraint firstItem="rxc-av-fsp" firstAttribute="leading" secondItem="dNh-cO-qDe" secondAttribute="trailing" constant="25" id="b3d-7q-ehj"/>
                         </constraints>
                     </customView>
+                    <scrollView misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCW-xK-vmx">
+                        <rect key="frame" x="0.0" y="0.0" width="1809" height="333"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="SZn-CE-0lE">
+                            <rect key="frame" x="0.0" y="0.0" width="1809" height="318"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-0c-ABv">
+                                    <rect key="frame" x="0.0" y="-12" width="1793" height="330"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-9U-NiY">
+                                            <rect key="frame" x="18" y="17" width="61" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="57" id="0iF-hv-7yY"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Lock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Xvx-Nh-FoT">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="lockFretboard:" target="-2" id="rF5-2C-Pde"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
+                                            <rect key="frame" x="18" y="250" width="764" height="55"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="760" id="erV-Me-GnS"/>
+                                                <constraint firstAttribute="height" constant="55" id="lQI-2e-ZL7"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="yam-nN-hxl">
+                                                <font key="font" metaFont="systemBold" size="37"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
+                                            <rect key="frame" x="13" y="12" width="1790" height="262"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="cTK-0c-ABv" secondAttribute="leading" constant="20" symbolic="YES" id="8Bf-MT-fEn"/>
+                                        <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="19" id="BY4-zh-GWW"/>
+                                        <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="56" id="IJb-SD-IfZ"/>
+                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="cTK-0c-ABv" secondAttribute="top" constant="25" id="Iz5-4s-Ryz"/>
+                                        <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="12" id="bBi-X4-oxB"/>
+                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="leading" id="fAg-OY-aJO"/>
+                                        <constraint firstAttribute="trailing" secondItem="9iK-di-6jK" secondAttribute="trailing" id="fuI-Us-Hyq"/>
+                                    </constraints>
+                                </customView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99728972808806693" green="1" blue="0.60368305849060455" alpha="1" colorSpace="calibratedRGB"/>
+                        </clipView>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="333" id="YxC-1N-avY"/>
+                        </constraints>
+                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aC7-Ck-YGG">
+                            <rect key="frame" x="0.0" y="318" width="1809" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="504-jc-XoZ">
+                            <rect key="frame" x="-100" y="-100" width="15" height="330"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvL-W5-sOv">
-                        <rect key="frame" x="20" y="374" width="245" height="157"/>
+                        <rect key="frame" x="20" y="362" width="245" height="157"/>
                         <clipView key="contentView" ambiguous="YES" id="eAa-yv-YV5">
                             <rect key="frame" x="1" y="0.0" width="243" height="156"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,8 +291,8 @@
                                                     <rect key="frame" x="1" y="1" width="240" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="241" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="246" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="6ID-4y-gpJ">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -373,12 +344,13 @@
                     <constraint firstAttribute="trailing" secondItem="lCW-xK-vmx" secondAttribute="trailing" id="5ZC-8b-Qu7"/>
                     <constraint firstItem="lCW-xK-vmx" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="-1" id="Dqs-Ie-l5e"/>
                     <constraint firstItem="Y8k-fE-Skm" firstAttribute="baseline" secondItem="Yub-r7-q1i" secondAttribute="baseline" id="WwT-qP-IVp"/>
+                    <constraint firstAttribute="bottom" secondItem="lCW-xK-vmx" secondAttribute="bottom" id="vkZ-rQ-djr"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="478" y="-215"/>
+            <point key="canvasLocation" x="478" y="-221"/>
         </window>
     </objects>
     <resources>

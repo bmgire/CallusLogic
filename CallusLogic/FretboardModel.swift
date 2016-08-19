@@ -29,13 +29,13 @@ class FretboardModel: NSObject, NSCoding {
     // Whether the fretboard is locked for editing.
     private var isLocked = 0
     
-    private var showCalcedNotes = 1
-    
-    private var selectCalcedNotes = 0
+//    private var showCalcedNotes = 1
+//    
+//    private var selectCalcedNotes = 0
     
     private var showAdditionalNotes = 0
     
-    private var selectAdditionalNotes = 0
+//    private var selectAdditionalNotes = 0
     
     private var displayMode = 0
     
@@ -64,17 +64,17 @@ class FretboardModel: NSObject, NSCoding {
         // Encode isLocked.
         aCoder.encodeInteger(isLocked, forKey: "isLocked")
         
-        // Encode showCalcedNotes.
-        aCoder.encodeInteger(showCalcedNotes, forKey: "showCalcedNotes")
-        
-        // Encode selectCalcedNotes.
-        aCoder.encodeInteger(selectCalcedNotes, forKey: "selectCalcedNotes")
+//        // Encode showCalcedNotes.
+//        aCoder.encodeInteger(showCalcedNotes, forKey: "showCalcedNotes")
+//        
+//        // Encode selectCalcedNotes.
+//        aCoder.encodeInteger(selectCalcedNotes, forKey: "selectCalcedNotes")
         
         // Encode showAdditionalNotes.
         aCoder.encodeInteger(showAdditionalNotes, forKey: "showAdditionalNotes")
         
-        // Encode selectAdditionalNotes.
-        aCoder.encodeInteger(selectAdditionalNotes, forKey: "selectAdditionalNotes")
+//        // Encode selectAdditionalNotes.
+//        aCoder.encodeInteger(selectAdditionalNotes, forKey: "selectAdditionalNotes")
         
         // Encode displayMode.
         aCoder.encodeInteger(displayMode, forKey: "displayMode")
@@ -100,10 +100,10 @@ class FretboardModel: NSObject, NSCoding {
         // Decode isLocked.
         isLocked = aDecoder.decodeIntegerForKey("isLocked")
         
-        showCalcedNotes = aDecoder.decodeIntegerForKey("showCalcedNotes")
-        selectCalcedNotes = aDecoder.decodeIntegerForKey("selectCalcedNotes")
+//        showCalcedNotes = aDecoder.decodeIntegerForKey("showCalcedNotes")
+//        selectCalcedNotes = aDecoder.decodeIntegerForKey("selectCalcedNotes")
         showAdditionalNotes = aDecoder.decodeIntegerForKey("showAdditionalNotes")
-        selectAdditionalNotes = aDecoder.decodeIntegerForKey("selectAdditionalNotes")
+//        selectAdditionalNotes = aDecoder.decodeIntegerForKey("selectAdditionalNotes")
         displayMode = aDecoder.decodeIntegerForKey("displayMode")
         
         super.init()
@@ -158,21 +158,21 @@ class FretboardModel: NSObject, NSCoding {
     }
     
         
-    func setShowCalcedNotes(int: Int) {
-        showCalcedNotes = int
-    }
-    
-    func getShowCalcedNotes()->Int {
-        return showCalcedNotes
-    }
-
-    func setSelectCalcedNotes(int: Int) {
-        selectCalcedNotes = int
-    }
-    func getSelectCalcedNotes()->Int {
-        return selectCalcedNotes
-    }
-    
+//    func setShowCalcedNotes(int: Int) {
+//        showCalcedNotes = int
+//    }
+//    
+//    func getShowCalcedNotes()->Int {
+//        return showCalcedNotes
+//    }
+//
+//    func setSelectCalcedNotes(int: Int) {
+//        selectCalcedNotes = int
+//    }
+//    func getSelectCalcedNotes()->Int {
+//        return selectCalcedNotes
+//    }
+//    
     func setShowAdditionalNotes(int: Int) {
         showAdditionalNotes = int
     }
@@ -180,12 +180,12 @@ class FretboardModel: NSObject, NSCoding {
         return showAdditionalNotes
     }
     
-    func setSelectAdditionalNotes(int: Int) {
-        selectAdditionalNotes = int
-    }
-    func getSelectAdditionalNotes()->Int {
-        return selectAdditionalNotes
-    }
+//    func setSelectAdditionalNotes(int: Int) {
+//        selectAdditionalNotes = int
+//    }
+//    func getSelectAdditionalNotes()->Int {
+//        return selectAdditionalNotes
+//    }
     
     func setDisplayMode(index: Int) {
         displayMode = index

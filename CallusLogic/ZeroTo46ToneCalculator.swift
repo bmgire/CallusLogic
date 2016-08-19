@@ -50,7 +50,7 @@ class ZeroTo46ToneCalculator {
     func updateWithValues(myRoot: String,
                           myAccidental: String,
                           scaleName: String,
-//                          displayMode: String,
+                          displayMode: String,
                           myCalcColor: NSColor)
                           /*selectNotes: String)*/  {
         if scaleName != "" {
@@ -61,7 +61,7 @@ class ZeroTo46ToneCalculator {
             // Find and save the Scale object.
             scale = myDictOfScales[scaleName]!
             
-            //myDisplayMode = displayMode
+            myDisplayMode = displayMode
             
             calcColor = myCalcColor
             
@@ -175,11 +175,11 @@ class ZeroTo46ToneCalculator {
             // The the noteModel is in the scale.
             if  model.getNote() != "" {
                 model.setNumber0to46(String(index))
-               // model.setIsKept(true)
+                //model.setIsKept(true)
                 model.setIsInScale(true)
                // model.setIsGhost(ghost!)
-               // model.setIsDisplayed(true)
-                //model.setDisplayMode(myDisplayMode)
+                //model.setIsDisplayed(true)
+                model.setDisplayMode(myDisplayMode)
                 model.setMyColor(calcColor!)
                 temp.append(index)
             }
