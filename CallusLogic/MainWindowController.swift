@@ -33,7 +33,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     private var fretboardModelArray: [FretboardModel] = [FretboardModel()]{
         didSet {
-            tableView.reloadData()
+            
+            tableView?.reloadData()
+            
         }
     }
     
@@ -64,7 +66,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBOutlet weak var lockButton: NSButton!
     
     // Fretboard title outlet.
-    @IBOutlet weak var tableViewTextField: NSTextField!
     @IBOutlet weak var displayTitle: NSTextField!
 
     @IBOutlet weak var showAdditionalNotesButton: NSButton!
@@ -274,7 +275,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             
             
             
-            //keepSelectedNotes(false)
+            //keepSelectedNotes(true)
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
             
             
@@ -309,25 +310,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
-//    func ghostAll(stateAndArray: StateAndArray){
-//        let revertTo = StateAndArray()
-//        revertTo.array = model.getFretboardArrayCopy()
-//        revertTo.allowsGhost! = false
-//        
-//        let undo = document!.undoManager!
-//        undo!.prepareWithInvocationTarget(self).showAdditionalNotes(revertTo)
-//        
-//        if !undo!.undoing {
-//            undo!.setActionName("Show Additional Notes")
-//        }
-//        
-//        allowsGhostAll = false
-//        allowsClear = true
-//        markSelectedNotesAsKept(false)
-//        showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
-//    }
-    
-  
     
     // Clear unselected
     @IBAction func clearGhostsAction(sender: NSButton) {
@@ -340,7 +322,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 undo!.setActionName("Clear Unselected")
             }
             
-//            markSelectedNotesAsKept(false)
+            keepSelectedNotes(true)
             showAdditionalNotesButton.state = 0
             
             showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
@@ -381,6 +363,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             // Show chromatic notes.
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
             allowsClear = true
+            allowsSelectAll = true
         }
             // Hide chromatic notes that aren't in the scale.
         else {
@@ -416,13 +399,11 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             // Disable all editing capabilities.
             calculatorView.hidden = true
             customizeView.hidden = true
-           // tableViewTextField.editable = false
-        }
+            }
         // Else, the button isn't locked,
         else {
             calculatorView.hidden = false
             customizeView.hidden = false
-            //tableViewTextField.editable = true
         }
         
         model.setIsLocked(sender.state)
@@ -685,7 +666,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                     if doKeep == false {
                         noteModel.setIsGhost(true)
                     }
-               // }
+                //}
             }
         }
     }
@@ -768,13 +749,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                    writeRowsWithIndexes rowIndexes: NSIndexSet,
                                         toPasteboard pboard: NSPasteboard) -> Bool {
         
-        let data = NSKeyedArchiver.archivedDataWithRootObject(rowIndexes)
-        
-        pboard.declareTypes([NSPasteboardTypeString], owner: self)
-        pboard.setData(data, forType:  "rowData")
-        sourceIndex = rowIndexes.firstIndex
-        return true
-    }
+                    let data = NSKeyedArchiver.archivedDataWithRootObject(rowIndexes)
+            
+            pboard.declareTypes([NSPasteboardTypeString], owner: self)
+            pboard.setData(data, forType:  "rowData")
+            sourceIndex = rowIndexes.firstIndex
+            return true
+      }
     
     //What kind of drag and drop operation should I perform
     func tableView(tableView: NSTableView,
@@ -813,7 +794,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         loadCurrentFretboard()
     }
     
-   
+
     
 }
 

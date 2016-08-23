@@ -223,9 +223,5 @@ class NoteModel: NSObject, NSCoding {
         isKept = newModel.isKept
     }
     
-    
-    
-    func setAttributedNote() {
-        
-    }
+
 }

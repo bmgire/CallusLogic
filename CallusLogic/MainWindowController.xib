@@ -22,7 +22,6 @@
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
                 <outlet property="tableView" destination="6k0-hI-iQf" id="hlS-Nb-c4O"/>
-                <outlet property="tableViewTextField" destination="EZz-rV-DO4" id="dBL-ea-r8v"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
