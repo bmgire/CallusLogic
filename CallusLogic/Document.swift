@@ -5,7 +5,7 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class Document: NSDocument{
     
     let mainWindowController = MainWindowController()
     
@@ -63,5 +63,9 @@ class Document: NSDocument {
     func windowWillClose(notification: NSNotification) {
         mainWindowController.setFretboardModelArray([])
     }
+    
+    //##########################################################
+    // Window Restoration
+    //##########################################################
 }
 

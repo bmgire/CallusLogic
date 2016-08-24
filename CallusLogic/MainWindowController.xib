@@ -28,14 +28,13 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="Fretboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="myFretboard" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="93" y="195" width="900" height="544"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="900" height="544"/>
             <value key="maxSize" type="size" width="1808" height="544"/>
-            <value key="minFullScreenContentSize" type="size" width="900" height="544"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="900" height="544"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,12 +63,12 @@
                         <rect key="frame" x="273" y="461" width="576" height="58"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
-                                <rect key="frame" x="11" y="41" width="168" height="17"/>
+                                <rect key="frame" x="21" y="39" width="168" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="94h-by-LZa"/>
                                     <constraint firstAttribute="width" constant="164" id="mGL-5Q-LyL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fretboard Calculator" id="1ye-Cy-l9V">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fretboard Calculator:" id="1ye-Cy-l9V">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -140,8 +139,8 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
-                                <rect key="frame" x="13" y="51" width="130" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection Color" id="7Fe-Rk-Hsp">
+                                <rect key="frame" x="13" y="51" width="133" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection Color:" id="7Fe-Rk-Hsp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

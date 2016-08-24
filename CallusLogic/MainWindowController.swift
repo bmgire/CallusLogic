@@ -457,6 +457,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        //window?.restorable = true
+        
         modelIndex = 0
         
         // Build PopUps.
@@ -793,9 +795,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         modelIndex = tableView.selectedRow
         loadCurrentFretboard()
     }
-    
-
-    
 }
 
 
