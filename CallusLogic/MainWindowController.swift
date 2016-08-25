@@ -238,6 +238,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
 //            undo!.setActionName("Change Color")
 //        }
         model.setUserColor(sender.color)
+        allowsSelectAll = true
     }
     
 //    func setColor(color: NSColor) {
@@ -275,7 +276,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             
             
             
-            //keepSelectedNotes(true)
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
             
             
