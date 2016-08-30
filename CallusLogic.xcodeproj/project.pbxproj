@@ -31,6 +31,7 @@
 /* Begin PBXFileReference section */
 		B52256A91D513A5F00E9AF0E /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		B584BCB41D32C98A0092B143 /* FretboardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardModel.swift; sourceTree = "<group>"; };
+		B58ABDD21D76302E00EE4CD8 /* CallusLogic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallusLogic.entitlements; sourceTree = "<group>"; };
 		B5F44C571D2D9E84008BCE5F /* CallusLogic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallusLogic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F44C5C1D2D9E84008BCE5F /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		B5F44C591D2D9E84008BCE5F /* CallusLogic */ = {
 			isa = PBXGroup;
 			children = (
+				B58ABDD21D76302E00EE4CD8 /* CallusLogic.entitlements */,
 				B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */,
 				B5F44C611D2D9E84008BCE5F /* Assets.xcassets */,
 				B5F44C631D2D9E84008BCE5F /* MainMenu.xib */,
@@ -170,6 +172,11 @@
 				TargetAttributes = {
 					B5F44C561D2D9E84008BCE5F = {
 						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -328,6 +335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CallusLogic/CallusLogic.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CallusLogic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -342,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CallusLogic/CallusLogic.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CallusLogic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
