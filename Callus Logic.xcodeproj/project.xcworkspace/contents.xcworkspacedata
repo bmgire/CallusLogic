@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CallusLogic.xcodeproj">
+      location = "self:/Users/Ben/Documents/CompSci/MyApps/CallusLogic/Callus Logic.xcodeproj">
    </FileRef>
 </Workspace>
