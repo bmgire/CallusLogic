@@ -35,7 +35,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         didSet {
             
             tableView?.reloadData()
-            
         }
     }
     
@@ -48,10 +47,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     private var sourceIndex = 0
-    
-    private var allowsGhostAll = false
-    private var allowsSelectAll = false
-    private var allowsClear = false
     
     //##########################################################
     // Outlets to fretboard controls.
@@ -84,8 +79,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBOutlet weak var addFretboard: NSButton!
     @IBOutlet weak var removeFretboard: NSButton!
     
-    // Panels
-    
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################
@@ -104,21 +97,22 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     @IBAction func addCalculatedNotes(sender: NSButton) {
         
-            let undo = document?.undoManager!
-            undo!.registerUndoWithTarget(self,
-                                         selector: #selector(setFretboardArray(_:)),
-                                         object: model.getFretboardArrayCopy())
-            
-            undo!.setActionName("Add Notes")
+        let undo = document?.undoManager!
+        undo!.registerUndoWithTarget(self,
+                                     selector: #selector(setFretboardArray(_:)),
+                                     object: model.getFretboardArrayCopy())
+        undo!.setActionName("Add Notes")
         
-            // Calculate and display notes.
-            keepSelectedNotes(true)
-            updateZeroTo46ToneCalculator()
-            updatefretboardModel()
-            allowsSelectAll = true
-            allowsClear = true
-        //}
+        // Calculate and display notes.
+        keepSelectedNotes(true)
+        updateZeroTo46ToneCalculator()
+        updatefretboardModel()
+        
+        // update which buttons work.
+        model.setAllowsSelectAll(true)
+        model.setAllowsClear(true)
     }
+    
     
     func setFretboardArray(array: AnyObject) {
         let undo = document?.undoManager!
@@ -126,23 +120,16 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                      selector: #selector(setFretboardArray(_:)),
                                      object: model.getFretboardArrayCopy())
         
-      //  undo!.setActionName("Add Notes")
         model.setFretboardArray(array as! [NoteModel])
         
-        allowsSelectAll = true
-        allowsGhostAll = true
-        allowsClear = true
+        // update which buttons work.
+        model.setAllowsGhostAll(true)
+        model.setAllowsSelectAll(true)
+        model.setAllowsClear(true)
         
-        
-        
-        // update the fretboardView.
         updateFretboardView()
-        
     }
     
-
-    
-
     
     // Adds a fretboard to the table view.
     @IBAction func addFretboardAction(sender: NSButton) {
@@ -157,7 +144,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         undo!.registerUndoWithTarget(self,
                                      selector: #selector(removeFretboard(_:)),
                                      object: aModel)
-        
         if !undo!.undoing {
                 undo!.setActionName("Add Fretboard")
         }
@@ -165,8 +151,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         fretboardModelArray.append(aModel)
         let row = NSIndexSet(index: fretboardModelArray.count - 1)
         tableView.selectRowIndexes(row, byExtendingSelection: false)
-        
     }
+    
     
     // Remove a fretboard from the tableview.
     @IBAction func removeFretboardAction(sender: NSButton) {
@@ -180,7 +166,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         undo!.registerUndoWithTarget(self,
                                      selector: #selector(addFretboard(_:)),
                                      object: aModel)
-        
         if !undo!.undoing {
             undo!.setActionName("Remove Fretboard")
         }
@@ -191,8 +176,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         tableView.reloadData()
         
         tableView.selectRowIndexes(NSIndexSet(index: index! - 1), byExtendingSelection: false)
-        
     }
+    
     
     // Sets the tite thru the tableview.
     @IBAction func setTitleAction(sender: NSTextField) {
@@ -219,38 +204,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     @IBAction func changeUserColor(sender: NSColorWell) {
+
+        model.setUserColor(sender.color)        
+        model.setAllowsSelectAll(true)
         
-//        // Register undo
-//        
-//        prevColor = sender.color.copy() as! NSColor
-//        let undo = document?.undoManager!
-//        undo!.prepareWithInvocationTarget(self).setColor(prevColor!)
-//        if !undo!.undoing {
-//            undo!.setActionName("Change Color")
-//        }
-        model.setUserColor(sender.color)
-        allowsSelectAll = true
     }
     
-//    func setColor(color: NSColor) {
-//     
-//        prevColor = colorWell.color
-//        let undo = document?.undoManager!
-//        undo!.prepareWithInvocationTarget(self).setColor(prevColor!)
-//        
-//        colorWell!.color = color
-//        colorWell.needsDisplay = true
-//        model.setUserColor(color)
-//    }
+
     
     
     
@@ -264,7 +225,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     @IBAction func selectAllAction(sender: NSButton){
         
-        if allowsSelectAll {
+        if model.getAllowsSelectAll() {
             
             // Create undo
             let undo = document!.undoManager!
@@ -285,14 +246,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
             }
             
-            allowsGhostAll = true
-            allowsSelectAll = false
+//            allowsGhostAll = true
+//            allowsSelectAll = false
+            model.setAllowsGhostAll(true)
+            model.setAllowsSelectAll(true)
+            
         }
     }
     
     // Unselect all.
     @IBAction func ghostAllAction(sender: NSButton) {
-        if allowsGhostAll {
+        if model.getAllowsGhostAll() {
             // Create undo
             let undo = document!.undoManager!
             undo!.prepareWithInvocationTarget(self).setFretboardArray(model.getFretboardArrayCopy())
@@ -301,9 +265,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 undo!.setActionName("Ghost All")
             }
 
-            allowsSelectAll = true
-            allowsGhostAll = false
-            allowsClear = true
+//            allowsSelectAll = true
+//            allowsGhostAll = false
+//            allowsClear = true
+            
+            model.setAllowsGhostAll(false)
+            model.setAllowsSelectAll(true)
+            model.setAllowsClear(true)
            
             keepSelectedNotes(false)
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
@@ -313,7 +281,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     // Clear unselected
     @IBAction func clearGhostsAction(sender: NSButton) {
-        if allowsClear {
+        if model.getAllowsClear() {
             
             let undo = document!.undoManager!
             undo!.prepareWithInvocationTarget(self).setFretboardArray(model.getFretboardArrayCopy())
@@ -328,9 +296,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
             showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
             
-            allowsClear = false
-            allowsSelectAll = true
-            allowsGhostAll = true
+//            allowsClear = false
+//            allowsSelectAll = true
+//            allowsGhostAll = true
+            
+            model.setAllowsGhostAll(true)
+            model.setAllowsSelectAll(true)
+            model.setAllowsClear(false)
             
             
             if showAdditionalNotesButton.state == 1 {
@@ -362,8 +334,12 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         if sender.state != 0 {
             // Show chromatic notes.
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
-            allowsClear = true
-            allowsSelectAll = true
+//            allowsClear = true
+//            allowsSelectAll = true
+            
+            model.setAllowsSelectAll(true)
+            model.setAllowsClear(true)
+            
         }
             // Hide chromatic notes that aren't in the scale.
         else {
@@ -640,9 +616,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
 //                    // redraw.
 //                    (notification.object as! NoteView).needsDisplay = true
 
-        allowsGhostAll = true
-        allowsSelectAll = true
-        allowsClear = true
+//        allowsGhostAll = true
+//        allowsSelectAll = true
+//        allowsClear = true
+        
+        model.setAllowsGhostAll(true)
+        model.setAllowsSelectAll(true)
+        model.setAllowsClear(true)
+        
         updateFretboardView()
     }
     

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="CallusLogic" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="Callus_Logic" customModuleProvider="target">
             <connections>
                 <outlet property="accidentalPopUp" destination="rUh-IO-EzS" id="FgM-Lv-skf"/>
                 <outlet property="addFretboard" destination="Y8k-fE-Skm" id="PgK-ew-J2n"/>
@@ -35,7 +34,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="900" height="544"/>
             <value key="maxSize" type="size" width="1808" height="544"/>
-            <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="CallusLogic" customModuleProvider="target">
+            <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="Callus_Logic" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="900" height="544"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
@@ -226,7 +225,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="CallusLogic" customModuleProvider="target">
+                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="Callus_Logic" customModuleProvider="target">
                                             <rect key="frame" x="13" y="12" width="1790" height="262"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>

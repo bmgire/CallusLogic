@@ -37,6 +37,10 @@ class FretboardModel: NSObject, NSCoding {
     private var displayMode = 0
     
     
+    private var allowsGhostAll = false
+    private var allowsSelectAll = false
+    private var allowsClear = false
+    
     
     //##########################################################
     // MARK: - Encoding
@@ -67,6 +71,10 @@ class FretboardModel: NSObject, NSCoding {
         
         // Encode displayMode.
         aCoder.encodeInteger(displayMode, forKey: "displayMode")
+    
+        aCoder.encodeBool(allowsGhostAll, forKey: "allowsGhostAll")
+        aCoder.encodeBool(allowsSelectAll, forKey: "allowsSelectAll")
+        aCoder.encodeBool(allowsClear, forKey: "allowsClear")
     }
     
     //##########################################################
@@ -92,6 +100,10 @@ class FretboardModel: NSObject, NSCoding {
 
         showAdditionalNotes = aDecoder.decodeIntegerForKey("showAdditionalNotes")
         displayMode = aDecoder.decodeIntegerForKey("displayMode")
+        
+        allowsGhostAll = aDecoder.decodeBoolForKey("allowsGhostAll")
+        allowsSelectAll = aDecoder.decodeBoolForKey("allowsSelectAll")
+        allowsClear = aDecoder.decodeBoolForKey("allowsClear")
         
         super.init()
     }
@@ -158,6 +170,29 @@ class FretboardModel: NSObject, NSCoding {
         return displayMode
     }
 
+    func setAllowsGhostAll(bool: Bool) {
+        allowsGhostAll = bool
+    }
+    
+    func getAllowsGhostAll()-> Bool {
+        return allowsGhostAll
+    }
+    
+    func setAllowsSelectAll(bool: Bool) {
+        allowsSelectAll = bool
+    }
+    
+    func getAllowsSelectAll()-> Bool {
+        return allowsSelectAll
+    }
+    
+    func setAllowsClear(bool: Bool) {
+        allowsClear = bool
+    }
+    
+    func getAllowsClear()-> Bool {
+        return allowsClear
+    }
     
     
     // Reqiured init.
