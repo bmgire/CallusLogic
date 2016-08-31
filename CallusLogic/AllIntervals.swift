@@ -133,8 +133,4 @@ public class AllIntervals: NSObject {
     func getIntervalsDict()->[String : [String : String]] {
         return intervalDict
     }
-    
-//    func getIntervalsDict()->[String : [String : String]] {
-//        return intervalDict
-//    }
 }

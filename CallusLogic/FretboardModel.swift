@@ -22,20 +22,14 @@ class FretboardModel: NSObject, NSCoding {
     private var fretboardTitle: String? = "Untitled"
     
    
-    
     // The userColor for note selection.
     private var userColor: NSColor? = NSColor.yellowColor()
     
-    // Whether the fretboard is locked for editing.
     private var isLocked = 0
-    
-
     
     private var showAdditionalNotes = 0
     
-    
     private var displayMode = 0
-    
     
     private var allowsGhostAll = false
     private var allowsSelectAll = false
@@ -45,7 +39,6 @@ class FretboardModel: NSObject, NSCoding {
     //##########################################################
     // MARK: - Encoding
     //##########################################################
-    // MARK:- Encoding
     func encodeWithCoder(aCoder: NSCoder) {
         
         // Encode fretboardArray.
@@ -77,6 +70,7 @@ class FretboardModel: NSObject, NSCoding {
         aCoder.encodeBool(allowsClear, forKey: "allowsClear")
     }
     
+    
     //##########################################################
     // MARK: - Decoding
     //##########################################################
@@ -107,9 +101,23 @@ class FretboardModel: NSObject, NSCoding {
         
         super.init()
     }
+    
+    // Reqiured init.
+    override init(){
+        super.init()
+        
+        // If no encoded fretboardModel was loaded, build a fretboard model.
+        if fretboardArray!.count == 0 {
+            // Build 138 item array of NoteModels.
+            var temp : [NoteModel] = []
+            for _ in 0...137 {
+                temp.append(NoteModel())
+            }
+            fretboardArray = temp
+        }
+    }
   
  
-    
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################
@@ -192,22 +200,6 @@ class FretboardModel: NSObject, NSCoding {
     
     func getAllowsClear()-> Bool {
         return allowsClear
-    }
-    
-    
-    // Reqiured init.
-    override init(){
-        super.init()
-        
-        // If no encoded fretboardModel was loaded, build a fretboard model.
-        if fretboardArray!.count == 0 {
-        // Build 138 item array of NoteModels.
-        var temp : [NoteModel] = []
-        for _ in 0...137 {
-            temp.append(NoteModel())
-            }
-            fretboardArray = temp
-        }
     }
 }
 

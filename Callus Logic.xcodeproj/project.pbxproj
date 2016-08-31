@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B52256AA1D513A5F00E9AF0E /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52256A91D513A5F00E9AF0E /* TableViewDataSource.swift */; };
 		B584BCB51D32C98A0092B143 /* FretboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584BCB41D32C98A0092B143 /* FretboardModel.swift */; };
 		B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */; };
 		B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5C1D2D9E84008BCE5F /* Document.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B52256A91D513A5F00E9AF0E /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		B584BCB41D32C98A0092B143 /* FretboardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardModel.swift; sourceTree = "<group>"; };
 		B58ABDD21D76302E00EE4CD8 /* CallusLogic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallusLogic.entitlements; sourceTree = "<group>"; };
 		B5F44C571D2D9E84008BCE5F /* Callus Logic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Callus Logic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +91,6 @@
 				B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */,
 				B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */,
 				B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */,
-				B52256A91D513A5F00E9AF0E /* TableViewDataSource.swift */,
 				B5F44C821D2D9FA0008BCE5F /* Views */,
 				B5F44C831D2D9FC1008BCE5F /* Models */,
 				B5F44C841D2D9FD6008BCE5F /* MusicTheory */,
@@ -231,7 +228,6 @@
 				B5F44C811D2D9F15008BCE5F /* Scale.swift in Sources */,
 				B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */,
 				B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */,
-				B52256AA1D513A5F00E9AF0E /* TableViewDataSource.swift in Sources */,
 				B5F44C7E1D2D9F15008BCE5F /* NoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

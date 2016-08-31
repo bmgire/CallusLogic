@@ -198,14 +198,14 @@ class ZeroTo46ToneCalculator {
             if passingIndex < 11 {
                 zeroTo46ToneArray[36 + passingIndex!].makePassingNote(true)
             }
-
         }
     }
     
     func buildzeroTo46ToneArray() {
         var temp: [NoteModel] = []
         for _ in 0...46 {
-            temp.append(NoteModel())        }
+            temp.append(NoteModel())
+        }
         zeroTo46ToneArray = temp
     }
 }

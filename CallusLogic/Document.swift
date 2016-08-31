@@ -17,6 +17,7 @@ class Document: NSDocument{
         super.init()
     }
    
+    
     //##########################################################
     override func makeWindowControllers() {
         // create and add your window controller.
@@ -24,10 +25,12 @@ class Document: NSDocument{
         addWindowController(mainWindowController)
     }
     
+    
     //##########################################################
     override class func autosavesInPlace() -> Bool {
         return true
     }
+    
     
     //##########################################################
     override func dataOfType(typeName: String) throws -> NSData {
@@ -35,23 +38,23 @@ class Document: NSDocument{
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
         
         
-        // I'm ignoring errors. 
-        
+        // I'm ignoring errors.
         // end editing for nothing.
        mainWindowController.window?.endEditingFor(nil)
         
-        // Create an NSDataObject from the mainWindowControllers fretboardModelArray
-        // old.... =  return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getCurrentFretboardModel())
+        // Create an NSDataObject from the mainWindowControllers fretboardModelArray.
         return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getFretboardModelArray())
         
+        // I will not be throwing.
         //throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
+    
     //##########################################################
     override func readFromData(data: NSData, ofType typeName: String) throws {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         
-        //print("About to read data of type \(typeName).");
+        //print("About to read data of type \(typeName)."); // Uncomment for debug.
         mainWindowController.setFretboardModelArray(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [FretboardModel])
         
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
@@ -63,9 +66,5 @@ class Document: NSDocument{
     func windowWillClose(notification: NSNotification) {
         mainWindowController.setFretboardModelArray([])
     }
-    
-    //##########################################################
-    // Window Restoration
-    //##########################################################
 }
 

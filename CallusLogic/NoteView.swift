@@ -23,13 +23,6 @@ class NoteView: NSView {
     // The rect for the NoteView.
     private var noteRect: CGRect?
     
-    
-    
-    
-    //##########################################################
-    // Bools
-    //##########################################################
-    
     //##########################################################
     // MARK: - getters and setters.
     //##########################################################
@@ -37,10 +30,12 @@ class NoteView: NSView {
         return noteModel
     }
     
+    
     func setNoteModel(newModel: NoteModel){
         noteModel = newModel
         needsDisplay = true
     }
+    
     
     //##########################################################
     // MARK: - Overridden functions
@@ -51,40 +46,13 @@ class NoteView: NSView {
         needsDisplay = true
     }
     
-//    override init(frame frameRect: NSRect) {
-//        super.init(frame: frameRect)
-//        
-//        
-//    
-//    }
-//    
-//    init() {
-//        super.init(frame: NSMakeRect(0, 0, 0, 0))
-//        // Setup path.
-//        noteRect = bounds.insetBy(dx: bounds.width * 0.05, dy: bounds.height * 0.05)
-//        // Defines the radius of the corners of a rounded rect.
-//        let cornerRadius = bounds.size.height * 0.2
-//        // Assign a value to the path.
-//        path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
-//    }
-//    
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-
-    
-
-
-    
     
     //##########################################################
     // MARK: - Mouse Events
     //##########################################################
     
     override func mouseDown(theEvent: NSEvent) {
-        //Swift.print("mouseDown") 
+        //Swift.print("mouseDown")   // Uncomment for debugging purposes.
         
         //Converts the locationInWindow to the views coorinate system.
         let pointInView = convertPoint(theEvent.locationInWindow, fromView: nil)
@@ -93,6 +61,7 @@ class NoteView: NSView {
         pressed = path!.containsPoint(pointInView)
         
     }
+    
     
     override func mouseUp(theEvent: NSEvent) {
         
@@ -158,9 +127,7 @@ class NoteView: NSView {
             // Set orientation.
             paraStyle.alignment = .Right
             
-            
-            
-            // definte a font.
+            // define a font.
             let font = NSFont.systemFontOfSize(noteModel.getNoteFontSize())
             
             // Attributes for drawing.
@@ -190,7 +157,6 @@ class NoteView: NSView {
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getInterval(), attributes: attrs)
             }
-            
             attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
         }
     }

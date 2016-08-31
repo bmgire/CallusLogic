@@ -225,6 +225,9 @@ class AllScales: NSObject {
                          aScale: Scale(name:  "7th Arpeggio",
                             formula: [ "root",   "",    "",	 "",    "M3",	 "",	 "",     "P5",  "",    "",    "m7",  "",    "offset"],
                             thePassingInterval: "" ))
+
+        
+// I'm keeping these notes for when I add arpeggio extension past the octave. 
         
 //        buildAndAddScale(&scaleArray,
 //                         keyArray: &keyArray,
@@ -280,7 +283,8 @@ class AllScales: NSObject {
 //                         aScale: Scale(name:  "dim11 Arpeggio",
 //                            formula: [ "root",   "",    "M2",	 "",     "M3",	 "P4",   "",     "P5",   "",	  "",    "m7",  "",    "offset"],
 //                            thePassingInterval: "" ))
-        
+
+// Template for building a new scale. 
         /*
 buildAndAddScale(&scaleArray,
                 keyArray: &keyArray,

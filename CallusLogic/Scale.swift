@@ -39,9 +39,4 @@ class Scale {
     func getFormula()->[String] {
         return scaleFormula
     }
-    
-    
-    
-    
-    
 }
