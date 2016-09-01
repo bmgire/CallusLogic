@@ -46,7 +46,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
-    private var sourceIndex = 0
+   // private var sourceIndex = 0
     
     //##########################################################
     // Outlets to fretboard controls.
@@ -200,7 +200,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         model.setFretboardTitle(newTitle)
         displayTitle.stringValue = newTitle
-        tableView.reloadData()
     }
     
     
@@ -629,6 +628,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         displayModePopUp.selectItemAtIndex(model.getDisplayMode())
         
         updateFretboardView()
+        model.setUserColor(colorWell.color)
     }
     
     
@@ -683,7 +683,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             
             pboard.declareTypes([NSPasteboardTypeString], owner: self)
             pboard.setData(data, forType:  "rowData")
-            sourceIndex = rowIndexes.firstIndex
+            modelIndex = rowIndexes.firstIndex
             return true
       }
     
@@ -707,7 +707,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                 row: Int,
                                 dropOperation: NSTableViewDropOperation) -> Bool {
         
-        reArrangeModelArray(sourceIndex, destination: row)
+        reArrangeModelArray(modelIndex, destination: row)
         tableView.reloadData()
 
         return true
