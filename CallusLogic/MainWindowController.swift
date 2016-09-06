@@ -348,11 +348,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             // Disable all editing capabilities.
             calculatorView.hidden = true
             customizeView.hidden = true
+            removeFretboard.enabled = false
             }
         // Else, the button isn't locked,
         else {
             calculatorView.hidden = false
             customizeView.hidden = false
+            removeFretboard.enabled = true
         }
         
         model.setIsLocked(sender.state)
