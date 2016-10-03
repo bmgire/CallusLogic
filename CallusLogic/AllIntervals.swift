@@ -8,10 +8,10 @@
 
 import Cocoa
 
-public class AllIntervals: NSObject {
+open class AllIntervals: NSObject {
     
     
-    private var aFlat,  a,  aSharp,
+    fileprivate var aFlat,  a,  aSharp,
         bFlat,  b,  bSharp,
         cFlat,  c,  cSharp,
         dFlat,  d,  dSharp,
@@ -20,15 +20,15 @@ public class AllIntervals: NSObject {
         gFlat,  g,  gSharp: [String]
 
     // A dictionary where keys are strings and values are dictionaries. 
-    private var intervalDict:[String : [String : String]] = [:]
+    fileprivate var intervalDict:[String : [String : String]] = [:]
     
-    private var arrayOfIntervalDicts: [[String : String]] = []
+    fileprivate var arrayOfIntervalDicts: [[String : String]] = []
     
-    private var arrayOfRootNotes: [String]
+    fileprivate var arrayOfRootNotes: [String]
     
-    private var arrayOfIntervalNames:[String]
+    fileprivate var arrayOfIntervalNames:[String]
     
-    private var arrayOfRootIntervals: [[String]]
+    fileprivate var arrayOfRootIntervals: [[String]]
     
 
     
@@ -120,13 +120,13 @@ public class AllIntervals: NSObject {
         
         for index in 0...20 {
         
-        temp.append(NSDictionary.init(objects: arrayOfRootIntervals[index], forKeys: arrayOfIntervalNames) as! [String : String])
+        temp.append(NSDictionary.init(objects: arrayOfRootIntervals[index], forKeys: arrayOfIntervalNames as [NSCopying]) as! [String : String])
         }
         // Pointer Swap.
         arrayOfIntervalDicts = temp
         
         // Pointer swap.
-        intervalDict = NSDictionary.init(objects: arrayOfIntervalDicts, forKeys: arrayOfRootNotes) as! [String : [String : String]]
+        intervalDict = NSDictionary.init(objects: arrayOfIntervalDicts, forKeys: arrayOfRootNotes as [NSCopying]) as! [String : [String : String]]
         super.init()
     }
     

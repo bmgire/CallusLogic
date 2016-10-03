@@ -12,16 +12,16 @@ class NoteView: NSView {
     
     var viewNumberDict: [String: Int] = [:]
 
-    private var noteModel = NoteModel()
+    fileprivate var noteModel = NoteModel()
     
     // Indicates whether the button has been pressed successfully.
-    private var pressed: Bool = false
+    fileprivate var pressed: Bool = false
     
     // Variable to hold this notes BezierPath.
-    private var path: NSBezierPath?
+    fileprivate var path: NSBezierPath?
     
     // The rect for the NoteView.
-    private var noteRect: CGRect?
+    fileprivate var noteRect: CGRect?
     
     //##########################################################
     // MARK: - getters and setters.
@@ -31,7 +31,7 @@ class NoteView: NSView {
     }
     
     
-    func setNoteModel(newModel: NoteModel){
+    func setNoteModel(_ newModel: NoteModel){
         noteModel = newModel
         needsDisplay = true
     }
@@ -41,7 +41,7 @@ class NoteView: NSView {
     // MARK: - Overridden functions
     //##########################################################
     
-    override func drawRect(dirtyRect: CGRect) {
+    override func draw(_ dirtyRect: CGRect) {
         drawNote()
         needsDisplay = true
     }
@@ -51,23 +51,23 @@ class NoteView: NSView {
     // MARK: - Mouse Events
     //##########################################################
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         //Swift.print("mouseDown")   // Uncomment for debugging purposes.
         
         //Converts the locationInWindow to the views coorinate system.
-        let pointInView = convertPoint(theEvent.locationInWindow, fromView: nil)
+        let pointInView = convert(theEvent.locationInWindow, from: nil)
         
         // tests if we pressed into this view.
-        pressed = path!.containsPoint(pointInView)
+        pressed = path!.contains(pointInView)
         
     }
     
     
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(with theEvent: NSEvent) {
         
         if pressed {
             // Posts a notification and specifies which object sent the notification.
-            NSNotificationCenter.defaultCenter().postNotificationName("noteViewMouseUpEvent", object: self, userInfo: viewNumberDict)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "noteViewMouseUpEvent"), object: self, userInfo: viewNumberDict)
         }
         pressed = false
     }
@@ -95,7 +95,7 @@ class NoteView: NSView {
     //##########################################################
     
     // Draws the note or number
-    private func drawNote() {
+    fileprivate func drawNote() {
         // Assigns a value to the noteRect.
         noteRect = bounds.insetBy(dx: bounds.width * 0.05, dy: bounds.height * 0.05)
         
@@ -110,10 +110,10 @@ class NoteView: NSView {
             
             // If appropriate, set alpha to ghosting transparency
             if noteModel.getIsGhost() == true {
-                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(0.4)))
+                noteModel.setMyColor(noteModel.getMyColor().withAlphaComponent(CGFloat(0.4)))
             }
             else {
-                noteModel.setMyColor(noteModel.getMyColor().colorWithAlphaComponent(CGFloat(1)))
+                noteModel.setMyColor(noteModel.getMyColor().withAlphaComponent(CGFloat(1)))
             }
             
             // Set color and fill.
@@ -122,17 +122,17 @@ class NoteView: NSView {
             path?.fill()
             
             // Create an NSParagraphStyle object
-            let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+            let paraStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
             
             // Set orientation.
-            paraStyle.alignment = .Right
+            paraStyle.alignment = .right
             
             // define a font.
-            let font = NSFont.systemFontOfSize(noteModel.getNoteFontSize())
+            let font = NSFont.systemFont(ofSize: noteModel.getNoteFontSize())
             
             // Attributes for drawing.
             let attrs = [
-                NSForegroundColorAttributeName: NSColor.blackColor(),
+                NSForegroundColorAttributeName: NSColor.black,
                 NSFontAttributeName: font,
                 NSParagraphStyleAttributeName: paraStyle]
             

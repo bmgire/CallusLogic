@@ -16,58 +16,58 @@ class FretboardModel: NSObject, NSCoding {
     //##########################################################
     
     // The array of noteModels that make up the fretboard.
-    private var fretboardArray: [NoteModel]? = []
+    fileprivate var fretboardArray: [NoteModel]? = []
     
     // The fretboards Title
-    private var fretboardTitle: String? = "Untitled"
+    fileprivate var fretboardTitle: String? = "Untitled"
     
    
     // The userColor for note selection.
-    private var userColor: NSColor? = NSColor.yellowColor()
+    fileprivate var userColor: NSColor? = NSColor.yellow
     
-    private var isLocked = 0
+    fileprivate var isLocked = 0
     
-    private var showAdditionalNotes = 0
+    fileprivate var showAdditionalNotes = 0
     
-    private var displayMode = 0
+    fileprivate var displayMode = 0
     
-    private var allowsGhostAll = false
-    private var allowsSelectAll = false
-    private var allowsClear = false
+    fileprivate var allowsGhostAll = false
+    fileprivate var allowsSelectAll = false
+    fileprivate var allowsClear = false
     
     
     //##########################################################
     // MARK: - Encoding
     //##########################################################
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
         // Encode fretboardArray.
         if let fretboardArray = fretboardArray {
             for index in 0...137 {
-                aCoder.encodeObject(fretboardArray[index], forKey: "noteModel\(index)")
+                aCoder.encode(fretboardArray[index], forKey: "noteModel\(index)")
             }
         }
         // Encode fretboardTitle.
         if let fretboardTitle = fretboardTitle {
-            aCoder.encodeObject(fretboardTitle, forKey: "fretboardTitle")
+            aCoder.encode(fretboardTitle, forKey: "fretboardTitle")
         }
         // Encode userColor.
         if let userColor = userColor {
-            aCoder.encodeObject(userColor, forKey: "userColor")
+            aCoder.encode(userColor, forKey: "userColor")
         }
         // Encode isLocked.
-        aCoder.encodeInteger(isLocked, forKey: "isLocked")
+        aCoder.encode(isLocked, forKey: "isLocked")
         
         // Encode showAdditionalNotes.
-        aCoder.encodeInteger(showAdditionalNotes, forKey: "showAdditionalNotes")
+        aCoder.encode(showAdditionalNotes, forKey: "showAdditionalNotes")
         
         
         // Encode displayMode.
-        aCoder.encodeInteger(displayMode, forKey: "displayMode")
+        aCoder.encode(displayMode, forKey: "displayMode")
     
-        aCoder.encodeBool(allowsGhostAll, forKey: "allowsGhostAll")
-        aCoder.encodeBool(allowsSelectAll, forKey: "allowsSelectAll")
-        aCoder.encodeBool(allowsClear, forKey: "allowsClear")
+        aCoder.encode(allowsGhostAll, forKey: "allowsGhostAll")
+        aCoder.encode(allowsSelectAll, forKey: "allowsSelectAll")
+        aCoder.encode(allowsClear, forKey: "allowsClear")
     }
     
     
@@ -78,26 +78,26 @@ class FretboardModel: NSObject, NSCoding {
         
         // Decode fretboardArray
         for index in 0...137 {
-            if let noteModel = aDecoder.decodeObjectForKey("noteModel\(index)"){
+            if let noteModel = aDecoder.decodeObject(forKey: "noteModel\(index)"){
                 fretboardArray!.append(noteModel as! NoteModel)
             }
         }
         
         // Decode fretboardTitle
-        fretboardTitle = aDecoder.decodeObjectForKey("fretboardTitle") as! String?
+        fretboardTitle = aDecoder.decodeObject(forKey: "fretboardTitle") as! String?
         
-        userColor = aDecoder.decodeObjectForKey("userColor") as! NSColor?
+        userColor = aDecoder.decodeObject(forKey: "userColor") as! NSColor?
         
         // Decode isLocked.
-        isLocked = aDecoder.decodeIntegerForKey("isLocked")
+        isLocked = aDecoder.decodeInteger(forKey: "isLocked")
         
 
-        showAdditionalNotes = aDecoder.decodeIntegerForKey("showAdditionalNotes")
-        displayMode = aDecoder.decodeIntegerForKey("displayMode")
+        showAdditionalNotes = aDecoder.decodeInteger(forKey: "showAdditionalNotes")
+        displayMode = aDecoder.decodeInteger(forKey: "displayMode")
         
-        allowsGhostAll = aDecoder.decodeBoolForKey("allowsGhostAll")
-        allowsSelectAll = aDecoder.decodeBoolForKey("allowsSelectAll")
-        allowsClear = aDecoder.decodeBoolForKey("allowsClear")
+        allowsGhostAll = aDecoder.decodeBool(forKey: "allowsGhostAll")
+        allowsSelectAll = aDecoder.decodeBool(forKey: "allowsSelectAll")
+        allowsClear = aDecoder.decodeBool(forKey: "allowsClear")
         
         super.init()
     }
@@ -137,7 +137,7 @@ class FretboardModel: NSObject, NSCoding {
         return array
     }
     
-    func setFretboardArray(newArray: [NoteModel]) {
+    func setFretboardArray(_ newArray: [NoteModel]) {
         fretboardArray = newArray
     }
     
@@ -145,7 +145,7 @@ class FretboardModel: NSObject, NSCoding {
         return fretboardTitle!
     }
     
-    func setFretboardTitle(newTitle: String) {
+    func setFretboardTitle(_ newTitle: String) {
         fretboardTitle = newTitle
     }
     
@@ -153,32 +153,32 @@ class FretboardModel: NSObject, NSCoding {
         return userColor!
     }
     
-    func setUserColor(newColor: NSColor) {
+    func setUserColor(_ newColor: NSColor) {
         userColor = newColor
     }
     
-    func setIsLocked(state: Int) {
+    func setIsLocked(_ state: Int) {
         isLocked = state
     }
     func getIsLocked()-> Int {
         return isLocked
     }
     
-    func setShowAdditionalNotes(int: Int) {
+    func setShowAdditionalNotes(_ int: Int) {
         showAdditionalNotes = int
     }
     func getShowAdditionalNotes()->Int {
         return showAdditionalNotes
     }
     
-    func setDisplayMode(index: Int) {
+    func setDisplayMode(_ index: Int) {
         displayMode = index
     }
     func getDisplayMode()->Int {
         return displayMode
     }
 
-    func setAllowsGhostAll(bool: Bool) {
+    func setAllowsGhostAll(_ bool: Bool) {
         allowsGhostAll = bool
     }
     
@@ -186,7 +186,7 @@ class FretboardModel: NSObject, NSCoding {
         return allowsGhostAll
     }
     
-    func setAllowsSelectAll(bool: Bool) {
+    func setAllowsSelectAll(_ bool: Bool) {
         allowsSelectAll = bool
     }
     
@@ -194,7 +194,7 @@ class FretboardModel: NSObject, NSCoding {
         return allowsSelectAll
     }
     
-    func setAllowsClear(bool: Bool) {
+    func setAllowsClear(_ bool: Bool) {
         allowsClear = bool
     }
     

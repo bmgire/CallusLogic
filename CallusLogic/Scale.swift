@@ -11,9 +11,9 @@ import Foundation
 
 // I'm attempting to try without subclassing from NSObject
 class Scale {
-    private var scaleName: String = ""
-    private var scaleFormula: [String] = []
-    private var passingInterval = ""
+    fileprivate var scaleName: String = ""
+    fileprivate var scaleFormula: [String] = []
+    fileprivate var passingInterval = ""
     
     init(){
         

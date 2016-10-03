@@ -23,10 +23,10 @@ class FretboardView: NSView {
     //##########################################################
     
     // holds the rects used to create all NoteViews.
-    private var rectArray: [CGRect] = []
+    fileprivate var rectArray: [CGRect] = []
     
     // Holds the NoteViews
-    private var noteViewArray: [NoteView] = []
+    fileprivate var noteViewArray: [NoteView] = []
 
     // The image shown in this custom view.
     var image :NSImage?
@@ -36,7 +36,7 @@ class FretboardView: NSView {
     //##########################################################
     
     // Array to hold guitarString offsets
-    private var offsets = [0, 5, 10, 15, 19, 24]
+    fileprivate var offsets = [0, 5, 10, 15, 19, 24]
     
     // Arrays of CGFloat magic number multipliers to correctly represent fret locations.
     let frets: [CGFloat] =
@@ -126,7 +126,7 @@ class FretboardView: NSView {
     }
 
     // Draws in the NSView.
-    override func drawRect(dirtyRect: CGRect) {
+    override func draw(_ dirtyRect: CGRect) {
        
             // Declare the image object that will be drawn.
             if let image = image {
@@ -135,7 +135,7 @@ class FretboardView: NSView {
                 // update content for drawing
                 // updateSubviews()
                 // Draw the image of the fretboard.
-                image.drawInRect(imageRect)
+                image.draw(in: imageRect)
             }
      
     }
@@ -151,7 +151,7 @@ class FretboardView: NSView {
     //##########################################################
     
     // Build Note Rects.
-    private func buildNoteRects(yMultiplier: CGFloat, radians: CGFloat) {
+    fileprivate func buildNoteRects(_ yMultiplier: CGFloat, radians: CGFloat) {
         
         // Create a temp array and copy any rects in rectArray to it.
         var tempRects:[CGRect] = rectArray
@@ -183,7 +183,7 @@ class FretboardView: NSView {
     }
     
     // Builds the noteViewsArray.
-    private func buildNoteViews() {
+    fileprivate func buildNoteViews() {
         
         // String index represents each guitar string. 0 is highest pitch, 5 is lowest.
         for stringIndex in 0...5 {
@@ -202,7 +202,7 @@ class FretboardView: NSView {
                 
                 // If the NoteView isn't at the nut, rotate it.
                 if noteIndex != 0 {
-                    note.rotateByAngle(radians[stringIndex] * CGFloat(180/M_PI))
+                    note.rotate(byDegrees: radians[stringIndex] * CGFloat(180/M_PI))
                 }
                 noteViewArray.append(note)
             }
@@ -210,14 +210,14 @@ class FretboardView: NSView {
     }
     
     // Add all NoteViews as subviews. 
-    private func addSubviews() {
+    fileprivate func addSubviews() {
         for index in 0...(noteViewArray.count - 1) {
             addSubview(noteViewArray[index])
         }
     }
     
     // Updates the contents of each noteView.
-    func updateSubviews(newModelArray: [NoteModel]) {
+    func updateSubviews(_ newModelArray: [NoteModel]) {
         for index in 0...137 {
             let view = subviews[index] as! NoteView
             let model = newModelArray[index]

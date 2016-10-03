@@ -3,6 +3,17 @@
 
 
 import Cocoa
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class ZeroTo46ToneCalculator {
 
@@ -17,25 +28,25 @@ class ZeroTo46ToneCalculator {
     //##########################################################
     // MARK: - Variables
     //##########################################################
-    private var masterRoot = ""
-    private var myDisplayMode = ""
-    private var calcColor: NSColor?
+    fileprivate var masterRoot = ""
+    fileprivate var myDisplayMode = ""
+    fileprivate var calcColor: NSColor?
     
     //private var ghost: Bool?
-    private var rootIntervalDict : [String : String] = [:]
-    private var scale: Scale = Scale()
+    fileprivate var rootIntervalDict : [String : String] = [:]
+    fileprivate var scale: Scale = Scale()
     
     // Used for calculating and properly ordering a scale.
-    private var unorderedIntervalsArray : [String] = []
-    private var orderedIntervalsArray: [String] = []
-    private var unorderedScaleArray: [String] = []
-    private var orderedScaleArray: [String] = []
+    fileprivate var unorderedIntervalsArray : [String] = []
+    fileprivate var orderedIntervalsArray: [String] = []
+    fileprivate var unorderedScaleArray: [String] = []
+    fileprivate var orderedScaleArray: [String] = []
     
-    private var indeciesOfNotes: [Int] = []
+    fileprivate var indeciesOfNotes: [Int] = []
     
-    private var intervalIndexOfE = 0
-    private var passingInterval = ""
-    private var zeroTo46ToneArray: [NoteModel] = []
+    fileprivate var intervalIndexOfE = 0
+    fileprivate var passingInterval = ""
+    fileprivate var zeroTo46ToneArray: [NoteModel] = []
     
     
     
@@ -47,7 +58,7 @@ class ZeroTo46ToneCalculator {
     // MARK: - Custom functions
     //##########################################################
     // Get the current user selected values and update the array of NoteModels.
-    func updateWithValues(myRoot: String,
+    func updateWithValues(_ myRoot: String,
                           myAccidental: String,
                           scaleName: String,
                           displayMode: String,
@@ -84,11 +95,11 @@ class ZeroTo46ToneCalculator {
     }
     
     // Combine the root with the accidental, if necessary.
-    func resolveRoot(root: String, accidental: String) {
+    func resolveRoot(_ root: String, accidental: String) {
         // If accidental, isn't "Natural", append it to the masterRoot.
         if accidental != "Natural" {
             var temp = root
-            temp.appendContentsOf(accidental)
+            temp.append(accidental)
             masterRoot = temp
         }
         else {
@@ -98,7 +109,7 @@ class ZeroTo46ToneCalculator {
     }
     
     // Gets the scale intervals and intervalofE
-    func getScaleIntervalsAndIntervalOfE(scale: Scale, intervalDictForRoot: [String:String]) {
+    func getScaleIntervalsAndIntervalOfE(_ scale: Scale, intervalDictForRoot: [String:String]) {
         var interval: String = ""
         var tempIntervals:[String] = []
         var tempScale:[String] = []
@@ -125,7 +136,7 @@ class ZeroTo46ToneCalculator {
     }
     
     // Reorder the scale and interval arrays, add numbers
-    func buildFretboard(scale: [String]) {
+    func buildFretboard(_ scale: [String]) {
         orderedScaleArray = reorderArray(unorderedScaleArray)
         orderedIntervalsArray = reorderArray(unorderedIntervalsArray)
         reorderArray(unorderedIntervalsArray)
@@ -134,7 +145,7 @@ class ZeroTo46ToneCalculator {
         setPassingNotesForScale()
     }
     
-    func reorderArray(unorderedArray: [String])-> [String]{
+    func reorderArray(_ unorderedArray: [String])-> [String]{
         // if the Root isn't E, reorder.
         if intervalIndexOfE != 0 {
             // Create sub arrays of each range.
@@ -148,7 +159,7 @@ class ZeroTo46ToneCalculator {
         }
     }
     
-    func addNoteNamesIntervalsAndNumber0to11(orderedNotes: [String], orderedIntervals: [String]) {
+    func addNoteNamesIntervalsAndNumber0to11(_ orderedNotes: [String], orderedIntervals: [String]) {
         for octaveCount in 0...2{
             for scaleIndex in 0...11 {
                 let noteModel = zeroTo46ToneArray[scaleIndex + octaveCount * 12]
@@ -189,7 +200,7 @@ class ZeroTo46ToneCalculator {
     
     func setPassingNotesForScale() {
         if passingInterval != ""{
-            let passingIndex = orderedIntervalsArray.indexOf(passingInterval)
+            let passingIndex = orderedIntervalsArray.index(of: passingInterval)
             // Make a passing tone in the first 3 octaves.
             for index in 0...2 {
                zeroTo46ToneArray[index * 12 + passingIndex!].makePassingNote(true)

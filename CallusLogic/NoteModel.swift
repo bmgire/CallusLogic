@@ -9,62 +9,62 @@ import Cocoa
 class NoteModel: NSObject, NSCoding {
     
     // The position of the note on the entire fretboard. 0-137
-    private var note = ""
-    private var number0to11 = ""
-    private var number0to46 = ""
-    private var interval = ""
+    fileprivate var note = ""
+    fileprivate var number0to11 = ""
+    fileprivate var number0to46 = ""
+    fileprivate var interval = ""
     
     /// var attributedNote = NSMutableAttributedString()
-    private var isGhost = true
-    private var isInScale = false
-    private var isDisplayed = false
-    private var isPassingNote = false
+    fileprivate var isGhost = true
+    fileprivate var isInScale = false
+    fileprivate var isDisplayed = false
+    fileprivate var isPassingNote = false
     
     // Indicates the note should be kept.
-    private var isKept = false
+    fileprivate var isKept = false
     
     // FontSize
-    private var noteFontSize: CGFloat = 16
+    fileprivate var noteFontSize: CGFloat = 16
     
     // A state variable to be set while the mouse is down.
-    private var myColor: NSColor = NSColor.redColor()
+    fileprivate var myColor: NSColor = NSColor.red
     
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-    private var displayMode = "Notes"
+    fileprivate var displayMode = "Notes"
      
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(note, forKey: "note")
-        aCoder.encodeObject(number0to11, forKey: "number0to11")
-        aCoder.encodeObject(number0to46, forKey: "number0to46")
-        aCoder.encodeObject(interval, forKey: "interval")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(note, forKey: "note")
+        aCoder.encode(number0to11, forKey: "number0to11")
+        aCoder.encode(number0to46, forKey: "number0to46")
+        aCoder.encode(interval, forKey: "interval")
         
-        aCoder.encodeBool(isGhost, forKey: "isGhost")
-        aCoder.encodeBool(isInScale, forKey: "isInScale")
-        aCoder.encodeBool(isDisplayed, forKey: "isDisplayed")
-        aCoder.encodeBool(isPassingNote, forKey: "isPassingNote")
-        aCoder.encodeBool(isKept, forKey: "isKept")
+        aCoder.encode(isGhost, forKey: "isGhost")
+        aCoder.encode(isInScale, forKey: "isInScale")
+        aCoder.encode(isDisplayed, forKey: "isDisplayed")
+        aCoder.encode(isPassingNote, forKey: "isPassingNote")
+        aCoder.encode(isKept, forKey: "isKept")
         
-        aCoder.encodeObject(noteFontSize, forKey: "noteFontSize")
-        aCoder.encodeObject(myColor, forKey: "myColor")
-        aCoder.encodeObject(displayMode, forKey: "displayMode")
+        aCoder.encode(noteFontSize, forKey: "noteFontSize")
+        aCoder.encode(myColor, forKey: "myColor")
+        aCoder.encode(displayMode, forKey: "displayMode")
     }
     
     required init?(coder aDecoder: NSCoder) {
-        note = aDecoder.decodeObjectForKey("note") as! String
-        number0to11 = aDecoder.decodeObjectForKey("number0to11") as! String
-        number0to46 = aDecoder.decodeObjectForKey("number0to46") as! String
-        interval = aDecoder.decodeObjectForKey("interval") as! String
+        note = aDecoder.decodeObject(forKey: "note") as! String
+        number0to11 = aDecoder.decodeObject(forKey: "number0to11") as! String
+        number0to46 = aDecoder.decodeObject(forKey: "number0to46") as! String
+        interval = aDecoder.decodeObject(forKey: "interval") as! String
         
-        isGhost = aDecoder.decodeBoolForKey("isGhost")
-        isInScale = aDecoder.decodeBoolForKey("isInScale")
-        isDisplayed = aDecoder.decodeBoolForKey("isDisplayed")
-        isPassingNote = aDecoder.decodeBoolForKey("isPassingNote")
-        isKept = aDecoder.decodeBoolForKey("isKept")
+        isGhost = aDecoder.decodeBool(forKey: "isGhost")
+        isInScale = aDecoder.decodeBool(forKey: "isInScale")
+        isDisplayed = aDecoder.decodeBool(forKey: "isDisplayed")
+        isPassingNote = aDecoder.decodeBool(forKey: "isPassingNote")
+        isKept = aDecoder.decodeBool(forKey: "isKept")
         
-        noteFontSize = aDecoder.decodeObjectForKey("noteFontSize") as! CGFloat
-        myColor = aDecoder.decodeObjectForKey("myColor") as! NSColor
-        displayMode = aDecoder.decodeObjectForKey("displayMode") as! String
+        noteFontSize = aDecoder.decodeObject(forKey: "noteFontSize") as! CGFloat
+        myColor = aDecoder.decodeObject(forKey: "myColor") as! NSColor
+        displayMode = aDecoder.decodeObject(forKey: "displayMode") as! String
         super.init()
     }
     
@@ -79,7 +79,7 @@ class NoteModel: NSObject, NSCoding {
         return note
     }
     
-    func setNote(newNote: String) {
+    func setNote(_ newNote: String) {
         note = newNote
     }
     
@@ -87,7 +87,7 @@ class NoteModel: NSObject, NSCoding {
         return number0to11
     }
     
-    func setNumber0to11(newNumber: String) {
+    func setNumber0to11(_ newNumber: String) {
         number0to11 = newNumber
     }
     
@@ -95,7 +95,7 @@ class NoteModel: NSObject, NSCoding {
         return number0to46
     }
     
-    func setNumber0to46(newNumber: String) {
+    func setNumber0to46(_ newNumber: String) {
         number0to46 = newNumber
     }
     
@@ -103,7 +103,7 @@ class NoteModel: NSObject, NSCoding {
         return interval
     }
     
-    func setInterval(newInterval: String) {
+    func setInterval(_ newInterval: String) {
         interval = newInterval
     }
     
@@ -112,7 +112,7 @@ class NoteModel: NSObject, NSCoding {
         return isGhost
     }
     
-    func setIsGhost(bool: Bool) {
+    func setIsGhost(_ bool: Bool) {
         isGhost = bool
     }
     
@@ -120,7 +120,7 @@ class NoteModel: NSObject, NSCoding {
         return isInScale
     }
     
-    func setIsInScale(bool: Bool) {
+    func setIsInScale(_ bool: Bool) {
         isInScale = bool
     }
     
@@ -128,7 +128,7 @@ class NoteModel: NSObject, NSCoding {
         return isDisplayed
     }
     
-    func setIsDisplayed(bool: Bool) {
+    func setIsDisplayed(_ bool: Bool) {
         isDisplayed = bool
     }
     
@@ -136,7 +136,7 @@ class NoteModel: NSObject, NSCoding {
         return isPassingNote
     }
     
-    func setIsPassingNote(bool: Bool) {
+    func setIsPassingNote(_ bool: Bool) {
         isPassingNote = bool
     }
     
@@ -144,7 +144,7 @@ class NoteModel: NSObject, NSCoding {
         return displayMode
     }
     
-    func setDisplayMode(newMode: String){
+    func setDisplayMode(_ newMode: String){
         displayMode = newMode
     }
     
@@ -153,7 +153,7 @@ class NoteModel: NSObject, NSCoding {
         return noteFontSize
     }
     
-    func setNoteFontSize(newFontSize: CGFloat){
+    func setNoteFontSize(_ newFontSize: CGFloat){
         noteFontSize = newFontSize
     }
     
@@ -161,7 +161,7 @@ class NoteModel: NSObject, NSCoding {
         return myColor
     }
     
-    func setMyColor(newColor: NSColor){
+    func setMyColor(_ newColor: NSColor){
         myColor = newColor
     }
     
@@ -169,12 +169,12 @@ class NoteModel: NSObject, NSCoding {
         return isKept
     }
     
-    func setIsKept(bool: Bool){
+    func setIsKept(_ bool: Bool){
         isKept = bool
     }
     
     
-    func makePassingNote(bool: Bool) {
+    func makePassingNote(_ bool: Bool) {
         if bool {
             note = addParentheses(note)
             number0to11 = addParentheses(number0to11)
@@ -189,26 +189,26 @@ class NoteModel: NSObject, NSCoding {
         }
     }
     
-    private func addParentheses(theNote: String)-> String {
+    fileprivate func addParentheses(_ theNote: String)-> String {
         var temp = "("
-        temp = temp.stringByAppendingString(theNote)
-        temp = temp.stringByAppendingString(")")
+        temp = temp + theNote
+        temp = temp + ")"
         return temp
     }
     
     // note being used yet.
-    private func removeParentheses(theString: String)->String {
+    fileprivate func removeParentheses(_ theString: String)->String {
         var temp = theString
         
         let begin = temp.startIndex
         let end = temp.endIndex
         
-        temp.removeAtIndex(end)
-        temp.removeAtIndex(begin)
+        temp.remove(at: end)
+        temp.remove(at: begin)
         return temp
     }
     
-    func setNoteModel(newModel: NoteModel) {
+    func setNoteModel(_ newModel: NoteModel) {
         note = newModel.getNote()
         number0to11 = newModel.getNumber0to11()
         number0to46 = newModel.getNumber0to46()

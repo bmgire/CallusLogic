@@ -11,11 +11,11 @@ import Cocoa
 
 class AllScales: NSObject {
     
-    private var dictOfScales: [String: Scale] = [:]
+    fileprivate var dictOfScales: [String: Scale] = [:]
     
     // Arrays to hold scales and scale names
-    private var scaleArray: [Scale] = []
-    private var keyArray: [String] = []
+    fileprivate var scaleArray: [Scale] = []
+    fileprivate var keyArray: [String] = []
     
     override init() {
         // super.init() must be called before calling any functions within self.
@@ -294,7 +294,7 @@ buildAndAddScale(&scaleArray,
 
  */
         // Add all built scales to a temp dictionary.
-        let tempDict: [String : Scale] = NSDictionary.init(objects: scaleArray, forKeys: keyArray) as! [String : Scale]
+        let tempDict: [String : Scale] = NSDictionary.init(objects: scaleArray, forKeys: keyArray as [NSCopying]) as! [String : Scale]
         
         // Pointer swap with tempDict.
         dictOfScales = tempDict
@@ -309,7 +309,7 @@ buildAndAddScale(&scaleArray,
     }
     
     
-    func buildAndAddScale(inout scaleArrayArray:[Scale],inout keyArray: [String], aScale: Scale) {
+    func buildAndAddScale(_ scaleArrayArray:inout [Scale],keyArray: inout [String], aScale: Scale) {
         scaleArray.append(aScale)
         keyArray.append(aScale.getScaleName())
     }

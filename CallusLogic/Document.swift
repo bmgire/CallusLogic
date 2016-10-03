@@ -33,17 +33,17 @@ class Document: NSDocument{
     
     
     //##########################################################
-    override func dataOfType(typeName: String) throws -> NSData {
+    override func data(ofType typeName: String) throws -> Data {
         // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
         
         
         // I'm ignoring errors.
         // end editing for nothing.
-       mainWindowController.window?.endEditingFor(nil)
+       mainWindowController.window?.endEditing(for: nil)
         
         // Create an NSDataObject from the mainWindowControllers fretboardModelArray.
-        return NSKeyedArchiver.archivedDataWithRootObject(mainWindowController.getFretboardModelArray())
+        return NSKeyedArchiver.archivedData(withRootObject: mainWindowController.getFretboardModelArray())
         
         // I will not be throwing.
         //throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
@@ -51,11 +51,11 @@ class Document: NSDocument{
 
     
     //##########################################################
-    override func readFromData(data: NSData, ofType typeName: String) throws {
+    override func read(from data: Data, ofType typeName: String) throws {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         
         //print("About to read data of type \(typeName)."); // Uncomment for debug.
-        mainWindowController.setFretboardModelArray(NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [FretboardModel])
+        mainWindowController.setFretboardModelArray(NSKeyedUnarchiver.unarchiveObject(with: data) as! [FretboardModel])
         
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
@@ -63,7 +63,7 @@ class Document: NSDocument{
     }
     
     // When the window will close, it empties fretboardModelArray to ensure the undo manager stops observing all fretboardModels after the app has closed. 
-    func windowWillClose(notification: NSNotification) {
+    func windowWillClose(_ notification: Notification) {
         mainWindowController.setFretboardModelArray([])
     }
 }
