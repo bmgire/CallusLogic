@@ -380,7 +380,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     @IBAction func zoom(_ sender: NSSlider){
-        scrollView.magnification = CGFloat(sender.intValue) / CGFloat(sender.maxValue)
+        scrollView.magnification = CGFloat(sender.doubleValue / sender.maxValue)
     }
     
     func updateDisplayMode(_ newIndex: Int) {

@@ -307,7 +307,7 @@
                         </constraints>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
-                        <rect key="frame" x="97" y="254" width="764" height="55"/>
+                        <rect key="frame" x="97" y="239" width="764" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="Gzz-PV-lut"/>
                             <constraint firstAttribute="width" constant="760" id="ZJc-yz-XfC"/>
@@ -399,7 +399,7 @@
                     <constraint firstItem="4Q7-9U-NiY" firstAttribute="centerX" secondItem="Y8k-fE-Skm" secondAttribute="centerX" id="nO4-0X-1NU"/>
                     <constraint firstItem="eXx-Nb-qCi" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="pEj-9T-ira"/>
                     <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="19" id="rrp-Ri-qpc"/>
-                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="Gf1-tE-EKP" secondAttribute="top" id="y5c-WW-K6t"/>
+                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="Gf1-tE-EKP" secondAttribute="top" constant="-15" id="y5c-WW-K6t"/>
                 </constraints>
             </view>
             <connections>
