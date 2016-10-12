@@ -79,6 +79,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBOutlet weak var addFretboard: NSButton!
     @IBOutlet weak var removeFretboard: NSButton!
     
+    @IBOutlet weak var zoomSlider: NSSlider!
+    @IBOutlet weak var scrollView: NSScrollView!
+    
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################
@@ -376,6 +379,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
+    @IBAction func zoom(_ sender: NSSlider){
+        scrollView.magnification = CGFloat(sender.intValue) / CGFloat(sender.maxValue)
+    }
+    
     func updateDisplayMode(_ newIndex: Int) {
         let undo = document!.undoManager!
         (undo!.prepare(withInvocationTarget: self) as AnyObject).updateDisplayMode(model.getDisplayMode())
@@ -393,6 +400,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
         updateFretboardView()
     }
+    
 
     //##########################################################
     // Window Controller overridden functions.
