@@ -42,7 +42,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y8k-fE-Skm">
-                        <rect key="frame" x="20" y="293" width="21" height="21"/>
+                        <rect key="frame" x="20" y="298" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="21" id="U1o-cB-fK6"/>
                         </constraints>
@@ -55,7 +55,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-r7-q1i">
-                        <rect key="frame" x="49" y="293" width="21" height="21"/>
+                        <rect key="frame" x="49" y="298" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="21" id="JaR-pX-dCn"/>
                         </constraints>
@@ -339,7 +339,7 @@
                                     <rect key="frame" x="0.0" y="-26" width="1790" height="325"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
-                                            <rect key="frame" x="137" y="250" width="764" height="55"/>
+                                            <rect key="frame" x="13" y="235" width="764" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="CVR-x1-UF4"/>
                                                 <constraint firstAttribute="width" constant="760" id="tG0-lt-Bxx"/>
@@ -351,22 +351,22 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="Callus_Logic" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="38" width="1790" height="262"/>
+                                            <rect key="frame" x="0.0" y="18" width="1790" height="262"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
                                             </userDefinedRuntimeAttributes>
                                         </customView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Gf1-tE-EKP" secondAttribute="bottom" constant="250" id="3p4-ic-P7T"/>
-                                        <constraint firstAttribute="trailing" secondItem="Gf1-tE-EKP" secondAttribute="trailing" constant="891" id="6fh-lY-EeR"/>
+                                        <constraint firstAttribute="bottom" secondItem="Gf1-tE-EKP" secondAttribute="bottom" constant="235" id="3p4-ic-P7T"/>
+                                        <constraint firstAttribute="trailing" secondItem="Gf1-tE-EKP" secondAttribute="trailing" constant="1015" id="6fh-lY-EeR"/>
                                         <constraint firstAttribute="trailing" secondItem="9iK-di-6jK" secondAttribute="trailing" id="8jH-PP-SjM"/>
                                         <constraint firstItem="9iK-di-6jK" firstAttribute="leading" secondItem="mBE-KE-pUH" secondAttribute="leading" id="BEd-O9-rhY"/>
-                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="20" id="BpM-I5-xzm"/>
+                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="35" id="BpM-I5-xzm"/>
                                         <constraint firstAttribute="height" constant="325" id="Id4-TJ-fVH"/>
-                                        <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="25" id="Vhg-rZ-e4c"/>
-                                        <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="38" id="e5L-0f-aWH"/>
-                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="mBE-KE-pUH" secondAttribute="leading" constant="139" id="r03-vJ-a4d"/>
+                                        <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="45" id="Vhg-rZ-e4c"/>
+                                        <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="18" id="e5L-0f-aWH"/>
+                                        <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="mBE-KE-pUH" secondAttribute="leading" constant="15" id="r03-vJ-a4d"/>
                                         <constraint firstAttribute="width" constant="1790" id="xqI-ri-Izv"/>
                                     </constraints>
                                 </customView>
@@ -388,10 +388,10 @@
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="KvL-W5-sOv" secondAttribute="bottom" constant="8" symbolic="YES" id="A4A-V2-egz"/>
+                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="KvL-W5-sOv" secondAttribute="bottom" constant="3" id="A4A-V2-egz"/>
                     <constraint firstItem="KvL-W5-sOv" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="BTs-TA-teZ"/>
                     <constraint firstItem="Dm0-fx-PbX" firstAttribute="top" secondItem="pQy-l4-Z2n" secondAttribute="bottom" constant="13" id="ByG-OG-62c"/>
-                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="190" id="Dca-hZ-86U"/>
+                    <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="185" id="Dca-hZ-86U"/>
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="283" id="FD4-qI-fXS"/>
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="leading" secondItem="Dm0-fx-PbX" secondAttribute="leading" id="G9o-D7-nJB"/>
                     <constraint firstItem="WE7-kV-p86" firstAttribute="top" secondItem="KvL-W5-sOv" secondAttribute="bottom" constant="6" id="MlO-gJ-paa"/>
