@@ -382,9 +382,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBAction func zoom(_ sender: NSSlider){
         let ratio = CGFloat(sender.doubleValue / sender.maxValue)
         scrollView.magnification = ratio
-//        
-//        let insets = EdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
-//        scrollView.contentView.contentInsets = insets
+        
+        let insets = EdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
+        scrollView.contentView.contentInsets = insets
     }
     
     
