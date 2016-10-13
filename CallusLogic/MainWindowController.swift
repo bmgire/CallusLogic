@@ -380,8 +380,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     @IBAction func zoom(_ sender: NSSlider){
-        scrollView.magnification = CGFloat(sender.doubleValue / sender.maxValue)
+        let ratio = CGFloat(sender.doubleValue / sender.maxValue)
+        scrollView.magnification = ratio
+//        
+//        let insets = EdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
+//        scrollView.contentView.contentInsets = insets
     }
+    
+    
     
     func updateDisplayMode(_ newIndex: Int) {
         let undo = document!.undoManager!
