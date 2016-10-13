@@ -20,6 +20,7 @@
                 <outlet property="removeFretboard" destination="Yub-r7-q1i" id="9HX-jb-auv"/>
                 <outlet property="rootPopUp" destination="Bil-5M-u2j" id="K99-Dw-xaq"/>
                 <outlet property="scalePopUp" destination="q6P-eG-0XC" id="uHv-Bc-bc8"/>
+                <outlet property="scrollView" destination="YJ9-L8-loE" id="xz8-HZ-lC8"/>
                 <outlet property="showAdditionalNotesButton" destination="dNh-cO-qDe" id="rfp-RD-fXx"/>
                 <outlet property="tableView" destination="6k0-hI-iQf" id="hlS-Nb-c4O"/>
                 <outlet property="unSelectAllButton" destination="RTq-lc-3d7" id="nTR-9h-h7P"/>
