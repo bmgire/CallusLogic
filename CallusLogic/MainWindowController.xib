@@ -307,7 +307,7 @@
                         </constraints>
                     </customView>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="4Q7-9U-NiY">
-                        <rect key="frame" x="0.0" y="26" width="61" height="18"/>
+                        <rect key="frame" x="0.0" y="16" width="61" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="57" id="SRb-tq-k3f"/>
                         </constraints>
@@ -320,11 +320,11 @@
                         </connections>
                     </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DB7-hh-XgX">
-                        <rect key="frame" x="65" y="24" width="96" height="21"/>
+                        <rect key="frame" x="65" y="14" width="96" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="IYs-ES-vmK"/>
                         </constraints>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="60" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="Agg-oa-VNQ"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="50" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="Agg-oa-VNQ"/>
                         <connections>
                             <action selector="zoom:" target="-2" id="rpg-3P-etW"/>
                         </connections>
@@ -409,7 +409,7 @@
                     <constraint firstItem="Y8k-fE-Skm" firstAttribute="leading" secondItem="KvL-W5-sOv" secondAttribute="leading" id="jfW-VO-OWe"/>
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="lhT-zg-89A"/>
                     <constraint firstItem="4Q7-9U-NiY" firstAttribute="centerX" secondItem="Y8k-fE-Skm" secondAttribute="centerX" id="nO4-0X-1NU"/>
-                    <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="28" id="rrp-Ri-qpc"/>
+                    <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="18" id="rrp-Ri-qpc"/>
                 </constraints>
             </view>
             <connections>
