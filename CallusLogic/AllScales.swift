@@ -115,7 +115,7 @@ class AllScales: NSObject {
         
         buildAndAddScale(&scaleArray,
                          keyArray: &keyArray,
-                         aScale: Scale(name:  "Phryian Mode", formula:  [ "root",   "m2",  "",		 "m3",  "",    "P4",  "",     "P5",  "m6",  "",    "m7",  "",    "offset"], thePassingInterval: "" ))
+                         aScale: Scale(name:  "Phrygian Mode", formula:  [ "root",   "m2",  "",		 "m3",  "",    "P4",  "",     "P5",  "m6",  "",    "m7",  "",    "offset"], thePassingInterval: "" ))
        
         buildAndAddScale(&scaleArray,
                          keyArray: &keyArray,
