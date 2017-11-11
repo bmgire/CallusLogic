@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.987364"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "766"
-            endingLineNumber = "766">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.98743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "762"
-            endingLineNumber = "762">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.987473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.987512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "775"
-            endingLineNumber = "775">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,11 +66,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.98755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "782"
-            endingLineNumber = "782">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,11 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.987587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779">
+            startingLineNumber = "761"
+            endingLineNumber = "761">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -94,7 +94,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514680010.309196"
+            timestampString = "532129236.987623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -110,7 +110,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514680363.761992"
+            timestampString = "532129236.98766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "388"
@@ -126,7 +126,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CallusLogic/MainWindowController.swift"
-            timestampString = "514681834.031392"
+            timestampString = "532129236.987698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"

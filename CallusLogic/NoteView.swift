@@ -122,7 +122,7 @@ class NoteView: NSView {
             path?.fill()
             
             // Create an NSParagraphStyle object
-            let paraStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+            let paraStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             
             // Set orientation.
             paraStyle.alignment = .right
@@ -132,9 +132,9 @@ class NoteView: NSView {
             
             // Attributes for drawing.
             let attrs = [
-                NSForegroundColorAttributeName: NSColor.black,
-                NSFontAttributeName: font,
-                NSParagraphStyleAttributeName: paraStyle]
+                NSAttributedStringKey.foregroundColor: NSColor.black,
+                NSAttributedStringKey.font: font,
+                NSAttributedStringKey.paragraphStyle: paraStyle]
             
             // Define an attributed string set to display the note.
             var attributedNote = NSMutableAttributedString()

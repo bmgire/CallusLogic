@@ -5,7 +5,7 @@ import Cocoa
 
 extension NSAttributedString {
 
-    func drawCenterCustomInRect(_ rect: NSRect, withAttributes: [String: AnyObject]?) {
+    func drawCenterCustomInRect(_ rect: NSRect, withAttributes: [NSAttributedStringKey : NSObject]?) {
         let stringSize = size()
         let point = NSPoint(x: rect.midX - stringSize.width/2,
                             y: (rect.maxY - stringSize.height)/2)

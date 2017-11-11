@@ -117,7 +117,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     
-    func setFretboardArray(_ array: AnyObject) {
+    @objc func setFretboardArray(_ array: AnyObject) {
         let undo = document?.undoManager!
         undo!.registerUndo(withTarget: self,
                                      selector: #selector(setFretboardArray(_:)),
@@ -140,7 +140,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         addFretboard(FretboardModel())
     }
     
-    func addFretboard(_ aModel: FretboardModel) {
+    @objc func addFretboard(_ aModel: FretboardModel) {
         
         // Create undo
         let undo = document?.undoManager!
@@ -162,7 +162,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         removeFretboard(model)
     }
     
-    func removeFretboard(_ aModel: AnyObject) {
+    @objc func removeFretboard(_ aModel: AnyObject) {
         
         // Create undo
         let undo = document!.undoManager!
@@ -188,7 +188,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         setTitle(sender.stringValue)
     }
     
-    func setTitle(_ newTitle: String){
+    @objc func setTitle(_ newTitle: String){
        
         let oldTitle = model.getFretboardTitle()
         // Create undo
@@ -232,7 +232,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
             
             // If show Additional Notes is selected, also show additional notes.
-            if showAdditionalNotesButton.state == NSOnState {
+            if showAdditionalNotesButton.state == NSControl.StateValue.on {
                 showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
             }
             
@@ -283,7 +283,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             }
             
             keepOrUnkeepSelectedNotes(true)
-            showAdditionalNotesButton.state = 0
+            showAdditionalNotesButton.state = NSControl.StateValue(rawValue: 0)
             
             showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
             showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
@@ -293,8 +293,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             model.setAllowsSelectAll(true)
             model.setAllowsClear(false)
             
-            if showAdditionalNotesButton.state == 1 {
-                showAdditionalNotesButton.state = 0
+            if showAdditionalNotesButton.state.rawValue == 1 {
+                showAdditionalNotesButton.state = NSControl.StateValue(rawValue: 0)
             }
         }
     }
@@ -305,7 +305,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         let revertTo = StateAndArray()
         revertTo.array = model.getFretboardArrayCopy()
-        revertTo.showAdditionalState = (sender.state == NSOnState ? NSOffState : NSOnState)
+        revertTo.showAdditionalState = (sender.state == NSControl.StateValue.off ? 0 : 1)
         
         let undo = document!.undoManager!
         (undo!.prepare(withInvocationTarget: self) as AnyObject).showAdditionalNotes(revertTo)
@@ -315,10 +315,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
         
         // Make Changes.
-        model.setShowAdditionalNotes(sender.state)
+        model.setShowAdditionalNotes(sender.state.rawValue)
         
         // If the button is checked.
-        if sender.state != 0 {
+        if sender.state != NSControl.StateValue.off {
             // Show chromatic notes.
             showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
             
@@ -334,11 +334,11 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     
-    func showAdditionalNotes(_ stateAndArray: AnyObject) {
+    @objc func showAdditionalNotes(_ stateAndArray: AnyObject) {
         let copy = stateAndArray as! StateAndArray
         let revertTo = StateAndArray()
         revertTo.array = model.getFretboardArrayCopy()
-        revertTo.showAdditionalState = (showAdditionalNotesButton.state == NSOnState ? NSOffState : NSOnState)
+        revertTo.showAdditionalState = (showAdditionalNotesButton.state == NSControl.StateValue.on ? 0 : 1)
         
         let undo = document!.undoManager!
         (undo!.prepare(withInvocationTarget: self) as AnyObject).showAdditionalNotes(revertTo)
@@ -348,7 +348,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
         
         // Make changes
-        showAdditionalNotesButton.state = copy.showAdditionalState
+        showAdditionalNotesButton.state = NSControl.StateValue(rawValue: copy.showAdditionalState)
         model.setShowAdditionalNotes(copy.showAdditionalState)
         model.setFretboardArray(copy.array)
         updateFretboardView()
@@ -356,7 +356,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     @IBAction func lockFretboard(_ sender: NSButton) {
         // If the lock button is checked,
-        if sender.state != 0 {
+        if sender.state == NSControl.StateValue.on {
             // Disable all editing capabilities.
             calculatorView.isHidden = true
             customizeView.isHidden = true
@@ -369,7 +369,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             removeFretboard.isEnabled = true
         }
         
-        model.setIsLocked(sender.state)
+        model.setIsLocked(sender.state.rawValue)
     }
     
     @IBAction func updateDisplayModeAction(_ sender: NSPopUpButton) {
@@ -385,14 +385,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
     
         
-        let insets = EdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
+        let insets = NSEdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
         scrollView.contentView.contentInsets = insets
        
     }
     
     
     
-    func updateDisplayMode(_ newIndex: Int) {
+    @objc func updateDisplayMode(_ newIndex: Int) {
         let undo = document!.undoManager!
         (undo!.prepare(withInvocationTarget: self) as AnyObject).updateDisplayMode(model.getDisplayMode())
         
@@ -418,8 +418,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         return document?.undoManager!
     }
     
-    override var windowNibName: String? {
-        return "MainWindowController"
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name("MainWindowController")
     }
     
     // Handles any initialization after the window controller's window has been loaded from its nib file.
@@ -462,13 +462,13 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         loadCurrentFretboard()
         
         // registers the NSTableView for drag reordering.
-        tableView.register(forDraggedTypes: [NSPasteboardTypeString])
+        tableView.registerForDraggedTypes([NSPasteboard.PasteboardType.string])
         
     }
     
     override func mouseDown(with theEvent: NSEvent) {
         // Close the color panel if still open.
-        NSColorPanel.shared().close()
+        NSColorPanel.shared.close()
     }
     
     
@@ -513,7 +513,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     func updateFretboardView() {
         // Close the color panel if still open.
-        NSColorPanel.shared().close()
+        NSColorPanel.shared.close()
                 
         fretboardView.updateSubviews(model.getFretboardArray())
     }
@@ -558,7 +558,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         updateFretboardView()
     }
     
-    func reactToMouseUpEvent(_ notification: Notification) {
+    @objc func reactToMouseUpEvent(_ notification: Notification) {
         // If fretboard isn't locked.
         if model.getIsLocked() == 0 {
             
@@ -649,12 +649,12 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     // Loads values from the current model.
     func loadCurrentFretboard() {
-        lockButton.state = model.getIsLocked()
+        lockButton.state = NSControl.StateValue(rawValue: model.getIsLocked())
         lockFretboard(lockButton)
         
         displayTitle!.stringValue = model.getFretboardTitle()
         
-        showAdditionalNotesButton.state = model.getShowAdditionalNotes()
+        showAdditionalNotesButton.state = NSControl.StateValue(rawValue: model.getShowAdditionalNotes())
         
         displayModePopUp.selectItem(at: model.getDisplayMode())
         
@@ -712,8 +712,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
                     let data = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
             
-            pboard.declareTypes([NSPasteboardTypeString], owner: self)
-            pboard.setData(data, forType:  "rowData")
+            pboard.declareTypes([NSPasteboard.PasteboardType.string], owner: self)
+            pboard.setData(data, forType:  NSPasteboard.PasteboardType(rawValue: "rowData"))
             modelIndex = rowIndexes.first!
             return true
       }
@@ -723,7 +723,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     func tableView(_ tableView: NSTableView,
                    validateDrop info: NSDraggingInfo,
                                 proposedRow row: Int,
-                                            proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+                                            proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         if (dropOperation == .above) {
             return .move
@@ -736,7 +736,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     func tableView(_ tableView: NSTableView,
                      acceptDrop info: NSDraggingInfo,
                                 row: Int,
-                                dropOperation: NSTableViewDropOperation) -> Bool {
+                                dropOperation: NSTableView.DropOperation) -> Bool {
         
         reArrangeModelArray(modelIndex, destination: row)
         tableView.reloadData()

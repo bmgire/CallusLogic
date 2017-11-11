@@ -27,7 +27,7 @@ class Document: NSDocument{
     
     
     //##########################################################
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         return true
     }
     
