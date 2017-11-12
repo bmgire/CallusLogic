@@ -139,7 +139,6 @@ class ZeroTo46ToneCalculator {
     func buildFretboard(_ scale: [String]) {
         orderedScaleArray = reorderArray(unorderedScaleArray)
         orderedIntervalsArray = reorderArray(unorderedIntervalsArray)
-        reorderArray(unorderedIntervalsArray)
         addNoteNamesIntervalsAndNumber0to11(orderedScaleArray, orderedIntervals: orderedIntervalsArray)
         addNumbers0to46()
         setPassingNotesForScale()

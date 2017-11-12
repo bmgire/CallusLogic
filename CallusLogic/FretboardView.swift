@@ -29,7 +29,7 @@ class FretboardView: NSView {
     fileprivate var noteViewArray: [NoteView] = []
 
     // The image shown in this custom view.
-    var image :NSImage?
+    @objc var image :NSImage?
     
     //##########################################################
     // MARK: Arrays
@@ -202,7 +202,7 @@ class FretboardView: NSView {
                 
                 // If the NoteView isn't at the nut, rotate it.
                 if noteIndex != 0 {
-                    note.rotate(byDegrees: radians[stringIndex] * CGFloat(180/M_PI))
+                    note.rotate(byDegrees: radians[stringIndex] * CGFloat(180/Double.pi))
                 }
                 noteViewArray.append(note)
             }

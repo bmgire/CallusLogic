@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,7 +92,7 @@
                                     <action selector="changeUserColor:" target="-2" id="FFP-hA-b68"/>
                                 </connections>
                             </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-Oz-nnY">
                                 <rect key="frame" x="13" y="51" width="133" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Selection Color:" id="7Fe-Rk-Hsp">
                                     <font key="font" metaFont="system"/>
@@ -174,7 +175,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="240" minWidth="40" maxWidth="1000" id="G7T-Zd-Qty">
+                                        <tableColumn identifier="" width="240" minWidth="40" maxWidth="1000" id="G7T-Zd-Qty">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Fretboards">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -191,7 +192,7 @@
                                                     <rect key="frame" x="1" y="1" width="240" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-rV-DO4">
                                                             <rect key="frame" x="-2" y="0.0" width="244" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="6ID-4y-gpJ">
                                                                 <font key="font" metaFont="system"/>
@@ -278,7 +279,7 @@
                                     <menu key="menu" id="xXu-ex-Q0v"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-L6-RfZ">
                                 <rect key="frame" x="11" y="39" width="168" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="zE2-c0-yal"/>
@@ -321,7 +322,7 @@
                         </connections>
                     </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DB7-hh-XgX">
-                        <rect key="frame" x="65" y="19" width="96" height="21"/>
+                        <rect key="frame" x="65" y="19" width="96" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="IYs-ES-vmK"/>
                         </constraints>
@@ -339,7 +340,7 @@
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mBE-KE-pUH">
                                     <rect key="frame" x="0.0" y="15" width="1790" height="325"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-tE-EKP">
                                             <rect key="frame" x="13" y="220" width="764" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="CVR-x1-UF4"/>
@@ -351,7 +352,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <customView wantsLayer="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="Callus_Logic" customModuleProvider="target">
+                                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-di-6jK" customClass="FretboardView" customModule="Callus_Logic" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="5" width="1790" height="262"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="RightHandedFretboard"/>
@@ -362,10 +363,12 @@
                                         <constraint firstAttribute="bottom" secondItem="Gf1-tE-EKP" secondAttribute="bottom" constant="220" id="3p4-ic-P7T"/>
                                         <constraint firstAttribute="trailing" secondItem="Gf1-tE-EKP" secondAttribute="trailing" constant="1015" id="6fh-lY-EeR"/>
                                         <constraint firstAttribute="trailing" secondItem="9iK-di-6jK" secondAttribute="trailing" id="8jH-PP-SjM"/>
+                                        <constraint firstAttribute="bottom" secondItem="9iK-di-6jK" secondAttribute="bottom" constant="5" id="9vA-Vw-Ulb"/>
                                         <constraint firstItem="9iK-di-6jK" firstAttribute="leading" secondItem="mBE-KE-pUH" secondAttribute="leading" id="BEd-O9-rhY"/>
                                         <constraint firstItem="Gf1-tE-EKP" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="50" id="BpM-I5-xzm"/>
                                         <constraint firstAttribute="height" constant="325" id="Id4-TJ-fVH"/>
                                         <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="58" id="Vhg-rZ-e4c"/>
+                                        <constraint firstItem="9iK-di-6jK" firstAttribute="top" secondItem="mBE-KE-pUH" secondAttribute="top" constant="58" id="crA-5O-9c3"/>
                                         <constraint firstItem="Gf1-tE-EKP" firstAttribute="leading" secondItem="mBE-KE-pUH" secondAttribute="leading" constant="15" id="r03-vJ-a4d"/>
                                         <constraint firstAttribute="width" constant="1790" id="xqI-ri-Izv"/>
                                     </constraints>
