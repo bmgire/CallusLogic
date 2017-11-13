@@ -321,12 +321,20 @@
                             <action selector="lockFretboard:" target="-2" id="rF5-2C-Pde"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W3f-A3-9dB">
+                        <rect key="frame" x="80" y="21" width="43" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Zoom:" id="G3Q-px-X6c">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DB7-hh-XgX">
-                        <rect key="frame" x="65" y="19" width="96" height="19"/>
+                        <rect key="frame" x="124" y="19" width="96" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="IYs-ES-vmK"/>
                         </constraints>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="50" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="Agg-oa-VNQ"/>
+                        <sliderCell key="cell" state="on" alignment="left" minValue="50" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="Agg-oa-VNQ"/>
                         <connections>
                             <action selector="zoom:" target="-2" id="rpg-3P-etW"/>
                         </connections>
@@ -381,6 +389,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </clipView>
+                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3Cb-0C-0qg">
                             <rect key="frame" x="0.0" y="340" width="915" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -393,6 +402,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="YJ9-L8-loE" firstAttribute="top" secondItem="Dm0-fx-PbX" secondAttribute="bottom" constant="-13" id="0Yh-wO-Lg0"/>
+                    <constraint firstAttribute="bottom" secondItem="W3f-A3-9dB" secondAttribute="bottom" constant="21" id="1Cc-xQ-w4g"/>
                     <constraint firstAttribute="bottom" secondItem="YJ9-L8-loE" secondAttribute="bottom" id="7Pw-7T-f5h"/>
                     <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="KvL-W5-sOv" secondAttribute="bottom" constant="5" id="A4A-V2-egz"/>
                     <constraint firstItem="KvL-W5-sOv" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="BTs-TA-teZ"/>
@@ -400,7 +410,8 @@
                     <constraint firstItem="Y8k-fE-Skm" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="187" id="Dca-hZ-86U"/>
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="283" id="FD4-qI-fXS"/>
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="leading" secondItem="Dm0-fx-PbX" secondAttribute="leading" id="G9o-D7-nJB"/>
-                    <constraint firstItem="DB7-hh-XgX" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="trailing" constant="8" id="N1u-e5-6aX"/>
+                    <constraint firstItem="DB7-hh-XgX" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="trailing" constant="67" id="N1u-e5-6aX"/>
+                    <constraint firstItem="W3f-A3-9dB" firstAttribute="leading" secondItem="4Q7-9U-NiY" secondAttribute="trailing" constant="23" id="O7Y-lM-irX"/>
                     <constraint firstItem="Y8k-fE-Skm" firstAttribute="baseline" secondItem="Yub-r7-q1i" secondAttribute="baseline" id="SAS-DX-liH"/>
                     <constraint firstAttribute="trailing" secondItem="Dm0-fx-PbX" secondAttribute="trailing" constant="25" id="SQk-Xc-ERH"/>
                     <constraint firstItem="DB7-hh-XgX" firstAttribute="baseline" secondItem="4Q7-9U-NiY" secondAttribute="baseline" constant="1" id="Y5F-V5-NTs"/>
@@ -413,6 +424,7 @@
                     <constraint firstItem="pQy-l4-Z2n" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="lhT-zg-89A"/>
                     <constraint firstAttribute="trailing" secondItem="YJ9-L8-loE" secondAttribute="trailing" id="mbr-5A-0wz"/>
                     <constraint firstItem="4Q7-9U-NiY" firstAttribute="centerX" secondItem="Y8k-fE-Skm" secondAttribute="centerX" id="nO4-0X-1NU"/>
+                    <constraint firstItem="DB7-hh-XgX" firstAttribute="leading" secondItem="W3f-A3-9dB" secondAttribute="trailing" constant="5" id="psy-Iu-qWd"/>
                     <constraint firstAttribute="bottom" secondItem="4Q7-9U-NiY" secondAttribute="bottom" constant="23" id="rrp-Ri-qpc"/>
                 </constraints>
             </view>

@@ -383,10 +383,23 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         let ratio = CGFloat(sender.doubleValue / sender.maxValue)
         scrollView.magnification = ratio
         
+       
+        // if zooming out, perhaps keep the window scrolled left.
+        // 0.760651041666667 = ratio to 12th fret at minimum screen size. 
     
         
-        let insets = NSEdgeInsets(top: 0, left: 0, bottom: CGFloat(400 * (1 - ratio)), right: 0)
+       
+        
+        //The bottom value is used to keep the height of the fretboard image centered.
+        let bottom = CGFloat(400 * (1 - ratio))
+        
+        // Adjusts the contentView (aka clipview) to
+        let insets = NSEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
         scrollView.contentView.contentInsets = insets
+        
+        // Scroll all the way to the left on every Zoom.
+        // Note I made the scrolliew non-continuous to limit zoom calculations.
+        scrollView.contentView.scroll(to: NSPoint(x: 0, y: 10 - bottom))
        
     }
     
