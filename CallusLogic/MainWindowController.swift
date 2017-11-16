@@ -383,14 +383,12 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         let ratio = CGFloat(sender.doubleValue / sender.maxValue)
         scrollView.magnification = ratio
        
-       
+        // Save the zoom level.
         model.setZoomLevel(sender.doubleValue)
         
-        print(model.getZoomLevel())
+        // print(model.getZoomLevel())
         // if zooming out, perhaps keep the window scrolled left.
-        // 0.760651041666667 = ratio to 12th fret at minimum screen size. 
-    
-        
+        // 0.760651041666667 = ratio to 12th fret at minimum screen size.
        
        
         //The bottom value is used to keep the height of the fretboard image centered.
@@ -401,10 +399,25 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         let insets = NSEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
         scrollView.contentView.contentInsets = insets
         
-        
         // Scroll all the way to the left on every Zoom.
         // Note I made the scrolliew non-continuous to limit zoom calculations.
         scrollView.contentView.scroll(to: NSPoint(x: 0, y: 10 - bottom))
+        
+        // If the zoom ratio is less than the windows width ratio of current/max, resize.
+        // This will only resize while making the fretboard smaller.
+        let width = window?.frame.size.width
+        let maxWidth = window?.maxSize.width
+        let widthRatio = width! / maxWidth!
+        
+        if ratio < widthRatio {
+            
+            //Resize window.
+            var newFrame = (window?.frame)!
+            newFrame.size.width = ratio * maxWidth!
+            self.window?.setFrame(newFrame, display: true)
+        }
+       
+       
     }
     
     

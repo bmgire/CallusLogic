@@ -95,7 +95,10 @@ class FretboardModel: NSObject, NSCoding {
         isLocked = aDecoder.decodeInteger(forKey: "isLocked")
         
         // Decode zoomLevel
-        zoomLevel = aDecoder.decodeDouble(forKey: "zoomLevel")
+        // Check for the coded value, if available, decode... else it's set to 100.
+        if aDecoder.containsValue(forKey: "zoomLevel") {
+            zoomLevel = aDecoder.decodeDouble(forKey: "zoomLevel")
+        }
 
         showAdditionalNotes = aDecoder.decodeInteger(forKey: "showAdditionalNotes")
         displayMode = aDecoder.decodeInteger(forKey: "displayMode")
