@@ -382,25 +382,29 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     @IBAction func zoom(_ sender: NSSlider){
         let ratio = CGFloat(sender.doubleValue / sender.maxValue)
         scrollView.magnification = ratio
-        
        
+       
+        model.setZoomLevel(sender.doubleValue)
+        
+        print(model.getZoomLevel())
         // if zooming out, perhaps keep the window scrolled left.
         // 0.760651041666667 = ratio to 12th fret at minimum screen size. 
     
         
        
-        
+       
         //The bottom value is used to keep the height of the fretboard image centered.
         let bottom = CGFloat(400 * (1 - ratio))
+    
         
         // Adjusts the contentView (aka clipview) to
         let insets = NSEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
         scrollView.contentView.contentInsets = insets
         
+        
         // Scroll all the way to the left on every Zoom.
         // Note I made the scrolliew non-continuous to limit zoom calculations.
         scrollView.contentView.scroll(to: NSPoint(x: 0, y: 10 - bottom))
-       
     }
     
     
@@ -473,6 +477,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                                          object: nil)
         
         loadCurrentFretboard()
+        
+        //Set zoomSlider and call the zoom function appropriately
+        zoomSlider.doubleValue = model.getZoomLevel()
+        zoom(zoomSlider)
         
         // registers the NSTableView for drag reordering.
         tableView.registerForDraggedTypes([NSPasteboard.PasteboardType.string])

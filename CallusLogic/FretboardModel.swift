@@ -26,7 +26,7 @@ class FretboardModel: NSObject, NSCoding {
     fileprivate var userColor: NSColor? = NSColor.yellow
     
     fileprivate var isLocked = 0
-    
+    fileprivate var zoomLevel = 100.0
     fileprivate var showAdditionalNotes = 0
     
     fileprivate var displayMode = 0
@@ -57,6 +57,9 @@ class FretboardModel: NSObject, NSCoding {
         }
         // Encode isLocked.
         aCoder.encode(isLocked, forKey: "isLocked")
+        
+        //Encode zoomLevel
+        aCoder.encode(zoomLevel, forKey: "zoomLevel")
         
         // Encode showAdditionalNotes.
         aCoder.encode(showAdditionalNotes, forKey: "showAdditionalNotes")
@@ -91,6 +94,8 @@ class FretboardModel: NSObject, NSCoding {
         // Decode isLocked.
         isLocked = aDecoder.decodeInteger(forKey: "isLocked")
         
+        // Decode zoomLevel
+        zoomLevel = aDecoder.decodeDouble(forKey: "zoomLevel")
 
         showAdditionalNotes = aDecoder.decodeInteger(forKey: "showAdditionalNotes")
         displayMode = aDecoder.decodeInteger(forKey: "displayMode")
@@ -162,6 +167,14 @@ class FretboardModel: NSObject, NSCoding {
     }
     func getIsLocked()-> Int {
         return isLocked
+    }
+    
+    func setZoomLevel(_ level: Double) {
+        zoomLevel = level
+    }
+    
+    func getZoomLevel()-> Double {
+        return zoomLevel
     }
     
     func setShowAdditionalNotes(_ int: Int) {
