@@ -182,13 +182,10 @@ class ZeroTo46ToneCalculator {
         for index in 0...46 {
             let model = zeroTo46ToneArray[index]
             
-            // The the noteModel is in the scale.
+            // If the noteModel is in the scale.
             if  model.getNote() != "" {
                 model.setNumber0to46(String(index))
-                //model.setIsKept(true)
                 model.setIsInScale(true)
-               // model.setIsGhost(ghost!)
-                //model.setIsDisplayed(true)
                 model.setDisplayMode(myDisplayMode)
                 model.setMyColor(calcColor!)
                 temp.append(index)

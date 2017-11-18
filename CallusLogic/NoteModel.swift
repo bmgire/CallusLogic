@@ -13,6 +13,7 @@ class NoteModel: NSObject, NSCoding {
     fileprivate var number0to11 = ""
     fileprivate var number0to46 = ""
     fileprivate var interval = ""
+    fileprivate var fretNumber = ""
     
     /// var attributedNote = NSMutableAttributedString()
     fileprivate var isGhost = true
@@ -105,6 +106,14 @@ class NoteModel: NSObject, NSCoding {
     
     func setInterval(_ newInterval: String) {
         interval = newInterval
+    }
+    
+    func getFretNumber()-> String {
+        return fretNumber
+    }
+    
+    func setFretNumber(_ newFretNumber: String) {
+        fretNumber = newFretNumber
     }
     
     

@@ -480,6 +480,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         displayModePopUp!.addItem(withTitle: "Notes")
         displayModePopUp!.addItem(withTitle: "Intervals")
+        displayModePopUp!.addItem(withTitle: "Fret Numbers")
         displayModePopUp!.addItem(withTitle: "Numbers 0-11")
         displayModePopUp!.addItem(withTitle: "Numbers 0-46")
         

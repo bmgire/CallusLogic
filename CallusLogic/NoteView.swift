@@ -144,7 +144,7 @@ class NoteView: NSView {
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNote(), attributes: attrs)
             }
-            if noteModel.getDisplayMode() == "Numbers 0-11"
+            else if noteModel.getDisplayMode() == "Numbers 0-11"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNumber0to11(), attributes: attrs)
             }
@@ -156,6 +156,11 @@ class NoteView: NSView {
             else if noteModel.getDisplayMode() == "Intervals"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getInterval(), attributes: attrs)
+            }
+            else if noteModel.getDisplayMode() == "Fret Numbers"
+            {
+                attributedNote = NSMutableAttributedString(string: noteModel.getFretNumber(), attributes: attrs)
+                
             }
             attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
         }

@@ -108,6 +108,9 @@ class FretboardModel: NSObject, NSCoding {
         allowsClear = aDecoder.decodeBool(forKey: "allowsClear")
         
         super.init()
+        // Set fret numbers when decoding, don't bother checking anything.
+        setFretNumbers()
+        
     }
     
     // Reqiured init.
@@ -123,8 +126,20 @@ class FretboardModel: NSObject, NSCoding {
             }
             fretboardArray = temp
         }
+        setFretNumbers()
     }
   
+    func setFretNumbers() {
+    
+        var fret = 0
+        for note in fretboardArray! {
+            note.setFretNumber(String(fret))
+            fret += 1
+            if fret == 23 {
+                fret = 0
+            }
+        }
+    }
  
     //##########################################################
     // MARK: - Getters and Setters.
