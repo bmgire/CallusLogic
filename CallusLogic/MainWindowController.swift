@@ -479,8 +479,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         scalePopUp!.selectItem(at: scalePopUp!.indexOfItem(withTitle: "Minor Pentatonic Scale"))
         
         displayModePopUp!.addItem(withTitle: "Notes")
-        displayModePopUp!.addItem(withTitle: "Intervals")
         displayModePopUp!.addItem(withTitle: "Fret Numbers")
+        displayModePopUp!.addItem(withTitle: "Intervals")
         displayModePopUp!.addItem(withTitle: "Numbers 0-11")
         displayModePopUp!.addItem(withTitle: "Numbers 0-46")
         
