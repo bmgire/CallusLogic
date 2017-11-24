@@ -31,6 +31,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     let NOTES_PER_STRING = 23
     
+    fileprivate var screenwidth: CGFloat?
+    
     fileprivate var fretboardModelArray: [FretboardModel] = [FretboardModel()]{
         didSet {
             
@@ -405,19 +407,20 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         // If the zoom ratio is less than the windows width ratio of current/max, resize.
         // This will only resize while making the fretboard smaller.
-        let width = window?.frame.size.width
+       
         let maxWidth = window?.maxSize.width
-        let widthRatio = width! / maxWidth!
+    
+        let maxRatio = screenwidth! / maxWidth!
         
-        if ratio < widthRatio {
-            
             //Resize window.
             var newFrame = (window?.frame)!
-            newFrame.size.width = ratio * maxWidth!
-            self.window?.setFrame(newFrame, display: true)
+        if ratio < maxRatio {
+                newFrame.size.width = ratio * maxWidth!
+            }
+        else {
+                newFrame.size.width = screenwidth! * CGFloat(0.99)
         }
-       
-       
+        self.window?.setFrame(newFrame, display: true)
     }
     
     
@@ -491,6 +494,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                                          object: nil)
         
         loadCurrentFretboard()
+        
+        // get the screen size
+        screenwidth = NSScreen.screens[0].frame.width
         
         //Set zoomSlider and call the zoom function appropriately
         zoomSlider.doubleValue = model.getZoomLevel()
