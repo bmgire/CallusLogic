@@ -31,7 +31,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     let NOTES_PER_STRING = 23
     
-    fileprivate var screenwidth: CGFloat?
+    //fileprivate var screenwidth: CGFloat?
     
     fileprivate var fretboardModelArray: [FretboardModel] = [FretboardModel()]{
         didSet {
@@ -382,15 +382,14 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     }
     
     @IBAction func zoom(_ sender: NSSlider){
+        
         let ratio = CGFloat(sender.doubleValue / sender.maxValue)
         scrollView.magnification = ratio
-       
+        
         // Save the zoom level.
         model.setZoomLevel(sender.doubleValue)
         
-        // print(model.getZoomLevel())
-        // if zooming out, perhaps keep the window scrolled left.
-        // 0.760651041666667 = ratio to 12th fret at minimum screen size.
+        let screenwidth = NSScreen.main?.frame.width
        
        
         //The bottom value is used to keep the height of the fretboard image centered.
@@ -496,7 +495,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         loadCurrentFretboard()
         
         // get the screen size
-        screenwidth = NSScreen.screens[0].frame.width
+       // screenwidth = NSScreen.main?.frame.width
+            //.screens[0].frame.width
         
         //Set zoomSlider and call the zoom function appropriately
         zoomSlider.doubleValue = model.getZoomLevel()

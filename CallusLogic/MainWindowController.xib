@@ -36,7 +36,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="93" y="195" width="915" height="515"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="915" height="515"/>
             <value key="maxSize" type="size" width="1808" height="515"/>
             <view key="contentView" id="se5-gp-TjO" customClass="BackgroundColorView" customModule="Callus_Logic" customModuleProvider="target">
