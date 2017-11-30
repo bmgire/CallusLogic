@@ -222,7 +222,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             
             // Create undo
             let undo = document!.undoManager!
-            // (undo!.prepare(withInvocationTarget: self) as AnyObject).setFretboardArray(model.getFretboardArrayCopy())
+            // Register state with fretboard array copy. 
             undo!.registerUndo(withTarget: self,
                                selector: #selector(setFretboardArray(_:)),
                                object: model.getFretboardArrayCopy())
