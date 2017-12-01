@@ -132,8 +132,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yWg-BB-g6e">
-                                <rect key="frame" x="230" y="9" width="151" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear Ghost Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nj2-VS-zJp">
+                                <rect key="frame" x="230" y="9" width="167" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Ghosted Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nj2-VS-zJp" userLabel="Clear Ghosted Notes">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

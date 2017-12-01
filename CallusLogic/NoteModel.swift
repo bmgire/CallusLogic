@@ -189,7 +189,9 @@ class NoteModel: NSObject, NSCoding {
             number0to11 = addParentheses(number0to11)
             number0to46 = addParentheses(number0to46)
             interval = addParentheses(interval)
+            if fretNumber != "" {
             fretNumber = addParentheses(fretNumber)
+            }
         }
         else {
             note = removeParentheses(note)
@@ -197,6 +199,9 @@ class NoteModel: NSObject, NSCoding {
             number0to46 = removeParentheses(number0to46)
             interval = removeParentheses(interval)
             interval = removeParentheses(fretNumber)
+            if fretNumber != "" {
+                fretNumber = removeParentheses(fretNumber)
+            }
         }
     }
     
@@ -204,6 +209,8 @@ class NoteModel: NSObject, NSCoding {
         var temp = "("
         temp = temp + theNote
         temp = temp + ")"
+        //print(theNote)
+        print(temp)
         return temp
     }
     
@@ -224,7 +231,9 @@ class NoteModel: NSObject, NSCoding {
         number0to11 = newModel.getNumber0to11()
         number0to46 = newModel.getNumber0to46()
         interval = newModel.getInterval()
-        fretNumber = newModel.getFretNumber()
+        if newModel.fretNumber != ""{
+          fretNumber = newModel.getFretNumber()
+        }
         isGhost = newModel.getIsGhost()
         isInScale = newModel.getIsInScale()
         isDisplayed = newModel.getIsDisplayed()

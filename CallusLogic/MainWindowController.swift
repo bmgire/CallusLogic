@@ -128,7 +128,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         model.setFretboardArray(array as! [NoteModel])
         
         // update which buttons work.
-        model.setAllowsGhostAll(true)
+        model.setAllowsGhostAll(false)
         model.setAllowsSelectAll(true)
         model.setAllowsClear(true)
         
@@ -240,7 +240,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             
             // update which buttons work.
             model.setAllowsGhostAll(true)
-            model.setAllowsSelectAll(true)
+            model.setAllowsSelectAll(false)
         }
     }
     
@@ -660,7 +660,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             if noteModel.getIsGhost() == true {
                 noteModel.setIsKept(false)
             }
-                // If unghosted (selected), keep or unkeep depending on the value of 'doKept
+                // If unghosted (selected), keep or unkeep depending on the value of 'doKeep
             else {
                 noteModel.setIsKept(doKeep)
                 // If we've unSelected the note via unselectAll
