@@ -189,19 +189,17 @@ class NoteModel: NSObject, NSCoding {
             number0to11 = addParentheses(number0to11)
             number0to46 = addParentheses(number0to46)
             interval = addParentheses(interval)
-            if fretNumber != "" {
-            fretNumber = addParentheses(fretNumber)
-            }
+            
+            //fretNumber = addParentheses(fretNumber)
+            
         }
         else {
             note = removeParentheses(note)
             number0to11 = removeParentheses(number0to11)
             number0to46 = removeParentheses(number0to46)
             interval = removeParentheses(interval)
-            interval = removeParentheses(fretNumber)
-            if fretNumber != "" {
-                fretNumber = removeParentheses(fretNumber)
-            }
+            // fretNumber = removeParentheses(fretNumber)
+            
         }
     }
     
