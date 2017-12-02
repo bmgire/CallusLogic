@@ -116,6 +116,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         // update which buttons work.
         model.setAllowsSelectAll(true)
         model.setAllowsClear(true)
+        model.setAllowsGhostAll(true)
     }
     
     
@@ -128,7 +129,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         model.setFretboardArray(array as! [NoteModel])
         
         // update which buttons work.
-        model.setAllowsGhostAll(false)
+        model.setAllowsGhostAll(true)
         model.setAllowsSelectAll(true)
         model.setAllowsClear(true)
         
