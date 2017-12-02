@@ -37,8 +37,7 @@ open class AllIntervals: NSObject {
     // Guide
     //             0       1         2       3      4        5       6        7       8       9       10       11     12       13      14      15      16      17      18      19
     //           root      m2        M2      A2     m3      M3       D4      P4      A4       D5      P5       A5     D6       m6      M6      A6      D7      m7      M7	   offset
-        aFlat = ["Ab",   "Bbb",   "Bb",    "B",    "Cb",   "C",    "Dbb",   "Db",   "D",   "Ebb",   "Eb",    "E",   "Fbb",   "Fb",    "F",   "F#",   "Gbb",
-                  "Gb",   "G",    "8"]
+        aFlat = ["Ab",   "Bbb",   "Bb",    "B",    "Cb",   "C",    "Dbb",   "Db",   "D",   "Ebb",   "Eb",    "E",   "Fbb",   "Fb",    "F",   "F#",   "Gbb",    "Gb",   "G",    "8"]
      
             a = ["A",    "Bb",    "B",     "B#",	"C",   "C#",   "Db",    "D",    "D#",   "Eb",   "E",     "E#",   "Fb",    "F",    "F#",  "F##",   "Gb",
                  "G",    "G#",   "7"]   
@@ -99,6 +98,8 @@ open class AllIntervals: NSObject {
                              "Fb",  "F",  "F#",
                              "Gb",  "G",  "G#"]   
         
+        //Note = the indexOfE pertains to half steps above the root within an octave.
+        // many intervals represent the same tone (ex: A2 & m3)
         arrayOfIntervalNames =  ["root", "m2",  "M2", "A2", "m3",  "M3", "D4", "P4", "A4",  "D5", "P5", "A5", "D6", "m6", "M6", "A6", "D7", "m7" ,"M7",	"indexOfE"]
         
         

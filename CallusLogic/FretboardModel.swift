@@ -152,6 +152,8 @@ class FretboardModel: NSObject, NSCoding {
         var array:[NoteModel] = []
         
         for index in 0...(fretboardArray!.count - 1) {
+            
+           
             let note = NoteModel()
             note.setNoteModel(fretboardArray![index])
             array.append(note)

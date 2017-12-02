@@ -67,7 +67,7 @@ class ZeroTo46ToneCalculator {
         if scaleName != "" {
             
             buildzeroTo46ToneArray()
-            
+            //Updates masterRoot = root + accidental.
             resolveRoot(myRoot, accidental: myAccidental)
             // Find and save the Scale object.
             scale = myDictOfScales[scaleName]!
@@ -128,7 +128,7 @@ class ZeroTo46ToneCalculator {
                 }
             } // Ends for loop.
        
-        // Find any passing notes and add parentheses
+        // Find any passing notes and add parentheses /// I don't think  this is happening
         unorderedScaleArray = tempScale
         unorderedIntervalsArray = tempIntervals
         
