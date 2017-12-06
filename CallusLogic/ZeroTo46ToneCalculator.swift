@@ -61,22 +61,44 @@ class ZeroTo46ToneCalculator {
     fileprivate var passingInterval = ""
     fileprivate var zeroTo46ToneArray: [NoteModel] = []
     
-    
+    init() {
+        // These 2 arrays should never need to be updated.
+        createZeroTo46Array()
+        createZeroTo11Array()
+        //Upon init(), the IntervalsArray and NotesArray are blank. see updateWithValues fcn
+    }
     
     func getZeroTo46ToneArray()->[NoteModel] {
         return zeroTo46ToneArray
     }
     
-    //##########################################################
-    // MARK: - Custom functions
-    //##########################################################
+
+    
+    fileprivate func createZeroTo46Array() {
+        for index in -12...48 {
+            zeroTo46Array.append(String(index))
+        }
+    }
+    
+    
+    fileprivate func createZeroTo11Array() {
+        for _ in 0...4 {
+            for index in 0...11 {
+                zeroTo11Array.append(String(index))
+            }
+        }
+        // Needs to append extra.
+        zeroTo11Array.append("0")
+    }
+    
+    
     // Get the current user selected values and update the array of NoteModels.
     func updateWithValues(_ myRoot: String,
                           myAccidental: String,
                           scaleName: String,
                           displayMode: String,
-                          myCalcColor: NSColor)
-                          /*selectNotes: String)*/  {
+                          myCalcColor: NSColor) {
+        
         if scaleName != "" {
             
             buildzeroTo46ToneArray()
