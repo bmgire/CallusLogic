@@ -3,6 +3,7 @@
 
 
 import Cocoa
+/*
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -13,7 +14,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     return false
   }
 }
-
+*/
 
 class ZeroTo46ToneCalculator {
 
@@ -22,18 +23,30 @@ class ZeroTo46ToneCalculator {
     //##########################################################
     let LENGTHOFCHROMATIC = 12
     
-    let myArrayOfIntervalDicts = AllIntervals().getIntervalsDict()
-    let myDictOfScales = AllScales().getDictOfScales()
+    let myDictionaryGiveRootGetDictionaryOfNotesAndIntervals = RootToIntervalNotes().getDictionaryGiveRootGetDictionaryOfNotesAndIntervals()
+    let myDictOfScales = ScalesByIntervals().getDictOfScales()
+    
+    //##########################################################
+    // MARK: - ToneArrays
+    //##########################################################
+    
+    fileprivate var zeroTo46Array = [String]()
+    fileprivate var zeroTo11Array = [String]()
+    fileprivate var intervalsArray = [String]()
+    fileprivate var notesArray = [String]()
+    
+    
+    
     
     //##########################################################
     // MARK: - Variables
     //##########################################################
-    fileprivate var masterRoot = ""
+    fileprivate var rootPlusAccidental = ""
     fileprivate var myDisplayMode = ""
     fileprivate var calcColor: NSColor?
     
     //private var ghost: Bool?
-    fileprivate var rootIntervalDict : [String : String] = [:]
+    fileprivate var dictionarOfIntervalNotesAboveRoot: [String : String] = [:]
     fileprivate var scale: Scale = Scale()
     
     // Used for calculating and properly ordering a scale.
@@ -82,14 +95,14 @@ class ZeroTo46ToneCalculator {
 //            else {
 //                ghost = true
 //            }
-            rootIntervalDict = myArrayOfIntervalDicts[masterRoot]!
+            dictionarOfIntervalNotesAboveRoot = myDictionaryGiveRootGetDictionaryOfNotesAndIntervals[rootPlusAccidental]!
             
-            intervalIndexOfE = Int(rootIntervalDict["indexOfE"]!)!
+            intervalIndexOfE = Int(dictionarOfIntervalNotesAboveRoot["indexOfE"]!)!
             // Save the passing interval.
             passingInterval = scale.getPassingInterval()
             
            
-            getScaleIntervalsAndIntervalOfE(scale, intervalDictForRoot: rootIntervalDict)
+            getScaleIntervalsAndIntervalOfE(scale, intervalDictForRoot: dictionarOfIntervalNotesAboveRoot)
             buildFretboard(unorderedScaleArray)
         }
     }
@@ -100,10 +113,10 @@ class ZeroTo46ToneCalculator {
         if accidental != "Natural" {
             var temp = root
             temp.append(accidental)
-            masterRoot = temp
+            rootPlusAccidental = temp
         }
         else {
-            masterRoot = root
+            rootPlusAccidental = root
         }
         
     }
@@ -202,7 +215,7 @@ class ZeroTo46ToneCalculator {
                zeroTo46ToneArray[index * 12 + passingIndex!].makePassingNote(true)
             }
             // Adds the last passing note. Accounts for 22 fret guitar. 
-            if passingIndex < 11 {
+            if passingIndex! < 11 {
                 zeroTo46ToneArray[36 + passingIndex!].makePassingNote(true)
             }
         }

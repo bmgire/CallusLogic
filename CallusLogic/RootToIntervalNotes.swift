@@ -8,7 +8,7 @@
 
 import Cocoa
 
-open class AllIntervals: NSObject {
+open class RootToIntervalNotes: NSObject {
     
     
     fileprivate var aFlat,  a,  aSharp,
@@ -19,21 +19,24 @@ open class AllIntervals: NSObject {
         fFlat,  f,  fSharp,
         gFlat,  g,  gSharp: [String]
 
-    // A dictionary where keys are strings and values are dictionaries. 
-    fileprivate var intervalDict:[String : [String : String]] = [:]
+    // A dictionary where keys are strings and values are dictionaries.
+    // Is below an Array of interval dictionaries? 
+    fileprivate var DictionaryGiveRootGetDictionaryOfNotesAndIntervals: [String : [String : String]] = [:]
     
-    fileprivate var arrayOfIntervalDicts: [[String : String]] = []
+    fileprivate var arrayOfDictionariesOfNotesOfIntervalsAboveRoots: [[String : String]] = []
     
     fileprivate var arrayOfRootNotes: [String]
     
     fileprivate var arrayOfIntervalNames:[String]
     
-    fileprivate var arrayOfRootIntervals: [[String]]
+    fileprivate var arrayOfArraysOfNotesOfIntervalsAboveRoots: [[String]]
     
 
     
     override init() {
     
+    // Each array below is a collection of note names in a specific order of intervals.
+        
     // Guide
     //             0       1         2       3      4        5       6        7       8       9       10       11     12       13      14      15      16      17      18      19
     //           root      m2        M2      A2     m3      M3       D4      P4      A4       D5      P5       A5     D6       m6      M6      A6      D7      m7      M7	   offset
@@ -105,7 +108,9 @@ open class AllIntervals: NSObject {
         
         
         // init
-        arrayOfRootIntervals = [aFlat,   a,   aSharp,
+        //arrayOfArraysOfNotesOfIntervalsByRoot
+        arrayOfArraysOfNotesOfIntervalsAboveRoots =
+                                [aFlat,   a,   aSharp,
                                 bFlat,   b,   bSharp,
                                 cFlat,   c,   cSharp,
                                 dFlat,   d,   dSharp,
@@ -113,25 +118,34 @@ open class AllIntervals: NSObject {
                                 fFlat,   f,   fSharp,
                                 gFlat,   g,   gSharp]
         
-        // temp array, each member is a dictionary holding 1 intervalArray with it's associated root.
+        
+        // An array of dictionaries.
         var temp:[[String:String]] = []
         
         // Using each root-specific interval array, create a dictionary matching each note name with the appropriate interval.
         // and add that dictionary to an array.
         
         for index in 0...20 {
-        
-        temp.append(NSDictionary.init(objects: arrayOfRootIntervals[index], forKeys: arrayOfIntervalNames as [NSCopying]) as! [String : String])
+            // In each loop
+            // Create a dictionary pairing of 1 ArrayOfNotesOfIntervalsAboveRoot with the arrayOfIntervalNames.
+            // Append the above dictionary temp(an array of dictionaries)
+            temp.append(NSDictionary.init(objects: arrayOfArraysOfNotesOfIntervalsAboveRoots[index], forKeys: arrayOfIntervalNames as [NSCopying]) as! [String : String])
         }
         // Pointer Swap.
-        arrayOfIntervalDicts = temp
         
-        // Pointer swap.
-        intervalDict = NSDictionary.init(objects: arrayOfIntervalDicts, forKeys: arrayOfRootNotes as [NSCopying]) as! [String : [String : String]]
+        // An array of dictionaries, each dictionary is a root note,
+        arrayOfDictionariesOfNotesOfIntervalsAboveRoots = temp
+        
+        // Create a dictionary pairing each index of the arrayOfDictionariesOfNotesOfIntervalsAboveRoots with the arrayOfRootNotes.
+        // DictionaryOfDictionariesOfArrayOfDictionariesOfNotesOfIntervalsAboveRoots
+        // DictionaryGiveRootGetDictionaryOfNotesAndIntervals.
+        DictionaryGiveRootGetDictionaryOfNotesAndIntervals =
+            NSDictionary.init(objects: arrayOfDictionariesOfNotesOfIntervalsAboveRoots, forKeys: arrayOfRootNotes as [NSCopying]) as! [String : [String : String]]
         super.init()
     }
     
-    func getIntervalsDict()->[String : [String : String]] {
-        return intervalDict
+    // The intervals dict =    Root      interval   note
+    func getDictionaryGiveRootGetDictionaryOfNotesAndIntervals()->[String : [String : String]] {
+        return DictionaryGiveRootGetDictionaryOfNotesAndIntervals
     }
 }

@@ -519,8 +519,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     // Adds the scale names to the Scale PopUp
     func addScaleNamesToPopUp(){
-        for index in 0...(AllScales().getScaleArray().count - 1){
-            scalePopUp!.addItem(withTitle: AllScales().getScaleArray()[index].getScaleName())
+        for index in 0...(ScalesByIntervals().getScaleArray().count - 1){
+            scalePopUp!.addItem(withTitle: ScalesByIntervals().getScaleArray()[index].getScaleName())
         }
         // Adds separator items to make the scales popUp easier to read.
         scalePopUp!.menu?.insertItem(NSMenuItem.separator(), at: 14)

@@ -9,7 +9,7 @@
 // Attempting not to import cocoa.
 import Cocoa
 
-class AllScales: NSObject {
+class ScalesByIntervals {
     
     fileprivate var dictOfScales: [String: Scale] = [:]
     
@@ -17,11 +17,10 @@ class AllScales: NSObject {
     fileprivate var scaleArray: [Scale] = []
     fileprivate var keyArray: [String] = []
     
-    override init() {
-        // super.init() must be called before calling any functions within self.
-        super.init()
-
-/* Delete after fixing the rest.
+    init() {
+    
+    
+/*
         // Call to private member function that builds a scale and key.
         buildAndAddScale(aScale: Scale(name:  "Root",
                                        formula: [ "root",   "",    "",       "",     "",     "",     "",     "",     "",   "",  "",  "",  "offset"],

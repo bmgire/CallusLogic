@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B584BCB51D32C98A0092B143 /* FretboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B584BCB41D32C98A0092B143 /* FretboardModel.swift */; };
-		B5BC0A591FD2626D006C5DF9 /* NoteArraysCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC0A581FD2626D006C5DF9 /* NoteArraysCreator.swift */; };
+		B5BC0A591FD2626D006C5DF9 /* ToneArraysCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC0A581FD2626D006C5DF9 /* ToneArraysCreator.swift */; };
 		B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */; };
 		B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C5C1D2D9E84008BCE5F /* Document.swift */; };
 		B5F44C621D2D9E84008BCE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C611D2D9E84008BCE5F /* Assets.xcassets */; };
 		B5F44C651D2D9E84008BCE5F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C631D2D9E84008BCE5F /* MainMenu.xib */; };
-		B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */; };
-		B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */; };
+		B5F44C771D2D9F15008BCE5F /* RootToIntervalNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* RootToIntervalNotes.swift */; };
+		B5F44C781D2D9F15008BCE5F /* ScalesByIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6D1D2D9F15008BCE5F /* ScalesByIntervals.swift */; };
 		B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */; };
 		B5F44C7A1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */; };
 		B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C701D2D9F15008BCE5F /* FretboardView.swift */; };
@@ -31,15 +31,15 @@
 /* Begin PBXFileReference section */
 		B584BCB41D32C98A0092B143 /* FretboardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardModel.swift; sourceTree = "<group>"; };
 		B58ABDD21D76302E00EE4CD8 /* CallusLogic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallusLogic.entitlements; sourceTree = "<group>"; };
-		B5BC0A581FD2626D006C5DF9 /* NoteArraysCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteArraysCreator.swift; sourceTree = "<group>"; };
+		B5BC0A581FD2626D006C5DF9 /* ToneArraysCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneArraysCreator.swift; sourceTree = "<group>"; };
 		B5F44C571D2D9E84008BCE5F /* Callus Logic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Callus Logic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F44C5A1D2D9E84008BCE5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F44C5C1D2D9E84008BCE5F /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		B5F44C611D2D9E84008BCE5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5F44C641D2D9E84008BCE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B5F44C661D2D9E84008BCE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllIntervals.swift; sourceTree = "<group>"; };
-		B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScales.swift; sourceTree = "<group>"; };
+		B5F44C6C1D2D9F15008BCE5F /* RootToIntervalNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootToIntervalNotes.swift; sourceTree = "<group>"; };
+		B5F44C6D1D2D9F15008BCE5F /* ScalesByIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalesByIntervals.swift; sourceTree = "<group>"; };
 		B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
 		B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroTo46ToneCalculator.swift; sourceTree = "<group>"; };
 		B5F44C701D2D9F15008BCE5F /* FretboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardView.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 			children = (
 				B5F44C721D2D9F15008BCE5F /* NoteModel.swift */,
 				B584BCB41D32C98A0092B143 /* FretboardModel.swift */,
-				B5BC0A581FD2626D006C5DF9 /* NoteArraysCreator.swift */,
+				B5BC0A581FD2626D006C5DF9 /* ToneArraysCreator.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -124,8 +124,8 @@
 		B5F44C841D2D9FD6008BCE5F /* MusicTheory */ = {
 			isa = PBXGroup;
 			children = (
-				B5F44C6C1D2D9F15008BCE5F /* AllIntervals.swift */,
-				B5F44C6D1D2D9F15008BCE5F /* AllScales.swift */,
+				B5F44C6C1D2D9F15008BCE5F /* RootToIntervalNotes.swift */,
+				B5F44C6D1D2D9F15008BCE5F /* ScalesByIntervals.swift */,
 				B5F44C761D2D9F15008BCE5F /* Scale.swift */,
 			);
 			name = MusicTheory;
@@ -220,14 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F44C771D2D9F15008BCE5F /* AllIntervals.swift in Sources */,
-				B5BC0A591FD2626D006C5DF9 /* NoteArraysCreator.swift in Sources */,
+				B5F44C771D2D9F15008BCE5F /* RootToIntervalNotes.swift in Sources */,
+				B5BC0A591FD2626D006C5DF9 /* ToneArraysCreator.swift in Sources */,
 				B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */,
 				B5F44C881D2DD55B008BCE5F /* MainWindowController.swift in Sources */,
 				B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */,
 				B5F44C7A1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift in Sources */,
 				B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */,
-				B5F44C781D2D9F15008BCE5F /* AllScales.swift in Sources */,
+				B5F44C781D2D9F15008BCE5F /* ScalesByIntervals.swift in Sources */,
 				B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */,
 				B584BCB51D32C98A0092B143 /* FretboardModel.swift in Sources */,
 				B5F44C811D2D9F15008BCE5F /* Scale.swift in Sources */,
