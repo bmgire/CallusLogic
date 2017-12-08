@@ -537,7 +537,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                         scaleName: scalePopUp!.titleOfSelectedItem!,
                                         displayMode: displayModePopUp!.titleOfSelectedItem!,
                                         myCalcColor: model.getUserColor())
-        fillSpacesWithChromatic()
+      //  fillSpacesWithChromatic()
     }
     
     
@@ -559,7 +559,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         fretboardView.updateSubviews(model.getFretboardArray())
     }
     
-    
+    /*
     func fillSpacesWithChromatic()
     {
         let chromatic = ZeroTo46ToneCalculator()
@@ -579,7 +579,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 }
         }
     }
-    
+    */
     
     func showNotesOnFretboard( _ _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...137 {
@@ -672,7 +672,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
     }
     
-    // Loads note models into unselected/unkept notes.
+    // Loads noteModels into unselected/unkept notes.
+    // For MVC update: instead this  should be a function within the fretboard model that is passed the ArrrayOfNotesIntervalsAndNumbersArrays
     func updateToneArrayIntofretboardModel(_ toneArray: [NoteModel]) {
         for stringIndex in 0...5 {
             for noteIndex in 0...(NOTES_PER_STRING - 1){

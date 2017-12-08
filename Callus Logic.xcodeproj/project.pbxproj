@@ -104,8 +104,8 @@
 		B5F44C821D2D9FA0008BCE5F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B5F44C701D2D9F15008BCE5F /* FretboardView.swift */,
 				B5F44C731D2D9F15008BCE5F /* NoteView.swift */,
+				B5F44C701D2D9F15008BCE5F /* FretboardView.swift */,
 				B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */,
 			);
 			name = Views;

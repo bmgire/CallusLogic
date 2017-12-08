@@ -10,7 +10,10 @@ import Cocoa
 
 class FretboardModel: NSObject, NSCoding {
     
+    let NOTES_PER_STRING = 23
     
+    // Offsets for toneNumber for each open string in standard tuning.
+    let offsets = [0, 5, 10, 15, 19, 24]
     //##########################################################
     // MARK: - Variables
     //##########################################################
@@ -129,7 +132,7 @@ class FretboardModel: NSObject, NSCoding {
         setFretNumbers()
     }
   
-    func setFretNumbers() {
+    fileprivate func setFretNumbers() {
     
         var fret = 0
         for note in fretboardArray! {
@@ -140,7 +143,35 @@ class FretboardModel: NSObject, NSCoding {
             }
         }
     }
- 
+    /* ArrayOfArrays order:
+     0 = zeroTo11Array
+     1 = zeroTo46Array
+     2 = notesArray
+     3 = intervalsArray
+    */
+    // Function takes an array of tone arrays and updates the appropriate noteModels.
+    func updateNotesIntervalsAndNumbers(_ anArrayOfToneArrays: [[String]]) {
+        
+        // For each string
+        for stringIndex in 0...5 {
+            // For each fret along the string. Total frets = 23 counting 0 as 1.
+            for fretIndex in 0...NOTES_PER_STRING - 1 {
+                //get the array values and plug update the fretboard model.
+                
+                if let noteModel = fretboardArray?[fretIndex  + stringIndex * NOTES_PER_STRING]{
+                    if noteModel.getIsKept() == false {
+                        let toneIndex = fretIndex + offsets[stringIndex]
+                        noteModel.setNumber0to11(anArrayOfToneArrays[0][toneIndex])
+                        noteModel.setNumber0to46(anArrayOfToneArrays[1][toneIndex])
+                        noteModel.setNote(anArrayOfToneArrays[2][toneIndex])
+                        noteModel.setInterval(anArrayOfToneArrays[3][toneIndex])
+                    }
+                }
+            }
+        }
+    }
+    
+    
     //##########################################################
     // MARK: - Getters and Setters.
     //##########################################################

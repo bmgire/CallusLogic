@@ -231,7 +231,7 @@ class ScalesByIntervals {
         return scaleArray
     }
     
-    
+ 
     func buildAndAddScale(aScale: Scale) {
         scaleArray.append(aScale)
         keyArray.append(aScale.getScaleName())

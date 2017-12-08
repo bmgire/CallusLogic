@@ -3,18 +3,6 @@
 
 
 import Cocoa
-/*
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-*/
 
 class ZeroTo46ToneCalculator {
 
@@ -68,12 +56,14 @@ class ZeroTo46ToneCalculator {
         //Upon init(), the IntervalsArray and NotesArray are blank. see updateWithValues fcn
     }
     
+    // Returns an array of NoteModels with all the notes.
+    // For the MVC update, I want to pass the toneArrays to the fretboard so it can update its values.
     func getZeroTo46ToneArray()->[NoteModel] {
         return zeroTo46ToneArray
     }
     
 
-    
+    // Arrray has 61 index values. 
     fileprivate func createZeroTo46Array() {
         for index in -12...48 {
             zeroTo46Array.append(String(index))
@@ -111,12 +101,6 @@ class ZeroTo46ToneCalculator {
             
             calcColor = myCalcColor
             
-//            if selectNotes == "Select" {
-//                ghost = false
-//            }
-//            else {
-//                ghost = true
-//            }
             dictionarOfIntervalNotesAboveRoot = myDictionaryGiveRootGetDictionaryOfNotesAndIntervals[rootPlusAccidental]!
             
             intervalIndexOfE = Int(dictionarOfIntervalNotesAboveRoot["indexOfE"]!)!
