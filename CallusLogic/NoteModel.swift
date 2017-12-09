@@ -25,7 +25,7 @@ class NoteModel: NSObject, NSCoding {
     fileprivate var isKept = false
     
     // FontSize
-    fileprivate var noteFontSize: CGFloat = 16
+    //fileprivate var noteFontSize: CGFloat = 16
     
     // A state variable to be set while the mouse is down.
     fileprivate var myColor: NSColor = NSColor.red
@@ -45,10 +45,9 @@ class NoteModel: NSObject, NSCoding {
         aCoder.encode(isDisplayed, forKey: "isDisplayed")
         aCoder.encode(isPassingNote, forKey: "isPassingNote")
         aCoder.encode(isKept, forKey: "isKept")
-        
-        aCoder.encode(noteFontSize, forKey: "noteFontSize")
+    
         aCoder.encode(myColor, forKey: "myColor")
-        aCoder.encode(displayMode, forKey: "displayMode")
+        aCoder.encode(displayMode, forKey: "displayMode") // Will be getting rid of this. 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,8 +61,7 @@ class NoteModel: NSObject, NSCoding {
         isDisplayed = aDecoder.decodeBool(forKey: "isDisplayed")
         isPassingNote = aDecoder.decodeBool(forKey: "isPassingNote")
         isKept = aDecoder.decodeBool(forKey: "isKept")
-        
-        noteFontSize = aDecoder.decodeObject(forKey: "noteFontSize") as! CGFloat
+    
         myColor = aDecoder.decodeObject(forKey: "myColor") as! NSColor
         displayMode = aDecoder.decodeObject(forKey: "displayMode") as! String
         super.init()
@@ -157,15 +155,6 @@ class NoteModel: NSObject, NSCoding {
         displayMode = newMode
     }
     
-
-    func getNoteFontSize() -> CGFloat {
-        return noteFontSize
-    }
-    
-    func setNoteFontSize(_ newFontSize: CGFloat){
-        noteFontSize = newFontSize
-    }
-    
     func getMyColor() -> NSColor {
         return myColor
     }
@@ -238,7 +227,6 @@ class NoteModel: NSObject, NSCoding {
         isInScale = newModel.getIsInScale()
         isDisplayed = newModel.getIsDisplayed()
         isPassingNote = newModel.getIsPassingNote()
-        noteFontSize = newModel.getNoteFontSize()
         myColor = newModel.getMyColor()
         displayMode = newModel.getDisplayMode()
         isKept = newModel.isKept

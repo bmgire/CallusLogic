@@ -150,7 +150,7 @@ class FretboardModel: NSObject, NSCoding {
      3 = intervalsArray
     */
     // Function takes an array of tone arrays and updates the appropriate noteModels.
-    func updateNotesIntervalsAndNumbers(_ anArrayOfToneArrays: [[String]]) {
+    func updateNoteModels(_ anArrayOfToneArrays: [[String]], isInScale: Bool) {
         
         // For each string
         for stringIndex in 0...5 {
@@ -165,6 +165,8 @@ class FretboardModel: NSObject, NSCoding {
                         noteModel.setNumber0to46(anArrayOfToneArrays[1][toneIndex])
                         noteModel.setNote(anArrayOfToneArrays[2][toneIndex])
                         noteModel.setInterval(anArrayOfToneArrays[3][toneIndex])
+                        noteModel.setIsInScale(isInScale)
+                        noteModel.setMyColor(userColor!)
                     }
                 }
             }

@@ -12,7 +12,15 @@ class NoteView: NSView {
     
     var viewNumberDict: [String: Int] = [:]
 
-    fileprivate var noteModel = NoteModel()
+    fileprivate var displayText = ""
+    
+    fileprivate var isGhost = true
+    
+    fileprivate var isDisplayed = false
+    
+    fileprivate var noteFontSize: CGFloat = 16
+    
+    fileprivate var myColor: NSColor = NSColor.yellow
     
     // Indicates whether the button has been pressed successfully.
     fileprivate var pressed: Bool = false
@@ -26,13 +34,13 @@ class NoteView: NSView {
     //##########################################################
     // MARK: - getters and setters.
     //##########################################################
-    func getNoteModel() -> NoteModel {
-        return noteModel
-    }
-    
-    
-    func setNoteModel(_ newModel: NoteModel){
-        noteModel = newModel
+
+    func updateNoteView(_ noteModel: NoteModel, display: String) {
+        isGhost = noteModel.getIsGhost()
+        isDisplayed = noteModel.getIsDisplayed()
+        myColor = noteModel.getMyColor()
+        displayText = display
+        // Redraw whenever this function is called updated.
         needsDisplay = true
     }
     
@@ -105,20 +113,19 @@ class NoteView: NSView {
         // Assign a value to the path.
         path = NSBezierPath(roundedRect: noteRect!, xRadius: cornerRadius , yRadius: cornerRadius)
         
-        if noteModel.getIsDisplayed() == true {
-            
+        if isDisplayed {
+         
             
             // If appropriate, set alpha to ghosting transparency
-            if noteModel.getIsGhost() == true {
-                noteModel.setMyColor(noteModel.getMyColor().withAlphaComponent(CGFloat(0.4)))
+            if isGhost {
+                myColor = myColor.withAlphaComponent(CGFloat(0.4))
             }
-            else {
-                noteModel.setMyColor(noteModel.getMyColor().withAlphaComponent(CGFloat(1)))
+          else {
+               myColor = myColor.withAlphaComponent(CGFloat(1))
             }
-            
+ 
             // Set color and fill.
-            
-            noteModel.getMyColor().set()
+            myColor.set()
             path?.fill()
             
             // Create an NSParagraphStyle object
@@ -128,7 +135,7 @@ class NoteView: NSView {
             paraStyle.alignment = .right
             
             // define a font.
-            let font = NSFont.systemFont(ofSize: noteModel.getNoteFontSize())
+            let font = NSFont.systemFont(ofSize: noteFontSize)
             
             // Attributes for drawing.
             let attrs = [
@@ -140,6 +147,10 @@ class NoteView: NSView {
             var attributedNote = NSMutableAttributedString()
             
             // Choose which displayMode mode to use.
+
+            attributedNote = NSMutableAttributedString(string: displayText, attributes: attrs)
+            
+       /*
             if noteModel.getDisplayMode() == "Notes"
             {
                 attributedNote = NSMutableAttributedString(string: noteModel.getNote(), attributes: attrs)
@@ -162,6 +173,7 @@ class NoteView: NSView {
                 attributedNote = NSMutableAttributedString(string: noteModel.getFretNumber(), attributes: attrs)
                 
             }
+ */
             attributedNote.drawCenterCustomInRect(bounds, withAttributes: attrs)
         }
     }

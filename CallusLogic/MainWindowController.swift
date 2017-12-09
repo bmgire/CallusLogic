@@ -27,7 +27,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     let offsets = [0, 5, 10, 15, 19, 24]
     
     // Calculates 46 tone arrays.
-    let zeroTo46ToneCalculator = ZeroTo46ToneCalculator()
+    let toneArraysCreator = ToneArraysCreator() //ZeroTo46ToneCalculator()
     
     let NOTES_PER_STRING = 23
     
@@ -532,17 +532,18 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // Updates the FretboardCalculator and subviews.
     func updateZeroTo46ToneCalculator() {
         // Update Model with current values.
-        zeroTo46ToneCalculator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
+        toneArraysCreator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
-                                        scaleName: scalePopUp!.titleOfSelectedItem!,
-                                        displayMode: displayModePopUp!.titleOfSelectedItem!,
-                                        myCalcColor: model.getUserColor())
+                                        scaleName: scalePopUp!.titleOfSelectedItem!)
+                                       // displayMode: displayModePopUp!.titleOfSelectedItem!,
+                                       // myCalcColor: model.getUserColor())
       //  fillSpacesWithChromatic()
     }
     
     
     func updatefretboardModel() {
-        updateToneArrayIntofretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
+        model.updateNoteModels(toneArraysCreator.getArrayOfToneArrays(), isInScale: true)
+       // updateToneArrayIntofretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
     
         updateDisplayModeAction(displayModePopUp)
         
@@ -556,7 +557,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         // Close the color panel if still open.
         NSColorPanel.shared.close()
                 
-        fretboardView.updateSubviews(model.getFretboardArray())
+        fretboardView.updateSubviews(model.getFretboardArray(), displayMode: displayModePopUp.titleOfSelectedItem!)
     }
     
     /*
@@ -699,9 +700,10 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         showAdditionalNotesButton.state = NSControl.StateValue(rawValue: model.getShowAdditionalNotes())
         
         displayModePopUp.selectItem(at: model.getDisplayMode())
-        
-        updateFretboardView()
+       
         model.setUserColor(colorWell.color)
+        updateFretboardView()
+       
     }
     
     
