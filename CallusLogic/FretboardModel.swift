@@ -12,8 +12,10 @@ class FretboardModel: NSObject, NSCoding {
     
     let NOTES_PER_STRING = 23
     
+    let offset = 12
+    
     // Offsets for toneNumber for each open string in standard tuning.
-    let offsets = [0, 5, 10, 15, 19, 24]
+    let offsets = [12, 17, 22, 27, 31, 36]
     //##########################################################
     // MARK: - Variables
     //##########################################################
@@ -152,22 +154,39 @@ class FretboardModel: NSObject, NSCoding {
     // Function takes an array of tone arrays and updates the appropriate noteModels.
     func updateNoteModels(_ anArrayOfToneArrays: [[String]], isInScale: Bool) {
         
+        // Internal function to prevent duplicate code.
+        func updateSingleModel(noteModel: NoteModel, index: Int) {
+            noteModel.setNumber0to11(anArrayOfToneArrays[0][index])
+            noteModel.setNumber0to46(anArrayOfToneArrays[1][index])
+            noteModel.setNote(anArrayOfToneArrays[2][index])
+            noteModel.setInterval(anArrayOfToneArrays[3][index])
+            noteModel.setIsInScale(isInScale)
+            noteModel.setIsDisplayed(isInScale)
+            if isInScale == false {
+                noteModel.setMyColor(NSColor.red)
+            }
+            else {
+                noteModel.setMyColor(userColor!)
+            }
+        }
+        
         // For each string
         for stringIndex in 0...5 {
             // For each fret along the string. Total frets = 23 counting 0 as 1.
             for fretIndex in 0...NOTES_PER_STRING - 1 {
                 //get the array values and plug update the fretboard model.
                 
+                let toneIndex = fretIndex + offsets[stringIndex]
                 if let noteModel = fretboardArray?[fretIndex  + stringIndex * NOTES_PER_STRING]{
-                    if noteModel.getIsKept() == false {
-                        let toneIndex = fretIndex + offsets[stringIndex]
-                        noteModel.setNumber0to11(anArrayOfToneArrays[0][toneIndex])
-                        noteModel.setNumber0to46(anArrayOfToneArrays[1][toneIndex])
-                        noteModel.setNote(anArrayOfToneArrays[2][toneIndex])
-                        noteModel.setInterval(anArrayOfToneArrays[3][toneIndex])
-                        noteModel.setIsInScale(isInScale)
-                        noteModel.setMyColor(userColor!)
+                    
+                    
+                    if noteModel.getIsKept() == false && isInScale {
+                        updateSingleModel(noteModel: noteModel, index: toneIndex)
                     }
+                    else if isInScale == false && noteModel.getNote() == "" {
+                        updateSingleModel(noteModel: noteModel, index: toneIndex)
+                    }
+                        
                 }
             }
         }

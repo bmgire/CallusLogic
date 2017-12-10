@@ -537,14 +537,16 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
                                        // displayMode: displayModePopUp!.titleOfSelectedItem!,
                                        // myCalcColor: model.getUserColor())
-      //  fillSpacesWithChromatic()
+        //fillSpacesWithChromatic()
     }
     
     
     func updatefretboardModel() {
         model.updateNoteModels(toneArraysCreator.getArrayOfToneArrays(), isInScale: true)
        // updateToneArrayIntofretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
-    
+
+        fillSpacesWithChromatic()
+        
         updateDisplayModeAction(displayModePopUp)
         
         showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
@@ -560,27 +562,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         fretboardView.updateSubviews(model.getFretboardArray(), displayMode: displayModePopUp.titleOfSelectedItem!)
     }
     
-    /*
+
     func fillSpacesWithChromatic()
     {
-        let chromatic = ZeroTo46ToneCalculator()
-        chromatic.updateWithValues(rootPopUp!.titleOfSelectedItem!,
+        //let chromaticTones = ToneArraysCreator
+        
+        toneArraysCreator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                    myAccidental: accidentalPopUp!.titleOfSelectedItem!,
-                                   scaleName: "Chromatic Scale",
-                                   displayMode: displayModePopUp!.titleOfSelectedItem!,
-                                   myCalcColor: NSColor.red)
-        for index in 0...46 {
-            let noteModel = zeroTo46ToneCalculator.getZeroTo46ToneArray()[index]
-            let chromModel = chromatic.getZeroTo46ToneArray()[index]
-                if noteModel.getNote() == "" {
-                    noteModel.setNoteModel(chromModel)
-                    noteModel.setIsInScale(false)
-                    noteModel.setIsDisplayed(false)
-                    noteModel.setIsKept(false)
-                }
-        }
+                                   scaleName: "Chromatic Scale")
+        model.updateNoteModels(toneArraysCreator.getArrayOfToneArrays(), isInScale: false)
     }
-    */
+
     
     func showNotesOnFretboard( _ _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
         for index in 0...137 {

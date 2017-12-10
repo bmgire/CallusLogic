@@ -38,7 +38,9 @@ class NoteView: NSView {
     func updateNoteView(_ noteModel: NoteModel, display: String) {
         isGhost = noteModel.getIsGhost()
         isDisplayed = noteModel.getIsDisplayed()
+  
         myColor = noteModel.getMyColor()
+
         displayText = display
         // Redraw whenever this function is called updated.
         needsDisplay = true
