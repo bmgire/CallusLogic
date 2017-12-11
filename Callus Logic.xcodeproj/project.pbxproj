@@ -16,7 +16,6 @@
 		B5F44C771D2D9F15008BCE5F /* RootToIntervalNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6C1D2D9F15008BCE5F /* RootToIntervalNotes.swift */; };
 		B5F44C781D2D9F15008BCE5F /* ScalesByIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6D1D2D9F15008BCE5F /* ScalesByIntervals.swift */; };
 		B5F44C791D2D9F15008BCE5F /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */; };
-		B5F44C7A1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */; };
 		B5F44C7B1D2D9F15008BCE5F /* FretboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C701D2D9F15008BCE5F /* FretboardView.swift */; };
 		B5F44C7C1D2D9F15008BCE5F /* LeftHandedFretboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */; };
 		B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F44C721D2D9F15008BCE5F /* NoteModel.swift */; };
@@ -41,7 +40,6 @@
 		B5F44C6C1D2D9F15008BCE5F /* RootToIntervalNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootToIntervalNotes.swift; sourceTree = "<group>"; };
 		B5F44C6D1D2D9F15008BCE5F /* ScalesByIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalesByIntervals.swift; sourceTree = "<group>"; };
 		B5F44C6E1D2D9F15008BCE5F /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
-		B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroTo46ToneCalculator.swift; sourceTree = "<group>"; };
 		B5F44C701D2D9F15008BCE5F /* FretboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FretboardView.swift; sourceTree = "<group>"; };
 		B5F44C711D2D9F15008BCE5F /* LeftHandedFretboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftHandedFretboard.png; sourceTree = "<group>"; };
 		B5F44C721D2D9F15008BCE5F /* NoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 				B5F44C861D2DD55B008BCE5F /* MainWindowController.swift */,
 				B5F44C871D2DD55B008BCE5F /* MainWindowController.xib */,
 				B5F44C741D2D9F15008BCE5F /* NSString+drawing.swift */,
-				B5F44C6F1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift */,
 				B5F44C821D2D9FA0008BCE5F /* Views */,
 				B5F44C831D2D9FC1008BCE5F /* Models */,
 				B5F44C841D2D9FD6008BCE5F /* MusicTheory */,
@@ -225,7 +222,6 @@
 				B5F44C7D1D2D9F15008BCE5F /* NoteModel.swift in Sources */,
 				B5F44C881D2DD55B008BCE5F /* MainWindowController.swift in Sources */,
 				B5F44C7F1D2D9F15008BCE5F /* NSString+drawing.swift in Sources */,
-				B5F44C7A1D2D9F15008BCE5F /* ZeroTo46ToneCalculator.swift in Sources */,
 				B5F44C5D1D2D9E84008BCE5F /* Document.swift in Sources */,
 				B5F44C781D2D9F15008BCE5F /* ScalesByIntervals.swift in Sources */,
 				B5F44C5B1D2D9E84008BCE5F /* AppDelegate.swift in Sources */,

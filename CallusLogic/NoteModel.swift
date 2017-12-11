@@ -31,7 +31,7 @@ class NoteModel: NSObject, NSCoding {
     fileprivate var myColor: NSColor = NSColor.red
     
     // The display mode is read from the fretboard Calculator, determines which note display mode to use.
-    fileprivate var displayMode = "Notes"
+ //   fileprivate var displayMode = "Notes"
      
     
     func encode(with aCoder: NSCoder) {
@@ -47,7 +47,7 @@ class NoteModel: NSObject, NSCoding {
         aCoder.encode(isKept, forKey: "isKept")
     
         aCoder.encode(myColor, forKey: "myColor")
-        aCoder.encode(displayMode, forKey: "displayMode") // Will be getting rid of this. 
+ //       aCoder.encode(displayMode, forKey: "displayMode") // Will be getting rid of this.
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +63,7 @@ class NoteModel: NSObject, NSCoding {
         isKept = aDecoder.decodeBool(forKey: "isKept")
     
         myColor = aDecoder.decodeObject(forKey: "myColor") as! NSColor
-        displayMode = aDecoder.decodeObject(forKey: "displayMode") as! String
+     //   displayMode = aDecoder.decodeObject(forKey: "displayMode") as! String
         super.init()
     }
     
@@ -147,6 +147,7 @@ class NoteModel: NSObject, NSCoding {
         isPassingNote = bool
     }
     
+    /*
     func getDisplayMode() -> String {
         return displayMode
     }
@@ -154,7 +155,7 @@ class NoteModel: NSObject, NSCoding {
     func setDisplayMode(_ newMode: String){
         displayMode = newMode
     }
-    
+    */
     func getMyColor() -> NSColor {
         return myColor
     }
@@ -178,9 +179,9 @@ class NoteModel: NSObject, NSCoding {
             number0to11 = addParentheses(number0to11)
             number0to46 = addParentheses(number0to46)
             interval = addParentheses(interval)
-       //     if fretNumber != "" {
-            fretNumber = addParentheses(fretNumber)
-       //     }
+            if fretNumber != "" {
+                fretNumber = addParentheses(fretNumber)
+            }
         }
         else {
             note = removeParentheses(note)
@@ -188,9 +189,9 @@ class NoteModel: NSObject, NSCoding {
             number0to46 = removeParentheses(number0to46)
             interval = removeParentheses(interval)
             fretNumber = removeParentheses(fretNumber)
-        //    if fretNumber != "" {
-                //fretNumber = removeParentheses(fretNumber)
-       //     }
+            if fretNumber != "" {
+                fretNumber = removeParentheses(fretNumber)
+           }
         }
     }
     
@@ -198,7 +199,6 @@ class NoteModel: NSObject, NSCoding {
         var temp = "("
         temp = temp + theNote
         temp = temp + ")"
-        //print(theNote)
         print(temp)
         return temp
     }
@@ -228,7 +228,6 @@ class NoteModel: NSObject, NSCoding {
         isDisplayed = newModel.getIsDisplayed()
         isPassingNote = newModel.getIsPassingNote()
         myColor = newModel.getMyColor()
-        displayMode = newModel.getDisplayMode()
         isKept = newModel.isKept
     }
     

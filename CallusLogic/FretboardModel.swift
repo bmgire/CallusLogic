@@ -192,6 +192,46 @@ class FretboardModel: NSObject, NSCoding {
         }
     }
     
+    func showNotesOnFretboard( _ _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
+        for index in 0...137 {
+            let noteModel = fretboardArray![index]
+            
+            // if is note kept
+            if noteModel.getIsKept() != true {
+                // if the noteModels isInScale bool value equals the passed value.
+                // Allows me to update notes in the scale(if bool is true), or additional notes (if bool is false).
+                if noteModel.getIsInScale() == _isInScale {
+                    // pass isDisplayed and isGhosted,
+                    noteModel.setIsDisplayed(_isDisplayed)
+                    noteModel.setIsGhost(_isGhosted)
+                    // futhermore, if isInScale == true, set the user color.
+                    if _isInScale == true {
+                        noteModel.setMyColor(userColor!)
+                    }
+                }
+            }
+        }
+    }
+    
+    func keepOrUnkeepSelectedNotes(_ doKeep: Bool) {
+        for index in 0...137 {
+            let noteModel = fretboardArray![index]
+            // If ghosted, don't keep
+            if noteModel.getIsGhost() == true {
+                noteModel.setIsKept(false)
+            }
+                // If unghosted (selected), keep or unkeep depending on the value of 'doKeep
+            else {
+                noteModel.setIsKept(doKeep)
+                // If we've unSelected the note via unselectAll
+                // update the ghost value and display with current value.
+                if doKeep == false {
+                    noteModel.setIsGhost(true)
+                }
+            }
+        }
+    }
+    
     
     //##########################################################
     // MARK: - Getters and Setters.

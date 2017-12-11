@@ -37,6 +37,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         didSet {
             
             tableView?.reloadData()
+            
         }
     }
     
@@ -109,7 +110,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         undo!.setActionName("Add Notes")
         
         // Calculate and display notes.
-        keepOrUnkeepSelectedNotes(true)
+        model.keepOrUnkeepSelectedNotes(true)
         updateZeroTo46ToneCalculator()
         updatefretboardModel()
         
@@ -161,7 +162,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     // Remove a fretboard from the tableview.
     @IBAction func removeFretboardAction(_ sender: NSButton) {
-        removeFretboard(model)
+        if tableView!.numberOfRows >= 2 {
+            removeFretboard(model)
+        }
     }
     
     @objc func removeFretboard(_ aModel: AnyObject) {
@@ -231,16 +234,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 undo!.setActionName("Select All")
             }
             
-            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
+            model.showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: false)
             
             // If show Additional Notes is selected, also show additional notes.
             if showAdditionalNotesButton.state == NSControl.StateValue.on {
-                showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
+               model.showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: false)
             }
             
             // update which buttons work.
             model.setAllowsGhostAll(true)
             model.setAllowsSelectAll(false)
+            updateFretboardView()
         }
     }
     
@@ -264,8 +268,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             model.setAllowsSelectAll(true)
             model.setAllowsClear(true)
            
-            keepOrUnkeepSelectedNotes(false)
-            showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
+            model.keepOrUnkeepSelectedNotes(false)
+            model.showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
+            updateFretboardView()
         }
     }
     
@@ -284,11 +289,11 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                 undo!.setActionName("Clear Unselected")
             }
             
-            keepOrUnkeepSelectedNotes(true)
+            model.keepOrUnkeepSelectedNotes(true)
             showAdditionalNotesButton.state = NSControl.StateValue(rawValue: 0)
             
-            showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
-            showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
+            model.showNotesOnFretboard(true, _isDisplayed: false, _isGhosted: true)
+            model.showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
             
             // Update which buttons work.
             model.setAllowsGhostAll(true)
@@ -298,7 +303,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             if showAdditionalNotesButton.state.rawValue == 1 {
                 showAdditionalNotesButton.state = NSControl.StateValue(rawValue: 0)
             }
+            updateFretboardView()
         }
+        
     }
     
  
@@ -322,7 +329,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         // If the button is checked.
         if sender.state != NSControl.StateValue.off {
             // Show chromatic notes.
-            showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
+            model.showNotesOnFretboard(false, _isDisplayed: true, _isGhosted: true)
             
             // update which buttons work.
             model.setAllowsSelectAll(true)
@@ -331,8 +338,9 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         }
             // Hide chromatic notes that aren't in the scale.
         else {
-            showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
+            model.showNotesOnFretboard(false, _isDisplayed: false, _isGhosted: true)
         }
+        updateFretboardView()
     }
     
     
@@ -434,12 +442,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         
         displayModePopUp.selectItem(at: newIndex)
         model.setDisplayMode(newIndex)
-        
-        // Go through the fretboard array and change the dipslaymode to whatever is selected.
-        for index in 0...137 {
-            model.getFretboardArray()[index].setDisplayMode(displayModePopUp.itemTitle(at: newIndex))
-        }
-        updateFretboardView()
     }
     
 
@@ -457,9 +459,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // Handles any initialization after the window controller's window has been loaded from its nib file.
     override func windowDidLoad() {
         super.windowDidLoad()
-        
-        //window?.restorable = true
-        
+                
         modelIndex = 0
         
         // Build PopUps.
@@ -493,11 +493,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
                                                          object: nil)
         
         loadCurrentFretboard()
-        
-        // get the screen size
-       // screenwidth = NSScreen.main?.frame.width
-            //.screens[0].frame.width
-        
+
         //Set zoomSlider and call the zoom function appropriately
         zoomSlider.doubleValue = model.getZoomLevel()
         zoom(zoomSlider)
@@ -535,21 +531,17 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         toneArraysCreator.updateWithValues(rootPopUp!.titleOfSelectedItem!,
                                         myAccidental: accidentalPopUp!.titleOfSelectedItem!,
                                         scaleName: scalePopUp!.titleOfSelectedItem!)
-                                       // displayMode: displayModePopUp!.titleOfSelectedItem!,
-                                       // myCalcColor: model.getUserColor())
-        //fillSpacesWithChromatic()
     }
     
     
     func updatefretboardModel() {
         model.updateNoteModels(toneArraysCreator.getArrayOfToneArrays(), isInScale: true)
-       // updateToneArrayIntofretboardModel(zeroTo46ToneCalculator.getZeroTo46ToneArray())
 
         fillSpacesWithChromatic()
         
         updateDisplayModeAction(displayModePopUp)
         
-        showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
+        model.showNotesOnFretboard(true, _isDisplayed: true, _isGhosted: true)
         
         updateFretboardView()
     }
@@ -573,25 +565,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         model.updateNoteModels(toneArraysCreator.getArrayOfToneArrays(), isInScale: false)
     }
 
-    
-    func showNotesOnFretboard( _ _isInScale: Bool, _isDisplayed: Bool, _isGhosted: Bool) {
-        for index in 0...137 {
-            let noteModel = model.getFretboardArray()[index]
-            
-            // only edits the specified note: in the scale or not in the scale.
-            if noteModel.getIsKept() != true {
-                if noteModel.getIsInScale() == _isInScale {
-                    noteModel.setIsDisplayed(_isDisplayed)
-                    noteModel.setIsGhost(_isGhosted)
-                    if _isInScale == true {
-                        noteModel.setMyColor(model.getUserColor())
-                    }
-                }
-            }
-        }
-        updateFretboardView()
-    }
-    
+
     @objc func reactToMouseUpEvent(_ notification: Notification) {
         // If fretboard isn't locked.
         if model.getIsLocked() == 0 {
@@ -645,45 +619,11 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
         updateFretboardView()
     }
     
-    //
-    func keepOrUnkeepSelectedNotes(_ doKeep: Bool) {
-        for index in 0...137 {
-            let noteModel = model.getFretboardArray()[index]
-            // If ghosted, don't keep
-            if noteModel.getIsGhost() == true {
-                noteModel.setIsKept(false)
-            }
-                // If unghosted (selected), keep or unkeep depending on the value of 'doKeep
-            else {
-                noteModel.setIsKept(doKeep)
-                // If we've unSelected the note via unselectAll
-                // update the ghost value and display with current value.
-                if doKeep == false {
-                    noteModel.setIsGhost(true)
-                }
-            }
-        }
-    }
-    
-    // Loads noteModels into unselected/unkept notes.
-    // For MVC update: instead this  should be a function within the fretboard model that is passed the ArrrayOfNotesIntervalsAndNumbersArrays
-    func updateToneArrayIntofretboardModel(_ toneArray: [NoteModel]) {
-        for stringIndex in 0...5 {
-            for noteIndex in 0...(NOTES_PER_STRING - 1){
-                
-                let noteModel = (model.getFretboardArray()[noteIndex + (stringIndex * NOTES_PER_STRING)])
-                let zeroTo46Model = toneArray[noteIndex + offsets[stringIndex]]
-                // For all noteModels not marked as kept, set the noteModel to the zeroTo46 Model.
-                if noteModel.getIsKept() == false {
-                    noteModel.setNoteModel(zeroTo46Model)
-                }
-            }
-        }
-    }
-    
     
     // Loads values from the current model.
     func loadCurrentFretboard() {
+        
+        
         lockButton.state = NSControl.StateValue(rawValue: model.getIsLocked())
         lockFretboard(lockButton)
         
@@ -695,6 +635,8 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
        
         model.setUserColor(colorWell.color)
         updateFretboardView()
+        // If disable the remove fretboard button if only 1 fretboard model is in the array of fretboardModels.
+        fretboardModelArray.count < 2 ? (removeFretboard.isEnabled = false) :  (removeFretboard.isEnabled = true)
        
     }
     
@@ -721,16 +663,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     //##########################################################
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        let count = fretboardModelArray.count
-        
-        // Disable remove fretboard button if only ther is one fretboard.
-        if count == 1 {
-            removeFretboard.isEnabled = false
-        }
-        else {
-            removeFretboard.isEnabled = true
-        }
-        return count
+       return fretboardModelArray.count
     }
     
     // Return the object value for the column and row.
