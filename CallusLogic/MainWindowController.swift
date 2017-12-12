@@ -162,9 +162,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     
     // Remove a fretboard from the tableview.
     @IBAction func removeFretboardAction(_ sender: NSButton) {
-        if tableView!.numberOfRows >= 2 {
             removeFretboard(model)
-        }
     }
     
     @objc func removeFretboard(_ aModel: AnyObject) {
@@ -305,7 +303,6 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
             }
             updateFretboardView()
         }
-        
     }
     
  
@@ -459,7 +456,7 @@ class MainWindowController: NSWindowController, NSTableViewDataSource , NSTableV
     // Handles any initialization after the window controller's window has been loaded from its nib file.
     override func windowDidLoad() {
         super.windowDidLoad()
-                
+        
         modelIndex = 0
         
         // Build PopUps.
